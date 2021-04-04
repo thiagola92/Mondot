@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/leftcontainer/connections_tree/connection_menu/ConnectionMenu.gd" type="Script" id=1]
+
+
+[node name="ConnectionMenu" type="PopupMenu"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -715.0
+margin_bottom = -440.0
+items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "Open settings", null, 0, false, false, 1, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Create database", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Refresh", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Disconnect", null, 0, false, false, 4, 0, null, "", false ]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="id_pressed" from="." to="." method="_on_ConnectionMenu_id_pressed"]

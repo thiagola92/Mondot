@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/leftcontainer/menu/file/File.gd" type="Script" id=1]
+
+
+[node name="File" type="MenuButton"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "File"
+flat = false
+items = [ "Open connections list", null, 0, false, false, 0, 0, null, "", false, "New connection", null, 0, false, false, 1, 0, null, "", false, "Exit", null, 0, false, false, 2, 0, null, "", false ]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="exit_pressed" from="." to="." method="_on_File_exit_pressed"]

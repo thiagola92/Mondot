@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/leftcontainer/menu/help/Help.gd" type="Script" id=1]
+[ext_resource path="res://scenes/leftcontainer/menu/help/about/About.tscn" type="PackedScene" id=2]
+
+
+[node name="Help" type="MenuButton"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Help"
+flat = false
+items = [ "About", null, 0, false, false, 0, 0, null, "", false ]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="About" parent="." instance=ExtResource( 2 )]
+[connection signal="about_pressed" from="." to="." method="_on_Help_about_pressed"]
