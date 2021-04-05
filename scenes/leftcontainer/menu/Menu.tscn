@@ -9,22 +9,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-margin_right = 2.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 2, 0 )
-
 [node name="File" parent="." instance=ExtResource( 1 )]
-margin_left = 6.0
-margin_right = 41.0
+margin_right = 35.0
 items = [ "Open connections list", null, 0, false, false, 0, 0, null, "", false, "New connection", null, 0, false, false, 1, 0, null, "", false, "Exit", null, 0, false, false, 2, 0, null, "", false ]
 
 [node name="Edit" parent="." instance=ExtResource( 2 )]
-margin_left = 45.0
-margin_right = 81.0
+margin_left = 39.0
+margin_right = 75.0
 items = [ "Preferences", null, 0, false, false, 0, 0, null, "", false, "Theme", null, 0, false, false, 1, 0, null, "", false ]
 
 [node name="Help" parent="." instance=ExtResource( 3 )]
-margin_left = 85.0
-margin_right = 127.0
+margin_left = 79.0
+margin_right = 121.0
 items = [ "About", null, 0, false, false, 0, 0, null, "", false ]
