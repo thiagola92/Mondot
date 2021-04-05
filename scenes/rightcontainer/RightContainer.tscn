@@ -18,6 +18,7 @@ margin_right = 1024.0
 margin_bottom = 24.0
 tab_align = 0
 tab_close_display_policy = 2
+drag_to_rearrange_enabled = true
 
 [node name="Panel" type="PanelContainer" parent="."]
 margin_top = 28.0
@@ -25,5 +26,6 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+[connection signal="reposition_active_tab_request" from="Tabs" to="." method="_on_Tabs_reposition_active_tab_request"]
 [connection signal="tab_changed" from="Tabs" to="." method="_on_Tabs_tab_changed"]
 [connection signal="tab_close" from="Tabs" to="." method="_on_Tabs_tab_close"]
