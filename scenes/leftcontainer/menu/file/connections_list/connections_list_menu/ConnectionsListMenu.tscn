@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="ConnectionsListMenu" type="HBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewConnection" type="Button" parent="."]
+margin_right = 115.0
+margin_bottom = 20.0
+text = "New connection"
+
+[node name="NewFolder" type="Button" parent="."]
+margin_left = 119.0
+margin_right = 203.0
+margin_bottom = 20.0
+text = "New Folder"

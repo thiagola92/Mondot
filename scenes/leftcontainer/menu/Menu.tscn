@@ -11,7 +11,6 @@ __meta__ = {
 
 [node name="File" parent="." instance=ExtResource( 1 )]
 margin_right = 35.0
-items = [ "Open connections list", null, 0, false, false, 0, 0, null, "", false, "New connection", null, 0, false, false, 1, 0, null, "", false, "Exit", null, 0, false, false, 2, 0, null, "", false ]
 
 [node name="Edit" parent="." instance=ExtResource( 2 )]
 margin_left = 39.0

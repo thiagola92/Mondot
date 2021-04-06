@@ -9,6 +9,5 @@ func _ready():
 
 
 func _on_ConnectionMenu_open_shell_pressed():
-	var l = Label.new()
-	l.text = str($RightContainer/Tabs.get_tab_count())
-	$RightContainer.add_tab("Shell" + l.text , l)
+	var shell = preload("res://scenes/rightcontainer/shell/Shell.tscn")
+	$RightContainer.add_tab("Shell", shell.instance())
