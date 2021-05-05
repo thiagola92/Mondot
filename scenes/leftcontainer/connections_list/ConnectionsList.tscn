@@ -1,20 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/leftcontainer/connections_list/ConnectionsList.gd" type="Script" id=1]
 [ext_resource path="res://scenes/leftcontainer/connections_list/ConnectionsListTree.gd" type="Script" id=2]
+[ext_resource path="res://scenes/leftcontainer/connections_list/NewConnection.gd" type="Script" id=3]
+[ext_resource path="res://scenes/leftcontainer/connections_list/LoadUri.gd" type="Script" id=5]
 
 [node name="ConnectionsList" type="WindowDialog"]
-visible = true
 margin_left = -1.0
 margin_right = 311.0
 margin_bottom = 471.0
+popup_exclusive = true
 window_title = "Connections List"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ConnectionListContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -23,22 +25,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConnectionsListMenu" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ConnectionsListMenu" type="HBoxContainer" parent="ConnectionListContainer"]
 margin_right = 312.0
 margin_bottom = 20.0
 
-[node name="NewConnection" type="Button" parent="VBoxContainer/ConnectionsListMenu"]
+[node name="NewConnection" type="Button" parent="ConnectionListContainer/ConnectionsListMenu"]
 margin_right = 115.0
 margin_bottom = 20.0
 text = "New connection"
+script = ExtResource( 3 )
 
-[node name="NewFolder" type="Button" parent="VBoxContainer/ConnectionsListMenu"]
+[node name="NewFolder" type="Button" parent="ConnectionListContainer/ConnectionsListMenu"]
 margin_left = 119.0
 margin_right = 200.0
 margin_bottom = 20.0
 text = "New folder"
 
-[node name="ConnectionsListTree" type="Tree" parent="VBoxContainer"]
+[node name="Space" type="HSplitContainer" parent="ConnectionListContainer/ConnectionsListMenu"]
+margin_left = 204.0
+margin_right = 239.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="LoadUri" type="Button" parent="ConnectionListContainer/ConnectionsListMenu"]
+margin_left = 243.0
+margin_right = 312.0
+margin_bottom = 20.0
+text = "Load URI"
+script = ExtResource( 5 )
+
+[node name="ConnectionsListTree" type="Tree" parent="ConnectionListContainer"]
 margin_top = 24.0
 margin_right = 312.0
 margin_bottom = 471.0
@@ -46,4 +62,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
 
-[connection signal="pressed" from="VBoxContainer/ConnectionsListMenu/NewConnection" to="." method="_on_NewConnection_pressed"]
+[connection signal="pressed" from="ConnectionListContainer/ConnectionsListMenu/NewConnection" to="ConnectionListContainer/ConnectionsListMenu/NewConnection" method="_on_NewConnection_pressed"]
+[connection signal="pressed" from="ConnectionListContainer/ConnectionsListMenu/LoadUri" to="ConnectionListContainer/ConnectionsListMenu/LoadUri" method="_on_LoadUri_pressed"]

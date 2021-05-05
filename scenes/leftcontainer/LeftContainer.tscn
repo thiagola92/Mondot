@@ -49,6 +49,7 @@ items = [ "About", null, 0, false, false, 0, 0, null, "", false ]
 script = ExtResource( 4 )
 
 [node name="About" parent="Menu/Help" instance=ExtResource( 5 )]
+visible = false
 
 [node name="ConnectionsTree" type="Tree" parent="."]
 margin_top = 24.0

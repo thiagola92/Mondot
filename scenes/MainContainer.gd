@@ -1,13 +1,13 @@
 extends HBoxContainer
 
+var Shell = preload("res://scenes/rightcontainer/shell/Shell.tscn")
 
 func _ready():	
-	$LeftPanel/ConnectionsTree/ConnectionMenu.connect(
+	$LeftContainer/ConnectionsTree/ConnectionMenu.connect(
 		"open_shell_pressed", self,
 		"_on_ConnectionMenu_open_shell_pressed"
 	)
 
 
 func _on_ConnectionMenu_open_shell_pressed():
-	var shell = preload("res://scenes/rightcontainer/shell/Shell.tscn")
-	$RightContainer.add_tab("Shell", shell.instance())
+	$RightContainer.add_tab("Shell", Shell.instance())

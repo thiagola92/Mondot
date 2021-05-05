@@ -1,5 +1,7 @@
 extends WindowDialog
 
+signal popup_closed
+
 
 func _ready():
 	# For test purpose only
