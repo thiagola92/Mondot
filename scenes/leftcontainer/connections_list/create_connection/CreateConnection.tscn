@@ -3,7 +3,6 @@
 [ext_resource path="res://scenes/leftcontainer/connections_list/create_connection/CreateConnection.gd" type="Script" id=1]
 
 [node name="CreateConnection" type="WindowDialog"]
-visible = true
 margin_right = 512.0
 margin_bottom = 334.0
 popup_exclusive = true
@@ -160,3 +159,6 @@ margin_left = 458.0
 margin_right = 512.0
 margin_bottom = 20.0
 text = "Cancel"
+
+[connection signal="popup_hide" from="." to="." method="_on_CreateConnection_popup_hide"]
+[connection signal="pressed" from="VBoxContainer/ActionsMenu/Cancel" to="." method="_on_Cancel_pressed"]
