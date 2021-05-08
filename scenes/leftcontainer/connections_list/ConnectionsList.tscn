@@ -63,6 +63,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 allow_reselect = true
 allow_rmb_select = true
+hide_root = true
 script = ExtResource( 2 )
 
 [connection signal="pressed" from="ConnectionListContainer/ConnectionsListMenu/NewConnection" to="ConnectionListContainer/ConnectionsListMenu/NewConnection" method="_on_NewConnection_pressed"]

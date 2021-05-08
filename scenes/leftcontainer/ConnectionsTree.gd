@@ -15,24 +15,23 @@ func _ready():
 	
 	root = create_item()
 	
-	add_connection({
+	_add_connection({
 		"_type_": CONNECTION,
 		"name": "exemplo1",
 	})
-	add_connection({
+	_add_connection({
 		"_type_": CONNECTION,
 		"name": "exemplo2",
 	})
 
 
-func add_connection(connection):
+func _add_connection(connection : Dictionary):
 	var item = create_item(root)
 	item.set_text(0, connection["name"])
 	item.set_metadata(0, connection)
 
 
-func _on_ConnectionsTree_item_rmb_selected(position):
-	var item = get_item_at_position(position)
+func _on_ConnectionsTree_item_rmb_selected(position : Vector2):
 	$ConnectionMenu.rect_position = position
 	$ConnectionMenu.popup()
 

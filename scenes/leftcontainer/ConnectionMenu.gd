@@ -19,5 +19,5 @@ func _ready():
 	pass
 
 
-func _on_ConnectionMenu_id_pressed(id):
+func _on_ConnectionMenu_id_pressed(id : int):
 	emit_signal(options[id])

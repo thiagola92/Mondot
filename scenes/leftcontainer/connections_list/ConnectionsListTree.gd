@@ -5,7 +5,7 @@ enum {
 	FOLDER
 }
 
-var root
+var root : TreeItem
 
 
 func _ready():
@@ -23,20 +23,26 @@ func _is_name_used(parent : TreeItem, name : String):
 	return false
 
 
-func _create_item(parent : TreeItem, name : String, type : int):
+func _create_folder(parent : TreeItem, name : String):
 	var child = create_item(parent)
 	child.set_text(0, name)
-	child.set_metadata(0, {'_type_': type})
+	child.set_metadata(0, {
+		'_type_': FOLDER,
+		'name': name
+	})
 	
 	scroll_to_item(child)
 
 
-func _create_folder(parent : TreeItem, name : String):
-	_create_item(parent, name, FOLDER)
-
-
 func _create_connection(parent : TreeItem, name : String):
-	_create_item(parent, name, CONNECTION)
+	var child = create_item(parent)
+	child.set_text(0, name)
+	child.set_metadata(0, {
+		'_type_': CONNECTION,
+		'name': name
+	})
+	
+	scroll_to_item(child)
 
 
 func _on_NewFolder_pressed():
@@ -50,4 +56,7 @@ func _on_NewFolder_pressed():
 
 
 func _on_ConnectionsListTree_item_activated():
-	get_selected().set_editable(0, true)
+	var metadata = get_selected().get_metadata(0)
+	
+	if metadata["_type_"] == CONNECTION:
+		print("connect with mongo") # TODO

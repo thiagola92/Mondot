@@ -7,5 +7,5 @@ func _ready():
 		popup_centered()
 
 
-func _on_Details_meta_clicked(meta):
+func _on_Details_meta_clicked(meta : String):
 	OS.shell_open(meta)
