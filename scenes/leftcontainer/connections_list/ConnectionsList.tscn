@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/leftcontainer/connections_list/LoadUri.gd" type="Script" id=5]
 
 [node name="ConnectionsList" type="WindowDialog"]
+visible = true
 margin_left = -1.0
 margin_right = 311.0
 margin_bottom = 471.0
@@ -60,7 +61,11 @@ margin_right = 312.0
 margin_bottom = 471.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+allow_reselect = true
+allow_rmb_select = true
 script = ExtResource( 2 )
 
 [connection signal="pressed" from="ConnectionListContainer/ConnectionsListMenu/NewConnection" to="ConnectionListContainer/ConnectionsListMenu/NewConnection" method="_on_NewConnection_pressed"]
+[connection signal="pressed" from="ConnectionListContainer/ConnectionsListMenu/NewFolder" to="ConnectionListContainer/ConnectionsListTree" method="_on_NewFolder_pressed"]
 [connection signal="pressed" from="ConnectionListContainer/ConnectionsListMenu/LoadUri" to="ConnectionListContainer/ConnectionsListMenu/LoadUri" method="_on_LoadUri_pressed"]
+[connection signal="item_activated" from="ConnectionListContainer/ConnectionsListTree" to="ConnectionListContainer/ConnectionsListTree" method="_on_ConnectionsListTree_item_activated"]
