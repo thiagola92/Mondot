@@ -1,6 +1,6 @@
 extends Button
 
-var CreateConnection = preload("res://scenes/leftcontainer/connections_list/create_connection/CreateConnection.tscn")
+var CreateConnection = preload("res://scenes/left_container/connections_list/create_connection/CreateConnection.tscn")
 
 
 func _ready():

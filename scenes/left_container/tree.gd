@@ -31,12 +31,12 @@ func _add_connection(connection : Dictionary):
 	item.set_metadata(0, connection)
 
 
-func _on_ConnectionsTree_item_rmb_selected(position : Vector2):
-	$ConnectionMenu.rect_position = position
-	$ConnectionMenu.popup()
+func _on_Tree_item_rmb_selected(position : Vector2):
+	$Menu.rect_position = position
+	$Menu.popup()
 
 
-func _on_ConnectionMenu_disconnect_pressed():
+func _on_Menu_disconnect_pressed():
 	var item = get_selected()
 	root.remove_child(item)
 	item.free()

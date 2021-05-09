@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-const startup = preload("res://scenes/rightcontainer/startup/Startup.tscn")
+const startup = preload("res://scenes/right_container/startup/Startup.tscn")
 const contents = []
 
 

@@ -55,7 +55,7 @@ func _on_NewFolder_pressed():
 	_create_folder(root, name.format({'count': count}))
 
 
-func _on_ConnectionsListTree_item_activated():
+func _on_Tree_item_activated():
 	var metadata = get_selected().get_metadata(0)
 	
 	if metadata["_type_"] == CONNECTION:

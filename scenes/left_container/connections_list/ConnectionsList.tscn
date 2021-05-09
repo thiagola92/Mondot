@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/left_container/connections_list/connections_list.gd" type="Script" id=1]
+[ext_resource path="res://scenes/left_container/connections_list/tree.gd" type="Script" id=2]
+[ext_resource path="res://scenes/left_container/connections_list/new_connection.gd" type="Script" id=3]
+[ext_resource path="res://scenes/left_container/connections_list/load_uri.gd" type="Script" id=5]
+
+[node name="ConnectionsList" type="WindowDialog"]
+margin_left = -1.0
+margin_right = 311.0
+margin_bottom = 471.0
+popup_exclusive = true
+window_title = "Connections List"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="HBoxContainer" parent="Container"]
+margin_right = 312.0
+margin_bottom = 20.0
+
+[node name="NewConnection" type="Button" parent="Container/Menu"]
+margin_right = 115.0
+margin_bottom = 20.0
+text = "New connection"
+script = ExtResource( 3 )
+
+[node name="NewFolder" type="Button" parent="Container/Menu"]
+margin_left = 119.0
+margin_right = 200.0
+margin_bottom = 20.0
+text = "New folder"
+
+[node name="Space" type="HSplitContainer" parent="Container/Menu"]
+margin_left = 204.0
+margin_right = 239.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="LoadUri" type="Button" parent="Container/Menu"]
+margin_left = 243.0
+margin_right = 312.0
+margin_bottom = 20.0
+text = "Load URI"
+script = ExtResource( 5 )
+
+[node name="Tree" type="Tree" parent="Container"]
+margin_top = 24.0
+margin_right = 312.0
+margin_bottom = 447.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+allow_reselect = true
+allow_rmb_select = true
+hide_root = true
+script = ExtResource( 2 )
+
+[node name="Options" type="HBoxContainer" parent="Container"]
+margin_top = 451.0
+margin_right = 312.0
+margin_bottom = 471.0
+
+[node name="Import" type="Button" parent="Container/Options"]
+margin_right = 56.0
+margin_bottom = 20.0
+text = "Import"
+
+[node name="Space" type="HSplitContainer" parent="Container/Options"]
+margin_left = 60.0
+margin_right = 256.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="Export" type="Button" parent="Container/Options"]
+margin_left = 260.0
+margin_right = 312.0
+margin_bottom = 20.0
+text = "Export"
+
+[connection signal="pressed" from="Container/Menu/NewConnection" to="Container/Menu/NewConnection" method="_on_NewConnection_pressed"]
+[connection signal="pressed" from="Container/Menu/NewFolder" to="Container/Tree" method="_on_NewFolder_pressed"]
+[connection signal="pressed" from="Container/Menu/LoadUri" to="Container/Menu/LoadUri" method="_on_LoadUri_pressed"]
+[connection signal="item_activated" from="Container/Tree" to="Container/Tree" method="_on_Tree_item_activated"]

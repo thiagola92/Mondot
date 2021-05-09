@@ -1,7 +1,9 @@
-extends WindowDialog
+extends FileDialog
 
 
 func _ready():
 	# For test purpose only
 	if get_tree().get_root().get_child(0) == $".":
 		popup_centered()
+	
+	set_filters(PoolStringArray(["*.json ; JSON File"]))
