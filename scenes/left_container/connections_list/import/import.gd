@@ -7,3 +7,4 @@ func _ready():
 		popup_centered()
 	
 	set_filters(PoolStringArray(["*.json ; JSON File"]))
+	

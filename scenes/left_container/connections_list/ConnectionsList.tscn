@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/connections_list.gd" type="Script" id=1]
 [ext_resource path="res://scenes/left_container/connections_list/tree.gd" type="Script" id=2]
 [ext_resource path="res://scenes/left_container/connections_list/new_connection.gd" type="Script" id=3]
+[ext_resource path="res://scenes/left_container/connections_list/import/Import.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/left_container/connections_list/load_uri.gd" type="Script" id=5]
+[ext_resource path="res://scenes/left_container/connections_list/import.gd" type="Script" id=6]
+[ext_resource path="res://scenes/left_container/connections_list/connection.gd" type="Script" id=7]
+[ext_resource path="res://scenes/utility/type/Type.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/utility/alert/Alert.tscn" type="PackedScene" id=9]
 
 [node name="ConnectionsList" type="WindowDialog"]
 margin_left = -1.0
@@ -74,6 +79,16 @@ margin_bottom = 471.0
 margin_right = 56.0
 margin_bottom = 20.0
 text = "Import"
+script = ExtResource( 6 )
+
+[node name="Import" parent="Container/Options/Import" instance=ExtResource( 4 )]
+
+[node name="Connection" type="Node" parent="Container/Options/Import"]
+script = ExtResource( 7 )
+
+[node name="Alert" parent="Container/Options/Import/Connection" instance=ExtResource( 9 )]
+
+[node name="Type" parent="Container/Options/Import/Connection" instance=ExtResource( 8 )]
 
 [node name="Space" type="HSplitContainer" parent="Container/Options"]
 margin_left = 60.0
@@ -87,7 +102,11 @@ margin_right = 312.0
 margin_bottom = 20.0
 text = "Export"
 
+[node name="Alert" parent="." instance=ExtResource( 9 )]
+
 [connection signal="pressed" from="Container/Menu/NewConnection" to="Container/Menu/NewConnection" method="_on_NewConnection_pressed"]
 [connection signal="pressed" from="Container/Menu/NewFolder" to="Container/Tree" method="_on_NewFolder_pressed"]
 [connection signal="pressed" from="Container/Menu/LoadUri" to="Container/Menu/LoadUri" method="_on_LoadUri_pressed"]
 [connection signal="item_activated" from="Container/Tree" to="Container/Tree" method="_on_Tree_item_activated"]
+[connection signal="pressed" from="Container/Options/Import" to="Container/Options/Import" method="_on_Import_pressed"]
+[connection signal="file_selected" from="Container/Options/Import/Import" to="." method="_on_Import_file_selected"]

@@ -12,6 +12,11 @@ func _ready():
 	root = create_item()
 
 
+func load_connections(connections : Array):
+	for connection in connections:
+		print(connection)
+
+
 func _is_name_used(parent : TreeItem, name : String):
 	var child = parent.get_children()
 	
