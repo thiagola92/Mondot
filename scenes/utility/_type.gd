@@ -1,6 +1,4 @@
-extends Node
-
-class_name Type
+extends Reference
 
 const _table = {
 	 0: 'TYPE_NIL',
@@ -34,9 +32,5 @@ const _table = {
 }
 
 
-func _ready():
-	pass
-
-
-func of(value) -> String:
+static func of(value) -> String:
 	return _table[typeof(value)]

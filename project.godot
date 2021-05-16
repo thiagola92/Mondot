@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "Alert",
 "language": "GDScript",
 "path": "res://scenes/utility/alert/alert.gd"
-}, {
-"base": "Node",
-"class": "Type",
-"language": "GDScript",
-"path": "res://scenes/utility/type/type.gd"
 } ]
 _global_script_class_icons={
-"Alert": "",
-"Type": ""
+"Alert": ""
 }
 
 [application]
