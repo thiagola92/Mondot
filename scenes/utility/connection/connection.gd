@@ -1,7 +1,7 @@
-extends Reference
+extends Node
 
 const Type = preload("res://scenes/utility/type.gd")
-const ConnectionParseResult = preload("res://scenes/utility/connection_parse_result.gd")
+const ConnectionParseResult = preload("res://scenes/utility/connection/connection_parse_result.gd")
 
 # TYPE_NIL means that it accept event if the field is missing
 const structure = {

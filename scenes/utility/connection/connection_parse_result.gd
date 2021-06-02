@@ -1,4 +1,4 @@
-extends Reference
+extends Node
 
 var error : int = OK
 var error_string  : String = ''

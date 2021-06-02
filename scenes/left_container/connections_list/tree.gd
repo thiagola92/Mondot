@@ -1,10 +1,5 @@
 extends Tree
 
-enum {
-	CONNECTION,
-	FOLDER
-}
-
 var root : TreeItem
 
 
@@ -47,14 +42,14 @@ func _create_node(parent : TreeItem, name : String, metadata : Dictionary):
 
 func _create_folder(parent : TreeItem, name : String):
 	_create_node(parent, name, {
-		'_type_': FOLDER,
+		'_type_': ConnectionType.FOLDER,
 		'name': name
 	})
 
 
 func _create_connection(parent : TreeItem, name : String):
 	_create_node(parent, name, {
-		'_type_': CONNECTION,
+		'_type_': ConnectionType.CONNECTION,
 		'name': name
 	})
 
@@ -72,7 +67,7 @@ func _on_NewConnection_pressed():
 func _on_Tree_item_activated():
 	var metadata = get_selected().get_metadata(0)
 	
-	if metadata["_type_"] == CONNECTION:
+	if metadata["_type_"] == ConnectionType.CONNECTION:
 		print("connect with mongo") # TODO
 
 

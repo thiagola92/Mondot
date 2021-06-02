@@ -5,7 +5,6 @@
 [ext_resource path="res://scenes/left_container/connections_list/create_connection/organization_settings.gd" type="Script" id=3]
 
 [node name="CreateConnection" type="WindowDialog"]
-visible = true
 margin_right = 512.0
 margin_bottom = 334.0
 popup_exclusive = true

@@ -5,7 +5,7 @@ signal load_pressed(uri)
 
 func _ready():
 	# For test purpose only
-	if get_tree().get_root().get_child(0) == $".":
+	if $"." in get_tree().get_root().get_children():
 		popup_centered()
 
 
