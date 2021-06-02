@@ -28,36 +28,45 @@ func _is_name_used(parent : TreeItem, name : String):
 	return false
 
 
-func _create_folder(parent : TreeItem, name : String):
+func _get_available_name(name : String, counter_name : String):
+	var count = 0
+	
+	while _is_name_used(root, name.format({counter_name: count})):
+		count += 1
+	
+	return name.format({counter_name: count})
+
+
+func _create_node(parent : TreeItem, name : String, metadata : Dictionary):
 	var child = create_item(parent)
 	child.set_text(0, name)
-	child.set_metadata(0, {
+	child.set_metadata(0, metadata)
+	
+	scroll_to_item(child)
+
+
+func _create_folder(parent : TreeItem, name : String):
+	_create_node(parent, name, {
 		'_type_': FOLDER,
 		'name': name
 	})
-	
-	scroll_to_item(child)
 
 
 func _create_connection(parent : TreeItem, name : String):
-	var child = create_item(parent)
-	child.set_text(0, name)
-	child.set_metadata(0, {
+	_create_node(parent, name, {
 		'_type_': CONNECTION,
 		'name': name
 	})
-	
-	scroll_to_item(child)
 
 
 func _on_NewFolder_pressed():
-	var name = 'New folder {count}'
-	var count = 0
-	
-	while _is_name_used(root, name.format({'count': count})):
-		count += 1
-	
-	_create_folder(root, name.format({'count': count}))
+	var name = _get_available_name('New folder {count}', 'count')
+	_create_folder(root, name)
+
+
+func _on_NewConnection_pressed():
+	var name = _get_available_name('New connection {count}', 'count')
+	_create_connection(root, name)
 
 
 func _on_Tree_item_activated():
@@ -65,3 +74,8 @@ func _on_Tree_item_activated():
 	
 	if metadata["_type_"] == CONNECTION:
 		print("connect with mongo") # TODO
+
+
+func _on_Import_connections_loaded(connections):
+	for connection in connections:
+		_create_node(root, connection['name'], connection)

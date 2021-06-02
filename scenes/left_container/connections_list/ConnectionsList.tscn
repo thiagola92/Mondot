@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/connections_list.gd" type="Script" id=1]
 [ext_resource path="res://scenes/left_container/connections_list/tree.gd" type="Script" id=2]
-[ext_resource path="res://scenes/left_container/connections_list/new_connection.gd" type="Script" id=3]
 [ext_resource path="res://scenes/left_container/connections_list/import/Import.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/left_container/connections_list/load_uri.gd" type="Script" id=5]
 [ext_resource path="res://scenes/left_container/connections_list/import.gd" type="Script" id=6]
 
 [node name="ConnectionsList" type="WindowDialog"]
+visible = true
 margin_left = -1.0
 margin_right = 311.0
 margin_bottom = 471.0
@@ -35,7 +35,6 @@ margin_bottom = 20.0
 margin_right = 115.0
 margin_bottom = 20.0
 text = "New connection"
-script = ExtResource( 3 )
 
 [node name="NewFolder" type="Button" parent="Container/Menu"]
 margin_left = 119.0
@@ -92,9 +91,10 @@ margin_right = 312.0
 margin_bottom = 20.0
 text = "Export"
 
-[connection signal="pressed" from="Container/Menu/NewConnection" to="Container/Menu/NewConnection" method="_on_NewConnection_pressed"]
+[connection signal="pressed" from="Container/Menu/NewConnection" to="Container/Tree" method="_on_NewConnection_pressed"]
 [connection signal="pressed" from="Container/Menu/NewFolder" to="Container/Tree" method="_on_NewFolder_pressed"]
 [connection signal="pressed" from="Container/Menu/LoadUri" to="Container/Menu/LoadUri" method="_on_LoadUri_pressed"]
 [connection signal="item_activated" from="Container/Tree" to="Container/Tree" method="_on_Tree_item_activated"]
 [connection signal="pressed" from="Container/Options/Import" to="Container/Options/Import" method="_on_Import_pressed"]
+[connection signal="connections_loaded" from="Container/Options/Import/Import" to="Container/Tree" method="_on_Import_connections_loaded"]
 [connection signal="file_selected" from="Container/Options/Import/Import" to="Container/Options/Import" method="_on_Import_file_selected"]

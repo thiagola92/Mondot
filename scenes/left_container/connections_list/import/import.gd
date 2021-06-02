@@ -33,28 +33,43 @@ func _load_json(text : String):
 	return json.result
 
 
-func _load_connections(json) -> Array:
+func _load_connection(json : Dictionary):
+	var connection = Connection.parse(json)
+	
+	if connection.error != OK:
+		$Alert.message(connection.error_string)
+		return null
+	
+	return connection.result
+
+
+func _load_connections(json : Array):
 	var connections = []
 	
-	if typeof(json) != TYPE_ARRAY:
-		$Alert.message("JSON imported is not an array of connections")
-		return []
-	
 	for connection in json:
-		connection = Connection.parse(connection)
+		var conn = _load_connection(connection)
 		
-		if connection.error != OK:
-			$Alert.message(connection.error_string)
-			return []
-		
-		connections.append(connection.result)
+		if conn == null:
+			continue
+			
+		connections.append(conn)
 	
 	return connections
+
+
+func _import_connections(json):
+	if typeof(json) == TYPE_DICTIONARY:
+		return _load_connections([json])
+	
+	if typeof(json) == TYPE_ARRAY:
+		return _load_connections(json)
+	
+	return []
 
 
 func _on_Import_file_selected(path):
 	var content = _read_file(path)
 	var json = _load_json(content)
-	var connections = _load_connections(json)
+	var connections = _import_connections(json)
 	
 	emit_signal("connections_loaded", connections)
