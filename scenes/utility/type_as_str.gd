@@ -1,4 +1,4 @@
-extends Reference
+extends Node
 
 const _table = {
 	 0: 'TYPE_NIL',

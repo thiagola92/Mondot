@@ -1,8 +1,11 @@
 [
     {
+        "__type__": 0,
+        "connections": [],
         "name": "New folder"
     },
     {
+        "__type__": 1,
         "name": "New connection"
     }
 ]
