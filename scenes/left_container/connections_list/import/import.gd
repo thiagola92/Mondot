@@ -36,31 +36,26 @@ func _load_connection(json : Dictionary):
 	
 	if connection.error != OK:
 		$Alert.message(connection.error_string)
-		return null
+		return []
 	
-	return connection.result
+	return [connection.result]
 
 
 func _load_connections(json : Array):
 	var connections = []
 	
-	for connection in json:
-		var conn = _load_connection(connection)
-		
-		if conn == null:
-			continue
-			
-		connections.append(conn)
+	for item in json:
+		connections.append_array(_import_connections(item))
 	
 	return connections
 
 
 func _import_connections(json):
-	if typeof(json) == TYPE_DICTIONARY:
-		return _load_connections([json])
-	
 	if typeof(json) == TYPE_ARRAY:
 		return _load_connections(json)
+	
+	if typeof(json) == TYPE_DICTIONARY:
+		return _load_connection(json)
 	
 	return []
 

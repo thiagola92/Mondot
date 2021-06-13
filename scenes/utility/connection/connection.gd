@@ -11,14 +11,6 @@ const structure = {
 }
 
 
-static func _get_connection_values(connection : Dictionary, parse_result : ConnectionParseResult):
-	parse_result.result = {
-		'name': connection['name'],
-		'host': connection['host'] if connection.get('host') != null else '127.0.0.1',
-		'port': connection['port'] if connection.get('port') != null else 27017,
-	}
-
-
 static func _are_types_valid(connection : Dictionary, parse_result : ConnectionParseResult):
 	for key in structure.keys():
 		if not typeof(connection.get(key)) in structure[key]:
@@ -27,6 +19,14 @@ static func _are_types_valid(connection : Dictionary, parse_result : ConnectionP
 			
 			return false
 	return true
+
+
+static func _get_connection_values(connection : Dictionary, parse_result : ConnectionParseResult):
+	parse_result.result = {
+		'name': connection['name'],
+		'host': connection['host'] if connection.get('host') != null else '127.0.0.1',
+		'port': connection['port'] if connection.get('port') != null else 27017,
+	}
 
 
 static func parse(conn : Dictionary):
