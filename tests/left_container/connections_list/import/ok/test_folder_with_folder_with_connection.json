@@ -1,0 +1,18 @@
+[
+    {
+        "__type__": 0,
+        "connections": [
+            {
+                "__type__": 0,
+                "name": "Folder inside folder 1",
+                "connections": [
+                	{
+                		"__type__": 1,
+                		"name": "Connection inside folder + folder"
+                	}
+                ]
+            },
+        ],
+        "name": "New folder 1"
+    }
+]
