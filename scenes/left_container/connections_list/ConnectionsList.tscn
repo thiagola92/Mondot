@@ -93,7 +93,7 @@ text = "Export"
 [connection signal="pressed" from="Container/Menu/NewConnection" to="Container/Tree" method="_on_NewConnection_pressed"]
 [connection signal="pressed" from="Container/Menu/NewFolder" to="Container/Tree" method="_on_NewFolder_pressed"]
 [connection signal="pressed" from="Container/Menu/LoadUri" to="Container/Menu/LoadUri" method="_on_LoadUri_pressed"]
-[connection signal="item_activated" from="Container/Tree" to="Container/Tree" method="_on_Tree_item_activated"]
+[connection signal="item_activated" from="Container/Tree" to="." method="_on_Tree_item_activated"]
 [connection signal="pressed" from="Container/Options/Import" to="Container/Options/Import" method="_on_Import_pressed"]
 [connection signal="connections_loaded" from="Container/Options/Import/Import" to="Container/Tree" method="_on_Import_connections_loaded"]
 [connection signal="file_selected" from="Container/Options/Import/Import" to="Container/Options/Import" method="_on_Import_file_selected"]

@@ -1,10 +1,8 @@
 extends Tree
 
-var root : TreeItem
-
 
 func _ready():
-	root = create_item()
+	create_item()
 
 
 func _is_name_used(parent : TreeItem, name : String):
@@ -21,7 +19,7 @@ func _is_name_used(parent : TreeItem, name : String):
 func _get_available_name(name : String, counter_name : String):
 	var count = 0
 	
-	while _is_name_used(root, name.format({counter_name: count})):
+	while _is_name_used(get_root(), name.format({counter_name: count})):
 		count += 1
 	
 	return name.format({counter_name: count})
@@ -41,7 +39,7 @@ func _create_node(parent : TreeItem, metadata : Dictionary):
 
 func _on_NewConnection_pressed():
 	var name = _get_available_name('New connection {count}', 'count')
-	_create_node(root, {
+	_create_node(get_root(), {
 		'__type__': ConnectionType.CONNECTION,
 		'name': name,
 	})
@@ -49,20 +47,13 @@ func _on_NewConnection_pressed():
 
 func _on_NewFolder_pressed():
 	var name = _get_available_name('New folder {count}', 'count')
-	_create_node(root, {
+	_create_node(get_root(), {
 		'__type__': ConnectionType.FOLDER,
 		'name': name,
 		'connections': [],
 	})
 
 
-func _on_Tree_item_activated():
-	var metadata = get_selected().get_metadata(0)
-	
-	if metadata["__type__"] == ConnectionType.CONNECTION:
-		print("open connection settings") # TODO
-
-
 func _on_Import_connections_loaded(connections):
 	for connection in connections:
-		_create_node(root, connection)
+		_create_node(get_root(), connection)

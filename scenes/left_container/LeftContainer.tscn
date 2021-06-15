@@ -68,6 +68,7 @@ script = ExtResource( 7 )
 
 [connection signal="exit_pressed" from="Menu/File" to="Menu/File" method="_on_File_exit_pressed"]
 [connection signal="open_connections_list_pressed" from="Menu/File" to="Menu/File" method="_on_File_open_connections_list_pressed"]
+[connection signal="item_selected" from="Menu/File/ConnectionsList" to="Tree" method="_on_ConnectionsList_item_selected"]
 [connection signal="about_pressed" from="Menu/Help" to="Menu/Help" method="_on_Help_about_pressed"]
 [connection signal="item_rmb_selected" from="Tree" to="Tree" method="_on_Tree_item_rmb_selected"]
 [connection signal="disconnect_pressed" from="Tree/Menu" to="Tree" method="_on_Menu_disconnect_pressed"]

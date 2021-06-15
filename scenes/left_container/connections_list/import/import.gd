@@ -87,6 +87,4 @@ func _on_Import_file_selected(path):
 	var json = _load_json(content)
 	var connections = _import_connections(json)
 	
-	print(connections)
-	
 	emit_signal("connections_loaded", connections)
