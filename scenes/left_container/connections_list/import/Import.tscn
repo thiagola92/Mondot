@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/import/import.gd" type="Script" id=1]
 [ext_resource path="res://scenes/utility/alert/Alert.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/left_container/connections_list/import/connection_parser.gd" type="Script" id=3]
+[ext_resource path="res://scenes/left_container/connections_list/import/folder_parser.gd" type="Script" id=4]
 
 [node name="Import" type="FileDialog"]
 margin_right = 576.0
@@ -22,5 +24,11 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 568.0
 margin_bottom = 251.0
+
+[node name="ConnectionParser" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="FolderParser" type="Node" parent="."]
+script = ExtResource( 4 )
 
 [connection signal="file_selected" from="." to="." method="_on_Import_file_selected"]

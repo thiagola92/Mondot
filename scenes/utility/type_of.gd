@@ -1,6 +1,6 @@
 extends Node
 
-const _table = {
+const _types_map = {
 	 0: 'TYPE_NIL',
 	 1: 'TYPE_BOOL',
 	 2: 'TYPE_INT',
@@ -32,5 +32,5 @@ const _table = {
 }
 
 
-static func of(value) -> String:
-	return _table[typeof(value)]
+static func this(value) -> String:
+	return _types_map[typeof(value)]

@@ -30,7 +30,7 @@ func _create_node(parent : TreeItem, metadata : Dictionary):
 	child.set_text(0, metadata['name'])
 	child.set_metadata(0, metadata)
 	
-	if metadata['__type__'] == ConnectionType.FOLDER:
+	if metadata['__type__'] == MondotType.FOLDER:
 		for item in metadata['connections']:
 			_create_node(child, item)
 	
@@ -40,7 +40,7 @@ func _create_node(parent : TreeItem, metadata : Dictionary):
 func _on_NewConnection_pressed():
 	var name = _get_available_name('New connection {count}', 'count')
 	_create_node(get_root(), {
-		'__type__': ConnectionType.CONNECTION,
+		'__type__': MondotType.CONNECTION,
 		'name': name,
 	})
 
@@ -48,7 +48,7 @@ func _on_NewConnection_pressed():
 func _on_NewFolder_pressed():
 	var name = _get_available_name('New folder {count}', 'count')
 	_create_node(get_root(), {
-		'__type__': ConnectionType.FOLDER,
+		'__type__': MondotType.FOLDER,
 		'name': name,
 		'connections': [],
 	})
