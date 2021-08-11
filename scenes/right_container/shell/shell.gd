@@ -16,7 +16,8 @@ func _on_Run_pressed():
 	
 	filepath = _create_code_file($TextEditor.text)
 	pid = OS.execute('bin/python', ["bin/run.py", "--filepath", filepath], false)
-
+	
+	$ShellOutput.show_output(filepath)
 
 func _create_code_file(content: String) -> String:
 	var random_name = _generate_random_name()
