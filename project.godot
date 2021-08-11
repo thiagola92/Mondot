@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "AcceptDialog",
-"class": "Alert",
-"language": "GDScript",
-"path": "res://scenes/utility/alert/alert.gd"
-} ]
-_global_script_class_icons={
-"Alert": ""
-}
-
 [application]
 
 config/name="Mongodot"

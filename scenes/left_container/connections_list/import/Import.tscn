@@ -20,10 +20,7 @@ __meta__ = {
 }
 
 [node name="Alert" parent="." instance=ExtResource( 2 )]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 568.0
-margin_bottom = 251.0
+visible = true
 
 [node name="ConnectionParser" type="Node" parent="."]
 script = ExtResource( 3 )

@@ -1,7 +1,5 @@
 extends AcceptDialog
 
-class_name Alert
-
 
 func _ready():
 	pass
