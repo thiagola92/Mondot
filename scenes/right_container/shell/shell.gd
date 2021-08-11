@@ -1,13 +1,16 @@
 extends VBoxContainer
 
-var filepath
+var filepath = null
+var pid = null
+
 
 func _ready():
-	filepath = _create_code_file('')
+	pass
 
-func _create_code_file(content: String):
+
+func _create_code_file(content: String) -> String:
 	var random_name = _generate_random_name()
-	var filepath = "tmp/%s.js" % random_name
+	var filepath = "tmp/%s.py" % random_name
 	var file = File.new()
 	
 	file.open(filepath, File.WRITE)
@@ -17,7 +20,7 @@ func _create_code_file(content: String):
 	return filepath
 
 
-func _generate_random_name():
+func _generate_random_name() -> String:
 	var rng = RandomNumberGenerator.new()
 	var random_array = PoolByteArray([])
 	
@@ -29,19 +32,36 @@ func _generate_random_name():
 	return random_array.get_string_from_ascii()
 
 
+func _on_Run_pressed():
+	_delete_code_file()
+	
+	filepath = _create_code_file($TextEditor.text)
+#	var pid = OS.execute('bin/python', [filepath], false)
+#
+#	print(pid)
+
+
+func _on_Shell_tree_exiting():
+	_delete_code_file()
+	_kill_process()
+
+
 func _delete_code_file():
+	if filepath == null:
+		return
+	
 	var directory = Directory.new()
 	var result_code = directory.remove(filepath)
 	
 	if result_code != OK:
-		$Alert.message('Fail to remove file:\n%s' % filepath)
+		$Alert.message("Fail to remove file:\n%s" % filepath)
 
 
-func _on_Run_pressed():
-	var uri = 'mongodb://username:password@127.0.0.1:27017'
+func _kill_process():
+	if pid == null:
+		return
 	
-	var pid = OS.execute('bin/python', [filepath], false)
-
-	print(pid)
+	var result_code = OS.kill(pid)
 	
-	_delete_code_file()
+	if result_code != OK:
+		$Alert.message("Fail to kill the process. It could be already dead.")
