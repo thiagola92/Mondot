@@ -8,9 +8,19 @@ func _ready():
 	pass
 
 
+func _on_Run_pressed():
+	# Remove old execution
+	_delete_output_files()
+	_delete_code_file()
+	_kill_process()
+	
+	filepath = _create_code_file($TextEditor.text)
+	pid = OS.execute('bin/python', ["bin/run.py", "--filepath", filepath], false)
+
+
 func _create_code_file(content: String) -> String:
 	var random_name = _generate_random_name()
-	var filepath = "tmp/%s.py" % random_name
+	var filepath = "tmp/%s" % random_name
 	var file = File.new()
 	
 	file.open(filepath, File.WRITE)
@@ -32,18 +42,28 @@ func _generate_random_name() -> String:
 	return random_array.get_string_from_ascii()
 
 
-func _on_Run_pressed():
-	_delete_code_file()
-	
-	filepath = _create_code_file($TextEditor.text)
-#	var pid = OS.execute('bin/python', [filepath], false)
-#
-#	print(pid)
-
-
 func _on_Shell_tree_exiting():
+	_delete_output_files()
 	_delete_code_file()
 	_kill_process()
+
+
+func _delete_output_files():
+	if filepath == null:
+		return
+	
+	# Instead of searching every file that starts with the name XXXXXX
+	# and remove XXXXXX_1, XXXXXX_2, XXXXXX_3, ...
+	# I will just try to delete XXXXXX_1, XXXXXX_2, XXXXXX_3, ...
+	# until it fail to delete any of them
+	
+	var counter = 1
+	var directory = Directory.new()
+	var result_code = directory.remove("%s_%s" % [filepath, counter])
+	
+	while result_code == OK:
+		counter += 1
+		result_code = directory.remove("%s_%s" % [filepath, counter])
 
 
 func _delete_code_file():
@@ -54,7 +74,7 @@ func _delete_code_file():
 	var result_code = directory.remove(filepath)
 	
 	if result_code != OK:
-		$Alert.message("Fail to remove file:\n%s" % filepath)
+		return $Alert.message("Fail to remove file:\n%s" % filepath)
 
 
 func _kill_process():
@@ -64,4 +84,4 @@ func _kill_process():
 	var result_code = OS.kill(pid)
 	
 	if result_code != OK:
-		$Alert.message("Fail to kill the process. It could be already dead.")
+		return $Alert.message("Fail to kill process %s (maybe is already dead?)" % pid)
