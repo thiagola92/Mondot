@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+
 var filepath = null
 var pid = null
 
@@ -9,15 +10,55 @@ func _ready():
 
 
 func _on_Run_pressed():
-	# Remove old execution
-	_delete_output_files()
-	_delete_code_file()
-	_kill_process()
+	_kill_current_execution() # Remove old execution
 	
 	filepath = _create_code_file($TextEditor.text)
 	pid = OS.execute('bin/python', ["bin/run.py", "--filepath", filepath], false)
 	
-	$ShellOutput.show_output(filepath)
+	$ShellOutput.watch(filepath)
+
+
+func _kill_current_execution():
+	_kill_process()
+	_delete_code_file()
+	_delete_input_file()
+	_delete_output_files()
+
+
+func _kill_process():
+	if pid != null:
+		OS.kill(pid)
+
+
+func _delete_code_file():
+	if filepath == null:
+		return
+	
+	Directory.new().remove(filepath)
+
+
+func _delete_input_file():
+	if filepath == null:
+		return
+	
+	Directory.new().remove("%s_i" % filepath)
+
+
+func _delete_output_files():
+	if filepath == null:
+		return
+	
+	# Doesn't try to know how many output files exist
+	# It will try to delete the next file if in the previous succeed
+	
+	var counter = 1
+	var directory = Directory.new()
+	var result_code = directory.remove("%s_%s" % [filepath, counter])
+	
+	while result_code == OK:
+		counter += 1
+		result_code = directory.remove("%s_%s" % [filepath, counter])
+
 
 func _create_code_file(content: String) -> String:
 	var random_name = _generate_random_name()
@@ -44,45 +85,16 @@ func _generate_random_name() -> String:
 
 
 func _on_Shell_tree_exiting():
-	_delete_output_files()
-	_delete_code_file()
-	_kill_process()
+	_kill_current_execution()
 
 
-func _delete_output_files():
-	if filepath == null:
-		return
-	
-	# Instead of searching every file that starts with the name XXXXXX
-	# and remove XXXXXX_1, XXXXXX_2, XXXXXX_3, ...
-	# I will just try to delete XXXXXX_1, XXXXXX_2, XXXXXX_3, ...
-	# until it fail to delete any of them
-	
-	var counter = 1
-	var directory = Directory.new()
-	var result_code = directory.remove("%s_%s" % [filepath, counter])
-	
-	while result_code == OK:
-		counter += 1
-		result_code = directory.remove("%s_%s" % [filepath, counter])
+func _on_ShellOutput_next_page_requested():
+	_write_input_file("next")
 
 
-func _delete_code_file():
-	if filepath == null:
-		return
+func _write_input_file(content : String):
+	var file = File.new()
 	
-	var directory = Directory.new()
-	var result_code = directory.remove(filepath)
-	
-	if result_code != OK:
-		return $Alert.message("Fail to remove file:\n%s" % filepath)
-
-
-func _kill_process():
-	if pid == null:
-		return
-	
-	var result_code = OS.kill(pid)
-	
-	if result_code != OK:
-		return $Alert.message("Fail to kill process %s (maybe is already dead?)" % pid)
+	file.open("%s_i" % filepath, File.WRITE)
+	file.store_string(content)
+	file.close()

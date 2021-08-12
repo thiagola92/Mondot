@@ -70,9 +70,9 @@ text = "Next"
 [node name="PageNumber" type="Label" parent="ShellOutput/Menu"]
 margin_left = 181.0
 margin_top = 3.0
-margin_right = 189.0
+margin_right = 186.0
 margin_bottom = 17.0
-text = "1"
+text = "-"
 
 [node name="Output" type="TextEdit" parent="ShellOutput"]
 margin_top = 24.0
@@ -82,6 +82,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 readonly = true
 
+[node name="Timer" type="Timer" parent="ShellOutput"]
+wait_time = 0.1
+one_shot = true
+
 [node name="Alert" parent="." instance=ExtResource( 3 )]
 margin_left = 470.0
 margin_top = 542.0
@@ -90,4 +94,8 @@ margin_bottom = 600.0
 
 [connection signal="tree_exiting" from="." to="." method="_on_Shell_tree_exiting"]
 [connection signal="pressed" from="Menu/Run" to="." method="_on_Run_pressed"]
+[connection signal="next_page_requested" from="ShellOutput" to="." method="_on_ShellOutput_next_page_requested"]
 [connection signal="pressed" from="ShellOutput/Menu/Refresh" to="ShellOutput" method="_on_Refresh_pressed"]
+[connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
+[connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]
+[connection signal="timeout" from="ShellOutput/Timer" to="ShellOutput" method="_on_Timer_timeout"]
