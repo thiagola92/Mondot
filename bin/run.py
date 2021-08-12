@@ -27,5 +27,6 @@ spec = importlib.util.spec_from_file_location("temporary_code", args["outpout"])
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
+os.remove(args["outpout"])  # Remove temporary code because it's already loaded
+
 Shell(**args).run(module.code)
-os.remove(args["outpout"])  # Comment if you want to see how the code will end up

@@ -12,7 +12,11 @@ class Shell:
         self._pages = Pages(filepath, page_size)
 
     def run(self, code):
-        obj = code(self)
+        try:
+            obj = code(self)
+        except Exception as e:
+            obj = f"{type(e).__name__}: {str(e)}"
+        
         self._process_output(obj)
 
     def _process_output(self, obj):
