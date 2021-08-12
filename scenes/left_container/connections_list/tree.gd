@@ -57,3 +57,11 @@ func _on_NewFolder_pressed():
 func _on_Import_connections_loaded(connections):
 	for connection in connections:
 		_create_node(get_root(), connection)
+
+
+func _on_Tree_item_rmb_selected(position : Vector2):
+	var item = get_item_at_position(position)
+	var metadata = item.get_metadata(0)
+	
+	if metadata['__type__'] == MondotType.CONNECTION:
+		$ConnMenu.popup_on_mouse()

@@ -19,5 +19,10 @@ func _ready():
 	pass
 
 
-func _on_ConnectionMenu_id_pressed(id : int):
+func popup_on_mouse():
+	rect_position = get_viewport().get_mouse_position()
+	popup()
+
+
+func _on_Menu_id_pressed(id : int):
 	emit_signal(options[id])

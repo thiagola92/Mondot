@@ -1,23 +1,17 @@
 extends Tree
 
 
-enum {
-	CONNECTION,
-	DATABASE,
-	CLIENT
-}
-
-
 func _ready():
 	set_column_title(0, "Connections")
 	set_column_titles_visible(true)
-	
-	create_item()
+	create_item().set_text(0, "root")
 
 
 func _on_Tree_item_rmb_selected(position : Vector2):
-	$Menu.rect_position = position
-	$Menu.popup()
+	var metadata = get_selected().get_metadata(0)
+	
+	if metadata["__type__"] == MondotType.CONNECTION:
+		$ConnMenu.popup_on_mouse()
 
 
 func _on_Menu_disconnect_pressed():
@@ -28,4 +22,7 @@ func _on_Menu_disconnect_pressed():
 
 
 func _on_ConnectionsList_item_selected(item):
-	pass # Replace with function body.
+	var connection = create_item(get_root())
+	
+	connection.set_text(0, item.get_text(0))
+	connection.set_metadata(0, item.get_metadata(0))

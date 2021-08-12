@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/left_container/help.gd" type="Script" id=4]
 [ext_resource path="res://scenes/left_container/about/About.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/left_container/edit.gd" type="Script" id=6]
-[ext_resource path="res://scenes/left_container/menu.gd" type="Script" id=7]
+[ext_resource path="res://scenes/left_container/conn_menu.gd" type="Script" id=7]
 
 [node name="LeftContainer" type="VBoxContainer"]
 anchor_bottom = 1.0
@@ -60,7 +60,7 @@ allow_rmb_select = true
 hide_root = true
 script = ExtResource( 2 )
 
-[node name="Menu" type="PopupMenu" parent="Tree"]
+[node name="ConnMenu" type="PopupMenu" parent="Tree"]
 margin_right = 20.0
 margin_bottom = 20.0
 items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "Open settings", null, 0, false, false, 1, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Create database", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Refresh", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Disconnect", null, 0, false, false, 4, 0, null, "", false ]
@@ -71,5 +71,5 @@ script = ExtResource( 7 )
 [connection signal="item_selected" from="Menu/File/ConnectionsList" to="Tree" method="_on_ConnectionsList_item_selected"]
 [connection signal="about_pressed" from="Menu/Help" to="Menu/Help" method="_on_Help_about_pressed"]
 [connection signal="item_rmb_selected" from="Tree" to="Tree" method="_on_Tree_item_rmb_selected"]
-[connection signal="disconnect_pressed" from="Tree/Menu" to="Tree" method="_on_Menu_disconnect_pressed"]
-[connection signal="id_pressed" from="Tree/Menu" to="Tree/Menu" method="_on_ConnectionMenu_id_pressed"]
+[connection signal="disconnect_pressed" from="Tree/ConnMenu" to="Tree" method="_on_Menu_disconnect_pressed"]
+[connection signal="id_pressed" from="Tree/ConnMenu" to="Tree/ConnMenu" method="_on_Menu_id_pressed"]
