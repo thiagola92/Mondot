@@ -82,9 +82,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 readonly = true
 
-[node name="Timer" type="Timer" parent="ShellOutput"]
+[node name="NextPage" type="Timer" parent="ShellOutput"]
 wait_time = 0.1
-one_shot = true
 
 [node name="Alert" parent="." instance=ExtResource( 3 )]
 margin_left = 470.0
@@ -98,4 +97,4 @@ margin_bottom = 600.0
 [connection signal="pressed" from="ShellOutput/Menu/Refresh" to="ShellOutput" method="_on_Refresh_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]
-[connection signal="timeout" from="ShellOutput/Timer" to="ShellOutput" method="_on_Timer_timeout"]
+[connection signal="timeout" from="ShellOutput/NextPage" to="ShellOutput" method="_on_NextPage_timeout"]
