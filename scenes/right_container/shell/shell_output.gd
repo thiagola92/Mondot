@@ -57,12 +57,11 @@ func _read_file(filepath : String) -> String:
 	return content
 
 
-func _on_Refresh_pressed():
-	_read_current_page()
-
-
 func _on_Next_pressed():
-	_request_next_page()
+	if _next_page_exists():
+		_go_to_next_page()
+	else:
+		_request_next_page()
 
 
 func _request_next_page():
