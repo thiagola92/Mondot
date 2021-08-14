@@ -9,7 +9,11 @@ func _ready():
 	
 	add_keywords_color(['def', 'class'], Color("#569CD6"))
 	add_keywords_color([
-		'from', 'import', 'if', 'return', 'while', 'for'
+		'from', 'import',
+		'if', 'else', 'elif',
+		'return',
+		'while', 'for', 'in',
+		'try', 'except', 'as', 'finally'
 	], Color("#C586C0"))
 	
 	# Strings

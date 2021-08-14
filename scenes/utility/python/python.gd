@@ -18,6 +18,14 @@ func run(code : String) -> String:
 	return filepath
 
 
+func read_output(output : int = 1):
+	return _read_output_file("%s_%s" % [filepath, output])
+
+
+func output_exists(output : int = 1):
+	return File.new().file_exists("%s_%s" % [filepath, output])
+
+
 func request_next_output():
 	_write_input_file("next")
 
@@ -87,6 +95,16 @@ func _generate_random_name() -> String:
 		random_array.append(rng.randi_range(97, 122))
 	
 	return random_array.get_string_from_ascii()
+	
+
+func _read_output_file(filepath : String) -> String:
+	var file = File.new()
+	
+	file.open(filepath, File.READ)
+	var content = file.get_as_text()
+	file.close()
+	
+	return content
 
 
 func _write_input_file(content : String):

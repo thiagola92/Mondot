@@ -55,18 +55,18 @@ margin_right = 67.0
 margin_bottom = 20.0
 text = "Previous"
 
-[node name="Next" type="Button" parent="ShellOutput/Menu"]
-margin_left = 71.0
-margin_right = 113.0
-margin_bottom = 20.0
-text = "Next"
-
 [node name="PageNumber" type="Label" parent="ShellOutput/Menu"]
-margin_left = 117.0
+margin_left = 71.0
 margin_top = 3.0
-margin_right = 122.0
+margin_right = 76.0
 margin_bottom = 17.0
 text = "-"
+
+[node name="Next" type="Button" parent="ShellOutput/Menu"]
+margin_left = 80.0
+margin_right = 122.0
+margin_bottom = 20.0
+text = "Next"
 
 [node name="Output" type="TextEdit" parent="ShellOutput"]
 margin_top = 24.0
@@ -79,10 +79,9 @@ readonly = true
 [node name="NextPage" type="Timer" parent="ShellOutput"]
 wait_time = 0.1
 
-[node name="Python" parent="." instance=ExtResource( 3 )]
+[node name="Python" parent="ShellOutput" instance=ExtResource( 3 )]
 
 [connection signal="pressed" from="Menu/Run" to="." method="_on_Run_pressed"]
-[connection signal="next_page_requested" from="ShellOutput" to="." method="_on_ShellOutput_next_page_requested"]
 [connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]
 [connection signal="timeout" from="ShellOutput/NextPage" to="ShellOutput" method="_on_NextPage_timeout"]
