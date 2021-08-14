@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/organization.gd" type="Script" id=1]
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/settings.gd" type="Script" id=2]
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/connection_settings.gd" type="Script" id=3]
+[ext_resource path="res://scenes/utility/python/Python.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/left_container/connections_list/connection_settings/ping.gd" type="Script" id=5]
 
 [node name="ConnectionSettings" type="WindowDialog"]
 visible = true
@@ -142,13 +144,29 @@ margin_top = 314.0
 margin_right = 512.0
 margin_bottom = 334.0
 
-[node name="TestConnection" type="Button" parent="Container/Actions"]
+[node name="Ping" type="HBoxContainer" parent="Container/Actions"]
+margin_right = 118.0
+margin_bottom = 20.0
+script = ExtResource( 5 )
+
+[node name="TestConnection" type="Button" parent="Container/Actions/Ping"]
 margin_right = 114.0
 margin_bottom = 20.0
 text = "Test connection"
 
-[node name="Space" type="HSplitContainer" parent="Container/Actions"]
+[node name="PingOutput" type="Label" parent="Container/Actions/Ping"]
 margin_left = 118.0
+margin_top = 3.0
+margin_right = 118.0
+margin_bottom = 17.0
+
+[node name="Python" parent="Container/Actions/Ping" instance=ExtResource( 4 )]
+
+[node name="OutputTimer" type="Timer" parent="Container/Actions/Ping"]
+wait_time = 0.5
+
+[node name="Space" type="HSplitContainer" parent="Container/Actions"]
+margin_left = 122.0
 margin_right = 409.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
@@ -166,5 +184,7 @@ margin_bottom = 20.0
 text = "Cancel"
 
 [connection signal="popup_hide" from="." to="." method="_on_CreateConnection_popup_hide"]
+[connection signal="pressed" from="Container/Actions/Ping/TestConnection" to="Container/Actions/Ping" method="_on_TestConnection_pressed"]
+[connection signal="timeout" from="Container/Actions/Ping/OutputTimer" to="Container/Actions/Ping" method="_on_OutputTimer_timeout"]
 [connection signal="pressed" from="Container/Actions/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="Container/Actions/Cancel" to="." method="_on_Cancel_pressed"]
