@@ -30,6 +30,7 @@ items = [ "Open connections list", null, 0, false, false, 0, 0, null, "", false,
 script = ExtResource( 3 )
 
 [node name="ConnectionsList" parent="Menu/File" instance=ExtResource( 1 )]
+visible = false
 
 [node name="Edit" type="MenuButton" parent="Menu"]
 margin_left = 39.0

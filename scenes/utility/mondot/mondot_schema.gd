@@ -5,8 +5,9 @@ extends Node
 const CONNECTION = {
 	"__type__": [TYPE_INT, TYPE_REAL],
 	"name": [TYPE_STRING],
-	"host": [TYPE_NIL, TYPE_STRING],
+	"host": [TYPE_STRING],
 	"port": [TYPE_NIL, TYPE_INT],
+	"db": [TYPE_NIL, TYPE_STRING],
 }
 
 

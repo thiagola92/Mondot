@@ -1,5 +1,5 @@
 extends Node
 
 var error : int = OK
-var error_string  : String = ''
+var error_string  : String = ""
 var result = null

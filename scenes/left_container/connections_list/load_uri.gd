@@ -9,5 +9,7 @@ func _ready():
 
 func _on_LoadUri_pressed():
 	var window = LoadUri.instance()
+	
 	add_child(window)
+	
 	window.popup_centered()
