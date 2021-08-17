@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/organization.gd" type="Script" id=1]
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/settings.gd" type="Script" id=2]
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/connection_settings.gd" type="Script" id=3]
 [ext_resource path="res://scenes/utility/python/Python.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/ping.gd" type="Script" id=5]
+[ext_resource path="res://scenes/main_container.tres" type="Theme" id=6]
 
 [node name="ConnectionSettings" type="WindowDialog"]
-visible = true
 margin_right = 512.0
 margin_bottom = 334.0
+theme = ExtResource( 6 )
 popup_exclusive = true
 window_title = "Create connection"
 script = ExtResource( 3 )
@@ -65,10 +66,10 @@ script = ExtResource( 2 )
 [node name="Basic" type="VBoxContainer" parent="Container/Settings"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="HostContainer" type="HBoxContainer" parent="Container/Settings/Basic"]
 margin_right = 504.0

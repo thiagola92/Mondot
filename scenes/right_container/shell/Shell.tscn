@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://images/icon_shell_next_page.svg" type="Texture" id=1]
 [ext_resource path="res://scenes/right_container/shell/shell.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/right_container/shell/shell_output.gd" type="Script" id=5]
 [ext_resource path="res://images/icon_shell_execute.svg" type="Texture" id=6]
 [ext_resource path="res://images/icon_shell_previous_page.svg" type="Texture" id=7]
+[ext_resource path="res://scenes/main_container.tres" type="Theme" id=8]
 
 [node name="Shell" type="VBoxContainer"]
 anchor_right = 1.0
@@ -15,6 +16,7 @@ margin_left = 1.18921
 margin_right = 1.18921
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 8 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -22,19 +24,19 @@ __meta__ = {
 
 [node name="Menu" type="HBoxContainer" parent="."]
 margin_right = 1024.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 
 [node name="Run" type="Button" parent="Menu"]
 margin_right = 28.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 hint_tooltip = "Execute code"
 icon = ExtResource( 6 )
 flat = true
 
 [node name="TextEditor" type="TextEdit" parent="."]
-margin_top = 26.0
+margin_top = 28.0
 margin_right = 1024.0
-margin_bottom = 311.0
+margin_bottom = 312.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 syntax_highlighting = true
@@ -42,7 +44,7 @@ show_line_numbers = true
 script = ExtResource( 4 )
 
 [node name="ShellOutput" type="VBoxContainer" parent="."]
-margin_top = 315.0
+margin_top = 316.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -51,34 +53,33 @@ script = ExtResource( 5 )
 
 [node name="Menu" type="HBoxContainer" parent="ShellOutput"]
 margin_right = 1024.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 
 [node name="Previous" type="Button" parent="ShellOutput/Menu"]
 margin_right = 20.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 hint_tooltip = "Show previous page"
 icon = ExtResource( 7 )
 flat = true
 
 [node name="PageNumber" type="Label" parent="ShellOutput/Menu"]
 margin_left = 24.0
-margin_top = 3.0
-margin_right = 29.0
-margin_bottom = 17.0
+margin_right = 37.0
+margin_bottom = 22.0
 text = "-"
 
 [node name="Next" type="Button" parent="ShellOutput/Menu"]
-margin_left = 33.0
-margin_right = 53.0
-margin_bottom = 20.0
+margin_left = 41.0
+margin_right = 61.0
+margin_bottom = 22.0
 hint_tooltip = "Show next page"
 icon = ExtResource( 1 )
 flat = true
 
 [node name="Output" type="TextEdit" parent="ShellOutput"]
-margin_top = 24.0
+margin_top = 26.0
 margin_right = 1024.0
-margin_bottom = 285.0
+margin_bottom = 284.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 readonly = true

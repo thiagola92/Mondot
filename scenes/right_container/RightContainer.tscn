@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/right_container/right_container.gd" type="Script" id=1]
+[ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 0.997503
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 2 )
 custom_constants/separation = -5
 script = ExtResource( 1 )
 __meta__ = {
@@ -18,20 +20,20 @@ __meta__ = {
 
 [node name="TabsBg" type="PanelContainer" parent="."]
 margin_right = 1024.0
-margin_bottom = 38.0
+margin_bottom = 32.0
 
 [node name="Tabs" type="Tabs" parent="TabsBg"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 31.0
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 1018.0
+margin_bottom = 28.0
 custom_styles/button = SubResource( 1 )
 tab_align = 0
 tab_close_display_policy = 2
 drag_to_rearrange_enabled = true
 
 [node name="Panel" type="PanelContainer" parent="."]
-margin_top = 33.0
+margin_top = 27.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
