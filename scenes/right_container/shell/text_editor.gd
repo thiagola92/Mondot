@@ -9,12 +9,22 @@ func _ready():
 	
 	add_keywords_color(['def', 'class'], Color("#569CD6"))
 	add_keywords_color([
-		'from', 'import',
-		'if', 'else', 'elif',
-		'return',
-		'while', 'for', 'in',
-		'try', 'except', 'as', 'finally'
+		'from', 'import', # module
+		'if', 'else', 'elif', # condition
+		'while', 'for', 'continue', 'break', # loop
+		'try', 'except', 'finally', 'raise', # exception
+		'return', # function
+		'async', 'await', # asynchronus
+		'global', 'nonlocal', # scope
+		'assert', # test
+		'pass', 'as', 'del', 'with', # others
 	], Color("#C586C0"))
+	
+	add_keywords_color([
+		'True', 'False', 'None', # constant
+		'and', 'or', 'is', 'in', 'not', # operator
+		'lambda', # function
+	], Color("#569CD6"))
 	
 	# Strings
 	add_color_regions([
