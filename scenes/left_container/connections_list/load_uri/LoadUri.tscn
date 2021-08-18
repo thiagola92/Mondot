@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/load_uri/load_uri.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/utility/uri/URIParser.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/utility/alert/Alert.tscn" type="PackedScene" id=4]
 
 [node name="Popup" type="WindowDialog"]
+visible = true
 margin_right = 532.0
 margin_bottom = 95.0
 theme = ExtResource( 2 )
 popup_exclusive = true
 window_title = "Load URI"
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Container" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -20,34 +26,38 @@ __meta__ = {
 }
 
 [node name="UriLabel" type="Label" parent="Container"]
-margin_top = 14.0
+margin_top = 10.0
 margin_right = 532.0
-margin_bottom = 28.0
+margin_bottom = 32.0
 text = "Uniform Resource Identifier (URI):"
 align = 1
 
 [node name="UriInput" type="LineEdit" parent="Container"]
-margin_top = 32.0
+margin_top = 36.0
 margin_right = 532.0
-margin_bottom = 56.0
+margin_bottom = 58.0
 
 [node name="Options" type="HBoxContainer" parent="Container"]
-margin_top = 60.0
+margin_top = 62.0
 margin_right = 532.0
-margin_bottom = 80.0
+margin_bottom = 84.0
 alignment = 2
 
 [node name="Load" type="Button" parent="Container/Options"]
 margin_left = 432.0
 margin_right = 474.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "Load"
 
 [node name="Cancel" type="Button" parent="Container/Options"]
 margin_left = 478.0
 margin_right = 532.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "Cancel"
+
+[node name="Alert" parent="." instance=ExtResource( 4 )]
+
+[node name="URIParser" parent="." instance=ExtResource( 3 )]
 
 [connection signal="popup_hide" from="." to="." method="_on_Popup_popup_hide"]
 [connection signal="pressed" from="Container/Options/Load" to="." method="_on_Load_pressed"]

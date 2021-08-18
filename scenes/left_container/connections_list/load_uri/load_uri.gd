@@ -1,6 +1,6 @@
 extends WindowDialog
 
-signal load_pressed(uri)
+signal connection_loaded(connection)
 
 
 func _ready():
@@ -9,8 +9,18 @@ func _ready():
 		popup_centered()
 
 
-func _get_uri() -> String:
-	return $VBoxContainer/UriInput.text
+func _on_Load_pressed():
+	_load_uri($Container/UriInput.text)
+
+
+func _load_uri(uri : String):
+	var parser_result = $URIParser.parse(uri)
+	
+	if parser_result.error != OK:
+		return $Alert.message(parser_result.error_string)
+
+	emit_signal("connection_loaded", parser_result.result)
+	queue_free()
 
 
 func _on_Popup_popup_hide():
@@ -18,9 +28,4 @@ func _on_Popup_popup_hide():
 
 
 func _on_Cancel_pressed():
-	queue_free()
-
-
-func _on_Load_pressed():
-	emit_signal("load_pressed", _get_uri())
 	queue_free()
