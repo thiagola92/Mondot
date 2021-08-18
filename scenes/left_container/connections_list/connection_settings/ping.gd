@@ -5,14 +5,18 @@ func _ready():
 	pass
 
 
-func _on_TestConnection_pressed():
-	# Python code here
-	$Python.run("import time; time.sleep(3); 10")
+func test_connection(connection : Dictionary):
+	var code = "self.db.command('ping')"
+	var uri = $URIParser.unparse(connection)
+	var db = connection.get("db", "admin")
+	
+	$PingOutput.text = ""
+	$Python.run(code, uri, db)
 	$OutputTimer.start()
 
 
 func _on_OutputTimer_timeout():
-	if $Python.output_exists(1):
+	if $Python.output_exists():
 		_update_ping_output()
 	else:
 		_update_waiting_output()
@@ -20,7 +24,9 @@ func _on_OutputTimer_timeout():
 
 func _update_ping_output():
 	$OutputTimer.stop()
-	$PingOutput.text = $Python.read_output(1)
+	var parser_result = JSON.parse($Python.read_output())
+	
+	$PingOutput.text = str(parser_result.result)
 
 
 func _update_waiting_output():

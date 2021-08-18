@@ -9,7 +9,7 @@ class Shell:
         self.client = MongoClient(self.uri)
         self.db = self.client[db]
 
-        self._pages = Pages(filepath, page_size)
+        self._pages = Pages(filepath, int(page_size))
 
     def run(self, code):
         try:

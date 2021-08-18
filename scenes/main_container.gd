@@ -3,12 +3,13 @@ extends HBoxContainer
 var Shell = preload("res://scenes/right_container/shell/Shell.tscn")
 
 
-func _ready():	
-	var _error = $LeftContainer/Tree/ConnMenu.connect(
-		"open_shell_pressed", self,
-		"_on_ConnectionMenu_open_shell_pressed"
-	)
+func _ready():
+	pass
 
 
-func _on_ConnectionMenu_open_shell_pressed():
-	$RightContainer.add_tab("Shell", Shell.instance())
+func _on_LeftContainer_shell_requested(connection):
+	var shell = Shell.instance()
+	
+	shell.setup(connection)
+	
+	$RightContainer.add_tab("Shell", shell)

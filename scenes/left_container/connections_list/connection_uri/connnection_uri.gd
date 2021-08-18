@@ -19,6 +19,7 @@ func _load_uri(uri : String):
 	if parser_result.error != OK:
 		return $Alert.message(parser_result.error_string)
 
+	print(parser_result.result)
 	emit_signal("loaded", parser_result.result)
 	hide()
 

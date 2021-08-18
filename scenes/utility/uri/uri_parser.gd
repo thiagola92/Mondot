@@ -1,13 +1,21 @@
 extends Node
 
+
 var regex = RegEx.new()
 
 
 func _ready():
-	regex.compile("(?<scheme>mongodb|mongodb\\+srv):\\/\\/(?<username>.*?)(:(?<password>.*?)@)?(?<host>.*?)(:(?<port>\\d*?))?(\\/(?<db>[^:\\/?#[\\]@]*?))?\\?(?<options>.*)")
+	var scheme = "(?<scheme>mongodb|mongodb\\+srv):\\/\\/"
+	var username = "(?<username>[^:\\/?#[\\]@]*?)"
+	var password = "(:(?<password>[^:\\/?#[\\]@]*?)@)?"
+	var host = "(?<host>[^:\\/?#[\\]@]*?)"
+	var port = "(:(?<port>\\d*?))?"
+	var db = "(\\/(?<db>[^:\\/?#[\\]@]*?))?"
+	var options = "\\?(?<options>.*)"
+	regex.compile("%s%s%s%s%s%s%s" % [scheme, username, password, host, port, db, options])
 
 
-func parse(uri : String) -> GenericResult:	
+func parse(uri : String) -> GenericResult:
 	var regex_result = regex.search(uri)
 	
 	if not regex_result:
@@ -70,20 +78,20 @@ func _get_parse_success(parser_result : Dictionary) -> GenericResult:
 
 func unparse(connection : Dictionary):
 	return "%s://%s%s:%s/%s?%s" % [
-		connection["scheme"],
+		connection.get("scheme", "mongodb"),
 		_unparse_userinfo(connection),
-		connection["host"],
-		connection["port"],
-		connection["db"],
-		connection["options"]
+		connection.get("host", "127.0.0.1"),
+		connection.get("port", 27017),
+		connection.get("db", "admin"),
+		connection.get("options", "")
 	]
 
 
 func _unparse_userinfo(connection : Dictionary) -> String:
-	if not connection["username"]:
+	if not connection.get("username"):
 		return ""
 	
-	if connection["password"]:
+	if connection.get("password"):
 		return "%s:%s@" % [
 			connection["username"],
 			connection["password"],

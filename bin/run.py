@@ -9,11 +9,11 @@ from mondot.shell import Shell
 # Example: bin/python bin/run.py --filepath "bin/input.py" --output "bin/tmp.py"
 parser = argparse.ArgumentParser(description="Description to be used on mondot")
 
+parser.add_argument("--filepath", dest="filepath")
 parser.add_argument("--uri", dest="uri", default="mongodb://127.0.0.1:27017")
 parser.add_argument("--database", dest="db", default="admin")
-parser.add_argument("--filepath", dest="filepath")
+parser.add_argument("--page_size", dest="page_size", default="20")
 parser.add_argument("--output", dest="outpout", default="tmp.py")
-parser.add_argument("--page_size", dest="page_size", default=20)
 
 args = parser.parse_args()
 args = vars(args)

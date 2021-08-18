@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/left_container/connections_list/connection_uri/connnection_uri.gd" type="Script" id=4]
 
 [node name="ConnectionUri" type="WindowDialog"]
+visible = true
 margin_right = 532.0
 margin_bottom = 95.0
 theme = ExtResource( 2 )
