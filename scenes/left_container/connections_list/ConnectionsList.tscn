@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/connections_list.gd" type="Script" id=1]
 [ext_resource path="res://scenes/left_container/connections_list/tree.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/left_container/connections_list/load_uri.gd" type="Script" id=5]
 [ext_resource path="res://scenes/left_container/connections_list/import.gd" type="Script" id=6]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=7]
+[ext_resource path="res://scenes/left_container/connections_list/connection_uri/ConnectionUri.tscn" type="PackedScene" id=8]
 
 [node name="ConnectionsList" type="WindowDialog"]
 margin_left = -1.0
@@ -31,36 +32,38 @@ __meta__ = {
 
 [node name="Menu" type="HBoxContainer" parent="Container"]
 margin_right = 312.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 
 [node name="NewConnection" type="Button" parent="Container/Menu"]
 margin_right = 115.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "New connection"
 
 [node name="NewFolder" type="Button" parent="Container/Menu"]
 margin_left = 119.0
 margin_right = 200.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "New folder"
 
 [node name="Space" type="HSplitContainer" parent="Container/Menu"]
 margin_left = 204.0
 margin_right = 239.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 
 [node name="LoadUri" type="Button" parent="Container/Menu"]
 margin_left = 243.0
 margin_right = 312.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "Load URI"
 script = ExtResource( 5 )
 
+[node name="ConnectionUri" parent="Container/Menu/LoadUri" instance=ExtResource( 8 )]
+
 [node name="Tree" type="Tree" parent="Container"]
-margin_top = 24.0
+margin_top = 26.0
 margin_right = 312.0
-margin_bottom = 447.0
+margin_bottom = 445.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 allow_reselect = true
@@ -76,13 +79,13 @@ items = [ "Edit Connection", null, 0, false, false, 0, 0, null, "", false ]
 script = ExtResource( 3 )
 
 [node name="Options" type="HBoxContainer" parent="Container"]
-margin_top = 451.0
+margin_top = 449.0
 margin_right = 312.0
 margin_bottom = 471.0
 
 [node name="Import" type="Button" parent="Container/Options"]
 margin_right = 56.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "Import"
 script = ExtResource( 6 )
 
@@ -91,18 +94,19 @@ script = ExtResource( 6 )
 [node name="Space" type="HSplitContainer" parent="Container/Options"]
 margin_left = 60.0
 margin_right = 256.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 
 [node name="Export" type="Button" parent="Container/Options"]
 margin_left = 260.0
 margin_right = 312.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "Export"
 
 [connection signal="pressed" from="Container/Menu/NewConnection" to="Container/Tree" method="_on_NewConnection_pressed"]
 [connection signal="pressed" from="Container/Menu/NewFolder" to="Container/Tree" method="_on_NewFolder_pressed"]
 [connection signal="pressed" from="Container/Menu/LoadUri" to="Container/Menu/LoadUri" method="_on_LoadUri_pressed"]
+[connection signal="loaded" from="Container/Menu/LoadUri/ConnectionUri" to="Container/Tree" method="_on_ConnectionUri_loaded"]
 [connection signal="item_activated" from="Container/Tree" to="." method="_on_Tree_item_activated"]
 [connection signal="item_rmb_selected" from="Container/Tree" to="Container/Tree" method="_on_Tree_item_rmb_selected"]
 [connection signal="pressed" from="Container/Options/Import" to="Container/Options/Import" method="_on_Import_pressed"]

@@ -1,6 +1,6 @@
 extends WindowDialog
 
-signal connection_loaded(connection)
+signal loaded(connection)
 
 
 func _ready():
@@ -19,13 +19,9 @@ func _load_uri(uri : String):
 	if parser_result.error != OK:
 		return $Alert.message(parser_result.error_string)
 
-	emit_signal("connection_loaded", parser_result.result)
-	queue_free()
-
-
-func _on_Popup_popup_hide():
-	queue_free()
+	emit_signal("loaded", parser_result.result)
+	hide()
 
 
 func _on_Cancel_pressed():
-	queue_free()
+	hide()

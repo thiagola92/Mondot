@@ -5,15 +5,12 @@ func _ready():
 	create_item()
 
 
-func _is_name_used(parent : TreeItem, name : String):
-	var child = parent.get_children()
-	
-	while child != null:
-		if child.get_text(0) == name:
-			return true
-		child = child.get_next()
-	
-	return false
+func _on_NewConnection_pressed():
+	var name = _get_available_name('New connection {count}', 'count')
+	_create_node(get_root(), {
+		'__type__': MondotType.CONNECTION,
+		'name': name,
+	})
 
 
 func _get_available_name(name : String, counter_name : String):
@@ -23,6 +20,17 @@ func _get_available_name(name : String, counter_name : String):
 		count += 1
 	
 	return name.format({counter_name: count})
+
+
+func _is_name_used(parent : TreeItem, name : String):
+	var child = parent.get_children()
+	
+	while child != null:
+		if child.get_text(0) == name:
+			return true
+		child = child.get_next()
+	
+	return false
 
 
 func _create_node(parent : TreeItem, metadata : Dictionary):
@@ -35,14 +43,6 @@ func _create_node(parent : TreeItem, metadata : Dictionary):
 			_create_node(child, item)
 	
 	scroll_to_item(child)
-
-
-func _on_NewConnection_pressed():
-	var name = _get_available_name('New connection {count}', 'count')
-	_create_node(get_root(), {
-		'__type__': MondotType.CONNECTION,
-		'name': name,
-	})
 
 
 func _on_NewFolder_pressed():
@@ -65,3 +65,7 @@ func _on_Tree_item_rmb_selected(position : Vector2):
 	
 	if metadata['__type__'] == MondotType.CONNECTION:
 		$ConnMenu.popup_on_mouse()
+
+
+func _on_ConnectionUri_loaded(connection):
+	_create_node(get_root(), connection)
