@@ -8,4 +8,4 @@ func _ready():
 
 
 func _on_Details_meta_clicked(meta : String):
-	OS.shell_open(meta)
+	var _error = OS.shell_open(meta)

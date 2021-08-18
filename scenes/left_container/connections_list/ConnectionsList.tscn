@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/connections_list.gd" type="Script" id=1]
 [ext_resource path="res://scenes/left_container/connections_list/tree.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/left_container/connections_list/import.gd" type="Script" id=6]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=7]
 [ext_resource path="res://scenes/left_container/connections_list/connection_uri/ConnectionUri.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/left_container/connections_list/connection_settings/ConnectionSettings.tscn" type="PackedScene" id=9]
 
 [node name="ConnectionsList" type="WindowDialog"]
 margin_left = -1.0
@@ -78,6 +79,8 @@ margin_bottom = -4.0
 items = [ "Edit Connection", null, 0, false, false, 0, 0, null, "", false ]
 script = ExtResource( 3 )
 
+[node name="ConnectionSettings" parent="Container/Tree/ConnMenu" instance=ExtResource( 9 )]
+
 [node name="Options" type="HBoxContainer" parent="Container"]
 margin_top = 449.0
 margin_right = 312.0
@@ -109,6 +112,9 @@ text = "Export"
 [connection signal="loaded" from="Container/Menu/LoadUri/ConnectionUri" to="Container/Tree" method="_on_ConnectionUri_loaded"]
 [connection signal="item_activated" from="Container/Tree" to="." method="_on_Tree_item_activated"]
 [connection signal="item_rmb_selected" from="Container/Tree" to="Container/Tree" method="_on_Tree_item_rmb_selected"]
+[connection signal="edit_connection_pressed" from="Container/Tree/ConnMenu" to="Container/Tree" method="_on_ConnMenu_edit_connection_pressed"]
+[connection signal="id_pressed" from="Container/Tree/ConnMenu" to="Container/Tree/ConnMenu" method="_on_ConnMenu_id_pressed"]
+[connection signal="save_pressed" from="Container/Tree/ConnMenu/ConnectionSettings" to="Container/Tree" method="_on_ConnectionSettings_save_pressed"]
 [connection signal="pressed" from="Container/Options/Import" to="Container/Options/Import" method="_on_Import_pressed"]
 [connection signal="connections_loaded" from="Container/Options/Import/Import" to="Container/Tree" method="_on_Import_connections_loaded"]
 [connection signal="file_selected" from="Container/Options/Import/Import" to="Container/Options/Import" method="_on_Import_file_selected"]

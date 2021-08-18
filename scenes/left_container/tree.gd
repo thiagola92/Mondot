@@ -7,7 +7,7 @@ func _ready():
 	create_item().set_text(0, "root")
 
 
-func _on_Tree_item_rmb_selected(position : Vector2):
+func _on_Tree_item_rmb_selected(_position : Vector2):
 	var metadata = get_selected().get_metadata(0)
 	
 	if metadata["__type__"] == MondotType.CONNECTION:

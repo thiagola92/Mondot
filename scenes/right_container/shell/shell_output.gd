@@ -10,6 +10,7 @@ func _ready():
 func start():
 	page_number = 0
 	
+	$Output.text = ""
 	$NextPage.start()
 	show()
 

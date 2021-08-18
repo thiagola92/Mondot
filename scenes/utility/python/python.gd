@@ -39,21 +39,21 @@ func _kill_current_execution():
 
 func _kill_process():
 	if pid != null:
-		OS.kill(pid)
+		var _error = OS.kill(pid)
 
 
 func _delete_code_file():
 	if filepath == null:
 		return
 	
-	Directory.new().remove(filepath)
+	var _error = Directory.new().remove(filepath)
 
 
 func _delete_input_file():
 	if filepath == null:
 		return
 	
-	Directory.new().remove("%s_i" % filepath)
+	var _error = Directory.new().remove("%s_i" % filepath)
 
 
 func _delete_output_files():
@@ -75,14 +75,14 @@ func _delete_output_files():
 
 func _create_code_file(content: String) -> String:
 	var random_name = _generate_random_name()
-	var filepath = "tmp/%s" % random_name
+	var temporary_file = "tmp/%s" % random_name
 	var file = File.new()
 	
-	file.open(filepath, File.WRITE)
+	file.open(temporary_file, File.WRITE)
 	file.store_string(content)
 	file.close()
 	
-	return filepath
+	return temporary_file
 
 
 func _generate_random_name() -> String:
@@ -91,16 +91,16 @@ func _generate_random_name() -> String:
 	
 	rng.randomize()
 	
-	for position in range(1, 9):
+	for _position in range(1, 9):
 		random_array.append(rng.randi_range(97, 122))
 	
 	return random_array.get_string_from_ascii()
 	
 
-func _read_output_file(filepath : String) -> String:
+func _read_output_file(output_path : String) -> String:
 	var file = File.new()
 	
-	file.open(filepath, File.READ)
+	file.open(output_path, File.READ)
 	var content = file.get_as_text()
 	file.close()
 	

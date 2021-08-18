@@ -2,7 +2,7 @@ extends Tree
 
 
 func _ready():
-	create_item()
+	var _root = create_item()
 
 
 func _on_NewConnection_pressed():
@@ -59,6 +59,10 @@ func _on_Import_connections_loaded(connections):
 		_create_node(get_root(), connection)
 
 
+func _on_ConnectionUri_loaded(connection):
+	_create_node(get_root(), connection)
+
+
 func _on_Tree_item_rmb_selected(position : Vector2):
 	var item = get_item_at_position(position)
 	var metadata = item.get_metadata(0)
@@ -67,5 +71,15 @@ func _on_Tree_item_rmb_selected(position : Vector2):
 		$ConnMenu.popup_on_mouse()
 
 
-func _on_ConnectionUri_loaded(connection):
-	_create_node(get_root(), connection)
+func _on_ConnMenu_edit_connection_pressed():
+	var item = get_selected()
+	var metadata = item.get_metadata(0)
+	
+	$ConnMenu/ConnectionSettings.set_connection(metadata)
+	$ConnMenu/ConnectionSettings.popup_centered()
+
+
+func _on_ConnectionSettings_save_pressed(connection : Dictionary):
+	var item = get_selected()
+	item.set_metadata(0, connection)
+	item.set_text(0, connection["name"])

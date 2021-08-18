@@ -1,7 +1,5 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/left_container/connections_list/connection_settings/organization.gd" type="Script" id=1]
-[ext_resource path="res://scenes/left_container/connections_list/connection_settings/settings.gd" type="Script" id=2]
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/connection_settings.gd" type="Script" id=3]
 [ext_resource path="res://scenes/utility/python/Python.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/ping.gd" type="Script" id=5]
@@ -27,41 +25,37 @@ __meta__ = {
 
 [node name="Organization" type="HBoxContainer" parent="Container"]
 margin_right = 512.0
-margin_bottom = 24.0
-script = ExtResource( 1 )
+margin_bottom = 22.0
 
 [node name="NameLabel" type="Label" parent="Container/Organization"]
-margin_top = 5.0
-margin_right = 42.0
-margin_bottom = 19.0
+margin_right = 50.0
+margin_bottom = 22.0
 text = "Name:"
 
 [node name="NameInput" type="LineEdit" parent="Container/Organization"]
-margin_left = 46.0
-margin_right = 431.0
-margin_bottom = 24.0
+margin_left = 54.0
+margin_right = 424.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 
 [node name="FolderLabel" type="Label" parent="Container/Organization"]
-margin_left = 435.0
-margin_top = 5.0
-margin_right = 479.0
-margin_bottom = 19.0
+margin_left = 428.0
+margin_right = 480.0
+margin_bottom = 22.0
 text = "Folder:"
 
 [node name="FolderInput" type="OptionButton" parent="Container/Organization"]
-margin_left = 483.0
+margin_left = 484.0
 margin_right = 512.0
-margin_bottom = 24.0
+margin_bottom = 22.0
 
 [node name="Settings" type="TabContainer" parent="Container"]
-margin_top = 28.0
+margin_top = 26.0
 margin_right = 512.0
-margin_bottom = 310.0
+margin_bottom = 308.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_align = 0
-script = ExtResource( 2 )
 
 [node name="Basic" type="VBoxContainer" parent="Container/Settings"]
 anchor_right = 1.0
@@ -72,94 +66,91 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="HostContainer" type="HBoxContainer" parent="Container/Settings/Basic"]
-margin_right = 504.0
-margin_bottom = 24.0
+margin_right = 502.0
+margin_bottom = 22.0
 
 [node name="HostLabel" type="Label" parent="Container/Settings/Basic/HostContainer"]
-margin_top = 5.0
-margin_right = 34.0
-margin_bottom = 19.0
+margin_right = 42.0
+margin_bottom = 22.0
 text = "Host:"
 
 [node name="HostInput" type="LineEdit" parent="Container/Settings/Basic/HostContainer"]
-margin_left = 38.0
-margin_right = 504.0
-margin_bottom = 24.0
+margin_left = 46.0
+margin_right = 502.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 
 [node name="PortContainer" type="HBoxContainer" parent="Container/Settings/Basic"]
-margin_top = 28.0
-margin_right = 504.0
-margin_bottom = 52.0
+margin_top = 26.0
+margin_right = 502.0
+margin_bottom = 48.0
 
 [node name="PortLabel" type="Label" parent="Container/Settings/Basic/PortContainer"]
-margin_top = 5.0
-margin_right = 30.0
-margin_bottom = 19.0
+margin_right = 38.0
+margin_bottom = 22.0
 text = "Port:"
 
 [node name="PortInput" type="LineEdit" parent="Container/Settings/Basic/PortContainer"]
-margin_left = 34.0
-margin_right = 504.0
-margin_bottom = 24.0
+margin_left = 42.0
+margin_right = 502.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 
 [node name="Authentication" type="VBoxContainer" parent="Container/Settings"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="SSL" type="VBoxContainer" parent="Container/Settings"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="SSH" type="VBoxContainer" parent="Container/Settings"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="Others" type="VBoxContainer" parent="Container/Settings"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="Actions" type="HBoxContainer" parent="Container"]
-margin_top = 314.0
+margin_top = 312.0
 margin_right = 512.0
 margin_bottom = 334.0
 
 [node name="Ping" type="HBoxContainer" parent="Container/Actions"]
-margin_right = 118.0
-margin_bottom = 20.0
+margin_right = 126.0
+margin_bottom = 22.0
 script = ExtResource( 5 )
 
 [node name="TestConnection" type="Button" parent="Container/Actions/Ping"]
 margin_right = 114.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "Test connection"
 
 [node name="PingOutput" type="Label" parent="Container/Actions/Ping"]
 margin_left = 118.0
-margin_top = 3.0
-margin_right = 118.0
-margin_bottom = 17.0
+margin_right = 126.0
+margin_bottom = 22.0
 
 [node name="Python" parent="Container/Actions/Ping" instance=ExtResource( 4 )]
 
@@ -167,24 +158,23 @@ margin_bottom = 17.0
 wait_time = 0.5
 
 [node name="Space" type="HSplitContainer" parent="Container/Actions"]
-margin_left = 122.0
+margin_left = 130.0
 margin_right = 409.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 
 [node name="Save" type="Button" parent="Container/Actions"]
 margin_left = 413.0
 margin_right = 454.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "Save"
 
 [node name="Cancel" type="Button" parent="Container/Actions"]
 margin_left = 458.0
 margin_right = 512.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 text = "Cancel"
 
-[connection signal="popup_hide" from="." to="." method="_on_CreateConnection_popup_hide"]
 [connection signal="pressed" from="Container/Actions/Ping/TestConnection" to="Container/Actions/Ping" method="_on_TestConnection_pressed"]
 [connection signal="timeout" from="Container/Actions/Ping/OutputTimer" to="Container/Actions/Ping" method="_on_OutputTimer_timeout"]
 [connection signal="pressed" from="Container/Actions/Save" to="." method="_on_Save_pressed"]
