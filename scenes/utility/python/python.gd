@@ -10,7 +10,7 @@ func _ready():
 
 
 func run(code : String, uri : String, db : String, page_size : int = 20) -> String:
-	_kill_current_execution() # Remove old execution
+	kill_current_execution() # Remove old execution
 	
 	filepath = _create_code_file(code)
 	pid = OS.execute('bin/python', [
@@ -24,6 +24,13 @@ func run(code : String, uri : String, db : String, page_size : int = 20) -> Stri
 	return filepath
 
 
+func kill_current_execution():
+	_kill_process()
+	_delete_code_file()
+	_delete_input_file()
+	_delete_output_files()
+
+
 func read_output(output : int = 1):
 	return _read_output_file("%s_%s" % [filepath, output])
 
@@ -34,13 +41,6 @@ func output_exists(output : int = 1) -> bool:
 
 func request_next_output():
 	_write_input_file("next")
-
-
-func _kill_current_execution():
-	_kill_process()
-	_delete_code_file()
-	_delete_input_file()
-	_delete_output_files()
 
 
 func _kill_process():
@@ -122,4 +122,4 @@ func _write_input_file(content : String):
 
 
 func _on_Python_tree_exiting():
-	_kill_current_execution()
+	kill_current_execution()
