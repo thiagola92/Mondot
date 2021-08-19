@@ -20,13 +20,6 @@ func _on_Tree_item_rmb_selected(_position : Vector2):
 		$ConnMenu.popup_on_mouse()
 
 
-func _on_Menu_disconnect_pressed():
-	var item = get_selected()
-	item.get_parent().remove_child(item)
-	item.free()
-	update()
-
-
 func _on_ConnectionsList_item_selected(item):
 	var connection = create_item(get_root())
 	
@@ -48,4 +41,10 @@ func _on_ConnMenu_id_pressed(id):
 		3:
 			emit_signal("refresh_pressed", connection)
 		4:
-			emit_signal("disconnect_pressed", connection)
+			emit_signal("disconnect_pressed", item)
+
+
+func _on_Tree_disconnect_pressed(item : TreeItem):
+	item.get_parent().remove_child(item)
+	item.free()
+	update()

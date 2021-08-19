@@ -14,6 +14,7 @@ func set_connection(connection : Dictionary):
 	$Container/Organization/NameInput.text = connection.get("name", "New connection")
 	$Container/Settings/Basic/HostContainer/HostInput.text = connection.get("host", "127.0.0.1")
 	$Container/Settings/Basic/PortContainer/PortInput.text = str(connection.get("port", 27017))
+	$Container/Settings/Authentication/DatabaseContainer/DatabaseInput.text = connection.get("db", "admin")
 
 
 func _on_Cancel_pressed():
@@ -33,6 +34,7 @@ func _get_connection() -> Dictionary:
 		"folder": $Container/Organization/FolderInput.selected,
 		"host": $Container/Settings/Basic/HostContainer/HostInput.text,
 		"port": $Container/Settings/Basic/PortContainer/PortInput.text,
+		"db": $Container/Settings/Authentication/DatabaseContainer/DatabaseInput.text,
 	}
 
 
