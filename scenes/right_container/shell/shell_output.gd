@@ -11,25 +11,25 @@ func start():
 	page_number = 0
 	
 	$Output.text = ""
-	$NextPage.start()
+	$NextPageTimer.start()
 	show()
 
 
-func _on_NextPage_timeout():
-	_refresh_next_page()
-
-
-func _refresh_next_page():
+func _on_NextPageTimer_timeout():
 	if _next_page_exists():
-		$NextPage.stop()
-		_go_to_next_page()
+		_stop_next_page_timer()
+		_read_next_page()
 
 
-func _next_page_exists():
+func _next_page_exists() -> bool:
 	return $Python.output_exists(page_number + 1)
 
 
-func _go_to_next_page():
+func _stop_next_page_timer():
+	$NextPageTimer.stop()
+
+
+func _read_next_page():
 	page_number += 1
 	_read_current_page()
 
@@ -41,22 +41,26 @@ func _read_current_page():
 
 func _on_Next_pressed():
 	if _next_page_exists():
-		_go_to_next_page()
+		_read_next_page()
 	else:
 		_request_next_page()
 
 
 func _request_next_page():
 	$Python.request_next_output()
-	$NextPage.start()
+	_start_next_page_timer()
+
+
+func _start_next_page_timer():
+	$NextPageTimer.start()
 
 
 func _on_Previous_pressed():
-	_go_to_previous_page()
+	_read_previous_page()
 
 
-func _go_to_previous_page():
-	$NextPage.stop()
+func _read_previous_page():
+	_stop_next_page_timer()
 	
 	if page_number > 1:
 		page_number -= 1

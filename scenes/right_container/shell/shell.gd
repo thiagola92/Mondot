@@ -15,5 +15,10 @@ func setup(connection : Dictionary):
 
 
 func _on_Run_pressed():
-	$ShellOutput/Python.run($TextEditor.text, uri, db)
+	_execute_python_code()
+
+
+func _execute_python_code():
+	var code = $TextEditor.text
+	$ShellOutput/Python.run(code, uri, db)
 	$ShellOutput.start()

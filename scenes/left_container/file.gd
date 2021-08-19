@@ -17,6 +17,10 @@ func _on_Popup_id_pressed(id : int):
 
 
 func _on_File_exit_pressed():
+	_close_mondot()
+	
+
+func _close_mondot():
 	get_tree().quit()
 
 

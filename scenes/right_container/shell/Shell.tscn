@@ -85,7 +85,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 readonly = true
 
-[node name="NextPage" type="Timer" parent="ShellOutput"]
+[node name="NextPageTimer" type="Timer" parent="ShellOutput"]
 wait_time = 0.05
 
 [node name="Python" parent="ShellOutput" instance=ExtResource( 3 )]
@@ -95,4 +95,4 @@ wait_time = 0.05
 [connection signal="pressed" from="Menu/Run" to="." method="_on_Run_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]
-[connection signal="timeout" from="ShellOutput/NextPage" to="ShellOutput" method="_on_NextPage_timeout"]
+[connection signal="timeout" from="ShellOutput/NextPageTimer" to="ShellOutput" method="_on_NextPageTimer_timeout"]

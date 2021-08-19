@@ -60,7 +60,8 @@ func _remove_tab(tab : int):
 
 
 func _on_Tabs_reposition_active_tab_request(idx_to : int):
-	_reposition_content($TabsBg/Tabs.current_tab, idx_to)
+	var current_tab = $TabsBg/Tabs.current_tab
+	_reposition_content(current_tab, idx_to)
 
 
 func _reposition_content(idx_from : int, idx_to : int):

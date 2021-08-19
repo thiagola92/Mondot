@@ -28,7 +28,7 @@ func read_output(output : int = 1):
 	return _read_output_file("%s_%s" % [filepath, output])
 
 
-func output_exists(output : int = 1):
+func output_exists(output : int = 1) -> bool:
 	return File.new().file_exists("%s_%s" % [filepath, output])
 
 
