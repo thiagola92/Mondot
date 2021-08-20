@@ -31,7 +31,7 @@ func kill_current_execution():
 	_delete_output_files()
 
 
-func read_output(output : int = 1):
+func read_output(output : int = 1) -> String:
 	return _read_output_file("%s_%s" % [filepath, output])
 
 
