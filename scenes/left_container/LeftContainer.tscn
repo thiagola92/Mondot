@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/ConnectionsList.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/left_container/tree.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=8]
 [ext_resource path="res://scenes/left_container/left_container.gd" type="Script" id=9]
 [ext_resource path="res://scenes/left_container/conn_methods.gd" type="Script" id=10]
+[ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/utility/uri/URIParser.tscn" type="PackedScene" id=12]
 
 [node name="LeftContainer" type="VBoxContainer"]
 anchor_bottom = 1.0
@@ -74,6 +76,10 @@ script = ExtResource( 7 )
 [node name="ConnMethods" type="Node" parent="Tree"]
 script = ExtResource( 10 )
 
+[node name="PythonWatcher" parent="Tree/ConnMethods" instance=ExtResource( 11 )]
+
+[node name="URIParser" parent="Tree/ConnMethods" instance=ExtResource( 12 )]
+
 [connection signal="exit_pressed" from="Menu/File" to="Menu/File" method="_on_File_exit_pressed"]
 [connection signal="open_connections_list_pressed" from="Menu/File" to="Menu/File" method="_on_File_open_connections_list_pressed"]
 [connection signal="item_selected" from="Menu/File/ConnectionsList" to="Tree" method="_on_ConnectionsList_item_selected"]
@@ -82,3 +88,4 @@ script = ExtResource( 10 )
 [connection signal="item_rmb_selected" from="Tree" to="Tree" method="_on_Tree_item_rmb_selected"]
 [connection signal="open_shell_pressed" from="Tree" to="." method="_on_Tree_open_shell_pressed"]
 [connection signal="id_pressed" from="Tree/ConnMenu" to="Tree" method="_on_ConnMenu_id_pressed"]
+[connection signal="outputted" from="Tree/ConnMethods/PythonWatcher" to="Tree" method="_on_PythonWatcher_outputted"]

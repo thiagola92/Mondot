@@ -31,15 +31,19 @@ func _on_ConnMenu_id_pressed(id : int):
 			# create database pressed
 			pass
 		3:
-			$ConnMethods._refresh_connection(tree_item)
+			$ConnMethods.refresh_connection(tree_item)
 		4:
-			$ConnMethods._disconnect_connection(self, tree_item)
+			$ConnMethods.disconnect_connection(self, tree_item)
 
 
 func _on_Tree_item_double_clicked():
 	var tree_item = get_selected()
-	$ConnMethods._refresh_connection(tree_item)
+	$ConnMethods.refresh_connection(tree_item)
 
 
 func _on_ConnectionsList_item_selected(tree_item : TreeItem):
-	$ConnMethods._add_connection(self, tree_item.get_metadata(0))
+	$ConnMethods.add_connection(self, tree_item.get_metadata(0))
+
+
+func _on_PythonWatcher_outputted(output):
+	print(output)
