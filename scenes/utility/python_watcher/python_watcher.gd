@@ -1,10 +1,11 @@
 extends Node
 
-signal timeout
-signal outputted(output)
+signal timeout(kwargs)
+signal outputted(output, kwargs)
 
 
 var timeout : float
+var kwargs : Dictionary
 
 
 func _ready():
@@ -16,10 +17,12 @@ func run(
 		uri : String,
 		db : String,
 		page_size : int = 20,
-		timeout : float = 0
+		timeout : float = 0,
+		kwargs : Dictionary = {}
 	) -> String:
 	
 	self.timeout = timeout
+	self.kwargs = kwargs
 	
 	_start_timers()
 	
@@ -38,14 +41,14 @@ func _on_KillTimer_timeout():
 	$OutputTimer.stop()
 	$Python.kill_current_execution()
 	
-	emit_signal("timeout")
+	emit_signal("timeout", kwargs)
 
 
 func _on_OutputTimer_timeout():
 	if $Python.output_exists():
 		_stop_timers()
 		
-		emit_signal("outputted", $Python.read_output())
+		emit_signal("outputted", $Python.read_output(), kwargs)
 
 
 func _stop_timers():

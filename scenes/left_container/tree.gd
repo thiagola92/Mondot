@@ -45,5 +45,5 @@ func _on_ConnectionsList_item_selected(tree_item : TreeItem):
 	$ConnMethods.add_connection(self, tree_item.get_metadata(0))
 
 
-func _on_PythonWatcher_outputted(output):
-	print(output)
+func _on_PythonWatcher_outputted(output : String, kwargs : Dictionary):
+	printt(output, kwargs)

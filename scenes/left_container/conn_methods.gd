@@ -25,7 +25,7 @@ func refresh_connection(tree_item : TreeItem):
 	var code = "self.client.list_database_names()"
 	var uri = URIParser.unparse(connection)
 	var db = connection["db"]
-	$PythonWatcher.run(code, uri, db, 20)
+	$PythonWatcher.run(code, uri, db, 20, 0, {"tree_item": tree_item})
 
 
 func _remove_tree_item(tree_item : TreeItem):
