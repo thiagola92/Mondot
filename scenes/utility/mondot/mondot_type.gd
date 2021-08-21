@@ -2,5 +2,6 @@ extends Node
 
 enum {
 	FOLDER,
-	CONNECTION
+	CONNECTION,
+	DATABASE,
 }

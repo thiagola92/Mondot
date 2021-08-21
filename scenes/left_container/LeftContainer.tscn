@@ -85,4 +85,4 @@ script = ExtResource( 10 )
 [connection signal="item_rmb_selected" from="Tree" to="Tree" method="_on_Tree_item_rmb_selected"]
 [connection signal="open_shell_pressed" from="Tree" to="." method="_on_Tree_open_shell_pressed"]
 [connection signal="id_pressed" from="Tree/ConnMenu" to="Tree" method="_on_ConnMenu_id_pressed"]
-[connection signal="outputted" from="Tree/ConnMethods/PythonWatcher" to="Tree" method="_on_PythonWatcher_outputted"]
+[connection signal="outputted" from="Tree/ConnMethods/PythonWatcher" to="Tree/ConnMethods" method="_on_PythonWatcher_outputted"]

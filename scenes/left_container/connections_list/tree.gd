@@ -7,10 +7,11 @@ func _ready():
 
 func _on_NewConnection_pressed():
 	var name = _get_available_name('New connection {count}', 'count')
-	_create_node(get_root(), {
-		'__type__': MondotType.CONNECTION,
-		'name': name,
-	})
+	var uri = "mongodb://127.0.0.1:27017"
+	var parser_result = URIParser.parse(uri)
+	
+	if parser_result.error == OK:
+		_create_node(get_root(), parser_result.result)
 
 
 func _get_available_name(name : String, counter_name : String):
