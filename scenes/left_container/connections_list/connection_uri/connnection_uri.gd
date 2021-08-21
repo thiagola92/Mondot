@@ -14,7 +14,7 @@ func _on_Load_pressed():
 
 
 func _load_uri(uri : String):
-	var parser_result = $URIParser.parse(uri)
+	var parser_result = URIParser.parse(uri)
 	
 	if parser_result.error != OK:
 		return $Alert.message(parser_result.error_string)

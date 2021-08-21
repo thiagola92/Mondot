@@ -1,21 +1,8 @@
 extends Node
 
 
-var regex = RegEx.new()
-
-
-func _ready():
-	var scheme = "(?<scheme>mongodb|mongodb\\+srv):\\/\\/"
-	var username = "(?<username>[^:\\/?#[\\]@]*?)"
-	var password = "(:(?<password>[^:\\/?#[\\]@]*?)@)?"
-	var host = "(?<host>[^:\\/?#[\\]@]*?)"
-	var port = "(:(?<port>\\d*?))?"
-	var db = "(\\/(?<db>[^:\\/?#[\\]@]*?))?"
-	var options = "\\?(?<options>.*)"
-	regex.compile("%s%s%s%s%s%s%s" % [scheme, username, password, host, port, db, options])
-
-
-func parse(uri : String) -> GenericResult:
+static func parse(uri : String) -> GenericResult:
+	var regex = _get_regex()
 	var regex_result = regex.search(uri)
 	
 	if not regex_result:
@@ -61,7 +48,23 @@ func parse(uri : String) -> GenericResult:
 	return _get_parse_success(parser_result)
 
 
-func _get_parse_error(error_string : String) -> GenericResult:
+static func _get_regex():
+	var regex = RegEx.new()
+	
+	var scheme = "(?<scheme>mongodb|mongodb\\+srv):\\/\\/"
+	var username = "(?<username>[^:\\/?#[\\]@]*?)"
+	var password = "(:(?<password>[^:\\/?#[\\]@]*?)@)?"
+	var host = "(?<host>[^:\\/?#[\\]@]*?)"
+	var port = "(:(?<port>\\d*?))?"
+	var db = "(\\/(?<db>[^:\\/?#[\\]@]*?))?"
+	var options = "\\?(?<options>.*)"
+	
+	regex.compile("%s%s%s%s%s%s%s" % [scheme, username, password, host, port, db, options])
+	
+	return regex
+
+
+static func _get_parse_error(error_string : String) -> GenericResult:
 	var generic_result = GenericResult.duplicate()
 	generic_result.error_string = error_string
 	generic_result.error = ERR_PARSE_ERROR
@@ -69,14 +72,14 @@ func _get_parse_error(error_string : String) -> GenericResult:
 	return generic_result
 
 
-func _get_parse_success(parser_result : Dictionary) -> GenericResult:
+static func _get_parse_success(parser_result : Dictionary) -> GenericResult:
 	var generic_result = GenericResult.duplicate()
 	generic_result.result = parser_result
 	
 	return generic_result
 
 
-func unparse(connection : Dictionary):
+static func unparse(connection : Dictionary) -> String:
 	return "%s://%s%s:%s/%s?%s" % [
 		connection.get("scheme", "mongodb"),
 		_unparse_userinfo(connection),
@@ -87,7 +90,7 @@ func unparse(connection : Dictionary):
 	]
 
 
-func _unparse_userinfo(connection : Dictionary) -> String:
+static func _unparse_userinfo(connection : Dictionary) -> String:
 	if not connection.get("username"):
 		return ""
 	

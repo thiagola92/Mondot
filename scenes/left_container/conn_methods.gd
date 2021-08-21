@@ -23,7 +23,7 @@ func refresh_connection(tree_item : TreeItem):
 	
 	var connection = tree_item.get_metadata(0)
 	var code = "self.client.list_database_names()"
-	var uri = $URIParser.unparse(connection)
+	var uri = URIParser.unparse(connection)
 	var db = connection["db"]
 	$PythonWatcher.run(code, uri, db, 20)
 

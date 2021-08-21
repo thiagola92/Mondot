@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/ConnectionsList.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/left_container/tree.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://scenes/left_container/left_container.gd" type="Script" id=9]
 [ext_resource path="res://scenes/left_container/conn_methods.gd" type="Script" id=10]
 [ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/utility/uri/URIParser.tscn" type="PackedScene" id=12]
 
 [node name="LeftContainer" type="VBoxContainer"]
 anchor_bottom = 1.0
@@ -77,8 +76,6 @@ script = ExtResource( 7 )
 script = ExtResource( 10 )
 
 [node name="PythonWatcher" parent="Tree/ConnMethods" instance=ExtResource( 11 )]
-
-[node name="URIParser" parent="Tree/ConnMethods" instance=ExtResource( 12 )]
 
 [connection signal="exit_pressed" from="Menu/File" to="Menu/File" method="_on_File_exit_pressed"]
 [connection signal="open_connections_list_pressed" from="Menu/File" to="Menu/File" method="_on_File_open_connections_list_pressed"]

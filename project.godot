@@ -21,6 +21,7 @@ TypeOf="*res://scenes/utility/type_of.gd"
 GenericResult="*res://scenes/utility/generic_result.gd"
 MondotType="*res://scenes/utility/mondot/mondot_type.gd"
 MondotSchema="*res://scenes/utility/mondot/mondot_schema.gd"
+URIParser="*res://scenes/utility/uri_parser.gd"
 
 [rendering]
 

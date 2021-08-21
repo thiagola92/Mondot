@@ -23,7 +23,7 @@ func _stop_test_connection():
 
 func _start_test_connection(connection : Dictionary):
 	var code = "self.db.command('ping')"
-	var uri = $URIParser.unparse(connection)
+	var uri = URIParser.unparse(connection)
 	var db = connection.get("db", "admin")
 	
 	$Python.run(code, uri, db)

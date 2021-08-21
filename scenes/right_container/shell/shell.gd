@@ -10,7 +10,7 @@ func _ready():
 
 
 func setup(connection : Dictionary):
-	uri = $URIParser.unparse(connection)
+	uri = URIParser.unparse(connection)
 	db = connection.get("db", "admin")
 
 
