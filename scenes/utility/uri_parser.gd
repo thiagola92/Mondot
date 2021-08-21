@@ -50,16 +50,9 @@ static func parse(uri : String) -> GenericResult:
 
 static func _get_regex():
 	var regex = RegEx.new()
+	var pattern = "(?<scheme>mongodb|mongodb\\+srv):\\/\\/((?<username>[^:\\/?#[\\]@]*?)(:(?<password>[^:\\/?#[\\]@]+?))?@)?(?<host>[^:\\/?#[\\]@]*?)(:(?<port>\\d*?))?(\\/(?<db>[^:\\/?#[\\]@]*?))?(\\?(?<options>.*))?$"
 	
-	var scheme = "(?<scheme>mongodb|mongodb\\+srv):\\/\\/"
-	var username = "(?<username>[^:\\/?#[\\]@]*?)"
-	var password = "(:(?<password>[^:\\/?#[\\]@]*?)@)?"
-	var host = "(?<host>[^:\\/?#[\\]@]*?)"
-	var port = "(:(?<port>\\d*?))?"
-	var db = "(\\/(?<db>[^:\\/?#[\\]@]*?))?"
-	var options = "\\?(?<options>.*)"
-	
-	regex.compile("%s%s%s%s%s%s%s" % [scheme, username, password, host, port, db, options])
+	regex.compile(pattern)
 	
 	return regex
 
