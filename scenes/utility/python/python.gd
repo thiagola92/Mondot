@@ -13,13 +13,17 @@ func run(code : String, uri : String, db : String, page_size : int = 20) -> Stri
 	kill_current_execution() # Remove old execution
 	
 	filepath = _create_code_file(code)
-	pid = OS.execute('bin/python', [
+	
+	var args = [
 		"bin/run.py", 
 		"--filepath", filepath,
 		"--uri", uri,
 		"--database", db,
 		"--page_size", page_size
-	], false)
+	]
+	
+#	print("bin/python %s %s %s %s %s %s %s %s %s" % args)
+	pid = OS.execute('bin/python', args, false)
 	
 	return filepath
 

@@ -84,13 +84,10 @@ static func unparse(connection : Dictionary) -> String:
 
 
 static func _unparse_userinfo(connection : Dictionary) -> String:
-	if not connection.get("username"):
+	if not "username" in connection.keys():
 		return ""
 	
-	if connection.get("password"):
-		return "%s:%s@" % [
-			connection["username"],
-			connection["password"],
-		]
-	
-	return "%s@" % connection["username"]
+	if not "password" in connection.keys():
+		return "%s@" % connection["username"]
+		
+	return "%s:%s@" % [connection["username"], connection["password"],]

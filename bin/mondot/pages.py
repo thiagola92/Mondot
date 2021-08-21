@@ -25,20 +25,26 @@ class Pages:
             return
 
         with open(filename, "w") as file:
-            file.write(
-                json_util.dumps(
-                    self._current_docs,
-                    indent=2,
-                    json_options=json_util.STRICT_JSON_OPTIONS,
-                )
-            )
+            file.write(self._get_json())
 
         self._start_new_page()
+
+    def _get_json(self):
+        try:
+            return json_util.dumps(
+                self._current_docs, indent=2, json_options=json_util.STRICT_JSON_OPTIONS
+            )
+        except Exception as e:
+            error = f"{type(e).__name__}: {str(e)}"
+
+            return json_util.dumps(
+                [error], indent=2, json_options=json_util.STRICT_JSON_OPTIONS
+            )
 
     def _start_new_page(self):
         self._current_page += 1
         self._current_docs.clear()
-    
+
     def _wait_mondot_input(self):
         filename = f"{self._filepath}_i"
 
@@ -46,12 +52,11 @@ class Pages:
 
         while self._read_mondot_input(filename) == "":
             time.sleep(1)
-    
-    def _clean_mondot_input(self, filename):
-        with open(filename, 'w') as f:
-            f.write("")
-        
-    def _read_mondot_input(self, filename):
-        with open(filename, 'r') as f:
-            return f.read()
 
+    def _clean_mondot_input(self, filename):
+        with open(filename, "w") as f:
+            f.write("")
+
+    def _read_mondot_input(self, filename):
+        with open(filename, "r") as f:
+            return f.read()
