@@ -47,7 +47,10 @@ func _on_PythonWatcher_outputted(output, kwargs):
 	var parse_result = JSON.parse(output)
 	var tree = kwargs["tree"]
 	var parent = kwargs["tree_item"]
-	var databases = parse_result.result
+	var databases = parse_result.result["value"]
+	
+	if parse_result.result["error"]:
+		return $Alert.message("Failed to refresh")
 	
 	_add_databases(tree, parent, databases)
 
