@@ -16,6 +16,7 @@ class Shell:
             obj = code(self)
         except Exception as e:
             obj = f"{type(e).__name__}: {str(e)}"
+            self._pages.error = True
         
         self._process_output(obj)
 

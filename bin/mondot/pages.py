@@ -10,6 +10,8 @@ class Pages:
         self._current_page = 1
         self._current_docs = []
 
+        self.error = False
+
     def append_document(self, doc):
         self._current_docs.append(doc)
 
@@ -25,21 +27,20 @@ class Pages:
             return
 
         with open(filename, "w") as file:
-            file.write(self._get_json())
+            file.write(self._get_content())
 
         self._start_new_page()
 
-    def _get_json(self):
+    def _get_content(self):
         try:
-            return json_util.dumps(
-                self._current_docs, indent=2, json_options=json_util.STRICT_JSON_OPTIONS
-            )
+            return self._get_json({"error": self.error, "value": self._current_docs})
         except Exception as e:
-            error = f"{type(e).__name__}: {str(e)}"
+            return self._get_json({"error": True, "value": [f"{type(e).__name__}: {str(e)}"]})
 
-            return json_util.dumps(
-                [error], indent=2, json_options=json_util.STRICT_JSON_OPTIONS
-            )
+    def _get_json(self, obj):
+        return json_util.dumps(
+            obj, indent=2, json_options=json_util.STRICT_JSON_OPTIONS
+        )
 
     def _start_new_page(self):
         self._current_page += 1
