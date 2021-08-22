@@ -6,9 +6,9 @@ static func parse(uri : String) -> GenericResult:
 	var regex_result = regex.search(uri)
 	
 	if not regex_result:
-		return _get_parse_error("Fail to parse URI. Your URI could be invalid or ours regex wrong")
+		return GenericResult.new(ERR_PARSE_ERROR, "Fail to parse URI. Your URI could be invalid or ours regex wrong")
 	
-	var parser_result = {
+	var parse_result = {
 		"__type__": MondotType.CONNECTION,
 		"name": "New connection",
 		"scheme": regex_result.get_string("scheme"),
@@ -20,56 +20,41 @@ static func parse(uri : String) -> GenericResult:
 		"options": regex_result.get_string("options"),
 	}
 	
-	if not parser_result["scheme"] in ["mongodb", "mongodb+srv"]:
-		return _get_parse_error('URI scheme must be "mongodb" or "mongodb+srv"')
+	if not parse_result["scheme"] in ["mongodb", "mongodb+srv"]:
+		return GenericResult.new(ERR_PARSE_ERROR, 'URI scheme must be "mongodb" or "mongodb+srv"')
 	
-	if not parser_result["username"]:
-		parser_result["username"] = null
+	if not parse_result["username"]:
+		parse_result["username"] = null
 		
-	if not parser_result["password"]:
-		parser_result["password"] = null
+	if not parse_result["password"]:
+		parse_result["password"] = null
 		
-	if not parser_result["host"]:
-		return _get_parse_error('Missing host in URI')
+	if not parse_result["host"]:
+		return GenericResult.new(ERR_PARSE_ERROR, "Missing host in URI")
 	
-	if parser_result["port"]:
-		parser_result["port"] = int(parser_result["port"])
+	if parse_result["port"]:
+		parse_result["port"] = int(parse_result["port"])
 	
-	if not parser_result["port"]:
-		parser_result["port"] = 27017
+	if not parse_result["port"]:
+		parse_result["port"] = 27017
 		
-	if not parser_result["db"]:
-		parser_result["db"] = "admin"
+	if not parse_result["db"]:
+		parse_result["db"] = "admin"
 		
-	var schema_result = Schema.validate(parser_result, MondotSchema.CONNECTION)
+	var schema_result = Schema.validate(parse_result, MondotSchema.CONNECTION)
 	if schema_result.error != OK:
 		return schema_result
 	
-	return _get_parse_success(parser_result)
+	return GenericResult.new(OK, "", parse_result)
 
 
-static func _get_regex():
+static func _get_regex() -> RegEx:
 	var regex = RegEx.new()
 	var pattern = "(?<scheme>mongodb|mongodb\\+srv):\\/\\/((?<username>[^:\\/?#[\\]@]*?)(:(?<password>[^:\\/?#[\\]@]+?))?@)?(?<host>[^:\\/?#[\\]@]*?)(:(?<port>\\d*?))?(\\/(?<db>[^:\\/?#[\\]@]*?))?(\\?(?<options>.*))?$"
 	
 	regex.compile(pattern)
 	
 	return regex
-
-
-static func _get_parse_error(error_string : String) -> GenericResult:
-	var generic_result = GenericResult.duplicate()
-	generic_result.error_string = error_string
-	generic_result.error = ERR_PARSE_ERROR
-	
-	return generic_result
-
-
-static func _get_parse_success(parser_result : Dictionary) -> GenericResult:
-	var generic_result = GenericResult.duplicate()
-	generic_result.result = parser_result
-	
-	return generic_result
 
 
 static func unparse(connection : Dictionary) -> String:
@@ -84,10 +69,10 @@ static func unparse(connection : Dictionary) -> String:
 
 
 static func _unparse_userinfo(connection : Dictionary) -> String:
-	if not "username" in connection.keys():
+	if not connection.get("username"):
 		return ""
 	
-	if not "password" in connection.keys():
+	if not connection.get("password"):
 		return "%s@" % connection["username"]
 		
 	return "%s:%s@" % [connection["username"], connection["password"],]

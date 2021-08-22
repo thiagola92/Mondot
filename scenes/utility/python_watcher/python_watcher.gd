@@ -1,7 +1,7 @@
 extends Node
 
 signal timeout(kwargs)
-signal outputted(output, kwargs)
+signal output(output, kwargs)
 
 
 var timeout : float
@@ -48,7 +48,7 @@ func _on_OutputTimer_timeout():
 	if $Python.output_exists():
 		_stop_timers()
 		
-		emit_signal("outputted", $Python.read_output(), kwargs)
+		emit_signal("output", $Python.read_output(), kwargs)
 
 
 func _stop_timers():

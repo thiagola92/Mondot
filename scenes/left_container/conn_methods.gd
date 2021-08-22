@@ -30,6 +30,7 @@ func _update_connection_databases(tree : Tree, tree_item : TreeItem):
 	var db = connection.get("db", "admin")
 	var kwargs = {"tree": tree, "tree_item": tree_item}
 	
+	print(uri)
 	$PythonWatcher.run(code, uri, db, 20, 0, kwargs)
 
 
@@ -43,15 +44,16 @@ func _remove_childrens(tree_item : TreeItem):
 		_remove_tree_item(tree_item.get_children())
 
 
-func _on_PythonWatcher_outputted(output, kwargs):
-	var parse_result = JSON.parse(output)
-	var tree = kwargs["tree"]
-	var parent = kwargs["tree_item"]
-	var databases = parse_result.result["value"]
+func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
+	var python_result = GenericResult.parse_python_output(output)
 	
-	if parse_result.result["error"]:
-		return $Alert.message("Failed to refresh")
+	if python_result.error != OK:
+		return $Alert.message(python_result.error_string)
 	
+	var tree = kwargs.get("tree")
+	var parent = kwargs.get("tree_item")
+	var databases = python_result["result"]
+
 	_add_databases(tree, parent, databases)
 
 

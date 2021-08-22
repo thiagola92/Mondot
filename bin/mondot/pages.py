@@ -33,9 +33,9 @@ class Pages:
 
     def _get_content(self):
         try:
-            return self._get_json({"error": self.error, "value": self._current_docs})
+            return self._get_json({"error": self.error, "result": self._current_docs})
         except Exception as e:
-            return self._get_json({"error": True, "value": [f"{type(e).__name__}: {str(e)}"]})
+            return self._get_json({"error": True, "result": [f"{type(e).__name__}: {str(e)}"]})
 
     def _get_json(self, obj):
         return json_util.dumps(
