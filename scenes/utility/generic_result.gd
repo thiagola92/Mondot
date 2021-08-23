@@ -2,10 +2,14 @@ extends Node
 
 
 class GenericResult:
-	func _init(error, error_string, result):
-		self.error = error
-		self.error_string = error_string
-		self.result = result
+	var error
+	var error_string
+	var result
+	
+	func _init(error_, error_string_, result_):
+		error = error_
+		error_string = error_string_
+		result = result_
 
 
 static func parse_python_output(output : String):

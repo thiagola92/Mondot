@@ -39,11 +39,14 @@ func _on_ConnectionMenu_id_pressed(id : int):
 
 
 func _on_Tree_item_double_clicked():
-	var metadata = get_selected().get_metadata(0)
+	var tree_item = get_selected()
+	var metadata = tree_item.get_metadata(0)
+	
+	print(metadata["__type__"])
 	
 	match metadata["__type__"]:
 		MondotType.CONNECTION:
-			$Connection.refresh_connection(self, get_selected())
+			$Connection.refresh_connection(self, tree_item)
 		MondotType.DATABASE:
 			pass
 
