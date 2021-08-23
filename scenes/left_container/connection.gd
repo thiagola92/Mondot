@@ -14,6 +14,7 @@ func add_connection(tree : Tree, connection : Dictionary):
 	
 	tree_item.set_text(0, connection["name"])
 	tree_item.set_metadata(0, connection)
+	tree_item.set_icon(0, MondotIcon.from(MondotType.CONNECTION))
 
 
 func disconnect_connection(tree : Tree, tree_item : TreeItem):

@@ -22,5 +22,4 @@ func _add_database(tree : Tree, parent : TreeItem, database : Dictionary):
 	
 	tree_item.set_text(0, database["name"])
 	tree_item.set_metadata(0, database)
-
-
+	tree_item.set_icon(0, MondotIcon.from(MondotType.DATABASE))

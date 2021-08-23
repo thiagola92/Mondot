@@ -38,18 +38,16 @@ func _on_ConnectionMenu_id_pressed(id : int):
 			$Connection.disconnect_connection(self, tree_item)
 
 
-func _on_Tree_item_double_clicked():
+func _on_ConnectionsList_item_selected(tree_item : TreeItem):
+	$Connection.add_connection(self, tree_item.get_metadata(0))
+
+
+func _on_Tree_item_activated():
 	var tree_item = get_selected()
 	var metadata = tree_item.get_metadata(0)
-	
-	print(metadata["__type__"])
 	
 	match metadata["__type__"]:
 		MondotType.CONNECTION:
 			$Connection.refresh_connection(self, tree_item)
 		MondotType.DATABASE:
 			pass
-
-
-func _on_ConnectionsList_item_selected(tree_item : TreeItem):
-	$Connection.add_connection(self, tree_item.get_metadata(0))

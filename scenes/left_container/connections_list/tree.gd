@@ -14,6 +14,7 @@ func _on_NewConnection_pressed():
 
 
 func _create_node(parent : TreeItem, metadata : Dictionary):
+	var icon = null
 	var child = create_item(parent)
 	child.set_text(0, metadata['name'])
 	child.set_metadata(0, metadata)
@@ -22,6 +23,7 @@ func _create_node(parent : TreeItem, metadata : Dictionary):
 		for item in metadata['connections']:
 			_create_node(child, item)
 	
+	child.set_icon(0, MondotIcon.from(metadata['__type__']))
 	scroll_to_item(child)
 
 

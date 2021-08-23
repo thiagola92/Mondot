@@ -16,12 +16,14 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Schema="*res://scenes/utility/schema.gd"
-TypeOf="*res://scenes/utility/type_of.gd"
-GenericResult="*res://scenes/utility/generic_result.gd"
-MondotType="*res://scenes/utility/mondot/mondot_type.gd"
-MondotSchema="*res://scenes/utility/mondot/mondot_schema.gd"
-URIParser="*res://scenes/utility/uri_parser.gd"
+Schema="*res://scenes/singleton/schema.gd"
+TypeOf="*res://scenes/singleton/type_of.gd"
+GenericResult="*res://scenes/singleton/generic_result.gd"
+MondotType="*res://scenes/singleton/mondot/mondot_type.gd"
+MondotSchema="*res://scenes/singleton/mondot/mondot_schema.gd"
+URIParser="*res://scenes/singleton/uri_parser.gd"
+Icon="*res://scenes/singleton/icon.gd"
+MondotIcon="*res://scenes/singleton/mondot/mondot_icon.gd"
 
 [rendering]
 

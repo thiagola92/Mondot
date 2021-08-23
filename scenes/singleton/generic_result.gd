@@ -6,10 +6,10 @@ class GenericResult:
 	var error_string
 	var result
 	
-	func _init(error_, error_string_, result_):
-		error = error_
-		error_string = error_string_
-		result = result_
+	func _init(_error, _error_string, _result):
+		error = _error
+		error_string = _error_string
+		result = _result
 
 
 static func parse_python_output(output : String):
