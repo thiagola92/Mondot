@@ -28,7 +28,7 @@ func _change_to_tab(tab : int):
 		$TabsBg/Tabs.current_tab = tab
 
 
-func _on_Tabs_tab_changed(tab : int):
+func _on_Tabs_tab_changed(_tab : int):
 	# The signal "tab_changed" doesn't tell the previous tab.
 	# So we hide all contents before showing the new tab.
 	_hide_all_contents()

@@ -4,10 +4,6 @@ signal timeout(kwargs)
 signal output(output, kwargs)
 
 
-var timeout : float
-var kwargs : Dictionary
-
-
 func _ready():
 	pass
 
@@ -21,6 +17,7 @@ func run(
 		kwargs : Dictionary = {}
 	) -> String:
 	
+	# Will exists on execution
 	self.timeout = timeout
 	self.kwargs = kwargs
 	
@@ -32,7 +29,7 @@ func run(
 func _start_timers():
 	# Never kill if there is no timeout
 	if self.timeout > 0:
-		$KillTimer.start(timeout)
+		$KillTimer.start(self.timeout)
 	
 	$OutputTimer.start()
 
@@ -41,14 +38,14 @@ func _on_KillTimer_timeout():
 	$OutputTimer.stop()
 	$Python.kill_current_execution()
 	
-	emit_signal("timeout", kwargs)
+	emit_signal("timeout", self.kwargs)
 
 
 func _on_OutputTimer_timeout():
 	if $Python.output_exists():
 		_stop_timers()
 		
-		emit_signal("output", $Python.read_output(), kwargs)
+		emit_signal("output", $Python.read_output(), self.kwargs)
 
 
 func _stop_timers():

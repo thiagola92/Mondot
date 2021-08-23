@@ -2,10 +2,6 @@ extends Node
 
 
 class GenericResult:
-	var error
-	var error_string
-	var result
-
 	func _init(error, error_string, result):
 		self.error = error
 		self.error_string = error_string

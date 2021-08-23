@@ -1,8 +1,6 @@
 extends Node
 
 static func validate(structure : Dictionary, schema : Dictionary):
-	var generic_result = GenericResult.new()
-	
 	for key in schema.keys():
 		var field = structure.get(key)
 		
