@@ -1,4 +1,4 @@
-## Should i put my script here?
+## Should i attach my script here?
 The script should be the closest from the nodes that it use.  
 
 * If the script reference any parent node, no.
