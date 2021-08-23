@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/left_container/connections_list/ConnectionsList.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/left_container/tree.gd" type="Script" id=2]
@@ -6,12 +6,13 @@
 [ext_resource path="res://scenes/left_container/help.gd" type="Script" id=4]
 [ext_resource path="res://scenes/left_container/about/About.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/left_container/edit.gd" type="Script" id=6]
-[ext_resource path="res://scenes/left_container/conn_menu.gd" type="Script" id=7]
+[ext_resource path="res://scenes/left_container/tree_menu.gd" type="Script" id=7]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=8]
 [ext_resource path="res://scenes/left_container/left_container.gd" type="Script" id=9]
-[ext_resource path="res://scenes/left_container/conn_methods.gd" type="Script" id=10]
+[ext_resource path="res://scenes/left_container/connection.gd" type="Script" id=10]
 [ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/utility/alert/Alert.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/left_container/database.gd" type="Script" id=13]
 
 [node name="LeftContainer" type="VBoxContainer"]
 anchor_bottom = 1.0
@@ -67,18 +68,32 @@ allow_rmb_select = true
 hide_root = true
 script = ExtResource( 2 )
 
-[node name="ConnMenu" type="PopupMenu" parent="Tree"]
-margin_right = 20.0
-margin_bottom = 20.0
+[node name="Connection" type="Node" parent="Tree"]
+script = ExtResource( 10 )
+
+[node name="Menu" type="PopupMenu" parent="Tree/Connection"]
+margin_top = 31.0
+margin_right = 122.0
+margin_bottom = 191.0
+theme = ExtResource( 8 )
 items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "Open settings", null, 0, false, false, 1, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Create database", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Refresh", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Disconnect", null, 0, false, false, 4, 0, null, "", false ]
 script = ExtResource( 7 )
 
-[node name="ConnMethods" type="Node" parent="Tree"]
-script = ExtResource( 10 )
+[node name="PythonWatcher" parent="Tree/Connection" instance=ExtResource( 11 )]
 
-[node name="PythonWatcher" parent="Tree/ConnMethods" instance=ExtResource( 11 )]
+[node name="Alert" parent="Tree/Connection" instance=ExtResource( 12 )]
+margin_bottom = 68.0
 
-[node name="Alert" parent="Tree/ConnMethods" instance=ExtResource( 12 )]
+[node name="Database" type="Node" parent="Tree"]
+script = ExtResource( 13 )
+
+[node name="Menu" type="PopupMenu" parent="Tree/Database"]
+margin_top = 31.0
+margin_right = 128.0
+margin_bottom = 194.0
+theme = ExtResource( 8 )
+items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Create collection", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Refresh", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Drop", null, 0, false, false, 4, 0, null, "", false ]
+script = ExtResource( 7 )
 
 [connection signal="exit_pressed" from="Menu/File" to="Menu/File" method="_on_File_exit_pressed"]
 [connection signal="open_connections_list_pressed" from="Menu/File" to="Menu/File" method="_on_File_open_connections_list_pressed"]
@@ -87,5 +102,7 @@ script = ExtResource( 10 )
 [connection signal="item_double_clicked" from="Tree" to="Tree" method="_on_Tree_item_double_clicked"]
 [connection signal="item_rmb_selected" from="Tree" to="Tree" method="_on_Tree_item_rmb_selected"]
 [connection signal="open_shell_pressed" from="Tree" to="." method="_on_Tree_open_shell_pressed"]
-[connection signal="id_pressed" from="Tree/ConnMenu" to="Tree" method="_on_ConnMenu_id_pressed"]
-[connection signal="output" from="Tree/ConnMethods/PythonWatcher" to="Tree/ConnMethods" method="_on_PythonWatcher_output"]
+[connection signal="new_databases" from="Tree/Connection" to="Tree/Database" method="_on_Connection_new_databases"]
+[connection signal="id_pressed" from="Tree/Connection/Menu" to="Tree" method="_on_ConnectionMenu_id_pressed"]
+[connection signal="output" from="Tree/Connection/PythonWatcher" to="Tree/Connection" method="_on_PythonWatcher_output"]
+[connection signal="id_pressed" from="Tree/Database/Menu" to="Tree" method="_on_ConnMenu_id_pressed"]

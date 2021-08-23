@@ -14,10 +14,12 @@ func _on_Tree_item_rmb_selected(_position : Vector2):
 	
 	match metadata["__type__"]:
 		MondotType.CONNECTION:
-			$ConnMenu.popup_on_mouse()
+			$Connection/Menu.popup_on_mouse()
+		MondotType.DATABASE:
+			$Database/Menu.popup_on_mouse()
 
 
-func _on_ConnMenu_id_pressed(id : int):
+func _on_ConnectionMenu_id_pressed(id : int):
 	var tree_item = get_selected()
 	var connection = tree_item.get_metadata(0)
 	
@@ -31,14 +33,20 @@ func _on_ConnMenu_id_pressed(id : int):
 			# create database pressed
 			pass
 		3:
-			$ConnMethods.refresh_connection(self, tree_item)
+			$Connection.refresh_connection(self, tree_item)
 		4:
-			$ConnMethods.disconnect_connection(self, tree_item)
+			$Connection.disconnect_connection(self, tree_item)
 
 
 func _on_Tree_item_double_clicked():
-	$ConnMethods.refresh_connection(self, get_selected())
+	var metadata = get_selected().get_metadata(0)
+	
+	match metadata["__type__"]:
+		MondotType.CONNECTION:
+			$Connection.refresh_connection(self, get_selected())
+		MondotType.DATABASE:
+			pass
 
 
 func _on_ConnectionsList_item_selected(tree_item : TreeItem):
-	$ConnMethods.add_connection(self, tree_item.get_metadata(0))
+	$Connection.add_connection(self, tree_item.get_metadata(0))
