@@ -4,6 +4,7 @@
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
 
 [node name="Alert" type="AcceptDialog"]
+visible = true
 margin_right = 83.0
 margin_bottom = 58.0
 size_flags_horizontal = 4
