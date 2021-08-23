@@ -1,13 +1,15 @@
 extends Node
 
 
-static func from(id : int) -> Texture:
+static func from(id : int):
 	match id:
 		MondotType.FOLDER:
-			return Icon.from("res://images/icon_folder.svg")
+			return load("res://images/icon_folder.svg")
 		MondotType.CONNECTION:
-			return Icon.from("res://images/icon_signals.svg")
+			return load("res://images/icon_signals.svg")
 		MondotType.DATABASE:
-			return Icon.from("res://images/icon_cylinder_shape.svg")
+			return load("res://images/icon_cylinder_shape.svg")
+		MondotType.COLLECTION:
+			return load("res://images/icon_file.svg")
 	
 	return null

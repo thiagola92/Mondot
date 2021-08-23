@@ -4,4 +4,5 @@ enum {
 	FOLDER,
 	CONNECTION,
 	DATABASE,
+	COLLECTION,
 }

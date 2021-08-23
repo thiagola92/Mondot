@@ -14,7 +14,6 @@ func _on_NewConnection_pressed():
 
 
 func _create_node(parent : TreeItem, metadata : Dictionary):
-	var icon = null
 	var child = create_item(parent)
 	child.set_text(0, metadata['name'])
 	child.set_metadata(0, metadata)

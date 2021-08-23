@@ -9,6 +9,10 @@ func _ready():
 	create_item().set_text(0, "root")
 
 
+func _on_ConnectionsList_item_selected(tree_item : TreeItem):
+	$Connection.add_connection(self, tree_item.get_metadata(0))
+
+
 func _on_Tree_item_rmb_selected(_position : Vector2):
 	var metadata = get_selected().get_metadata(0)
 	
@@ -38,8 +42,21 @@ func _on_ConnectionMenu_id_pressed(id : int):
 			$Connection.disconnect_connection(self, tree_item)
 
 
-func _on_ConnectionsList_item_selected(tree_item : TreeItem):
-	$Connection.add_connection(self, tree_item.get_metadata(0))
+func _on_DatabaseMenu_id_pressed(id : int):
+	var tree_item = get_selected()
+	var connection = tree_item.get_parent().get_metadata(0)
+	
+	match id:
+		0:
+			emit_signal("open_shell_pressed", connection)
+		1:
+			pass
+		2:
+			pass
+		3:
+			$Database.refresh_database(self, tree_item)
+		4:
+			pass
 
 
 func _on_Tree_item_activated():
@@ -50,4 +67,4 @@ func _on_Tree_item_activated():
 		MondotType.CONNECTION:
 			$Connection.refresh_connection(self, tree_item)
 		MondotType.DATABASE:
-			pass
+			$Database.refresh_database(self, tree_item)

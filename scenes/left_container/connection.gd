@@ -53,6 +53,8 @@ func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
 	var databases = _get_output_databases(output)
 	
 	emit_signal("new_databases", tree, parent, databases)
+	
+	$PythonWatcher/Python.kill_current_execution()
 
 
 func _get_output_databases(output : String):
