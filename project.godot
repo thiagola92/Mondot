@@ -22,7 +22,6 @@ GenericResult="*res://scenes/singleton/generic_result.gd"
 MondotType="*res://scenes/singleton/mondot/mondot_type.gd"
 MondotSchema="*res://scenes/singleton/mondot/mondot_schema.gd"
 URIParser="*res://scenes/singleton/uri_parser.gd"
-Icon="*res://scenes/singleton/icon.gd"
 MondotIcon="*res://scenes/singleton/mondot/mondot_icon.gd"
 
 [rendering]
