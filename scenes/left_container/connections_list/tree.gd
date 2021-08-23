@@ -6,32 +6,11 @@ func _ready():
 
 
 func _on_NewConnection_pressed():
-	var name = _get_available_name('New connection {count}', 'count')
 	var uri = "mongodb://127.0.0.1:27017"
 	var parser_result = URIParser.parse(uri)
 	
 	if parser_result.error == OK:
 		_create_node(get_root(), parser_result.result)
-
-
-func _get_available_name(name : String, counter_name : String):
-	var count = 0
-	
-	while _is_name_used(get_root(), name.format({counter_name: count})):
-		count += 1
-	
-	return name.format({counter_name: count})
-
-
-func _is_name_used(parent : TreeItem, name : String):
-	var child = parent.get_children()
-	
-	while child != null:
-		if child.get_text(0) == name:
-			return true
-		child = child.get_next()
-	
-	return false
 
 
 func _create_node(parent : TreeItem, metadata : Dictionary):
@@ -47,10 +26,9 @@ func _create_node(parent : TreeItem, metadata : Dictionary):
 
 
 func _on_NewFolder_pressed():
-	var name = _get_available_name('New folder {count}', 'count')
 	_create_node(get_root(), {
 		'__type__': MondotType.FOLDER,
-		'name': name,
+		'name': "New folder",
 		'connections': [],
 	})
 
