@@ -6,11 +6,11 @@ func _ready():
 
 
 func _on_NewConnection_pressed():
-	var uri = "mongodb://127.0.0.1:27017"
-	var parser_result = URIParser.parse(uri)
-	
-	if parser_result.error == OK:
-		_create_node(get_root(), parser_result.result)
+	_create_node(get_root(), {
+		"__type__": MondotType.CONNECTION,
+		"name": "New connection",
+		"uri": "mongodb://127.0.0.1:27017"
+	})
 
 
 func _create_node(parent : TreeItem, metadata : Dictionary):

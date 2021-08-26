@@ -15,8 +15,9 @@ func _add_collections(tree : Tree, parent : TreeItem, collections : Array):
 	for col in collections:
 		_add_collection(tree, parent, {
 			"__type__": MondotType.COLLECTION,
-			"uri": database["uri"],
 			"name": col,
+			"uri": database["uri"],
+			"db": database["name"],
 		})
 
 

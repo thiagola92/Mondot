@@ -1,6 +1,6 @@
 extends Tree
 
-signal open_shell_pressed(connection, code)
+signal open_shell_pressed(uri, code, db)
 
 
 func _ready():
@@ -29,7 +29,7 @@ func _on_ConnectionMenu_id_pressed(id : int):
 	
 	match id:
 		0:
-			emit_signal("open_shell_pressed", connection, "")
+			emit_signal("open_shell_pressed", connection["uri"], "", "admin")
 		1:
 			# open settings pressed
 			pass
@@ -44,11 +44,11 @@ func _on_ConnectionMenu_id_pressed(id : int):
 
 func _on_DatabaseMenu_id_pressed(id : int):
 	var tree_item = get_selected()
-	var connection = tree_item.get_parent().get_metadata(0)
+	var database = tree_item.get_metadata(0)
 	
 	match id:
 		0:
-			emit_signal("open_shell_pressed", connection, "")
+			emit_signal("open_shell_pressed", database["uri"], "", database["name"])
 		1:
 			pass
 		2:

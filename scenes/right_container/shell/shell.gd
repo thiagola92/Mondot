@@ -9,9 +9,9 @@ func _ready():
 	pass
 
 
-func setup(connection : Dictionary, code : String):
-	uri = URIParser.unparse(connection)
-	db = connection.get("db", "admin")
+func setup(_uri : String, code : String, _db : String):
+	self.uri = _uri
+	self.db = _db
 	
 	$TextEditor.text = code
 

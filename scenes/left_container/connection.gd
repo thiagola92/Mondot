@@ -40,11 +40,9 @@ func _remove_childrens(tree_item : TreeItem):
 func _update_connection_databases(tree : Tree, tree_item : TreeItem):
 	var connection = tree_item.get_metadata(0)
 	var code = "self.client.list_database_names()"
-	var uri = URIParser.unparse(connection)
-	var db = connection.get("db", "admin")
 	var kwargs = {"tree": tree, "tree_item": tree_item}
 	
-	$PythonWatcher.run(code, uri, db, 20, 0, kwargs)
+	$PythonWatcher.run(code, connection["uri"], "admin", 20, 0, kwargs)
 
 
 func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
@@ -58,7 +56,7 @@ func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
 
 
 func _get_output_databases(output : String):
-	var python_result = GenericResult.parse_python_output(output)
+	var python_result = MondotPython.parse_output(output)
 	
 	if python_result.error == OK:
 		return python_result["result"]

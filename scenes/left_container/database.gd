@@ -42,7 +42,7 @@ func _on_PythonWatcher_output(output, kwargs):
 
 
 func _get_output_collections(output : String):
-	var python_result = GenericResult.parse_python_output(output)
+	var python_result = MondotPython.parse_output(output)
 	
 	if python_result.error == OK:
 		return python_result["result"]
@@ -61,8 +61,8 @@ func _add_databases(tree : Tree, parent : TreeItem, databases : Array):
 	for db in databases:
 		_add_database(tree, parent, {
 			"__type__": MondotType.DATABASE,
-			"uri": URIParser.unparse(connection),
 			"name": db,
+			"uri": connection["uri"],
 		})
 
 

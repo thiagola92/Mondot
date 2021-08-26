@@ -7,9 +7,9 @@ func _ready():
 	pass
 
 
-func _on_LeftContainer_shell_requested(connection, code):
+func _on_LeftContainer_shell_requested(uri : String, code : String, db : String):
 	var shell = Shell.instance()
 	
-	shell.setup(connection, code)
+	shell.setup(uri, code, db)
 	
 	$RightContainer.add_tab("Shell", shell)

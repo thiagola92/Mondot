@@ -2,7 +2,7 @@
     {
         "__type__": 1,
         "name": "New connection",
-        "uri": "mongodb://username:password@127.0.0.1:27017?serverSelectionTimeoutMS=7000&connectTimeoutMS=30000&maxIdleTimeMS=600000"
+        "uri": "mongodb://username:password@127.0.0.1:27017/?serverSelectionTimeoutMS=7000&connectTimeoutMS=30000&maxIdleTimeMS=600000"
     },
     {
         "__type__": 0,

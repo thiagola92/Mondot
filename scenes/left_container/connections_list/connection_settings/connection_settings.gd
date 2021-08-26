@@ -11,9 +11,18 @@ func _ready():
 		
 
 func set_connection(connection : Dictionary):
-	$Container/Organization/NameInput.text = connection.get("name", "New connection")
+	var parse_result = URIParser.parse(connection["uri"])
+	
+	if parse_result.error != OK:
+		return $Alert.message(parse_result.error_string)
+	
+	_set_fields(connection["name"], parse_result.result)
+
+
+func _set_fields(name : String, connection : Dictionary):
+	$Container/Organization/NameInput.text = name
 	$Container/Settings/Basic/HostContainer/HostInput.text = connection.get("host", "127.0.0.1")
-	$Container/Settings/Basic/PortContainer/PortInput.text = str(connection.get("port", 27017))
+	$Container/Settings/Basic/PortContainer/PortInput.text = connection.get("port", "27017")
 	$Container/Settings/Authentication/DatabaseContainer/DatabaseInput.text = connection.get("db", "admin")
 
 
@@ -31,10 +40,11 @@ func _get_connection() -> Dictionary:
 	return {
 		"__type__": MondotType.CONNECTION,
 		"name": $Container/Organization/NameInput.text,
-		"folder": $Container/Organization/FolderInput.selected,
-		"host": $Container/Settings/Basic/HostContainer/HostInput.text,
-		"port": $Container/Settings/Basic/PortContainer/PortInput.text,
-		"db": $Container/Settings/Authentication/DatabaseContainer/DatabaseInput.text,
+		"uri": URIParser.unparse({
+			"host": $Container/Settings/Basic/HostContainer/HostInput.text,
+			"port": $Container/Settings/Basic/PortContainer/PortInput.text,
+			"db": $Container/Settings/Authentication/DatabaseContainer/DatabaseInput.text,
+		})
 	}
 
 

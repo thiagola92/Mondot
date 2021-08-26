@@ -6,11 +6,9 @@ static func parse(uri : String) -> GenericResult:
 	var regex_result = regex.search(uri)
 	
 	if not regex_result:
-		return GenericResult.new(ERR_PARSE_ERROR, "Fail to parse URI. Your URI could be invalid or ours regex wrong")
+		return GenericResult.new(FAILED, "Failed to parse URI")
 	
-	var parse_result = {
-		"__type__": MondotType.CONNECTION,
-		"name": "New connection",
+	var connection = {
 		"scheme": regex_result.get_string("scheme"),
 		"username": regex_result.get_string("username"),
 		"password": regex_result.get_string("password"),
@@ -20,32 +18,7 @@ static func parse(uri : String) -> GenericResult:
 		"options": regex_result.get_string("options"),
 	}
 	
-	if not parse_result["scheme"] in ["mongodb", "mongodb+srv"]:
-		return GenericResult.new(ERR_PARSE_ERROR, 'URI scheme must be "mongodb" or "mongodb+srv"')
-	
-	if not parse_result["username"]:
-		parse_result["username"] = null
-		
-	if not parse_result["password"]:
-		parse_result["password"] = null
-		
-	if not parse_result["host"]:
-		return GenericResult.new(ERR_PARSE_ERROR, "Missing host in URI")
-	
-	if parse_result["port"]:
-		parse_result["port"] = int(parse_result["port"])
-	
-	if not parse_result["port"]:
-		parse_result["port"] = 27017
-		
-	if not parse_result["db"]:
-		parse_result["db"] = "admin"
-		
-	var schema_result = Schema.validate(parse_result, MondotSchema.CONNECTION)
-	if schema_result.error != OK:
-		return schema_result
-	
-	return GenericResult.new(OK, "", parse_result)
+	return GenericResult.new(OK, "", connection)
 
 
 static func _get_regex() -> RegEx:

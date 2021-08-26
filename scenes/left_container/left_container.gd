@@ -1,11 +1,11 @@
 extends VBoxContainer
 
-signal shell_requested(connection, code)
+signal shell_requested(uri, code, db)
 
 
 func _ready():
 	pass
 
 
-func _on_Tree_open_shell_pressed(connection, code):
-	emit_signal("shell_requested", connection, code)
+func _on_Tree_open_shell_pressed(uri, code, db):
+	emit_signal("shell_requested", uri, code, db)

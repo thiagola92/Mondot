@@ -29,6 +29,12 @@ func run(
 	return $Python.run(code, uri, db, page_size)
 
 
+func kill_current_execution():
+	_stop_timers()
+	
+	$Python.kill_current_execution()
+
+
 func _start_timers():
 	# Never kill if there is no timeout
 	if _timeout > 0:
@@ -37,9 +43,13 @@ func _start_timers():
 	$OutputTimer.start()
 
 
-func _on_KillTimer_timeout():
+func _stop_timers():
+	$KillTimer.stop()
 	$OutputTimer.stop()
-	$Python.kill_current_execution()
+
+
+func _on_KillTimer_timeout():
+	kill_current_execution()
 	
 	emit_signal("timeout", _kwargs)
 
@@ -49,8 +59,3 @@ func _on_OutputTimer_timeout():
 		_stop_timers()
 		
 		emit_signal("output", $Python.read_output(), _kwargs)
-
-
-func _stop_timers():
-	$KillTimer.stop()
-	$OutputTimer.stop()
