@@ -21,6 +21,8 @@ func _on_Tree_item_rmb_selected(_position : Vector2):
 			$Connection/Menu.popup_on_mouse()
 		MondotType.DATABASE:
 			$Database/Menu.popup_on_mouse()
+		MondotType.COLLECTION:
+			$Collection/Menu.popup_on_mouse()
 
 
 func _on_ConnectionMenu_id_pressed(id : int):
@@ -57,6 +59,16 @@ func _on_DatabaseMenu_id_pressed(id : int):
 			$Database.refresh_database(self, tree_item)
 		4:
 			pass
+
+
+func _on_CollectionMenu_id_pressed(id : int):
+	var tree_item = get_selected()
+	var collection = tree_item.get_metadata(0)
+	
+	match id:
+		0:
+			var code = 'self.db[\"%s\"].find()' % collection["name"]
+			emit_signal("open_shell_pressed", collection["uri"], code, collection["db"])
 
 
 func _on_Tree_item_activated():

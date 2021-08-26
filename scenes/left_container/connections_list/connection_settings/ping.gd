@@ -15,7 +15,7 @@ func _on_Ping_hide():
 	$PythonWatcher.kill_current_execution()
 
 
-func _on_PythonWatcher_output(output, kwargs):
+func _on_PythonWatcher_output(output, _kwargs):
 	var parse_result = MondotPython.parse_output(output)
 	
 	if parse_result.error != OK:

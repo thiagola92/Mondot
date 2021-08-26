@@ -2,16 +2,27 @@ extends Node
 
 
 static func parse_output(output : String) -> GenericResult:
-	var parse_result = JSON.parse(output)
+	var json_result = JSON.parse(output)
+		
+	if json_result.error != OK:
+		print(json_result.error)
+		print(json_result.error_string)
+		return GenericResult.new(json_result.error, json_result.error_string)
 	
-	if parse_result.error != OK:
-		return GenericResult.new(parse_result.error, parse_result.error_string)
+	var output_result = json_result.result
 	
-	var result = parse_result.result
-	
-	if result["error"]:
-		if len(result["result"]) > 0:
-			return GenericResult.new(FAILED, result["result"][0])
+	if output_result["error"]:
+		if len(output_result["result"]) > 0:
+			return GenericResult.new(FAILED, output_result["result"][0])
 		return GenericResult.new(FAILED)
 	
-	return GenericResult.new(OK, "", result["result"])
+	return GenericResult.new(OK, "", output_result["result"])
+
+
+static func pretty_output(output : String) -> String:
+	var parse_result = parse_output(output)
+	
+	if parse_result.error != OK:
+		return parse_result.error_string
+	
+	return JSON.print(parse_result.result, "	")

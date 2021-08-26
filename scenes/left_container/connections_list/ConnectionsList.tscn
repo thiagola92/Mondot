@@ -117,4 +117,3 @@ text = "Export"
 [connection signal="save_pressed" from="Container/Tree/ConnMenu/ConnectionSettings" to="Container/Tree" method="_on_ConnectionSettings_save_pressed"]
 [connection signal="pressed" from="Container/Options/Import" to="Container/Options/Import" method="_on_Import_pressed"]
 [connection signal="connections_loaded" from="Container/Options/Import/Import" to="Container/Tree" method="_on_Import_connections_loaded"]
-[connection signal="file_selected" from="Container/Options/Import/Import" to="Container/Options/Import" method="_on_Import_file_selected"]

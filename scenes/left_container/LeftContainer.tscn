@@ -103,9 +103,11 @@ script = ExtResource( 7 )
 [node name="Collection" type="Node" parent="Tree"]
 script = ExtResource( 14 )
 
-[node name="PopupMenu" type="PopupMenu" parent="Tree/Collection"]
+[node name="Menu" type="PopupMenu" parent="Tree/Collection"]
 margin_right = 20.0
 margin_bottom = 20.0
+theme = ExtResource( 8 )
+items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false ]
 script = ExtResource( 7 )
 
 [connection signal="exit_pressed" from="Menu/File" to="Menu/File" method="_on_File_exit_pressed"]
@@ -121,3 +123,4 @@ script = ExtResource( 7 )
 [connection signal="new_collections" from="Tree/Database" to="Tree/Collection" method="_on_Database_new_collections"]
 [connection signal="id_pressed" from="Tree/Database/Menu" to="Tree" method="_on_DatabaseMenu_id_pressed"]
 [connection signal="output" from="Tree/Database/PythonWatcher" to="Tree/Database" method="_on_PythonWatcher_output"]
+[connection signal="id_pressed" from="Tree/Collection/Menu" to="Tree" method="_on_CollectionMenu_id_pressed"]
