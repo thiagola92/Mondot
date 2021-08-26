@@ -7,9 +7,9 @@ func _ready():
 	pass
 
 
-func _on_LeftContainer_shell_requested(connection):
+func _on_LeftContainer_shell_requested(connection, code):
 	var shell = Shell.instance()
 	
-	shell.setup(connection)
+	shell.setup(connection, code)
 	
 	$RightContainer.add_tab("Shell", shell)

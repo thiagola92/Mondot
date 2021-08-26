@@ -9,9 +9,11 @@ func _ready():
 	pass
 
 
-func setup(connection : Dictionary):
+func setup(connection : Dictionary, code : String):
 	uri = URIParser.unparse(connection)
 	db = connection.get("db", "admin")
+	
+	$TextEditor.text = code
 
 
 func _on_Run_pressed():

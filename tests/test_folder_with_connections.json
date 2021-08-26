@@ -1,0 +1,18 @@
+[
+    {
+        "__type__": 0,
+        "name": "New folder",
+        "connections": [
+            {
+                "__type__": 1,
+                "name": "New connection 1",
+                "uri": "mongodb://username:password@127.0.0.1:27017?serverSelectionTimeoutMS=7000&connectTimeoutMS=30000&maxIdleTimeMS=600000"
+            },
+            {
+                "__type__": 1,
+                "name": "New connection 2",
+                "uri": "mongodb://username:password@127.0.0.1:27017?serverSelectionTimeoutMS=7000&connectTimeoutMS=30000&maxIdleTimeMS=600000"
+            }
+        ]
+    }
+]

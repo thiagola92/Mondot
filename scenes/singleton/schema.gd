@@ -1,6 +1,6 @@
 extends Node
 
-static func validate(structure : Dictionary, schema : Dictionary):
+static func validate(structure : Dictionary, schema : Dictionary) -> GenericResult:
 	for key in schema.keys():
 		var field = structure.get(key)
 		
@@ -10,4 +10,4 @@ static func validate(structure : Dictionary, schema : Dictionary):
 				'Unexpected type %s in field "%s"' % [TypeOf.this(field), key]
 			)
 	
-	return GenericResult.new()
+	return GenericResult.new(OK, "", structure)
