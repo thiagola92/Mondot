@@ -1,4 +1,4 @@
-extends Tree
+extends TreeDraggable
 
 
 func _ready():
@@ -15,14 +15,16 @@ func _on_NewConnection_pressed():
 
 func _create_node(parent : TreeItem, metadata : Dictionary):
 	var child = create_item(parent)
-	child.set_text(0, metadata['name'])
+	child.set_text(0, metadata["name"])
 	child.set_metadata(0, metadata)
 	
-	if metadata['__type__'] == MondotType.FOLDER:
-		for item in metadata['connections']:
+	if metadata["__type__"] == MondotType.FOLDER:
+		for item in metadata.get("connections", []):
 			_create_node(child, item)
+		
+		var _erased = metadata.erase("connections")
 	
-	child.set_icon(0, MondotIcon.from(metadata['__type__']))
+	child.set_icon(0, MondotIcon.from(metadata["__type__"]))
 	scroll_to_item(child)
 
 
@@ -63,8 +65,3 @@ func _on_ConnectionSettings_save_pressed(connection : Dictionary):
 	var item = get_selected()
 	item.set_metadata(0, connection)
 	item.set_text(0, connection["name"])
-
-
-func get_drag_data(position):
-	var m = get_item_at_position(position).get_metadata(0)
-	print(m)

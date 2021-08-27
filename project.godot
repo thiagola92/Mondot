@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Tree",
+"class": "TreeDraggable",
+"language": "GDScript",
+"path": "res://scenes/utility/tree_draggable/tree_draggable.gd"
+} ]
+_global_script_class_icons={
+"TreeDraggable": "res://images/icon_tree.svg"
+}
+
 [application]
 
 config/name="Mongodot"
