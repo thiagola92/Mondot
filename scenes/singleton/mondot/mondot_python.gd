@@ -5,9 +5,10 @@ static func parse_output(output : String) -> GenericResult:
 	var json_result = JSON.parse(output)
 		
 	if json_result.error != OK:
-		print(json_result.error)
-		print(json_result.error_string)
-		return GenericResult.new(json_result.error, json_result.error_string)
+#		print(json_result.error)
+#		print(json_result.error_string)
+#		return GenericResult.new(json_result.error, json_result.error_string)
+		return GenericResult.new(OK, "", output)
 	
 	var output_result = json_result.result
 	

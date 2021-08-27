@@ -40,7 +40,14 @@ func read_output(output : int = 1) -> String:
 
 
 func output_exists(output : int = 1) -> bool:
-	return File.new().file_exists("%s_%s" % [filepath, output])
+	var file_exist = File.new().file_exists("%s_%s" % [filepath, output])
+	
+	if not file_exist:
+		return false
+	
+	var output_length = _get_output_length("%s_%s" % [filepath, output])
+	
+	return output_length > 0
 
 
 func request_next_output():
@@ -115,6 +122,16 @@ func _read_output_file(output_path : String) -> String:
 	file.close()
 	
 	return content
+	
+
+func _get_output_length(output_path : String) -> int:
+	var file = File.new()
+	
+	file.open(output_path, File.READ)
+	var length = file.get_len()
+	file.close()
+	
+	return length
 
 
 func _write_input_file(content : String):
