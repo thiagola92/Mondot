@@ -12,7 +12,8 @@ func _ready():
 
 func _on_Tree_item_activated():
 	var item = $Container/Tree.get_selected()
+	var metadata = item.get_metadata(0)
 	
-	emit_signal("item_selected", item)
-	
-	hide()
+	if metadata["__type__"] == MondotType.CONNECTION:
+		emit_signal("item_selected", item)
+		hide()

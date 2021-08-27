@@ -63,3 +63,8 @@ func _on_ConnectionSettings_save_pressed(connection : Dictionary):
 	var item = get_selected()
 	item.set_metadata(0, connection)
 	item.set_text(0, connection["name"])
+
+
+func get_drag_data(position):
+	var m = get_item_at_position(position).get_metadata(0)
+	print(m)
