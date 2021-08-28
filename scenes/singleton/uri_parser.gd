@@ -35,7 +35,7 @@ static func unparse(connection : Dictionary) -> String:
 		connection.get("scheme", "mongodb"),
 		_unparse_userinfo(connection),
 		connection.get("host", "127.0.0.1"),
-		connection.get("port", 27017),
+		connection.get("port", "27017"),
 		connection.get("db", "admin"),
 		connection.get("options", "")
 	]

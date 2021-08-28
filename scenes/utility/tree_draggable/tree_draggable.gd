@@ -21,9 +21,9 @@ func can_drop_data(position, data):
 	
 	match type:
 		MondotType.FOLDER:
-			return _can_drop_data_on_folder(item, data)
+			return _can_drop_data_on_folder(data)
 		MondotType.DATABASE:
-			return _can_drop_data_on_database(item, data)
+			return _can_drop_data_on_database(data)
 	
 	return false
 	
@@ -37,7 +37,7 @@ func drop_data(position, data):
 			_drop_data_on_folder(item, data)
 
 
-func _can_drop_data_on_folder(folder, data):
+func _can_drop_data_on_folder(data):
 	var type = data.get_metadata(0).get("__type__")
 	
 	match type:
@@ -59,7 +59,7 @@ func _drop_data_on_folder(folder, data):
 			emit_signal("connection_dropped_on_folder", data, folder)
 
 
-func _can_drop_data_on_database(database, data):
+func _can_drop_data_on_database(data):
 	var type = data.get_metadata(0).get("__type__")
 	
 	match type:
