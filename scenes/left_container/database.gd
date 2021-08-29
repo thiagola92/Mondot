@@ -28,7 +28,7 @@ func _update_database_collections(tree : Tree, tree_item : TreeItem):
 	var code = "self.db.list_collection_names()"
 	var kwargs = {"tree": tree, "tree_item": tree_item}
 	
-	$PythonWatcher.run(code, database["uri"], database["name"], 20, 0, kwargs)
+	$PythonWatcher.run(code, database["uri"], database["name"], 1000, 0, kwargs)
 
 
 func _on_PythonWatcher_output(output, kwargs):

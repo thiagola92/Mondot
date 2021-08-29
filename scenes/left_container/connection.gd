@@ -42,7 +42,7 @@ func _update_connection_databases(tree : Tree, tree_item : TreeItem):
 	var code = "self.client.list_database_names()"
 	var kwargs = {"tree": tree, "tree_item": tree_item}
 	
-	$PythonWatcher.run(code, connection["uri"], "admin", 20, 0, kwargs)
+	$PythonWatcher.run(code, connection["uri"], "admin", 1000, 0, kwargs)
 
 
 func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
