@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/result.gd" type="Script" id=8]
 
 [node name="ConnectionSettings" type="WindowDialog"]
+visible = true
 margin_right = 512.0
 margin_bottom = 334.0
 theme = ExtResource( 6 )
@@ -60,34 +61,48 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="Label" type="VBoxContainer" parent="Container/Settings/Basic"]
-margin_right = 42.0
-margin_bottom = 248.0
+margin_right = 64.0
+margin_bottom = 220.0
+
+[node name="Connection" type="Label" parent="Container/Settings/Basic/Label"]
+margin_right = 64.0
+margin_bottom = 22.0
+text = "Connect:"
 
 [node name="Host" type="Label" parent="Container/Settings/Basic/Label"]
-margin_right = 42.0
-margin_bottom = 22.0
+margin_top = 26.0
+margin_right = 64.0
+margin_bottom = 48.0
 text = "Host:"
 
 [node name="Port" type="Label" parent="Container/Settings/Basic/Label"]
-margin_top = 26.0
-margin_right = 42.0
-margin_bottom = 48.0
+margin_top = 52.0
+margin_right = 64.0
+margin_bottom = 74.0
 text = "Port:"
 
 [node name="Input" type="VBoxContainer" parent="Container/Settings/Basic"]
-margin_left = 46.0
+margin_left = 68.0
 margin_right = 502.0
-margin_bottom = 248.0
+margin_bottom = 220.0
 size_flags_horizontal = 3
 
-[node name="Host" type="LineEdit" parent="Container/Settings/Basic/Input"]
-margin_right = 456.0
+[node name="Connection" type="OptionButton" parent="Container/Settings/Basic/Input"]
+margin_right = 434.0
 margin_bottom = 22.0
+text = "Single server"
+items = [ "Single server", null, false, 0, null, "DNS seedlist", null, false, 1, null ]
+selected = 0
+
+[node name="Host" type="LineEdit" parent="Container/Settings/Basic/Input"]
+margin_top = 26.0
+margin_right = 434.0
+margin_bottom = 48.0
 
 [node name="Port" type="LineEdit" parent="Container/Settings/Basic/Input"]
-margin_top = 26.0
-margin_right = 456.0
-margin_bottom = 48.0
+margin_top = 52.0
+margin_right = 434.0
+margin_bottom = 74.0
 
 [node name="Authentication" type="HBoxContainer" parent="Container/Settings"]
 visible = false
@@ -269,7 +284,9 @@ text = "Cancel"
 [node name="Alert" parent="." instance=ExtResource( 1 )]
 
 [connection signal="about_to_show" from="." to="." method="_on_ConnectionSettings_about_to_show"]
+[connection signal="item_selected" from="Container/Settings/Basic/Input/Connection" to="." method="_on_Input_changed"]
 [connection signal="text_changed" from="Container/Settings/Basic/Input/Host" to="." method="_on_Input_changed"]
+[connection signal="text_changed" from="Container/Settings/Basic/Input/Port" to="." method="_on_Input_changed"]
 [connection signal="text_changed" from="Container/Settings/Authentication/Input/Username" to="." method="_on_Input_changed"]
 [connection signal="text_changed" from="Container/Settings/Authentication/Input/Password" to="." method="_on_Input_changed"]
 [connection signal="text_changed" from="Container/Settings/Authentication/Input/Database" to="." method="_on_Input_changed"]

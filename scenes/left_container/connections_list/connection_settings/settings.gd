@@ -26,7 +26,7 @@ func get_db():
 
 
 func get_scheme():
-	var selected = $SSL/Input/SSL.selected
+	var selected = $Basic/Input/Connection.selected
 	
 	match selected:
 		0:
@@ -37,20 +37,18 @@ func get_scheme():
 	return "mongodb"
 
 
-func set_basic(host : String, port : String):
+func set_basic(scheme : String, host : String, port : String):
 	$Basic/Input/Host.text = host
 	$Basic/Input/Port.text = port
+	
+	match scheme:
+		"mongodb":
+			$Basic/Input/Connection.selected = 0
+		"mongodb+srv":
+			$Basic/Input/Connection.selected = 1
 
 
 func set_authentication(username : String, password : String, db : String):
 	$Authentication/Input/Username.text = username
 	$Authentication/Input/Password.text = password
 	$Authentication/Input/Database.text = db
-
-
-func set_ssl(scheme : String):
-	match scheme:
-		"mongodb":
-			$SSL/Input/SSL.selected = 0
-		"mongodb+srv":
-			$SSL/Input/SSL.selected = 1

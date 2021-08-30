@@ -30,11 +30,11 @@ func _set_fields(name : String, connection : Dictionary):
 	var username = connection.get("username", "")
 	var password = connection.get("password", "")
 	var db = connection.get("db", "admin")
+	var options = connection.get("options", {})
 	
 	$Container/Organization/NameInput.text = name
-	$Container/Settings.set_basic(host, port)
+	$Container/Settings.set_basic(scheme, host, port)
 	$Container/Settings.set_authentication(username, password, db)
-	$Container/Settings.set_ssl(scheme)
 
 
 func _on_Cancel_pressed():
