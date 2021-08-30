@@ -15,7 +15,7 @@ static func parse(uri : String) -> GenericResult:
 		"host": regex_result.get_string("host"),
 		"port": regex_result.get_string("port"),
 		"db": regex_result.get_string("db"),
-		"options": _get_options(regex_result.get_string("options")),
+		"options": _parse_options(regex_result.get_string("options")),
 	}
 	
 	return GenericResult.new(OK, "", connection)
@@ -30,7 +30,7 @@ static func _get_regex() -> RegEx:
 	return regex
 
 
-static func _get_options(string : String) -> Dictionary:
+static func _parse_options(string : String) -> Dictionary:
 	var options = {}
 	
 	for key_value in string.split("&", false):
@@ -47,7 +47,7 @@ static func unparse(connection : Dictionary) -> String:
 		connection.get("host", "127.0.0.1"),
 		connection.get("port", "27017"),
 		connection.get("db", "admin"),
-		connection.get("options", "")
+		_unparse_options(connection.get("options", {}))
 	]
 
 
@@ -59,3 +59,13 @@ static func _unparse_userinfo(connection : Dictionary) -> String:
 		return "%s@" % connection["username"]
 		
 	return "%s:%s@" % [connection["username"], connection["password"],]
+
+static func _unparse_options(options : Dictionary) -> String:
+	var string = ""
+	
+	for key in options.keys():
+		var value = options[key]
+		
+		string += "%s=%s" % [key, value]
+	
+	return string

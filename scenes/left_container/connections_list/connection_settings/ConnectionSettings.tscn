@@ -53,6 +53,7 @@ tab_align = 0
 script = ExtResource( 4 )
 
 [node name="Basic" type="HBoxContainer" parent="Container/Settings"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -169,7 +170,6 @@ margin_right = 420.0
 margin_bottom = 82.0
 
 [node name="SSL" type="HBoxContainer" parent="Container/Settings"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -179,7 +179,7 @@ margin_bottom = -5.0
 
 [node name="Label" type="VBoxContainer" parent="Container/Settings/SSL"]
 margin_right = 33.0
-margin_bottom = 248.0
+margin_bottom = 220.0
 
 [node name="SSL" type="Label" parent="Container/Settings/SSL/Label"]
 margin_right = 33.0
@@ -189,7 +189,7 @@ text = "SSL:"
 [node name="Input" type="VBoxContainer" parent="Container/Settings/SSL"]
 margin_left = 37.0
 margin_right = 502.0
-margin_bottom = 248.0
+margin_bottom = 220.0
 size_flags_horizontal = 3
 
 [node name="SSL" type="OptionButton" parent="Container/Settings/SSL/Input"]

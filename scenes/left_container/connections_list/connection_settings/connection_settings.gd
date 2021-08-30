@@ -35,6 +35,7 @@ func _set_fields(name : String, connection : Dictionary):
 	$Container/Organization/NameInput.text = name
 	$Container/Settings.set_basic(scheme, host, port)
 	$Container/Settings.set_authentication(username, password, db)
+	$Container/Settings.set_ssl(options)
 
 
 func _on_Cancel_pressed():
@@ -55,6 +56,7 @@ func _get_connection() -> Dictionary:
 		"username": $Container/Settings.get_username(),
 		"password": $Container/Settings.get_password(),
 		"db": $Container/Settings.get_db(),
+		"options": $Container/Settings.get_options(),
 	}
 	
 	return {
