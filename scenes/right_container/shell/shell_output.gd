@@ -38,7 +38,7 @@ func _read_current_page():
 	$Menu/PageNumber.text = str(page_number)
 	
 	var output = $Python.read_output(page_number)
-	$Output.text =  MondotPython.pretty_output(output)
+	$Output.text = MondotPython.pretty_output(output)
 
 
 func _on_Next_pressed():

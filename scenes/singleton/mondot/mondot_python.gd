@@ -24,6 +24,6 @@ static func pretty_output(output : String) -> String:
 	var parse_result = parse_output(output)
 	
 	if parse_result.error != OK:
-		return parse_result.error_string
+		return '"%s"' % parse_result.error_string
 	
 	return JSON.print(parse_result.result, "	")

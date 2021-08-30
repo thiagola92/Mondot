@@ -98,6 +98,8 @@ margin_bottom = 284.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 readonly = true
+syntax_highlighting = true
+script = ExtResource( 4 )
 
 [node name="NextPageTimer" type="Timer" parent="ShellOutput"]
 wait_time = 0.05
