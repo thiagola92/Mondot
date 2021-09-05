@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from mondot.pages import Pages
 from pymongo.cursor import Cursor
+from collections.abc import Iterable
 
 
 class Shell:
@@ -21,14 +22,15 @@ class Shell:
         self._process_output(obj)
 
     def _process_output(self, obj):
-        if self._cant_navegate_with_for(obj):
-            obj = [obj]  # Now it can navegate with a for
+        # Prevent iterating a string
+        if isinstance(obj, str):
+            obj = [obj]
+        
+        # Make sure that the obj is iterable at the end
+        if not isinstance(obj, Iterable):
+            obj = [obj]
+        
         self._save_output(obj)
-
-    def _cant_navegate_with_for(self, obj):
-        valid_types = (list, tuple, set, Cursor)
-
-        return not isinstance(obj, valid_types)
 
     def _save_output(self, obj):
         for doc in obj:

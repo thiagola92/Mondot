@@ -13,7 +13,7 @@ func setup(_uri : String, code : String, _db : String):
 	self.uri = _uri
 	self.db = _db
 	
-	$TextEditor.text = code
+	$CodeEditor.text = code
 
 
 func _on_Run_pressed():
@@ -21,7 +21,7 @@ func _on_Run_pressed():
 
 
 func _execute_python_code():
-	var code = $TextEditor.text
+	var code = $CodeEditor.text
 	var page_size = _get_page_size()
 	$ShellOutput/Python.run(code, uri, db, page_size)
 	$ShellOutput.start()
