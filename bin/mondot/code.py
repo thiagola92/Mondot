@@ -27,7 +27,9 @@ class Code:
         # Insert all user code inside the function
         # and add a return to the last expression
         function.body = [exp for exp in user_code.body]
-        function.body[-1] = ast.Return(value=function.body[-1].value)
+
+        if hasattr(function.body[-1], "value"):
+            function.body[-1] = ast.Return(value=function.body[-1].value)
 
     @staticmethod
     def _recalculate_lines_and_columns_positions(first_node):
