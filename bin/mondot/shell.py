@@ -1,6 +1,5 @@
 from pymongo import MongoClient
 from mondot.pages import Pages
-from pymongo.cursor import Cursor
 from collections.abc import Iterable
 
 
