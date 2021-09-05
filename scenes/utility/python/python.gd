@@ -22,7 +22,7 @@ func run(code : String, uri : String, db : String, page_size : int = 20) -> Stri
 		"--page_size", page_size
 	]
 	
-#	print("bin/python %s %s %s %s %s %s %s %s %s" % args)
+	print("bin/python %s %s %s %s %s %s %s %s %s" % args)
 	pid = OS.execute('bin/python', args, false)
 	
 	return filepath

@@ -6,30 +6,15 @@ func _ready():
 
 
 func _on_NewConnection_pressed():
-	_create_node(get_root(), {
+	TreeItemKit.create_node(self, get_root(), {
 		"__type__": MondotType.CONNECTION,
 		"name": "New connection",
 		"uri": "mongodb://127.0.0.1:27017"
 	})
 
 
-func _create_node(parent : TreeItem, metadata : Dictionary):
-	var child = create_item(parent)
-	child.set_text(0, metadata["name"])
-	child.set_metadata(0, metadata)
-	
-	if metadata["__type__"] == MondotType.FOLDER:
-		for item in metadata.get("connections", []):
-			_create_node(child, item)
-		
-		var _erased = metadata.erase("connections")
-	
-	child.set_icon(0, MondotIcon.from(metadata["__type__"]))
-	scroll_to_item(child)
-
-
 func _on_NewFolder_pressed():
-	_create_node(get_root(), {
+	TreeItemKit.create_node(self, get_root(), {
 		'__type__': MondotType.FOLDER,
 		'name': "New folder",
 		'connections': [],
@@ -38,11 +23,11 @@ func _on_NewFolder_pressed():
 
 func _on_Import_connections_loaded(connections):
 	for connection in connections:
-		_create_node(get_root(), connection)
+		TreeItemKit.create_node(self, get_root(), connection)
 
 
 func _on_ConnectionUri_loaded(connection):
-	_create_node(get_root(), connection)
+	TreeItemKit.create_node(self, get_root(), connection)
 
 
 func _on_Tree_item_rmb_selected(position : Vector2):
@@ -65,3 +50,25 @@ func _on_ConnectionSettings_save_pressed(connection : Dictionary):
 	var item = get_selected()
 	item.set_metadata(0, connection)
 	item.set_text(0, connection["name"])
+
+
+func _on_Tree_connection_dropped_on_folder(dropped : TreeItem, folder : TreeItem):
+	TreeItemKit.move_node_to_new_parent(self, dropped, folder)
+
+
+func _on_Tree_folder_dropped_on_folder(dropped, folder):
+	if dropped == folder:
+		return
+	
+	if TreeItemKit.is_node_inside_parent(folder, dropped):
+		return
+		
+	TreeItemKit.move_node_to_new_parent(self, dropped, folder)
+
+
+func _on_Tree_connection_dropped_on_empty(dropped):
+	TreeItemKit.move_node_to_new_parent(self, dropped, get_root())
+
+
+func _on_Tree_folder_dropped_on_empty(dropped):
+	TreeItemKit.move_node_to_new_parent(self, dropped, get_root())

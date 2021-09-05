@@ -1,4 +1,4 @@
-extends Tree
+extends TreeDraggable
 
 signal open_shell_pressed(uri, code, db)
 
@@ -67,8 +67,12 @@ func _on_CollectionMenu_id_pressed(id : int):
 	
 	match id:
 		0:
-			var code = 'self.db[\"%s\"].find()' % collection["name"]
-			emit_signal("open_shell_pressed", collection["uri"], code, collection["db"])
+			emit_signal(
+				"open_shell_pressed",
+				collection["uri"],
+				CollectionCode.find(collection["name"]),
+				collection["db"]
+			)
 
 
 func _on_Tree_item_activated():
@@ -80,3 +84,18 @@ func _on_Tree_item_activated():
 			$Connection.refresh_connection(self, tree_item)
 		MondotType.DATABASE:
 			$Database.refresh_database(self, tree_item)
+
+
+func _on_Tree_collection_dropped_on_database(dropped : TreeItem, database : TreeItem):
+	if dropped.get_parent() == database:
+		return
+		
+	var collection = dropped.get_metadata(0)
+	var db = database.get_metadata(0)
+	
+	emit_signal(
+		"open_shell_pressed",
+		collection["uri"],
+		CollectionCode.clone_collection(collection["name"], db["uri"], db["name"]),
+		collection["db"]
+	)

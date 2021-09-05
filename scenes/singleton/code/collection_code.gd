@@ -1,0 +1,13 @@
+extends Node
+
+
+func find(collection : String) -> String:
+	return 'self.db["%s"].find()' % collection
+
+
+func clone_collection(collection : String, uri_target : String, db_target : String) -> String:
+	return "from pymongo import MongoClient\n\n" + \
+	'client = MongoClient("%s")\n' % uri_target + \
+	'db = client["%s"]\n\n' % db_target + \
+	'for doc in self.db["%s"].find():\n' % collection + \
+	'	db["%s"].insert(doc)' % collection
