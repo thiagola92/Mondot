@@ -9,7 +9,7 @@ func _ready():
 	pass
 
 
-func setup(_uri : String, code : String, _db : String):
+func setup(_uri : String, _db : String, code : String):
 	self.uri = _uri
 	self.db = _db
 	

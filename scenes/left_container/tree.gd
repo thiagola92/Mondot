@@ -1,6 +1,7 @@
 extends TreeDraggable
 
-signal open_shell_pressed(uri, code, db)
+signal open_shell_pressed(uri, db, code)
+signal collection_moved(uri, db, code)
 
 
 func _ready():
@@ -31,7 +32,7 @@ func _on_ConnectionMenu_id_pressed(id : int):
 	
 	match id:
 		0:
-			emit_signal("open_shell_pressed", connection["uri"], "", "admin")
+			emit_signal("open_shell_pressed", connection["uri"], "admin", "")
 		1:
 			# open settings pressed
 			pass
@@ -50,7 +51,7 @@ func _on_DatabaseMenu_id_pressed(id : int):
 	
 	match id:
 		0:
-			emit_signal("open_shell_pressed", database["uri"], "", database["name"])
+			emit_signal("open_shell_pressed", database["uri"], database["name"], "")
 		1:
 			pass
 		2:
@@ -70,8 +71,8 @@ func _on_CollectionMenu_id_pressed(id : int):
 			emit_signal(
 				"open_shell_pressed",
 				collection["uri"],
-				CollectionCode.find(collection["name"]),
-				collection["db"]
+				collection["db"],
+				CollectionCode.find(collection["name"])
 			)
 
 
@@ -94,8 +95,8 @@ func _on_Tree_collection_dropped_on_database(dropped : TreeItem, database : Tree
 	var db = database.get_metadata(0)
 	
 	emit_signal(
-		"open_shell_pressed",
+		"collection_moved",
 		collection["uri"],
-		CollectionCode.clone_collection(collection["name"], db["uri"], db["name"]),
-		collection["db"]
+		collection["db"],
+		CollectionCode.clone_collection(collection["name"], db["uri"], db["name"])
 	)

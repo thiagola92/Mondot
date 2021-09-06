@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://images/icon_shell_execute.svg" type="Texture" id=1]
+[ext_resource path="res://scenes/utility/code_editor/CodeEditor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/right_container/process/process.gd" type="Script" id=3]
+[ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/right_container/process/status_icon.gd" type="Script" id=5]
+
+[node name="Process" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 22.0
+
+[node name="Run" type="Button" parent="Menu"]
+margin_right = 28.0
+margin_bottom = 22.0
+hint_tooltip = "Execute code"
+icon = ExtResource( 1 )
+flat = true
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Menu"]
+margin_left = 32.0
+margin_right = 1020.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+
+[node name="StatusIcon" type="TextureRect" parent="Menu"]
+margin_left = 1024.0
+margin_right = 1024.0
+margin_bottom = 22.0
+stretch_mode = 4
+script = ExtResource( 5 )
+
+[node name="CodeEditor" parent="." instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 26.0
+margin_right = 1024.0
+margin_bottom = 600.0
+readonly = true
+
+[node name="PythonWatcher" parent="." instance=ExtResource( 4 )]
+
+[connection signal="pressed" from="Menu/Run" to="." method="_on_Run_pressed"]
+[connection signal="output" from="PythonWatcher" to="Menu/StatusIcon" method="_on_PythonWatcher_output"]

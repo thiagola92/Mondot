@@ -10,4 +10,5 @@ func clone_collection(collection : String, uri_target : String, db_target : Stri
 	'client = MongoClient("%s")\n' % uri_target + \
 	'db = client["%s"]\n\n' % db_target + \
 	'for doc in self.db["%s"].find():\n' % collection + \
-	'	db["%s"].insert(doc)' % collection
+	'	db["%s"].insert(doc)\n\n' % collection + \
+	'self.db.drop_collection("%s")' % collection
