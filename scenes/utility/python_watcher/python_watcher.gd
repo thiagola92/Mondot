@@ -32,6 +32,7 @@ func run(
 
 
 func read_next_page():
+	# Don't go to next page if didn't get the current page
 	if not $Python.output_exists(page_number):
 		return
 		
