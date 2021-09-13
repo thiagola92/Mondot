@@ -10,7 +10,6 @@
 [ext_resource path="res://scenes/left_container/connections_list/connection_settings/result.gd" type="Script" id=8]
 
 [node name="ConnectionSettings" type="WindowDialog"]
-visible = true
 margin_right = 512.0
 margin_bottom = 334.0
 theme = ExtResource( 6 )
@@ -53,7 +52,6 @@ tab_align = 0
 script = ExtResource( 4 )
 
 [node name="Basic" type="HBoxContainer" parent="Container/Settings"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -170,6 +168,7 @@ margin_right = 420.0
 margin_bottom = 82.0
 
 [node name="SSL" type="HBoxContainer" parent="Container/Settings"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
