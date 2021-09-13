@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/main_container/right_container/shell/shell.gd" type="Script" id=2]
+[ext_resource path="res://images/icon_shell_next_page.svg" type="Texture" id=3]
+[ext_resource path="res://images/icon_shell_previous_page.svg" type="Texture" id=4]
+[ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=5]
+[ext_resource path="res://images/icon_shell_execute.svg" type="Texture" id=6]
+[ext_resource path="res://scenes/main_container/right_container/shell/shell_output.gd" type="Script" id=7]
+[ext_resource path="res://scenes/utility/code_editor/CodeEditor.tscn" type="PackedScene" id=8]
+
+[node name="Shell" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.18921
+margin_right = 1.18921
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 24.0
+
+[node name="Run" type="Button" parent="Menu"]
+margin_right = 28.0
+margin_bottom = 24.0
+hint_tooltip = "Execute code"
+icon = ExtResource( 6 )
+flat = true
+
+[node name="Separator" type="HSplitContainer" parent="Menu"]
+margin_left = 32.0
+margin_right = 976.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="PageSize" type="OptionButton" parent="Menu"]
+margin_left = 980.0
+margin_right = 1024.0
+margin_bottom = 24.0
+hint_tooltip = "Page size"
+text = "20"
+items = [ "20", null, false, 0, null, "50", null, false, 1, null, "100", null, false, 2, null, "200", null, false, 3, null, "500", null, false, 4, null, "1000", null, false, 5, null ]
+selected = 0
+
+[node name="CodeEditor" parent="." instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 28.0
+margin_right = 1024.0
+margin_bottom = 312.0
+
+[node name="ShellOutput" type="VBoxContainer" parent="."]
+margin_top = 316.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 7 )
+
+[node name="Menu" type="HBoxContainer" parent="ShellOutput"]
+margin_right = 1024.0
+margin_bottom = 22.0
+
+[node name="Previous" type="Button" parent="ShellOutput/Menu"]
+margin_right = 20.0
+margin_bottom = 22.0
+hint_tooltip = "Show previous page"
+icon = ExtResource( 4 )
+flat = true
+
+[node name="PageNumber" type="Label" parent="ShellOutput/Menu"]
+margin_left = 24.0
+margin_right = 37.0
+margin_bottom = 22.0
+text = "-"
+
+[node name="Next" type="Button" parent="ShellOutput/Menu"]
+margin_left = 41.0
+margin_right = 61.0
+margin_bottom = 22.0
+hint_tooltip = "Show next page"
+icon = ExtResource( 3 )
+flat = true
+
+[node name="Output" parent="ShellOutput" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 26.0
+margin_right = 1024.0
+margin_bottom = 284.0
+readonly = true
+
+[node name="PythonWatcher" parent="ShellOutput" instance=ExtResource( 5 )]
+
+[connection signal="pressed" from="Menu/Run" to="." method="_on_Run_pressed"]
+[connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
+[connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]
+[connection signal="output" from="ShellOutput/PythonWatcher" to="ShellOutput" method="_on_PythonWatcher_output"]

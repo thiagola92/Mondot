@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/main_container.tres" type="Theme" id=3]
+[ext_resource path="res://fonts/roboto/Roboto-Italic.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://fonts/roboto/Roboto-BoldItalic.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/main_container/left_container/about/about.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 14
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 14
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+font_data = ExtResource( 1 )
+
+[node name="About" type="AcceptDialog"]
+margin_right = 344.0
+margin_bottom = 362.0
+theme = ExtResource( 3 )
+window_title = "About"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Details" type="RichTextLabel" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 336.0
+margin_bottom = 324.0
+size_flags_vertical = 3
+custom_fonts/bold_italics_font = SubResource( 1 )
+custom_fonts/italics_font = SubResource( 2 )
+custom_fonts/bold_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "
+Mongodot is an experience!
+And I'm trying to make sure it's a good one.
+Now, go have fun!
+
+[b]Version:[/b] 0.0.1
+
+[color=gray]Mongodot use Godot ([url]https://godotengine.org/[/url])."
+text = "
+Mongodot is an experience!
+And I'm trying to make sure it's a good one.
+Now, go have fun!
+
+Version: 0.0.1
+
+Mongodot use Godot (https://godotengine.org/)."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="meta_clicked" from="Details" to="." method="_on_Details_meta_clicked"]
