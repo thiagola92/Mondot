@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/utility/alert/Alert.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/result.gd" type="Script" id=5]
-[ext_resource path="res://images/icon_GUI_visibility_hidden.svg" type="Texture" id=6]
+[ext_resource path="res://images/icon_visibility_hidden.svg" type="Texture" id=6]
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/connection_settings.gd" type="Script" id=7]
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/settings.gd" type="Script" id=8]
 

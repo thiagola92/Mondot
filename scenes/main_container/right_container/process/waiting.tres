@@ -1,8 +1,8 @@
 [gd_resource type="AnimatedTexture" load_steps=4 format=2]
 
-[ext_resource path="res://images/icon_process_status_waiting_3.svg" type="Texture" id=1]
-[ext_resource path="res://images/icon_process_status_waiting_2.svg" type="Texture" id=2]
-[ext_resource path="res://images/icon_process_status_waiting_1.svg" type="Texture" id=3]
+[ext_resource path="res://images/icon_circle_3.svg" type="Texture" id=1]
+[ext_resource path="res://images/icon_circle_2.svg" type="Texture" id=2]
+[ext_resource path="res://images/icon_circle_1.svg" type="Texture" id=3]
 
 [resource]
 flags = 4

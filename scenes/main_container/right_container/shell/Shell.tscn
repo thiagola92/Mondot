@@ -2,10 +2,10 @@
 
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/main_container/right_container/shell/shell.gd" type="Script" id=2]
-[ext_resource path="res://images/icon_shell_next_page.svg" type="Texture" id=3]
-[ext_resource path="res://images/icon_shell_previous_page.svg" type="Texture" id=4]
+[ext_resource path="res://images/icon_arrow_right.svg" type="Texture" id=3]
+[ext_resource path="res://images/icon_arrow_left.svg" type="Texture" id=4]
 [ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=5]
-[ext_resource path="res://images/icon_shell_execute.svg" type="Texture" id=6]
+[ext_resource path="res://images/icon_play.svg" type="Texture" id=6]
 [ext_resource path="res://scenes/main_container/right_container/shell/shell_output.gd" type="Script" id=7]
 [ext_resource path="res://scenes/utility/code_editor/CodeEditor.tscn" type="PackedScene" id=8]
 

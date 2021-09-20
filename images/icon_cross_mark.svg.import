@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_cylinder_shape.svg-19b10f9ed279e64c3881a5263ac5ceee.stex"
+path="res://.import/icon_cross_mark.svg-5bbeecdd0fb2597c1569198bedfd3a6f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/icon_cylinder_shape.svg"
-dest_files=[ "res://.import/icon_cylinder_shape.svg-19b10f9ed279e64c3881a5263ac5ceee.stex" ]
+source_file="res://images/icon_cross_mark.svg"
+dest_files=[ "res://.import/icon_cross_mark.svg-5bbeecdd0fb2597c1569198bedfd3a6f.stex" ]
 
 [params]
 
