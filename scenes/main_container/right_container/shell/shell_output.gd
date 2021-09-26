@@ -1,7 +1,5 @@
 extends VBoxContainer
 
-var page_number = 0
-
 
 func _ready():
 	hide()
@@ -13,9 +11,9 @@ func clear():
 
 
 func _on_PythonWatcher_output(output : String, _kwargs : Dictionary):
-	var page_number = $PythonWatcher.page_number
+	var current_page = $PythonWatcher.current_page
 	
-	$Menu/PageNumber.text = str(page_number)
+	$Menu/PageNumber.text = str(current_page)
 	$Output.text = MondotPython.pretty_output(output)
 
 

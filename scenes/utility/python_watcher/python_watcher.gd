@@ -6,7 +6,8 @@ signal output(output, kwargs)
 
 var _timeout
 var _kwargs
-var page_number
+var current_page
+var desired_page
 
 
 func _ready():
@@ -24,7 +25,8 @@ func run(
 	
 	_timeout = timeout
 	_kwargs = kwargs
-	page_number = 1
+	current_page = 1
+	desired_page = 1
 	
 	_start_timers()
 	
@@ -32,21 +34,21 @@ func run(
 
 
 func read_next_page():
-	# Don't go to next page if didn't get the current page
-	if not $Python.output_exists(page_number):
+	# Don't go to next page if didn't get the desired page yet
+	if desired_page != current_page:
 		return
 		
-	page_number += 1
+	desired_page = current_page + 1
 	
-	if not $Python.output_exists(page_number):
+	if not $Python.output_exists(desired_page):
 		$Python.request_next_output()
 	
 	_start_timers()
 
 
 func read_previous_page():
-	if page_number > 1:
-		page_number -= 1
+	if current_page > 1:
+		desired_page = current_page - 1
 		_start_timers()
 
 
@@ -75,9 +77,10 @@ func _on_KillTimer_timeout():
 
 
 func _on_OutputTimer_timeout():
-	if $Python.output_exists(page_number):
+	if $Python.output_exists(desired_page):
 		_stop_timers()
 		
-		var output = $Python.read_output(page_number)
+		current_page = desired_page
+		var output = $Python.read_output(current_page)
 		
 		emit_signal("output", output, _kwargs)

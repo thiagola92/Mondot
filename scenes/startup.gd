@@ -55,7 +55,7 @@ func _delete_directory_files(directory : Directory):
 	while filename:
 		if directory.current_is_dir():
 			_clean_directory("%s/%s" % [absolute_path, filename])
-		directory.remove("%s/%s" % [absolute_path, filename])
+		var _error = directory.remove("%s/%s" % [absolute_path, filename])
 			
 		filename = directory.get_next()
 			

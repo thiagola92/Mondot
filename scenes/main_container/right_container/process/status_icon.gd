@@ -12,7 +12,7 @@ func start_waiting():
 	_change_status(STATUS.WAITING)
 
 
-func _on_PythonWatcher_output(output, kwargs):
+func _on_PythonWatcher_output(output, _kwargs):
 	var status = _get_output_status(output)
 	
 	_change_status(status)
