@@ -1,6 +1,3 @@
-############ Mondot ############
-tmp/
-
 ############ Python ############
 
 # Byte-compiled / optimized / DLL files
@@ -166,3 +163,11 @@ data_*/
 
 # Local History for Visual Studio Code
 .history/
+
+############ Mondot ############
+
+# Include Mondot Shell lib
+!bin/lib
+
+# Ignore temporary files
+tmp/
