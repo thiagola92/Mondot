@@ -2,10 +2,15 @@ extends Node
 
 
 signal new_collections(tree, parent, collections)
+signal shell_requested(uri, db, code, readonly)
 
 
 func _ready():
 	pass
+
+
+func open_shell(uri : String, db : String):
+	emit_signal("shell_requested", uri, db, "")
 
 
 func refresh_database(tree : Tree, tree_item : TreeItem):

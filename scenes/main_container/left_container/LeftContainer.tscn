@@ -83,7 +83,6 @@ script = ExtResource( 5 )
 [node name="PythonWatcher" parent="Tree/Connection" instance=ExtResource( 4 )]
 
 [node name="Alert" parent="Tree/Connection" instance=ExtResource( 6 )]
-visible = false
 margin_bottom = 68.0
 
 [node name="Database" type="Node" parent="Tree"]
@@ -100,7 +99,6 @@ script = ExtResource( 5 )
 [node name="PythonWatcher" parent="Tree/Database" instance=ExtResource( 4 )]
 
 [node name="Alert" parent="Tree/Database" instance=ExtResource( 6 )]
-visible = false
 
 [node name="Collection" type="Node" parent="Tree"]
 script = ExtResource( 7 )
@@ -109,7 +107,7 @@ script = ExtResource( 7 )
 margin_right = 20.0
 margin_bottom = 20.0
 theme = ExtResource( 2 )
-items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false ]
+items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "", null, 0, false, false, 1, 0, null, "", true, "Drop", null, 0, false, false, 2, 0, null, "", false ]
 script = ExtResource( 5 )
 
 [connection signal="exit_pressed" from="Menu/File" to="Menu/File" method="_on_File_exit_pressed"]
@@ -117,14 +115,15 @@ script = ExtResource( 5 )
 [connection signal="item_selected" from="Menu/File/ConnectionsList" to="Tree" method="_on_ConnectionsList_item_selected"]
 [connection signal="about_pressed" from="Menu/Help" to="Menu/Help" method="_on_Help_about_pressed"]
 [connection signal="collection_dropped_on_database" from="Tree" to="Tree" method="_on_Tree_collection_dropped_on_database"]
-[connection signal="collection_moved" from="Tree" to="." method="_on_Tree_collection_moved"]
 [connection signal="item_activated" from="Tree" to="Tree" method="_on_Tree_item_activated"]
 [connection signal="item_rmb_selected" from="Tree" to="Tree" method="_on_Tree_item_rmb_selected"]
-[connection signal="open_shell_pressed" from="Tree" to="." method="_on_Tree_open_shell_pressed"]
 [connection signal="new_databases" from="Tree/Connection" to="Tree/Database" method="_on_Connection_new_databases"]
+[connection signal="shell_requested" from="Tree/Connection" to="." method="_on_Connection_shell_requested"]
 [connection signal="id_pressed" from="Tree/Connection/Menu" to="Tree" method="_on_ConnectionMenu_id_pressed"]
 [connection signal="output" from="Tree/Connection/PythonWatcher" to="Tree/Connection" method="_on_PythonWatcher_output"]
 [connection signal="new_collections" from="Tree/Database" to="Tree/Collection" method="_on_Database_new_collections"]
+[connection signal="shell_requested" from="Tree/Database" to="." method="_on_Database_shell_requested"]
 [connection signal="id_pressed" from="Tree/Database/Menu" to="Tree" method="_on_DatabaseMenu_id_pressed"]
 [connection signal="output" from="Tree/Database/PythonWatcher" to="Tree/Database" method="_on_PythonWatcher_output"]
+[connection signal="shell_requested" from="Tree/Collection" to="." method="_on_Collection_shell_requested"]
 [connection signal="id_pressed" from="Tree/Collection/Menu" to="Tree" method="_on_CollectionMenu_id_pressed"]

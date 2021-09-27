@@ -1,16 +1,20 @@
 extends VBoxContainer
 
-signal shell_requested(uri, code, db)
-signal process_requested(uri, code, db)
+
+signal shell_requested(uri, code, db, readonly)
 
 
 func _ready():
 	pass
 
 
-func _on_Tree_open_shell_pressed(uri, db, code):
-	emit_signal("shell_requested", uri, db, code)
+func _on_Connection_shell_requested(uri, db, code, readonly = false):
+	emit_signal("shell_requested", uri, db, code, readonly)
 
 
-func _on_Tree_collection_moved(uri, db, code):
-	emit_signal("process_requested", uri, db, code)
+func _on_Database_shell_requested(uri, db, code, readonly = false):
+	emit_signal("shell_requested", uri, db, code, readonly)
+
+
+func _on_Collection_shell_requested(uri, db, code, readonly = false):
+	emit_signal("shell_requested", uri, db, code, readonly)

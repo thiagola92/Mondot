@@ -2,6 +2,7 @@ extends Node
 
 
 signal new_databases(tree, parent, databases)
+signal shell_requested(uri, db, code, readonly)
 
 
 func _ready():
@@ -15,6 +16,10 @@ func add_connection(tree : Tree, connection : Dictionary):
 	tree_item.set_text(0, connection["name"])
 	tree_item.set_metadata(0, connection)
 	tree_item.set_icon(0, MondotIcon.from(MondotType.CONNECTION))
+
+
+func open_shell(uri : String):
+	emit_signal("shell_requested", uri, "admin", "")
 
 
 func disconnect_connection(tree : Tree, tree_item : TreeItem):

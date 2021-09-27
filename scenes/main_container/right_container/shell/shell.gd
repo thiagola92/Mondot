@@ -9,11 +9,12 @@ func _ready():
 	pass
 
 
-func setup(_uri : String, _db : String, code : String):
+func setup(_uri : String, _db : String, code : String, readonly : bool):
 	self.uri = _uri
 	self.db = _db
 	
 	$CodeEditor.text = code
+	$CodeEditor.readonly = readonly
 
 
 func _on_Run_pressed():

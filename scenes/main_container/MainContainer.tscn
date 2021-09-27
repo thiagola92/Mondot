@@ -25,5 +25,4 @@ margin_left = 278.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
-[connection signal="process_requested" from="LeftContainer" to="." method="_on_LeftContainer_process_requested"]
 [connection signal="shell_requested" from="LeftContainer" to="." method="_on_LeftContainer_shell_requested"]
