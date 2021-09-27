@@ -18,6 +18,11 @@ func refresh_database(tree : Tree, tree_item : TreeItem):
 	_update_database_collections(tree, tree_item)
 
 
+func drop_database(uri : String, db : String):
+	var code = ClientCode.drop_collection(db)
+	emit_signal("shell_requested", uri, db, code, true)
+
+
 func _remove_tree_item(tree_item : TreeItem):
 	tree_item.get_parent().remove_child(tree_item)
 	tree_item.free()

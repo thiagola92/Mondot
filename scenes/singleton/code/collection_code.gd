@@ -5,6 +5,10 @@ func find(collection : String) -> String:
 	return 'self.db["%s"].find()' % collection
 
 
+func drop_collection(collection : String) -> String:
+	return 'self.db["%s"].drop()' % collection
+
+
 func move_collection(collection : String, uri_target : String, db_target : String) -> String:
 	return "from pymongo import MongoClient\n\n" + \
 	'client = MongoClient("%s")\n' % uri_target + \

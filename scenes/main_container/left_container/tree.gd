@@ -56,8 +56,7 @@ func _on_DatabaseMenu_id_pressed(id : int):
 		3:
 			$Database.refresh_database(self, tree_item)
 		4:
-			pass
-#			$Database.drop_database(self, tree_item)
+			$Database.drop_database(database["uri"], database["name"])
 
 
 func _on_CollectionMenu_id_pressed(id : int):
@@ -67,6 +66,8 @@ func _on_CollectionMenu_id_pressed(id : int):
 	match id:
 		0:
 			$Collection.open_shell(collection["uri"], collection["db"], collection["name"])
+		1:
+			$Collection.drop_collection(collection["uri"], collection["db"], collection["name"])
 
 
 func _on_Tree_item_activated():

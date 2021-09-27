@@ -13,6 +13,11 @@ func open_shell(uri : String, db : String, collection : String):
 	emit_signal("shell_requested", uri, db, code)
 
 
+func drop_collection(uri, db, collection):
+	var code = CollectionCode.drop_collection(collection)
+	emit_signal("shell_requested", uri, db, code, true)
+
+
 func move_collection(src_uri, src_db, src_col, dest_uri, dest_db):
 	var code = CollectionCode.move_collection(src_col, dest_uri, dest_db)
 	emit_signal("shell_requested", src_uri, src_db, code, true)
