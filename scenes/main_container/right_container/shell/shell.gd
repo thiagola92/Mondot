@@ -14,7 +14,9 @@ func setup(_uri : String, _db : String, code : String, readonly : bool):
 	self.db = _db
 	
 	$CodeEditor.text = code
-	$CodeEditor.readonly = readonly
+	
+	_switch_lock_icon(readonly)
+	_switch_readonly_property(readonly)
 
 
 func _on_Run_pressed():
@@ -38,3 +40,22 @@ func _get_page_size() -> int:
 	var text = $Menu/PageSize.get_item_text(index)
 	
 	return int(text)
+
+
+func _on_Lock_toggled(button_pressed : bool):
+	_switch_lock_icon(button_pressed)
+	_switch_readonly_property(button_pressed)
+
+
+func _switch_lock_icon(locked : bool):
+	$Menu/Lock.pressed = locked
+	
+	match locked:
+		true:
+			$Menu/Lock.icon = load(MondotIcon.LOCK)
+		false:
+			$Menu/Lock.icon = load(MondotIcon.UNLOCK)
+
+
+func _switch_readonly_property(locked : bool):
+	$CodeEditor.readonly = locked
