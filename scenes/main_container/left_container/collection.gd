@@ -20,7 +20,7 @@ func drop_collection(uri, db, collection):
 
 func move_collection(src_uri, src_db, src_col, dest_uri, dest_db):
 	var code = CollectionCode.move_collection(src_col, dest_uri, dest_db)
-	emit_signal("shell_requested", src_uri, src_db, code, true)
+	emit_signal("shell_requested", src_uri, src_db, code, true, true)
 
 
 func _on_Database_new_collections(tree, parent, collections):

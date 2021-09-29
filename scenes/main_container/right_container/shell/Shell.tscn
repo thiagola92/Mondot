@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/main_container/right_container/shell/shell.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/main_container/right_container/shell/shell_output.gd" type="Script" id=7]
 [ext_resource path="res://scenes/utility/code_editor/CodeEditor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://images/icon_unlock.svg" type="Texture" id=9]
+[ext_resource path="res://images/icon_visibility_visible.svg" type="Texture" id=10]
 
 [node name="Shell" type="VBoxContainer"]
 anchor_right = 1.0
@@ -36,16 +37,24 @@ flat = true
 
 [node name="Separator" type="HSplitContainer" parent="Menu"]
 margin_left = 32.0
-margin_right = 944.0
+margin_right = 912.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="Lock" type="Button" parent="Menu"]
+margin_left = 916.0
+margin_right = 944.0
+margin_bottom = 24.0
+toggle_mode = true
+icon = ExtResource( 9 )
+flat = true
+
+[node name="Visibility" type="Button" parent="Menu"]
 margin_left = 948.0
 margin_right = 976.0
 margin_bottom = 24.0
 toggle_mode = true
-icon = ExtResource( 9 )
+icon = ExtResource( 10 )
 flat = true
 
 [node name="PageSize" type="OptionButton" parent="Menu"]
@@ -63,6 +72,14 @@ anchor_bottom = 0.0
 margin_top = 28.0
 margin_right = 1024.0
 margin_bottom = 312.0
+
+[node name="VisibilityWarning" type="Label" parent="."]
+visible = false
+margin_top = 303.0
+margin_right = 1024.0
+margin_bottom = 325.0
+text = "Code may contains sensitive information. Click on eye icon to see the code."
+align = 1
 
 [node name="ShellOutput" type="VBoxContainer" parent="."]
 margin_top = 316.0
@@ -109,6 +126,7 @@ readonly = true
 
 [connection signal="pressed" from="Menu/Run" to="." method="_on_Run_pressed"]
 [connection signal="toggled" from="Menu/Lock" to="." method="_on_Lock_toggled"]
+[connection signal="toggled" from="Menu/Visibility" to="." method="_on_Visibility_toggled"]
 [connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]
 [connection signal="output" from="ShellOutput/PythonWatcher" to="ShellOutput" method="_on_PythonWatcher_output"]

@@ -9,18 +9,19 @@ func _ready():
 	pass
 
 
-func setup(_uri : String, _db : String, code : String, readonly : bool):
+func setup(_uri : String, _db : String, code : String, readonly : bool, hidden : bool):
 	self.uri = _uri
 	self.db = _db
 	
 	$CodeEditor.text = code
 	
-	_switch_lock_icon(readonly)
-	_switch_readonly_property(readonly)
+	_switch_lock(readonly)
+	_switch_visibility(hidden)
 
 
-func _switch_lock_icon(readonly : bool):
+func _switch_lock(readonly : bool):
 	$Menu/Lock.pressed = readonly
+	$CodeEditor.readonly = readonly
 	
 	match readonly:
 		true:
@@ -29,8 +30,18 @@ func _switch_lock_icon(readonly : bool):
 			$Menu/Lock.icon = load(MondotIcon.UNLOCK)
 
 
-func _switch_readonly_property(readonly : bool):
-	$CodeEditor.readonly = readonly
+func _switch_visibility(hidden : bool):
+	$Menu/Visibility.pressed = hidden
+	
+	match hidden:
+		true:
+			$Menu/Visibility.icon = load(MondotIcon.VISIBILITY_HIDDEN)
+			$CodeEditor.hide()
+			$VisibilityWarning.show()
+		false:
+			$Menu/Visibility.icon = load(MondotIcon.VISIBILITY_VISIBLE)
+			$CodeEditor.show()
+			$VisibilityWarning.hide()
 
 
 func _on_Run_pressed():
@@ -57,5 +68,8 @@ func _get_page_size() -> int:
 
 
 func _on_Lock_toggled(button_pressed : bool):
-	_switch_lock_icon(button_pressed)
-	_switch_readonly_property(button_pressed)
+	_switch_lock(button_pressed)
+
+
+func _on_Visibility_toggled(button_pressed):
+	_switch_visibility(button_pressed)
