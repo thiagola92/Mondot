@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/ping.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
@@ -8,8 +8,10 @@
 [ext_resource path="res://images/icon_visibility_hidden.svg" type="Texture" id=6]
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/connection_settings.gd" type="Script" id=7]
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/settings.gd" type="Script" id=8]
+[ext_resource path="res://images/icon_action_copy.svg" type="Texture" id=9]
 
 [node name="ConnectionSettings" type="WindowDialog"]
+visible = true
 margin_right = 512.0
 margin_bottom = 334.0
 theme = ExtResource( 2 )
@@ -231,11 +233,18 @@ icon = ExtResource( 6 )
 
 [node name="URI" type="LineEdit" parent="Container/Result"]
 margin_left = 32.0
-margin_right = 512.0
+margin_right = 480.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 editable = false
 secret = true
+
+[node name="Copy" type="Button" parent="Container/Result"]
+margin_left = 484.0
+margin_right = 512.0
+margin_bottom = 24.0
+hint_tooltip = "Copy URI"
+icon = ExtResource( 9 )
 
 [node name="Actions" type="HBoxContainer" parent="Container"]
 margin_top = 312.0
@@ -291,6 +300,7 @@ text = "Cancel"
 [connection signal="text_changed" from="Container/Settings/Authentication/Input/Database" to="." method="_on_Input_changed"]
 [connection signal="item_selected" from="Container/Settings/SSL/Input/SSL" to="." method="_on_Input_changed"]
 [connection signal="toggled" from="Container/Result/View" to="Container/Result" method="_on_View_toggled"]
+[connection signal="pressed" from="Container/Result/Copy" to="Container/Result" method="_on_Copy_pressed"]
 [connection signal="hide" from="Container/Actions/Ping" to="Container/Actions/Ping" method="_on_Ping_hide"]
 [connection signal="pressed" from="Container/Actions/Ping/TestConnection" to="." method="_on_TestConnection_pressed"]
 [connection signal="output" from="Container/Actions/Ping/PythonWatcher" to="Container/Actions/Ping" method="_on_PythonWatcher_output"]
