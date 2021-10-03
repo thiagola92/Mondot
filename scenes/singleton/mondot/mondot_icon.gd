@@ -8,10 +8,6 @@ const FILE = "res://images/icon_file.svg"
 
 const EXECUTE = "res://images/icon_play.svg"
 
-const WAITING_1 = "res://images/icon_circle_1.svg"
-const WAITING_2 = "res://images/icon_circle_2.svg"
-const WAITING_3 = "res://images/icon_circle_3.svg"
-
 const NEXT = "res://images/icon_arrow_right.svg"
 const PREVIOUS = "res://images/icon_arrow_left.svg"
 

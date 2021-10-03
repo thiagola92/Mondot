@@ -1,5 +1,6 @@
 extends FileDialog
 
+
 signal connections_loaded(connections)
 
 
@@ -9,6 +10,21 @@ func _ready():
 		popup_centered()
 	
 	set_filters(PoolStringArray(["*.json ; JSON File"]))
+	
+	# This is a fix
+	# When you select any filter option, it will write on LineEdit that filter option
+	_get_option_button().connect("item_selected", self, "_on_OptionButton_item_selected")
+
+func _get_option_button():
+	return _get_last_hbox().get_child(2)
+
+
+func _get_last_hbox():
+	return get_vbox().get_child(3)
+
+
+func _on_OptionButton_item_selected(_index):
+	get_line_edit().text = ""
 
 
 func _on_Import_file_selected(path):

@@ -73,3 +73,16 @@ func _on_Lock_toggled(button_pressed : bool):
 
 func _on_Visibility_toggled(button_pressed):
 	_switch_visibility(button_pressed)
+
+
+func _on_Stop_pressed():
+	_stop_python_code()
+
+
+func _stop_python_code():
+	$ShellOutput/PythonWatcher.kill_current_execution()
+
+
+func _on_SaveQuery_pressed():
+	var code = $CodeEditor.text
+	$SaveQuery.save(code)

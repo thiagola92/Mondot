@@ -12,8 +12,8 @@ popup_exclusive = true
 window_title = "Open a File"
 mode = 0
 access = 2
-current_dir = "/media/thiagola92/LinuxHD/Documents/public/mongodot"
-current_path = "/media/thiagola92/LinuxHD/Documents/public/mongodot/"
+current_dir = "/media/thiagola92/LinuxHD/Documents/public/Mondot"
+current_path = "/media/thiagola92/LinuxHD/Documents/public/Mondot/"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
