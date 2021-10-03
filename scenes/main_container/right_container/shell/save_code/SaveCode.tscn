@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/main_container/right_container/shell/save_query/save_query.gd" type="Script" id=2]
+[ext_resource path="res://scenes/main_container/right_container/shell/save_code/save_code.gd" type="Script" id=2]
 
-[node name="SaveQuery" type="FileDialog"]
+[node name="SaveCode" type="FileDialog"]
 margin_right = 611.0
 margin_bottom = 292.0
 theme = ExtResource( 1 )
@@ -14,4 +14,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="file_selected" from="." to="." method="_on_SaveQuery_file_selected"]
+[connection signal="file_selected" from="." to="." method="_on_SaveCode_file_selected"]

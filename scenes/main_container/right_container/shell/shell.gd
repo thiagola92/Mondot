@@ -83,6 +83,6 @@ func _stop_python_code():
 	$ShellOutput/PythonWatcher.kill_current_execution()
 
 
-func _on_SaveQuery_pressed():
+func _on_Save_pressed():
 	var code = $CodeEditor.text
-	$SaveQuery.save(code)
+	$SaveCode.save(code)

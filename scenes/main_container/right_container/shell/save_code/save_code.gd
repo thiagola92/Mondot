@@ -34,7 +34,7 @@ func _on_OptionButton_item_selected(_index):
 	get_line_edit().text = ""
 
 
-func _on_SaveQuery_file_selected(path):
+func _on_SaveCode_file_selected(path):
 	var file = File.new()
 	
 	file.open(path, File.WRITE)

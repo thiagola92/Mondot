@@ -12,7 +12,7 @@
 [ext_resource path="res://images/icon_visibility_visible.svg" type="Texture" id=10]
 [ext_resource path="res://images/icon_save.svg" type="Texture" id=11]
 [ext_resource path="res://images/icon_pause.svg" type="Texture" id=12]
-[ext_resource path="res://scenes/main_container/right_container/shell/save_query/SaveQuery.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/main_container/right_container/shell/save_code/SaveCode.tscn" type="PackedScene" id=13]
 
 [node name="Shell" type="VBoxContainer"]
 anchor_right = 1.0
@@ -46,11 +46,11 @@ hint_tooltip = "Stop execution"
 icon = ExtResource( 12 )
 flat = true
 
-[node name="SaveQuery" type="Button" parent="Menu"]
+[node name="Save" type="Button" parent="Menu"]
 margin_left = 64.0
 margin_right = 92.0
 margin_bottom = 24.0
-hint_tooltip = "Save query"
+hint_tooltip = "Save code"
 icon = ExtResource( 11 )
 flat = true
 
@@ -146,11 +146,11 @@ readonly = true
 
 [node name="PythonWatcher" parent="ShellOutput" instance=ExtResource( 5 )]
 
-[node name="SaveQuery" parent="." instance=ExtResource( 13 )]
+[node name="SaveCode" parent="." instance=ExtResource( 13 )]
 
 [connection signal="pressed" from="Menu/Run" to="." method="_on_Run_pressed"]
 [connection signal="pressed" from="Menu/Stop" to="." method="_on_Stop_pressed"]
-[connection signal="pressed" from="Menu/SaveQuery" to="." method="_on_SaveQuery_pressed"]
+[connection signal="pressed" from="Menu/Save" to="." method="_on_Save_pressed"]
 [connection signal="toggled" from="Menu/Lock" to="." method="_on_Lock_toggled"]
 [connection signal="toggled" from="Menu/Visibility" to="." method="_on_Visibility_toggled"]
 [connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
