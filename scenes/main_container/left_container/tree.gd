@@ -67,6 +67,11 @@ func _on_CollectionMenu_id_pressed(id : int):
 		0:
 			$Collection.open_shell(collection["uri"], collection["db"], collection["name"])
 		1:
+			# Import data
+			pass
+		2:
+			$Collection/Export.from(collection, self.get_root())
+		3:
 			$Collection.drop_collection(collection["uri"], collection["db"], collection["name"])
 
 

@@ -19,7 +19,7 @@ func refresh_database(tree : Tree, tree_item : TreeItem):
 
 
 func drop_database(uri : String, db : String):
-	var code = ClientCode.drop_collection(db)
+	var code = ClientCode.drop_database(db)
 	emit_signal("shell_requested", uri, db, code, true)
 
 
@@ -35,7 +35,7 @@ func _remove_childrens(tree_item : TreeItem):
 
 func _update_database_collections(tree : Tree, tree_item : TreeItem):
 	var database = tree_item.get_metadata(0)
-	var code = "self.db.list_collection_names()"
+	var code = DatabaseCode.list_collection_names()
 	var kwargs = {"tree": tree, "tree_item": tree_item}
 	
 	$PythonWatcher.run(code, database["uri"], database["name"], 1000, 0, kwargs)

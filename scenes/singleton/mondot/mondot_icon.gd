@@ -17,6 +17,8 @@ const VISIBILITY_VISIBLE = "res://images/icon_visibility_visible.svg"
 const SUCCESS = "res://images/icon_check_mark.svg"
 const FAIL = "res://images/icon_cross_mark.svg"
 
+const REMOVE = "res://images/icon_cross_mark.svg"
+
 const LOCK = "res://images/icon_lock.svg"
 const UNLOCK = "res://images/icon_unlock.svg"
 

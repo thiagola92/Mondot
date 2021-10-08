@@ -44,7 +44,7 @@ func _remove_childrens(tree_item : TreeItem):
 
 func _update_connection_databases(tree : Tree, tree_item : TreeItem):
 	var connection = tree_item.get_metadata(0)
-	var code = "self.client.list_database_names()"
+	var code = ClientCode.list_database_names()
 	var kwargs = {"tree": tree, "tree_item": tree_item}
 	
 	$PythonWatcher.run(code, connection["uri"], "admin", 1000, 0, kwargs)

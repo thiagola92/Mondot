@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/main_container/left_container/about/About.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/main_container/left_container/connections_list/ConnectionsList.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/main_container/left_container/left_container.gd" type="Script" id=13]
 [ext_resource path="res://scenes/main_container/left_container/connection.gd" type="Script" id=14]
+[ext_resource path="res://scenes/main_container/left_container/export/Export.tscn" type="PackedScene" id=15]
 
 [node name="LeftContainer" type="VBoxContainer"]
 anchor_bottom = 1.0
@@ -109,6 +110,8 @@ margin_bottom = 20.0
 theme = ExtResource( 2 )
 items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Import data", null, 0, false, false, 1, 0, null, "", false, "Export data", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Drop", null, 0, false, false, 3, 0, null, "", false ]
 script = ExtResource( 5 )
+
+[node name="Export" parent="Tree/Collection" instance=ExtResource( 15 )]
 
 [connection signal="exit_pressed" from="Menu/File" to="Menu/File" method="_on_File_exit_pressed"]
 [connection signal="open_connections_list_pressed" from="Menu/File" to="Menu/File" method="_on_File_open_connections_list_pressed"]
