@@ -21,21 +21,21 @@ func move_node_to_new_parent(tree : Tree, node : TreeItem, new_parent : TreeItem
 	node.get_parent().remove_child(node)
 
 
-func export_node(node : TreeItem) -> Dictionary:
+func export_node(node : TreeItem, scope : Array = [MondotType.FOLDER]) -> Dictionary:
 	var metadata = node.get_metadata(0).duplicate(true)
 	
-	if metadata["__type__"] == MondotType.FOLDER:
-		metadata["connections"] = export_children(node)
+	if metadata["__type__"] in scope:
+		metadata["connections"] = export_children(node, scope)
 	
 	return metadata
 
 
-func export_children(node : TreeItem) -> Array:
+func export_children(node : TreeItem, scope : Array = [MondotType.FOLDER]) -> Array:
 	var children = []
 	var child = node.get_children()
 	
 	while child:
-		children.append(export_node(child))
+		children.append(export_node(child, scope))
 		child = child.get_next()
 	
 	return children
