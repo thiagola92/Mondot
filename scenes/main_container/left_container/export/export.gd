@@ -141,9 +141,9 @@ func _get_selected_database(index : int) -> String:
 	return $Container/ConnectionPath/Database.get_item_text(index)
 
 
-func _insert_collection():
-	$Container/TableBG/Container/Table.add_line(
-		collection["db"],
-		collection["name"],
-		"asdf"
-	)
+#func _insert_collection():
+#	$Container/TableBG/Container/Table.add_line(
+#		collection["db"],
+#		collection["name"],
+#		"asdf"
+#	)
