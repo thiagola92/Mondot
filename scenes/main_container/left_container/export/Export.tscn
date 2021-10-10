@@ -115,8 +115,8 @@ window_title = "Open a Directory"
 mode = 2
 access = 2
 show_hidden_files = true
-current_dir = "/media/thiagola92/LinuxHD/Documents/public/Mondot"
-current_path = "/media/thiagola92/LinuxHD/Documents/public/Mondot/"
+current_dir = "/home/thiagola92/Downloads/Mondot"
+current_path = "/home/thiagola92/Downloads/Mondot/"
 __meta__ = {
 "_edit_use_anchors_": false
 }

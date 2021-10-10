@@ -4,7 +4,6 @@ extends WindowDialog
 const label = "Export from %s to"
 
 var source : Dictionary
-var target : Dictionary
 var connections : Array = []
 
 
@@ -116,17 +115,15 @@ func _on_Export_hide():
 func _on_Database_item_selected(index : int):
 	_clear_table()
 	
-	target = {
-		"__type__": MondotType.COLLECTION,
-		"uri": _get_selected_connection().get("uri"),
-		"db": _get_selected_database(index)
-	}
+	var uri = _get_selected_connection().get("uri")
+	var db = _get_selected_database(index)
+	var database = _generate_database(uri, db)
 	
 	match source["__type__"]:
 		MondotType.COLLECTION:
-			pass
+			_insert_collection(database, source["name"])
 		MondotType.DATABASE:
-			pass
+			_insert_database(database)
 		MondotType.CONNECTION:
 			pass
 
@@ -141,9 +138,21 @@ func _get_selected_database(index : int) -> String:
 	return $Container/ConnectionPath/Database.get_item_text(index)
 
 
-#func _insert_collection():
-#	$Container/TableBG/Container/Table.add_line(
-#		collection["db"],
-#		collection["name"],
-#		"asdf"
-#	)
+func _generate_database(uri : String, name : String):
+	return {
+		"__type__": MondotType.DATABASE,
+		"uri": uri,
+		"name": name
+	}
+
+
+func _insert_collection(database : Dictionary, collection : String):
+	$Container/TableBG/Container/Table.add_line(
+		database["name"],
+		collection,
+		collection
+	)
+
+
+func _insert_database(database : Dictionary):
+	pass
