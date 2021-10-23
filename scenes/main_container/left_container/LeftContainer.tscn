@@ -94,7 +94,7 @@ margin_top = 31.0
 margin_right = 128.0
 margin_bottom = 194.0
 theme = ExtResource( 2 )
-items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Create collection", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Refresh", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Drop", null, 0, false, false, 4, 0, null, "", false ]
+items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Create collection", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Refresh", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Export", null, 0, false, false, 4, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Drop", null, 0, false, false, 5, 0, null, "", false ]
 script = ExtResource( 5 )
 
 [node name="PythonWatcher" parent="Tree/Database" instance=ExtResource( 4 )]
@@ -111,7 +111,9 @@ theme = ExtResource( 2 )
 items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Import data", null, 0, false, false, 1, 0, null, "", false, "Export data", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Drop", null, 0, false, false, 3, 0, null, "", false ]
 script = ExtResource( 5 )
 
-[node name="Export" parent="Tree/Collection" instance=ExtResource( 15 )]
+[node name="Export" parent="Tree" instance=ExtResource( 15 )]
+margin_top = -31.0
+margin_bottom = 484.0
 
 [connection signal="exit_pressed" from="Menu/File" to="Menu/File" method="_on_File_exit_pressed"]
 [connection signal="open_connections_list_pressed" from="Menu/File" to="Menu/File" method="_on_File_open_connections_list_pressed"]

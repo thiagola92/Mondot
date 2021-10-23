@@ -1,15 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://images/icon_folder.svg" type="Texture" id=1]
-[ext_resource path="res://images/icon_file_type_json.svg" type="Texture" id=2]
+[ext_resource path="res://scenes/main_container/left_container/export/folder_path/FolderPath.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/main_container/left_container/export/container.gd" type="Script" id=2]
 [ext_resource path="res://images/icon_file_type_csv.svg" type="Texture" id=3]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=4]
 [ext_resource path="res://scenes/main_container/left_container/export/export.gd" type="Script" id=5]
-[ext_resource path="res://scenes/main_container/left_container/export/folder_path.gd" type="Script" id=6]
+[ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/main_container/left_container/export/table/Table.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/main_container/left_container/export/connection_path/ConnectionPath.tscn" type="PackedScene" id=8]
 [ext_resource path="res://images/icon_signals.svg" type="Texture" id=9]
-[ext_resource path="res://images/icon_cylinder.svg" type="Texture" id=10]
 
 [node name="Export" type="WindowDialog"]
 margin_right = 460.0
@@ -25,11 +24,12 @@ __meta__ = {
 [node name="Container" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Route" type="HBoxContainer" parent="Container"]
+[node name="MainPath" type="HBoxContainer" parent="Container"]
 margin_right = 460.0
 margin_bottom = 24.0
 alignment = 1
@@ -37,16 +37,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Source" type="Label" parent="Container/Route"]
-margin_left = 101.0
+[node name="Label" type="Label" parent="Container/MainPath"]
+margin_left = 135.0
 margin_top = 1.0
-margin_right = 235.0
+margin_right = 200.0
 margin_bottom = 23.0
-text = "Export from \"%s\" to"
+text = "Export to"
 
-[node name="Target" type="OptionButton" parent="Container/Route"]
-margin_left = 239.0
-margin_right = 359.0
+[node name="Target" type="OptionButton" parent="Container/MainPath"]
+margin_left = 204.0
+margin_right = 324.0
 margin_bottom = 24.0
 text = "Connection"
 icon = ExtResource( 9 )
@@ -57,78 +57,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConnectionPath" type="HBoxContainer" parent="Container"]
-margin_top = 28.0
-margin_right = 460.0
-margin_bottom = 50.0
-alignment = 1
+[node name="ConnectionPath" parent="Container" instance=ExtResource( 8 )]
 
-[node name="IconConnection" type="TextureRect" parent="Container/ConnectionPath"]
-margin_left = 180.0
-margin_right = 196.0
-margin_bottom = 22.0
-texture = ExtResource( 9 )
-
-[node name="Connection" type="OptionButton" parent="Container/ConnectionPath"]
-margin_left = 200.0
-margin_right = 228.0
-margin_bottom = 22.0
-
-[node name="IconDatabase" type="TextureRect" parent="Container/ConnectionPath"]
-margin_left = 232.0
-margin_right = 248.0
-margin_bottom = 22.0
-texture = ExtResource( 10 )
-
-[node name="Database" type="OptionButton" parent="Container/ConnectionPath"]
-margin_left = 252.0
-margin_right = 280.0
-margin_bottom = 22.0
-
-[node name="FolderPath" type="HBoxContainer" parent="Container"]
+[node name="FolderPath" parent="Container" instance=ExtResource( 1 )]
 visible = false
-margin_top = 56.0
-margin_right = 460.0
-margin_bottom = 80.0
-alignment = 1
-script = ExtResource( 6 )
-
-[node name="Path" type="LineEdit" parent="Container/FolderPath"]
-margin_right = 345.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-editable = false
-
-[node name="Select" type="Button" parent="Container/FolderPath"]
-margin_left = 349.0
-margin_right = 377.0
-margin_bottom = 24.0
-icon = ExtResource( 1 )
-
-[node name="FolderSelect" type="FileDialog" parent="Container/FolderPath/Select"]
-visible = true
-margin_left = 32.0
-margin_right = 632.0
-margin_bottom = 296.0
-popup_exclusive = true
-window_title = "Open a Directory"
-mode = 2
-access = 2
-show_hidden_files = true
-current_dir = "/home/thiagola92/Downloads/Mondot"
-current_path = "/home/thiagola92/Downloads/Mondot/"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FileType" type="OptionButton" parent="Container/FolderPath"]
-margin_left = 381.0
-margin_right = 460.0
-margin_bottom = 24.0
-text = "CSV"
-icon = ExtResource( 3 )
-items = [ "CSV", ExtResource( 3 ), false, 0, null, "JSON", ExtResource( 2 ), false, 1, null ]
-selected = 0
 
 [node name="TableBG" type="ColorRect" parent="Container"]
 margin_top = 54.0
@@ -138,19 +70,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.12549, 0.141176, 0.192157, 1 )
 
-[node name="Container" type="CenterContainer" parent="Container/TableBG"]
+[node name="TableContainer" type="VBoxContainer" parent="Container/TableBG"]
 anchor_right = 1.0
 margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Table" parent="Container/TableBG/Container" instance=ExtResource( 7 )]
+[node name="Table" parent="Container/TableBG/TableContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
-margin_left = 230.0
-margin_top = 25.0
-margin_right = 230.0
-margin_bottom = 25.0
+margin_right = 460.0
+margin_bottom = 50.0
 
 [node name="Action" type="HBoxContainer" parent="Container"]
 margin_top = 493.0
@@ -170,12 +103,12 @@ margin_right = 460.0
 margin_bottom = 22.0
 text = "Cancel"
 
-[node name="PythonWatcher" parent="." instance=ExtResource( 8 )]
+[node name="PythonWatcher" parent="." instance=ExtResource( 6 )]
 
-[connection signal="hide" from="." to="." method="_on_Export_hide"]
-[connection signal="item_selected" from="Container/Route/Target" to="." method="_on_Target_item_selected"]
-[connection signal="item_selected" from="Container/ConnectionPath/Connection" to="." method="_on_Connection_item_selected"]
-[connection signal="item_selected" from="Container/ConnectionPath/Database" to="." method="_on_Database_item_selected"]
-[connection signal="pressed" from="Container/FolderPath/Select" to="Container/FolderPath" method="_on_Select_pressed"]
-[connection signal="dir_selected" from="Container/FolderPath/Select/FolderSelect" to="Container/FolderPath" method="_on_FolderSelect_dir_selected"]
+[connection signal="item_selected" from="Container/MainPath/Target" to="." method="_on_Target_item_selected"]
+[connection signal="database_selected" from="Container/ConnectionPath" to="." method="_on_ConnectionPath_database_selected"]
+[connection signal="draw" from="Container/ConnectionPath" to="Container" method="_on_ConnectionPath_draw"]
+[connection signal="dir_selected" from="Container/FolderPath" to="." method="_on_FolderPath_dir_selected"]
+[connection signal="draw" from="Container/FolderPath" to="Container" method="_on_FolderPath_draw"]
+[connection signal="pressed" from="Container/Action/Start" to="." method="_on_Start_pressed"]
 [connection signal="output" from="PythonWatcher" to="." method="_on_PythonWatcher_output"]

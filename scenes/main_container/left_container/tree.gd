@@ -56,6 +56,8 @@ func _on_DatabaseMenu_id_pressed(id : int):
 		3:
 			$Database.refresh_database(self, tree_item)
 		4:
+			$Export.setup(database, self.get_root())
+		5:
 			$Database.drop_database(database["uri"], database["name"])
 
 
@@ -70,7 +72,7 @@ func _on_CollectionMenu_id_pressed(id : int):
 			# Import data
 			pass
 		2:
-			$Collection/Export.from(collection, self.get_root())
+			$Export.setup(collection, self.get_root())
 		3:
 			$Collection.drop_collection(collection["uri"], collection["db"], collection["name"])
 
