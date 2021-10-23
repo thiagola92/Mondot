@@ -19,11 +19,12 @@ func move_collection(collection : String, uri_target : String, db_target : Strin
 	return """
 from pymongo import MongoClient
 
-client = MongoClient("%s")
-db = client["%s"]
+target_client = MongoClient("%s")
+target_db = target_client["%s"]
+target_col = target_db["%s"]
 
 for doc in self.db["%s"].find():
-	db["%s"].insert(doc)
+	target_col.insert(doc)
 
 self.db.drop_collection("%s")
 """ % [uri_target, db_target, collection, collection, collection]
