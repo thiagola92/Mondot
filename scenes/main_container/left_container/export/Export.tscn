@@ -105,6 +105,8 @@ text = "Cancel"
 
 [node name="PythonWatcher" parent="." instance=ExtResource( 6 )]
 
+[node name="PythonWatcher2" parent="." instance=ExtResource( 6 )]
+
 [connection signal="item_selected" from="Container/MainPath/Target" to="." method="_on_Target_item_selected"]
 [connection signal="database_selected" from="Container/ConnectionPath" to="." method="_on_ConnectionPath_database_selected"]
 [connection signal="draw" from="Container/ConnectionPath" to="Container" method="_on_ConnectionPath_draw"]

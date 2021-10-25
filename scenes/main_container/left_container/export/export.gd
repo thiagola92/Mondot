@@ -86,4 +86,31 @@ func _on_FolderPath_dir_selected(dir):
 func _on_Start_pressed():
 	var lines = $Container/TableBG/TableContainer/Table.get_lines()
 	
-	print(lines)
+	if $Container/ConnectionPath.visible:
+		return _export_to_connection(lines)
+	
+	if $Container/FolderPath.visible:
+		return _export_to_file(lines)
+
+
+func _export_to_connection(lines : Array):
+	var db_target = $Container/ConnectionPath.get_selected_database()
+	var col_sources = []
+	var col_targets = []
+	
+	for line in lines:
+		col_sources.append(line["col_source"])
+		col_targets.append(line["col_target"])
+	
+	var code = ImportCode.import_mongoclient() + \
+			DatabaseCode.copy_database(col_sources, db_target["uri"], db_target["name"], col_targets)
+	
+	match source["__type__"]:
+		MondotType.COLLECTION:
+			$PythonWatcher2.run(code, source["uri"], source["db"])
+		MondotType.DATABASE:
+			$PythonWatcher2.run(code, source["uri"], source["name"])
+
+
+func _export_to_file(lines : Array):
+	pass

@@ -42,9 +42,9 @@ func get_lines():
 	
 	for index in range(columns, get_child_count(), columns):
 		lines.append({
-			"source_db": get_child(index).text,
-			"source_col": get_child(index + 1).text,
-			"target": get_child(index + 2).text
+			"db_source": get_child(index).text,
+			"col_source": get_child(index + 1).text,
+			"col_target": get_child(index + 2).text
 		})
 	
 	return lines

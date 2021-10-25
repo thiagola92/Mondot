@@ -23,7 +23,7 @@ const CONNECTION = {
 const DATABASE = {
 	"__type__": [TYPE_INT, TYPE_REAL],
 	"name": [TYPE_STRING],
-	"uri": [TYPE_STRING],
+	"uri": [TYPE_STRING]
 }
 
 
@@ -31,5 +31,5 @@ const COLLECTION = {
 	"__type__": [TYPE_INT, TYPE_REAL],
 	"name": [TYPE_STRING],
 	"uri": [TYPE_STRING],
-	"db": [TYPE_STRING],
+	"db": [TYPE_STRING]
 }

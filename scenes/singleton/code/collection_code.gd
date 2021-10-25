@@ -15,24 +15,22 @@ self.db.drop_collection("%s")
 """ % collection
 
 
-func copy_collection(collection : String, uri_target : String, db_target : String) -> String:
+func copy_collection(col_source : String, uri_target : String, db_target : String, col_target : String) -> String:
 		return """
-from pymongo import MongoClient
-
 target_client = MongoClient("%s")
 target_db = target_client["%s"]
 target_col = target_db["%s"]
 
 for doc in self.db["%s"].find():
 	target_col.insert(doc)
-""" % [uri_target, db_target, collection, collection]
+""" % [uri_target, db_target, col_target, col_source]
 
 
-func move_collection(collection : String, uri_target : String, db_target : String) -> String:
+func move_collection(collection : String, uri_target : String, db_target : String, col_target : String) -> String:
 	return """
 %s
 %s
 """ % [
-	copy_collection(collection, uri_target, db_target),
+	copy_collection(collection, uri_target, db_target, col_target),
 	drop_collection(collection)
 ]

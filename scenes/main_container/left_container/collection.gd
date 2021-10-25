@@ -19,7 +19,8 @@ func drop_collection(uri, db, collection):
 
 
 func move_collection(src_uri, src_db, src_col, dest_uri, dest_db):
-	var code = CollectionCode.move_collection(src_col, dest_uri, dest_db)
+	var code = ImportCode.import_mongoclient() + \
+				CollectionCode.move_collection(src_col, dest_uri, dest_db, src_col)
 	emit_signal("shell_requested", src_uri, src_db, code, true, true)
 
 
