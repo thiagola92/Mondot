@@ -1,10 +1,11 @@
 extends HBoxContainer
 
 
-signal dir_selected(dir)
-
-
 var extension = ".csv"
+
+
+func get_folder_path() -> String:
+	return $Path.text
 
 
 func _on_Select_pressed():
@@ -13,12 +14,6 @@ func _on_Select_pressed():
 
 func _on_FolderSelect_dir_selected(dir):
 	$Path.text = dir
-	
-	emit_signal("dir_selected", dir)
-
-
-func _on_ConnectionPath_draw():
-	hide()
 
 
 func _on_FileType_item_selected(index):

@@ -50,14 +50,18 @@ func _on_DatabaseMenu_id_pressed(id : int):
 		0:
 			$Database.open_shell(database["uri"], database["name"])
 		1:
+			# Create collection
 			pass
 		2:
-			pass
-		3:
 			$Database.refresh_database(self, tree_item)
+		3:
+			# Import from file
+			pass
 		4:
-			$Export.setup(database, self.get_root())
+			$ExportToFile.setup(database)
 		5:
+			$ExportToConn.setup(database, self.get_root())
+		6:
 			$Database.drop_database(database["uri"], database["name"])
 
 
@@ -69,11 +73,13 @@ func _on_CollectionMenu_id_pressed(id : int):
 		0:
 			$Collection.open_shell(collection["uri"], collection["db"], collection["name"])
 		1:
-			# Import data
+			# Import from file
 			pass
 		2:
-			$Export.setup(collection, self.get_root())
+			$ExportToFile.setup(collection)
 		3:
+			$ExportToConn.setup(collection, self.get_root())
+		4:
 			$Collection.drop_collection(collection["uri"], collection["db"], collection["name"])
 
 
