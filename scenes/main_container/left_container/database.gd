@@ -57,7 +57,7 @@ func _get_output_collections(output : String):
 	if python_result.error == OK:
 		return python_result["result"]
 	
-	$Alert.message(python_result.error_string)
+	Alert.message(python_result.error_string)
 	return []
 
 

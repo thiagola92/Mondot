@@ -42,16 +42,14 @@ func _add_collection_line(source_db : String, source_col : String):
 
 func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
 	var parse_result = JSON.parse(output)
-	
 	if parse_result.error != OK:
-		return
+		return Alert.message(parse_result.error_string)
 	
-	var result = parse_result.result
+	var json = parse_result.result
+	if json["error"] == true:
+		return Alert.message(json["result"])
 	
-	if result["error"] == true:
-		return
-	
-	_add_collections_lines(result["result"])
+	_add_collections_lines(json["result"])
 
 
 func _add_collections_lines(collections : Array):

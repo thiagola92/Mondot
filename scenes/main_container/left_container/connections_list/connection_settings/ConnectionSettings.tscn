@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/ping.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
 [ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/utility/alert/Alert.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/result.gd" type="Script" id=5]
 [ext_resource path="res://images/icon_visibility_hidden.svg" type="Texture" id=6]
 [ext_resource path="res://scenes/main_container/left_container/connections_list/connection_settings/connection_settings.gd" type="Script" id=7]
@@ -11,7 +10,6 @@
 [ext_resource path="res://images/icon_action_copy.svg" type="Texture" id=9]
 
 [node name="ConnectionSettings" type="WindowDialog"]
-visible = true
 margin_right = 512.0
 margin_bottom = 334.0
 theme = ExtResource( 2 )
@@ -269,8 +267,6 @@ editable = false
 
 [node name="PythonWatcher" parent="Container/Actions/Ping" instance=ExtResource( 3 )]
 
-[node name="Alert" parent="Container/Actions/Ping" instance=ExtResource( 4 )]
-
 [node name="Space" type="HSplitContainer" parent="Container/Actions"]
 margin_left = 182.0
 margin_right = 409.0
@@ -288,8 +284,6 @@ margin_left = 458.0
 margin_right = 512.0
 margin_bottom = 22.0
 text = "Cancel"
-
-[node name="Alert" parent="." instance=ExtResource( 4 )]
 
 [connection signal="about_to_show" from="." to="." method="_on_ConnectionSettings_about_to_show"]
 [connection signal="item_selected" from="Container/Settings/Basic/Input/Connection" to="." method="_on_Input_changed"]

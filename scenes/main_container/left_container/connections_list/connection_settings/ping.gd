@@ -19,7 +19,7 @@ func _on_PythonWatcher_output(output, _kwargs):
 	var parse_result = MondotPython.parse_output(output)
 	
 	if parse_result.error != OK:
-		return $Alert.message(parse_result.error_string)
+		return Alert.message(parse_result.error_string)
 	
 	$Output.text = str(parse_result.result)
 	$PythonWatcher.kill_current_execution()

@@ -5,8 +5,9 @@ var base_size = rect_size
 
 func _ready():
 	# For test purpose only
-	if $"." in get_tree().get_root().get_children():
-		message("Test message")
+#	if $"." in get_tree().get_root().get_children():
+#		message("Test message")
+	pass
 
 
 func message(text : String):

@@ -66,5 +66,5 @@ func _get_output_databases(output : String):
 	if python_result.error == OK:
 		return python_result["result"]
 	
-	$Alert.message(python_result.error_string)
+	Alert.message(python_result.error_string)
 	return []

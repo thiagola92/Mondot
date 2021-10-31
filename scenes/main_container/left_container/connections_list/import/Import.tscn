@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/utility/alert/Alert.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/singleton/alert/Alert.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/main_container/left_container/connections_list/import/import.gd" type="Script" id=3]
 
 [node name="Import" type="FileDialog"]

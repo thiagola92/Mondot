@@ -18,7 +18,7 @@ func set_connection(connection : Dictionary):
 	var parse_result = URIParser.parse(connection["uri"])
 	
 	if parse_result.error != OK:
-		return $Alert.message(parse_result.error_string)
+		return Alert.message(parse_result.error_string)
 	
 	_set_fields(connection["name"], parse_result.result)
 
