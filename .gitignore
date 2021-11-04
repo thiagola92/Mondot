@@ -166,5 +166,5 @@ data_*/
 
 ############ Mondot ############
 
-# Ignore temporary files
+bin/
 tmp/
