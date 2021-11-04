@@ -166,8 +166,5 @@ data_*/
 
 ############ Mondot ############
 
-# Include Mondot Shell lib
-!bin/lib
-
 # Ignore temporary files
 tmp/
