@@ -40,7 +40,7 @@ func _add_collection_line(source_db : String, source_col : String):
 	$Container/TableFile.add_line(source_db, source_col, source_col)
 
 
-func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
+func _on_PythonWatcher_output(output : String, _kwargs : Dictionary):
 	var parse_result = JSON.parse(output)
 	if parse_result.error != OK:
 		return Alert.message(parse_result.error_string)

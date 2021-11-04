@@ -1,6 +1,9 @@
 extends WindowDialog
 
 
+signal export_requested(uri, db, code)
+
+
 var source : Dictionary
 
 
@@ -26,7 +29,10 @@ func _on_Cancel_pressed():
 
 
 func _on_Start_pressed():
-	pass # Replace with function body.
+	var code = _get_export_code()
+	
+	_request_export(code)
+	hide()
 
 
 func _add_lines():
@@ -41,7 +47,7 @@ func _add_collection_line(source_db : String, source_col : String):
 	$Container/TableConn.add_line(source_db, source_col, source_db, source_col)
 
 
-func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
+func _on_PythonWatcher_output(output : String, _kwargs : Dictionary):
 	var parse_result = JSON.parse(output)
 	if parse_result.error != OK:
 		return Alert.message(parse_result.error_string)
@@ -56,3 +62,31 @@ func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
 func _add_collections_lines(collections : Array):
 	for col in collections:
 		_add_collection_line(source["name"], col)
+
+
+func _get_export_code() -> String:
+	var columns = $Container/TableConn.get_columns()
+	var source_dbs = columns[0]
+	var source_cols = columns[1]
+	var target_uri = $Container/ConnectionPath.connection["uri"]
+	var target_dbs = columns[2]
+	var target_cols = columns[3]
+	
+	match source["__type__"]:
+		MondotType.COLLECTION, MondotType.DATABASE:
+			return _get_export_db_code(source_cols, target_uri, target_dbs, target_cols)
+	
+	return ""
+
+
+func _get_export_db_code(source_cols : Array, target_uri : String, target_dbs : Array, target_cols : Array) -> String:
+	return ImportCode.import_mongoclient() + \
+		DatabaseCode.copy_database(source_cols, target_uri, target_dbs, target_cols)
+
+
+func _request_export(code : String):
+	match source["__type__"]:
+		MondotType.COLLECTION:
+			emit_signal("export_requested", source["uri"], source["db"], code)
+		MondotType.DATABASE:
+			emit_signal("export_requested", source["uri"], source["name"], code)

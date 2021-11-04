@@ -127,3 +127,4 @@ script = ExtResource( 5 )
 [connection signal="output" from="Tree/Database/PythonWatcher" to="Tree/Database" method="_on_PythonWatcher_output"]
 [connection signal="shell_requested" from="Tree/Collection" to="." method="_on_Collection_shell_requested"]
 [connection signal="id_pressed" from="Tree/Collection/Menu" to="Tree" method="_on_CollectionMenu_id_pressed"]
+[connection signal="export_requested" from="Tree/ExportToConn" to="." method="_on_ExportToConn_export_requested"]

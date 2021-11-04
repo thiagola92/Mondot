@@ -2,6 +2,6 @@ extends Node
 
 
 func import_mongoclient() -> String:
-		return """
+		return """\r
 from pymongo import MongoClient
 """

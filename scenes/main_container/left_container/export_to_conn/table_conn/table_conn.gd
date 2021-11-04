@@ -33,24 +33,27 @@ func add_line(source_db : String, source_col : String, target_db : String, targe
 		$Container/Grid.add_line_edit(target_col, true)
 	]
 	
-	for column in columns:
-		$Container/Grid.add_child(column)
-	
 	# Remove button need to know the childs to remove when pressed
 	$Container/Grid.add_remove_button(columns)
 
 
-func get_lines():
-	var lines = []
+func get_columns() -> Array:
 	var columns = $Container/Grid.columns
 	var child_count = $Container/Grid.get_child_count()
 	
-	for index in range(columns, child_count, columns):
-		lines.append({
-			"source_db": get_child(index).text,
-			"source_col": get_child(index + 1).text,
-			"target_db": get_child(index + 2).text,
-			"target_col": get_child(index + 3).text
-		})
+	var source_dbs = []
+	var source_cols = []
+	var target_dbs = []
+	var target_cols = []
 	
-	return lines
+	for index in range(columns, child_count, columns):
+		source_dbs.append(_grid_child(index).text)
+		source_cols.append(_grid_child(index + 1).text)
+		target_dbs.append(_grid_child(index + 2).text)
+		target_cols.append(_grid_child(index + 3).text)
+	
+	return [source_dbs, source_cols, target_dbs, target_cols]
+
+
+func _grid_child(index : int) -> Node:
+	return $Container/Grid.get_child(index)

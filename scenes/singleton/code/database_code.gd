@@ -8,15 +8,15 @@ self.db.list_collection_names()
 """
 
 
-func copy_database(col_sources : Array, uri_target : String, db_target : String, col_targets : Array) -> String:
+func copy_database(source_cols : Array, target_uri : String, target_dbs : Array, target_cols : Array) -> String:
 	var code = ""
 	
-	for index in range(col_sources.size()):
+	for index in range(source_cols.size()):
 		code += CollectionCode.copy_collection(
-			col_sources[index],
-			uri_target,
-			db_target,
-			col_targets[index]
+			source_cols[index],
+			target_uri,
+			target_dbs[index],
+			target_cols[index]
 		)
 	
 	return code

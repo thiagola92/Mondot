@@ -52,6 +52,7 @@ func is_node_inside_parent(node : TreeItem, parent : TreeItem) -> bool:
 	
 	return false
 
+
 func _export_node(node : TreeItem) -> Dictionary:
 	var metadata = node.get_metadata(0).duplicate(true)
 	
