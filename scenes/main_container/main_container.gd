@@ -1,4 +1,5 @@
-extends HBoxContainer
+extends HSplitContainer
+
 
 var Shell = preload("res://scenes/main_container/right_container/shell/Shell.tscn")
 

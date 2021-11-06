@@ -20,7 +20,7 @@
 anchor_bottom = 1.0
 margin_top = 5.0
 margin_right = 274.0
-rect_min_size = Vector2( 274, 0 )
+rect_min_size = Vector2( 270, 0 )
 theme = ExtResource( 2 )
 script = ExtResource( 13 )
 __meta__ = {
