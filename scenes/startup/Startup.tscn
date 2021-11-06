@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/startup/temporary_dir/TemporaryDir.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/startup/download_shell/DownloadShell.tscn" type="PackedScene" id=3]
+
+[node name="Startup" type="Control"]
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TemporaryDir" parent="." instance=ExtResource( 2 )]
+margin_right = 506.0
+margin_bottom = 119.0
+
+[node name="DownloadShell" parent="." instance=ExtResource( 3 )]
