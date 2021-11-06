@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/main_container/right_container/shell/shell.gd" type="Script" id=2]
@@ -13,8 +13,9 @@
 [ext_resource path="res://images/icon_save.svg" type="Texture" id=11]
 [ext_resource path="res://images/icon_pause.svg" type="Texture" id=12]
 [ext_resource path="res://scenes/main_container/right_container/shell/save_code/SaveCode.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/main_container/right_container/shell/shell_code.gd" type="Script" id=14]
 
-[node name="Shell" type="VBoxContainer"]
+[node name="Shell" type="VSplitContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.18921
@@ -27,18 +28,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" type="HBoxContainer" parent="."]
+[node name="ShellCode" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 296.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 14 )
+
+[node name="Menu" type="HBoxContainer" parent="ShellCode"]
 margin_right = 1024.0
 margin_bottom = 24.0
 
-[node name="Run" type="Button" parent="Menu"]
+[node name="Run" type="Button" parent="ShellCode/Menu"]
 margin_right = 28.0
 margin_bottom = 24.0
 hint_tooltip = "Execute code"
 icon = ExtResource( 6 )
 flat = true
 
-[node name="Stop" type="Button" parent="Menu"]
+[node name="Stop" type="Button" parent="ShellCode/Menu"]
 margin_left = 32.0
 margin_right = 60.0
 margin_bottom = 24.0
@@ -46,7 +54,7 @@ hint_tooltip = "Stop execution"
 icon = ExtResource( 12 )
 flat = true
 
-[node name="Save" type="Button" parent="Menu"]
+[node name="Save" type="Button" parent="ShellCode/Menu"]
 margin_left = 64.0
 margin_right = 92.0
 margin_bottom = 24.0
@@ -54,13 +62,13 @@ hint_tooltip = "Save code"
 icon = ExtResource( 11 )
 flat = true
 
-[node name="Separator" type="HSplitContainer" parent="Menu"]
+[node name="Separator" type="HSplitContainer" parent="ShellCode/Menu"]
 margin_left = 96.0
 margin_right = 912.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="Lock" type="Button" parent="Menu"]
+[node name="Lock" type="Button" parent="ShellCode/Menu"]
 margin_left = 916.0
 margin_right = 944.0
 margin_bottom = 24.0
@@ -69,7 +77,7 @@ toggle_mode = true
 icon = ExtResource( 9 )
 flat = true
 
-[node name="Visibility" type="Button" parent="Menu"]
+[node name="Visibility" type="Button" parent="ShellCode/Menu"]
 margin_left = 948.0
 margin_right = 976.0
 margin_bottom = 24.0
@@ -78,7 +86,7 @@ toggle_mode = true
 icon = ExtResource( 10 )
 flat = true
 
-[node name="PageSize" type="OptionButton" parent="Menu"]
+[node name="PageSize" type="OptionButton" parent="ShellCode/Menu"]
 margin_left = 980.0
 margin_right = 1024.0
 margin_bottom = 24.0
@@ -88,14 +96,14 @@ flat = true
 items = [ "20", null, false, 0, null, "50", null, false, 1, null, "100", null, false, 2, null, "200", null, false, 3, null, "500", null, false, 4, null, "1000", null, false, 5, null ]
 selected = 0
 
-[node name="CodeEditor" parent="." instance=ExtResource( 8 )]
+[node name="CodeEditor" parent="ShellCode" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 28.0
 margin_right = 1024.0
-margin_bottom = 312.0
+margin_bottom = 296.0
 
-[node name="VisibilityWarning" type="Label" parent="."]
+[node name="VisibilityWarning" type="Label" parent="ShellCode"]
 visible = false
 margin_top = 303.0
 margin_right = 1024.0
@@ -103,8 +111,13 @@ margin_bottom = 325.0
 text = "Code may contains sensitive information. Click on eye icon to see the code."
 align = 1
 
+[node name="SaveCode" parent="ShellCode" instance=ExtResource( 13 )]
+visible = false
+margin_top = 40.0
+margin_bottom = 340.0
+
 [node name="ShellOutput" type="VBoxContainer" parent="."]
-margin_top = 316.0
+margin_top = 304.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -141,18 +154,15 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 26.0
 margin_right = 1024.0
-margin_bottom = 284.0
+margin_bottom = 296.0
 readonly = true
 
 [node name="PythonWatcher" parent="ShellOutput" instance=ExtResource( 5 )]
 
-[node name="SaveCode" parent="." instance=ExtResource( 13 )]
-
-[connection signal="pressed" from="Menu/Run" to="." method="_on_Run_pressed"]
-[connection signal="pressed" from="Menu/Stop" to="." method="_on_Stop_pressed"]
-[connection signal="pressed" from="Menu/Save" to="." method="_on_Save_pressed"]
-[connection signal="toggled" from="Menu/Lock" to="." method="_on_Lock_toggled"]
-[connection signal="toggled" from="Menu/Visibility" to="." method="_on_Visibility_toggled"]
+[connection signal="pressed" from="ShellCode/Menu/Run" to="." method="_on_Run_pressed"]
+[connection signal="pressed" from="ShellCode/Menu/Stop" to="." method="_on_Stop_pressed"]
+[connection signal="pressed" from="ShellCode/Menu/Save" to="ShellCode" method="_on_Save_pressed"]
+[connection signal="toggled" from="ShellCode/Menu/Visibility" to="ShellCode" method="_on_Visibility_toggled"]
 [connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]
 [connection signal="output" from="ShellOutput/PythonWatcher" to="ShellOutput" method="_on_PythonWatcher_output"]
