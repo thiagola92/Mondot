@@ -11,5 +11,5 @@ func _ready():
 		call_deferred("popup_centered")
 
 
-func _on_TemporaryFolder_confirmed():
+func _on_TemporaryDir_confirmed():
 	DirectoryKit.clean_directory(tmp_dir)

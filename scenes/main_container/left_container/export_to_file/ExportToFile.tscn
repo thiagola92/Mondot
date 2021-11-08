@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/main_container/left_container/export_to_file/export_to_file.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
-[ext_resource path="res://scenes/main_container/left_container/export_to_file/folder_path/FolderPath.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/main_container/left_container/export_to_file/dir_path/DirPath.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/main_container/left_container/export_to_file/table_file/TableFile.tscn" type="PackedScene" id=5]
 
@@ -22,7 +22,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FolderPath" parent="Container" instance=ExtResource( 3 )]
+[node name="DirPath" parent="Container" instance=ExtResource( 3 )]
 margin_top = 0.0
 margin_right = 435.0
 margin_bottom = 24.0

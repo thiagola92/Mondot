@@ -25,7 +25,7 @@ func _on_Cancel_pressed():
 
 func _on_Start_pressed():
 	var lines = $Container/TableFile.get_lines()
-	var path = $Container/FolderPath.get_folder_path()
+	var path = $Container/DirPath.get_folder_path()
 
 
 func _add_lines():

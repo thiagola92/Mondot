@@ -4,7 +4,6 @@
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
 
 [node name="TemporaryDir" type="ConfirmationDialog"]
-visible = true
 margin_right = 200.0
 margin_bottom = 70.0
 theme = ExtResource( 2 )
@@ -18,4 +17,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="confirmed" from="." to="." method="_on_TemporaryDir_confirmed"]
 [connection signal="confirmed" from="." to="." method="_on_TemporaryFolder_confirmed"]

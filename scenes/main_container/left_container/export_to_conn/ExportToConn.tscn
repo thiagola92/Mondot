@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/main_container/left_container/export_to_conn/table_conn/TableConn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/main_container/left_container/export_to_conn/connection_path/ConnectionPath.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/utility/python_watcher/PythonWatcher.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/main_container/left_container/export_to_conn/export_to_conn.gd" type="Script" id=8]
-[ext_resource path="res://scenes/main_container/left_container/export_to_conn/container.gd" type="Script" id=9]
 
 [node name="ExportToConn" type="WindowDialog"]
 margin_right = 460.0
@@ -20,7 +19,6 @@ __meta__ = {
 [node name="Container" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
