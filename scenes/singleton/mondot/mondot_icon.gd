@@ -1,5 +1,7 @@
 extends Node
 
+# All image reference needed while coding should be in this file.
+# One image can be used in many places.
 
 const FOLDER = "res://images/icon_folder.svg"
 const CONNECTION = "res://images/icon_signals.svg"

@@ -1,6 +1,10 @@
 extends Node
 
+# Python generate a string as output and this functions
+# help you to extract the information you may looking for.
 
+
+# Extracts the result or error from python execution output
 static func pretty_output(output : String) -> String:
 	var parse_result = parse_output(output)
 	
@@ -10,6 +14,9 @@ static func pretty_output(output : String) -> String:
 	return JSON.print(parse_result.result, "	")
 
 
+# Parsing MondotShell output includes two steps:
+# - Parse the JSON output
+# - Detect if an error was raised
 static func parse_output(output : String) -> GenericResult:
 	var json_result = JSON.parse(output)
 		
