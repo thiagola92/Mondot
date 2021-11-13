@@ -2,10 +2,11 @@ extends Node
 
 
 func list_collection_names():
-	return \
+	return (
 """
 sorted(self.db.list_collection_names())
 """
+).lstrip("\n")
 
 
 func copy_database(source_cols : Array, target_uri : String, target_dbs : Array, target_cols : Array) -> String:
@@ -19,4 +20,4 @@ func copy_database(source_cols : Array, target_uri : String, target_dbs : Array,
 			target_cols[index]
 		)
 	
-	return code
+	return code.lstrip("\n")
