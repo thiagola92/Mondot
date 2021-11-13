@@ -22,6 +22,7 @@ func setup(_uri : String, _db : String, code : String, readonly : bool, hidden :
 func _on_Run_pressed():
 	_clear_previous_output()
 	_execute_python_code()
+	_show_running_icon()
 
 
 func _clear_previous_output():
@@ -33,6 +34,10 @@ func _execute_python_code():
 	var page_size = _get_page_size()
 	
 	$ShellOutput/PythonWatcher.run(code, uri, db, page_size)
+	
+
+func _show_running_icon():
+	$ShellOutput/Menu/Running.show()
 
 
 func _get_page_size() -> int:
@@ -44,7 +49,12 @@ func _get_page_size() -> int:
 
 func _on_Stop_pressed():
 	_stop_python_code()
+	_hide_running_icon()
 
 
 func _stop_python_code():
 	$ShellOutput/PythonWatcher.kill_current_execution()
+	
+
+func _hide_running_icon():
+	$ShellOutput/Menu/Running.hide()
