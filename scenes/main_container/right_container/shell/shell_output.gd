@@ -11,13 +11,13 @@ func clear():
 
 
 func _on_PythonWatcher_output(result : GenericResult, _kwargs : Dictionary):
+	_hide_running_icon()
 	_update_page_number()
 	_update_output(result)
-	_hide_running_icon()
 
 
 func _update_page_number():
-	var current_page = $PythonWatcher/PythonPager.current_page
+	var current_page = $PythonWatcher.get_current_page()
 	$Menu/PageNumber.text = str(current_page)
 
 

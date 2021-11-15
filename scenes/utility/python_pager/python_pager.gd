@@ -36,25 +36,19 @@ func read_current_page() -> GenericResult:
 	return result
 
 
-func request_next_page() -> bool:
+func request_next_page():
 	if _is_waiting_desired_page() or _is_on_last_page():
-		return false
+		return
 		
 	desired_page = current_page + 1
 	
 	if not _desired_page_exists():
 		$Python.request_next_output()
-	
-	return true
 
 
-func request_previous_page() -> bool:
-	if _is_on_first_page():
-		return false
-		
-	desired_page = current_page - 1
-	
-	return true
+func request_previous_page():
+	if not _is_on_first_page():
+		desired_page = current_page - 1
 
 
 func gone_to_desired_page() -> bool:

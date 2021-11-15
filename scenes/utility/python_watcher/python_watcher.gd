@@ -28,21 +28,25 @@ func run(
 	_timeout = timeout
 	_kwargs = kwargs
 	
-	kill_current_execution()
+	_stop_timers()
 	
 	$PythonPager.run(code, uri, db, page_size)
 	
 	_start_timers()
 
 
+func get_current_page() -> int:
+	return $PythonPager.current_page
+
+
 func request_next_page():
-	if $PythonPager.request_next_page():
-		_start_timers()
+	$PythonPager.request_next_page()
+	_start_timers()
 
 
 func request_previous_page():
-	if $PythonPager.request_previous_page():
-		_start_timers()
+	$PythonPager.request_previous_page()
+	_start_timers()
 
 
 func kill_current_execution():
