@@ -15,11 +15,9 @@ func _on_Ping_hide():
 	$PythonWatcher.kill_current_execution()
 
 
-func _on_PythonWatcher_output(output, _kwargs):
-	var parse_result = MondotPython.parse_output(output)
+func _on_PythonWatcher_output(result : GenericResult, _kwargs : Dictionary):
+	if result.error != OK:
+		return Alert.message(result.error_string)
 	
-	if parse_result.error != OK:
-		return Alert.message(parse_result.error_string)
-	
-	$Output.text = str(parse_result.result)
+	$Output.text = str(result.result)
 	$PythonWatcher.kill_current_execution()

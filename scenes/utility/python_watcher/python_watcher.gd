@@ -1,13 +1,15 @@
 extends Node
 
+# PythonWatcher is responsible to watch for pages changes whenever requested.
+# And it use signal to notify the content of the current page.
+
+
 signal timeout(kwargs)
 signal output(output, kwargs)
 
 
 var _timeout
 var _kwargs
-var current_page
-var desired_page
 
 
 func _ready():
@@ -21,47 +23,38 @@ func run(
 		page_size : int = 20,
 		timeout : float = 0,
 		kwargs : Dictionary = {}
-	) -> String:
+	):
 	
 	_timeout = timeout
 	_kwargs = kwargs
-	current_page = 1
-	desired_page = 1
 	
-	_start_timers()
+	kill_current_execution()
 	
-	return $Python.run(code, uri, db, page_size)
-
-
-func read_next_page():
-	# Don't go to next page if didn't get the desired page yet
-	if desired_page != current_page:
-		return
-		
-	desired_page = current_page + 1
-	
-	if not $Python.output_exists(desired_page):
-		$Python.request_next_output()
+	$PythonPager.run(code, uri, db, page_size)
 	
 	_start_timers()
 
 
-func read_previous_page():
-	if current_page > 1:
-		desired_page = current_page - 1
+func request_next_page():
+	if $PythonPager.request_next_page():
+		_start_timers()
+
+
+func request_previous_page():
+	if $PythonPager.request_previous_page():
 		_start_timers()
 
 
 func kill_current_execution():
 	_stop_timers()
 	
-	$Python.kill_current_execution()
+	$PythonPager.kill_current_execution()
+
 
 func _start_timers():
 	# Never kill if there is no timeout
 	if _timeout > 0:
 		$KillTimer.start(_timeout)
-	
 	$OutputTimer.start()
 
 
@@ -77,10 +70,9 @@ func _on_KillTimer_timeout():
 
 
 func _on_OutputTimer_timeout():
-	if $Python.output_exists(desired_page):
+	if $PythonPager.gone_to_desired_page():
 		_stop_timers()
 		
-		current_page = desired_page
-		var output = $Python.read_output(current_page)
+		var output = $PythonPager.read_current_page()
 		
 		emit_signal("output", output, _kwargs)

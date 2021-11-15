@@ -50,21 +50,20 @@ func _update_connection_databases(tree : Tree, tree_item : TreeItem):
 	$PythonWatcher.run(code, connection["uri"], "admin", 1000, 0, kwargs)
 
 
-func _on_PythonWatcher_output(output : String, kwargs : Dictionary):
+func _on_PythonWatcher_output(result : GenericResult, kwargs : Dictionary):
 	var tree = kwargs.get("tree")
 	var parent = kwargs.get("tree_item")
-	var databases = _get_output_databases(output)
+	var databases = _get_output_databases(result)
 	
 	emit_signal("new_databases", tree, parent, databases)
 	
-	$PythonWatcher/Python.kill_current_execution()
+	$PythonWatcher.kill_current_execution()
 
 
-func _get_output_databases(output : String):
-	var python_result = MondotPython.parse_output(output)
+func _get_output_databases(result : GenericResult):
+	if result.error == OK:
+		return result.result
+		
+	Alert.message(result.error_string)
 	
-	if python_result.error == OK:
-		return python_result["result"]
-	
-	Alert.message(python_result.error_string)
 	return []

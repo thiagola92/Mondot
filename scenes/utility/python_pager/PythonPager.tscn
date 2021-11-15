@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/utility/python/Python.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/utility/python_pager/python_pager.gd" type="Script" id=2]
+
+[node name="PythonPager" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Python" parent="." instance=ExtResource( 1 )]

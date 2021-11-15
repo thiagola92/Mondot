@@ -202,6 +202,7 @@ readonly = true
 [connection signal="pressed" from="ShellCode/Menu/Run" to="." method="_on_Run_pressed"]
 [connection signal="pressed" from="ShellCode/Menu/Stop" to="." method="_on_Stop_pressed"]
 [connection signal="pressed" from="ShellCode/Menu/Save" to="ShellCode" method="_on_Save_pressed"]
+[connection signal="toggled" from="ShellCode/Menu/Lock" to="ShellCode" method="_on_Lock_toggled"]
 [connection signal="toggled" from="ShellCode/Menu/Visibility" to="ShellCode" method="_on_Visibility_toggled"]
 [connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]

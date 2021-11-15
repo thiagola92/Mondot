@@ -41,23 +41,22 @@ func _update_database_collections(tree : Tree, tree_item : TreeItem):
 	$PythonWatcher.run(code, database["uri"], database["name"], 1000, 0, kwargs)
 
 
-func _on_PythonWatcher_output(output, kwargs):
+func _on_PythonWatcher_output(result : GenericResult, kwargs : Dictionary):
 	var tree = kwargs.get("tree")
 	var parent = kwargs.get("tree_item")
-	var collections = _get_output_collections(output)
+	var collections = _get_output_collections(result)
 	
 	emit_signal("new_collections", tree, parent, collections)
 	
-	$PythonWatcher/Python.kill_current_execution()
+	$PythonWatcher.kill_current_execution()
 
 
-func _get_output_collections(output : String):
-	var python_result = MondotPython.parse_output(output)
+func _get_output_collections(result : GenericResult):
+	if result.error == OK:
+		return result.result
+		
+	Alert.message(result.error_string)
 	
-	if python_result.error == OK:
-		return python_result["result"]
-	
-	Alert.message(python_result.error_string)
 	return []
 
 

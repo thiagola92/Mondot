@@ -1,5 +1,8 @@
 extends Node
 
+# Python scene make the communication Mondot <--> Mondot Shell.
+# Only this class should interact with files from shell and the shell process.
+
 
 var filepath = null
 var pid = null
@@ -9,7 +12,7 @@ func _ready():
 	pass
 
 
-func run(code : String, uri : String, db : String, page_size : int = 20) -> String:
+func run(code : String, uri : String, db : String, page_size : int = 20):
 	kill_current_execution() # Remove old execution
 	
 	filepath = _create_code_file(code)
@@ -23,8 +26,6 @@ func run(code : String, uri : String, db : String, page_size : int = 20) -> Stri
 	
 	print("bin/run %s %s %s %s %s %s %s %s" % args)
 	pid = OS.execute('bin/run', args, false)
-	
-	return filepath
 
 
 func kill_current_execution():
