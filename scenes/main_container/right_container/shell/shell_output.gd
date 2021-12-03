@@ -22,7 +22,7 @@ func _update_page_number():
 
 
 func _update_output(result : GenericResult):
-	$Output.text = MondotPython.pretty_result(result)
+	$Output.text = MondotBeautifier.beautify_result(result)
 
 
 func _hide_running_icon():

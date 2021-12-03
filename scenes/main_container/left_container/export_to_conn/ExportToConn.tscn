@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/main_container/left_container/export_to_conn/export_to_conn.gd" type="Script" id=8]
 
 [node name="ExportToConn" type="WindowDialog"]
+visible = true
 margin_right = 460.0
 margin_bottom = 515.0
 theme = ExtResource( 3 )

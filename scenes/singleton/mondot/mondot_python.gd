@@ -1,14 +1,5 @@
 extends Node
 
-# Python generate a string as output and this functions
-# help you to extract the information you may looking for.
-
-
-static func pretty_result(parse_result : GenericResult) -> String:
-	if parse_result.error:
-		return parse_result.error_string
-	return JSON.print(parse_result.result, "	")
-
 
 # Parsing MondotShell output includes two steps:
 # - Parse the JSON output
