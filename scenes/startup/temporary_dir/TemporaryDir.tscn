@@ -18,4 +18,3 @@ __meta__ = {
 }
 
 [connection signal="confirmed" from="." to="." method="_on_TemporaryDir_confirmed"]
-[connection signal="confirmed" from="." to="." method="_on_TemporaryFolder_confirmed"]

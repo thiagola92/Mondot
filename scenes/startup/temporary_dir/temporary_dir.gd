@@ -1,7 +1,7 @@
 extends ConfirmationDialog
 
 
-var tmp_dir = "tmp/"
+var tmp_dir = "./tmp/"
 
 
 func _ready():

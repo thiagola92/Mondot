@@ -4,9 +4,10 @@ extends Node
 func create_directory(path : String):
 	var directory = Directory.new()
 	
-	if directory.open(path) == OK:
+	if directory.dir_exists(path):
 		return
 	
+	directory.open("")
 	directory.make_dir(path)
 
 
