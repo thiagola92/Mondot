@@ -6,7 +6,7 @@ func list_database_names():
 """
 sorted(self.client.list_database_names())
 """
-).lstrip("\n")
+)
 
 
 func drop_database(db : String) -> String:
@@ -15,4 +15,4 @@ func drop_database(db : String) -> String:
 self.client.drop_database("%s")
 """ % [
 	db
-]).lstrip("\n")
+])

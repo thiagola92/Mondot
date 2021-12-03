@@ -6,4 +6,4 @@ func import_mongoclient() -> String:
 """
 from pymongo import MongoClient
 """
-).lstrip("\n")
+)

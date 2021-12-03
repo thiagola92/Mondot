@@ -19,7 +19,10 @@ func refresh_database(tree : Tree, tree_item : TreeItem):
 
 
 func drop_database(uri : String, db : String):
-	var code = ClientCode.drop_database(db)
+	var code = MondotBeautifier.beautify_code([
+		ClientCode.drop_database(db)
+	])
+	
 	emit_signal("shell_requested", uri, db, code, true)
 
 

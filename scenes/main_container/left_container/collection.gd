@@ -9,18 +9,27 @@ func _ready():
 
 
 func open_shell(uri : String, db : String, collection : String):
-	var code = CollectionCode.find(collection)
+	var code = MondotBeautifier.beautify_code([
+		CollectionCode.find(collection)
+	])
+	
 	emit_signal("shell_requested", uri, db, code)
 
 
 func drop_collection(uri, db, collection):
-	var code = CollectionCode.drop_collection(collection)
+	var code = MondotBeautifier.beautify_code([
+		CollectionCode.drop_collection(collection)
+	])
+	
 	emit_signal("shell_requested", uri, db, code, true)
 
 
 func move_collection(src_uri, src_db, src_col, dest_uri, dest_db):
-	var code = ImportCode.import_mongoclient() + \
-				CollectionCode.move_collection(src_col, dest_uri, dest_db, src_col)
+	var code = MondotBeautifier.beautify_code([
+		ImportCode.import_mongoclient(),
+		CollectionCode.move_collection(src_col, dest_uri, dest_db, src_col)
+	])
+	
 	emit_signal("shell_requested", src_uri, src_db, code, true, true)
 
 

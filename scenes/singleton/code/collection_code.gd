@@ -7,7 +7,7 @@ func find(collection : String) -> String:
 self.db["%s"].find()
 """ % [
 	collection
-]).lstrip("\n")
+])
 
 
 func drop_collection(collection : String) -> String:
@@ -16,7 +16,7 @@ func drop_collection(collection : String) -> String:
 self.db.drop_collection("%s")
 """ % [
 	collection
-]).lstrip("\n")
+])
 
 
 func copy_collection(source_col : String, target_uri : String, target_db : String, target_col : String) -> String:
@@ -33,7 +33,7 @@ for doc in self.db["%s"].find():
 	target_db,
 	target_col,
 	source_col
-]).lstrip("\n")
+])
 
 
 func move_collection(collection : String, target_uri : String, target_db : String, target_col : String) -> String:
@@ -44,4 +44,4 @@ func move_collection(collection : String, target_uri : String, target_db : Strin
 """ % [
 	copy_collection(collection, target_uri, target_db, target_col),
 	drop_collection(collection)
-]).lstrip("\n")
+])

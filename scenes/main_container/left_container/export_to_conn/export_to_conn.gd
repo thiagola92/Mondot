@@ -74,8 +74,10 @@ func _get_export_code() -> String:
 
 
 func _get_export_db_code(source_cols : Array, target_uri : String, target_dbs : Array, target_cols : Array) -> String:
-	return ImportCode.import_mongoclient() + \
+	return MondotBeautifier.beautify_code([
+		ImportCode.import_mongoclient(),
 		DatabaseCode.copy_database(source_cols, target_uri, target_dbs, target_cols)
+	])
 
 
 func _request_export(code : String):
