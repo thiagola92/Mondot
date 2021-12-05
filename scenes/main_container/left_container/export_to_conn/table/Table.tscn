@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/main_container/left_container/export_to_conn/table_conn/grid.gd" type="Script" id=2]
-[ext_resource path="res://scenes/main_container/left_container/export_to_conn/table_conn/table_conn.gd" type="Script" id=3]
+[ext_resource path="res://scenes/main_container/left_container/export_to_conn/table/grid.gd" type="Script" id=2]
+[ext_resource path="res://scenes/main_container/left_container/export_to_conn/table/table.gd" type="Script" id=3]
 
-[node name="TableConn" type="Panel"]
+[node name="ConnTable" type="Panel"]
 margin_right = 389.0
 margin_bottom = 425.0
 size_flags_horizontal = 3

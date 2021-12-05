@@ -14,25 +14,15 @@ func _ready():
 
 
 func setup(_source : Dictionary, root : TreeItem):
-	var connections = TreeItemKit.export_node(root).get("children")
 	source = _source
 	
-	$Container/TableConn.clear()
-	$Container/ConnectionPath.setup(connections)
+	$Container/Table.clear()
+	$Container/Settings.setup(
+		TreeItemKit.export_node(root).get("children")
+	)
 	
 	_add_lines()
 	popup_centered()
-
-
-func _on_Cancel_pressed():
-	hide()
-
-
-func _on_Start_pressed():
-	var code = _get_export_code()
-	
-	_request_export(code)
-	hide()
 
 
 func _add_lines():
@@ -44,7 +34,7 @@ func _add_lines():
 
 
 func _add_collection_line(source_db : String, source_col : String):
-	$Container/TableConn.add_line(source_db, source_col, source_db, source_col)
+	$Container/Table.add_line(source_db, source_col, source_db, source_col)
 
 
 func _on_PythonWatcher_output(result : GenericResult, _kwargs : Dictionary):
@@ -58,22 +48,21 @@ func _add_collections_lines(collections : Array):
 		_add_collection_line(source["name"], col)
 
 
+func _on_Start_pressed():
+	var code = _get_export_code()
+	
+	_request_export(code)
+	hide()
+
+
 func _get_export_code() -> String:
-	var columns = $Container/TableConn.get_columns()
+	var columns = $Container/Table.get_columns()
 	var source_dbs = columns[0]
 	var source_cols = columns[1]
-	var target_uri = $Container/ConnectionPath.connection["uri"]
+	var target_uri = $Container/Settings.selected["uri"]
 	var target_dbs = columns[2]
 	var target_cols = columns[3]
 	
-	match source["__type__"]:
-		MondotType.COLLECTION, MondotType.DATABASE:
-			return _get_export_db_code(source_cols, target_uri, target_dbs, target_cols)
-	
-	return ""
-
-
-func _get_export_db_code(source_cols : Array, target_uri : String, target_dbs : Array, target_cols : Array) -> String:
 	return MondotBeautifier.beautify_code([
 		ImportCode.import_mongoclient(),
 		DatabaseCode.copy_database(source_cols, target_uri, target_dbs, target_cols)
@@ -86,3 +75,7 @@ func _request_export(code : String):
 			emit_signal("export_requested", source["uri"], source["db"], code)
 		MondotType.DATABASE:
 			emit_signal("export_requested", source["uri"], source["name"], code)
+
+
+func _on_Cancel_pressed():
+	hide()

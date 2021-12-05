@@ -7,3 +7,11 @@ func import_mongoclient() -> String:
 from pymongo import MongoClient
 """
 )
+
+
+func import_json_util() -> String:
+		return (
+"""
+from bson import json_util
+"""
+)

@@ -130,3 +130,4 @@ script = ExtResource( 5 )
 [connection signal="shell_requested" from="Tree/Collection" to="." method="_on_Collection_shell_requested"]
 [connection signal="id_pressed" from="Tree/Collection/Menu" to="Tree" method="_on_CollectionMenu_id_pressed"]
 [connection signal="export_requested" from="Tree/ExportToConn" to="." method="_on_ExportToConn_export_requested"]
+[connection signal="export_requested" from="Tree/ExportToFile" to="." method="_on_ExportToFile_export_requested"]
