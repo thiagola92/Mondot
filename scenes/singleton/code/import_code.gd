@@ -15,3 +15,11 @@ func import_json_util() -> String:
 from bson import json_util
 """
 )
+
+
+func import_dict_writer() -> String:
+		return (
+"""
+from csv import DictWriter
+"""
+)

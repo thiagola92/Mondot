@@ -61,7 +61,10 @@ func _get_export_code() -> String:
 	
 	match $Container/Settings.get_file_type():
 		0: # CSV
-			pass
+			return MondotBeautifier.beautify_code([
+				ImportCode.import_dict_writer(),
+				DatabaseCode.copy_database_to_csv(directory, files, cols)
+			])
 		1: # JSON
 			return MondotBeautifier.beautify_code([
 				ImportCode.import_json_util(),

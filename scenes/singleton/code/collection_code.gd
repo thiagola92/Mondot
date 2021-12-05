@@ -59,6 +59,24 @@ with open(file, "w") as f:
 ])
 
 
+func copy_collection_to_csv(directory : String, file : String, collection : String) -> String:
+		return (
+"""
+file = "%s/%s.csv"
+writer = None
+
+with open(file, "w") as f:
+	for doc in self.db["%s"].find():
+		if not writer:
+			writer = DictWriter(f, fieldnames=doc.keys())
+		writer.writerow(doc)
+""" % [
+	directory,
+	file,
+	collection
+])
+
+
 func move_collection(collection : String, target_uri : String, target_db : String, target_col : String) -> String:
 	return (
 """
