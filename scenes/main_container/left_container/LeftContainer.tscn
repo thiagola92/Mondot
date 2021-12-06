@@ -93,7 +93,7 @@ margin_top = 31.0
 margin_right = 128.0
 margin_bottom = 194.0
 theme = ExtResource( 2 )
-items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "Create collection", null, 0, false, false, 1, 0, null, "", false, "Refresh", null, 0, false, false, 2, 0, null, "", false, "Import from file", null, 0, false, false, 3, 0, null, "", false, "Export to file", null, 0, false, false, 4, 0, null, "", false, "Export to connection", null, 0, false, false, 5, 0, null, "", false, "Drop", null, 0, false, false, 6, 0, null, "", false ]
+items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "Create collection", null, 0, false, false, 1, 0, null, "", false, "Refresh", null, 0, false, false, 2, 0, null, "", false, "Import from file", null, 0, false, false, 3, 0, null, "", false, "Export to file", null, 0, false, false, 4, 0, null, "", false, "Export to connection", null, 0, false, false, 5, 0, null, "", false, "Drop", null, 0, false, false, 6, 0, null, "", false, "Stats", null, 0, false, false, 7, 0, null, "", false ]
 script = ExtResource( 5 )
 
 [node name="PythonWatcher" parent="Tree/Database" instance=ExtResource( 4 )]
@@ -105,7 +105,7 @@ script = ExtResource( 7 )
 margin_right = 20.0
 margin_bottom = 20.0
 theme = ExtResource( 2 )
-items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "Import from file", null, 0, false, false, 1, 0, null, "", false, "Export to file", null, 0, false, false, 2, 0, null, "", false, "Export to connection", null, 0, false, false, 3, 0, null, "", false, "Drop", null, 0, false, false, 4, 0, null, "", false ]
+items = [ "Open shell", null, 0, false, false, 0, 0, null, "", false, "Import from file", null, 0, false, false, 1, 0, null, "", false, "Export to file", null, 0, false, false, 2, 0, null, "", false, "Export to connection", null, 0, false, false, 3, 0, null, "", false, "Drop", null, 0, false, false, 4, 0, null, "", false, "Stats", null, 0, false, false, 5, 0, null, "", false ]
 script = ExtResource( 5 )
 
 [node name="ExportToConn" parent="Tree" instance=ExtResource( 15 )]

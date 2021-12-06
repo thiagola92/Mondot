@@ -1,10 +1,25 @@
 extends Node
 
 
+# Sort functions by:
+# - Codes that read data
+# - Codes that insert data
+# - Codes that update data
+# - Codes that remove data
+
+
 func list_collection_names():
 	return (
 """
 sorted(self.db.list_collection_names())
+"""
+)
+
+
+func show_database_stats() -> String:
+	return (
+"""
+self.db.command("dbstats")
 """
 )
 

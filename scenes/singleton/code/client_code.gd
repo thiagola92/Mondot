@@ -1,6 +1,13 @@
 extends Node
 
 
+# Sort functions by:
+# - Codes that read data
+# - Codes that insert data
+# - Codes that update data
+# - Codes that remove data
+
+
 func list_database_names():
 	return (
 """

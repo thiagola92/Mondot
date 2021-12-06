@@ -18,6 +18,14 @@ func refresh_database(tree : Tree, tree_item : TreeItem):
 	_update_database_collections(tree, tree_item)
 
 
+func show_database_stats(uri : String, db : String):
+	var code = MondotBeautifier.beautify_code([
+		DatabaseCode.show_database_stats()
+	])
+	
+	emit_signal("shell_requested", uri, db, code, true)
+
+
 func drop_database(uri : String, db : String):
 	var code = MondotBeautifier.beautify_code([
 		ClientCode.drop_database(db)

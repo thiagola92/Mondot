@@ -1,6 +1,13 @@
 extends Node
 
 
+# Sort functions by:
+# - Codes that read data
+# - Codes that insert data
+# - Codes that update data
+# - Codes that remove data
+
+
 func find(collection : String) -> String:
 	return (
 """
@@ -10,10 +17,10 @@ self.db["%s"].find()
 ])
 
 
-func drop_collection(collection : String) -> String:
+func show_collection_stats(collection : String) -> String:
 	return (
 """
-self.db.drop_collection("%s")
+self.db.command("collstats", "%s")
 """ % [
 	collection
 ])
@@ -85,4 +92,13 @@ func move_collection(collection : String, target_uri : String, target_db : Strin
 """ % [
 	copy_collection(collection, target_uri, target_db, target_col),
 	drop_collection(collection)
+])
+
+
+func drop_collection(collection : String) -> String:
+	return (
+"""
+self.db.drop_collection("%s")
+""" % [
+	collection
 ])

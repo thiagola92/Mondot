@@ -16,7 +16,15 @@ func open_shell(uri : String, db : String, collection : String):
 	emit_signal("shell_requested", uri, db, code)
 
 
-func drop_collection(uri, db, collection):
+func show_collection_stats(uri : String, db : String, collection : String):
+	var code = MondotBeautifier.beautify_code([
+		CollectionCode.show_collection_stats(collection)
+	])
+	
+	emit_signal("shell_requested", uri, db, code, true)
+
+
+func drop_collection(uri : String, db : String, collection : String):
 	var code = MondotBeautifier.beautify_code([
 		CollectionCode.drop_collection(collection)
 	])

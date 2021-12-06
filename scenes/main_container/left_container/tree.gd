@@ -63,6 +63,8 @@ func _on_DatabaseMenu_id_pressed(id : int):
 			$ExportToConn.setup(database, self.get_root())
 		6:
 			$Database.drop_database(database["uri"], database["name"])
+		7:
+			$Database.show_database_stats(database["uri"], database["name"])
 
 
 func _on_CollectionMenu_id_pressed(id : int):
@@ -81,6 +83,8 @@ func _on_CollectionMenu_id_pressed(id : int):
 			$ExportToConn.setup(collection, self.get_root())
 		4:
 			$Collection.drop_collection(collection["uri"], collection["db"], collection["name"])
+		5:
+			$Collection.show_collection_stats(collection["uri"], collection["db"], collection["name"])
 
 
 func _on_Tree_item_activated():
