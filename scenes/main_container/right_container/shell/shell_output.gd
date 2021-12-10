@@ -2,11 +2,14 @@ extends VBoxContainer
 
 
 func _ready():
+	$Output.set_readonly(true)
+	
 	hide()
 
 
 func clear():
-	$Output.text = ""
+	$Output.clear_code()
+	
 	show()
 
 
@@ -22,7 +25,7 @@ func _update_page_number():
 
 
 func _update_output(result : GenericResult):
-	$Output.text = MondotBeautifier.beautify_result(result)
+	$Output.update_code(MondotBeautifier.beautify_result(result))
 
 
 func _hide_running_icon():
@@ -40,3 +43,10 @@ func _show_running_icon():
 
 func _on_Previous_pressed():
 	$PythonWatcher.request_previous_page()
+
+
+func _on_Search_toggled(button_pressed):
+	if button_pressed:
+		$Output.open_search_menu()
+	else:
+		$Output.close_search_menu()

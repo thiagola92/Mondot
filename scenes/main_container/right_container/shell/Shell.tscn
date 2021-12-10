@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/main_container/right_container/shell/shell.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://images/icon_progress_3.svg" type="Texture" id=20]
 [ext_resource path="res://images/icon_progress_2.svg" type="Texture" id=21]
 [ext_resource path="res://images/icon_progress_5.svg" type="Texture" id=22]
+[ext_resource path="res://images/icon_search.svg" type="Texture" id=23]
 
 [sub_resource type="AnimatedTexture" id=1]
 flags = 4
@@ -154,48 +155,59 @@ script = ExtResource( 7 )
 
 [node name="Menu" type="HBoxContainer" parent="ShellOutput"]
 margin_right = 1024.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 
 [node name="Previous" type="Button" parent="ShellOutput/Menu"]
 margin_right = 20.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 hint_tooltip = "Show previous page"
 icon = ExtResource( 4 )
 flat = true
 
 [node name="PageNumber" type="Label" parent="ShellOutput/Menu"]
 margin_left = 24.0
+margin_top = 1.0
 margin_right = 37.0
-margin_bottom = 22.0
+margin_bottom = 23.0
 text = "-"
 
 [node name="Next" type="Button" parent="ShellOutput/Menu"]
 margin_left = 41.0
 margin_right = 61.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 hint_tooltip = "Show next page"
 icon = ExtResource( 3 )
 flat = true
 
 [node name="Separator" type="HSplitContainer" parent="ShellOutput/Menu"]
 margin_left = 65.0
-margin_right = 1004.0
-margin_bottom = 22.0
+margin_right = 972.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="Running" type="TextureRect" parent="ShellOutput/Menu"]
-margin_left = 1008.0
-margin_right = 1024.0
-margin_bottom = 22.0
+margin_left = 976.0
+margin_right = 992.0
+margin_bottom = 24.0
 texture = SubResource( 1 )
+
+[node name="Search" type="Button" parent="ShellOutput/Menu"]
+margin_left = 996.0
+margin_right = 1024.0
+margin_bottom = 24.0
+toggle_mode = true
+icon = ExtResource( 23 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Output" parent="ShellOutput" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 26.0
+margin_top = 28.0
 margin_right = 1024.0
 margin_bottom = 296.0
-readonly = true
 
 [node name="PythonWatcher" parent="ShellOutput" instance=ExtResource( 5 )]
 
@@ -206,4 +218,5 @@ readonly = true
 [connection signal="toggled" from="ShellCode/Menu/Visibility" to="ShellCode" method="_on_Visibility_toggled"]
 [connection signal="pressed" from="ShellOutput/Menu/Previous" to="ShellOutput" method="_on_Previous_pressed"]
 [connection signal="pressed" from="ShellOutput/Menu/Next" to="ShellOutput" method="_on_Next_pressed"]
+[connection signal="toggled" from="ShellOutput/Menu/Search" to="ShellOutput" method="_on_Search_toggled"]
 [connection signal="output" from="ShellOutput/PythonWatcher" to="ShellOutput" method="_on_PythonWatcher_output"]

@@ -1,15 +1,53 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/utility/code_editor/code_editor.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_container.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/utility/code_editor/text_editor.gd" type="Script" id=3]
+[ext_resource path="res://images/icon_arrow_left.svg" type="Texture" id=4]
+[ext_resource path="res://images/icon_arrow_right.svg" type="Texture" id=5]
 
-[node name="CodeEditor" type="TextEdit"]
+[node name="CodeEditor" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
 theme = ExtResource( 2 )
-syntax_highlighting = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SearchMenu" type="HBoxContainer" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+
+[node name="Previous" type="Button" parent="SearchMenu"]
+margin_right = 20.0
+margin_bottom = 22.0
+icon = ExtResource( 4 )
+flat = true
+
+[node name="Next" type="Button" parent="SearchMenu"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 22.0
+icon = ExtResource( 5 )
+flat = true
+
+[node name="Search" type="LineEdit" parent="SearchMenu"]
+margin_left = 48.0
+margin_right = 1024.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+
+[node name="TextEditor" type="TextEdit" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+script = ExtResource( 3 )
+
+[connection signal="pressed" from="SearchMenu/Previous" to="." method="_on_Previous_pressed"]
+[connection signal="pressed" from="SearchMenu/Next" to="." method="_on_Next_pressed"]
+[connection signal="text_changed" from="SearchMenu/Search" to="." method="_on_Search_text_changed"]
+[connection signal="text_changed" from="TextEditor" to="." method="_on_TextEditor_text_changed"]

@@ -24,6 +24,8 @@ const REMOVE = "res://images/icon_cross_mark.svg"
 const LOCK = "res://images/icon_lock.svg"
 const UNLOCK = "res://images/icon_unlock.svg"
 
+const SEARCH = "res://images/icon_search.svg"
+
 
 static func from(id : int):
 	match id:

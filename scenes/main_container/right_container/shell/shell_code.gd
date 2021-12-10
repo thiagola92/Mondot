@@ -7,7 +7,7 @@ func _ready():
 
 func _switch_lock(readonly : bool):
 	$Menu/Lock.pressed = readonly
-	$CodeEditor.readonly = readonly
+	$CodeEditor.set_readonly(readonly)
 	
 	match readonly:
 		true:
@@ -43,5 +43,5 @@ func _on_Save_pressed():
 
 
 func _save_python_code():
-	var code = $CodeEditor.text
+	var code = $CodeEditor.get_code()
 	$SaveCode.save(code)

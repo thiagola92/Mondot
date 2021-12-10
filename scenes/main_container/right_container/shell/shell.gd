@@ -13,7 +13,7 @@ func setup(_uri : String, _db : String, code : String, readonly : bool, hidden :
 	self.uri = _uri
 	self.db = _db
 	
-	$ShellCode/CodeEditor.text = code
+	$ShellCode/CodeEditor.update_code(code)
 	
 	$ShellCode._switch_lock(readonly)
 	$ShellCode._switch_visibility(hidden)
@@ -30,7 +30,7 @@ func _clear_previous_output():
 
 
 func _execute_python_code():
-	var code = $ShellCode/CodeEditor.text
+	var code = $ShellCode/CodeEditor.get_code()
 	var page_size = _get_page_size()
 	
 	$ShellOutput/PythonWatcher.run(code, uri, db, page_size)
