@@ -45,6 +45,7 @@ size_flags_horizontal = 3
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_vertical = 3
+syntax_highlighting = true
 script = ExtResource( 3 )
 
 [connection signal="pressed" from="SearchMenu/Previous" to="." method="_on_Previous_pressed"]
