@@ -17,7 +17,6 @@ __meta__ = {
 }
 
 [node name="SearchMenu" type="HBoxContainer" parent="."]
-visible = false
 margin_right = 1024.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
@@ -42,6 +41,7 @@ margin_bottom = 22.0
 size_flags_horizontal = 3
 
 [node name="TextEditor" type="TextEdit" parent="."]
+margin_top = 26.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_vertical = 3

@@ -7,7 +7,15 @@ var search_current_column : int = 0
 
 
 func _ready():
-	pass
+	close_search_menu()
+
+
+func close_search_menu():
+	$SearchMenu.hide()
+
+
+func open_search_menu():
+	$SearchMenu.show()
 
 
 func set_readonly(readonly : bool = false):
@@ -24,14 +32,6 @@ func clear_code():
 
 func update_code(text : String):
 	$TextEditor.text = text
-
-
-func open_search_menu():
-	$SearchMenu.show()
-
-
-func close_search_menu():
-	$SearchMenu.hide()
 
 
 func _on_Search_text_changed(new_text : String):
