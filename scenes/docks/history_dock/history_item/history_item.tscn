@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dladhjuykporx"]
+
+[ext_resource type="PackedScene" uid="uid://gbxe762f5hbh" path="res://scenes/docks/query_dock/code_edit/code_edit.tscn" id="1_qbga5"]
+[ext_resource type="Script" path="res://scenes/docks/history_dock/history_item/history_item.gd" id="1_w4sfu"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_5kjm2"]
+number_color = Color(0.709804, 0.807843, 0.658824, 1)
+symbol_color = Color(1, 1, 1, 1)
+function_color = Color(0.862745, 0.862745, 0.666667, 1)
+member_variable_color = Color(0.611765, 0.862745, 0.996078, 1)
+
+[node name="HistoryItem" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_w4sfu")
+
+[node name="QueryCode" parent="." instance=ExtResource("1_qbga5")]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = ""
+editable = false
+syntax_highlighter = SubResource("CodeHighlighter_5kjm2")
+
+[node name="QueryDetails" type="HFlowContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Datetime" type="Label" parent="QueryDetails"]
+layout_mode = 2
+
+[node name="VSeparator" type="HSplitContainer" parent="QueryDetails"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="More" type="Button" parent="QueryDetails"]
+layout_mode = 2
+text = "More"

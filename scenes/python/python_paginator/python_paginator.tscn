@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dohk8a3wo664y"]
+
+[ext_resource type="Script" path="res://scenes/python/python_paginator/python_paginator.gd" id="1_ku7yi"]
+[ext_resource type="PackedScene" uid="uid://drb0kmiil6t8h" path="res://scenes/python/python_runner/python_runner.tscn" id="2_1p8h4"]
+
+[node name="PythonPaginator" type="Node"]
+script = ExtResource("1_ku7yi")
+
+[node name="PythonRunner" parent="." instance=ExtResource("2_1p8h4")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

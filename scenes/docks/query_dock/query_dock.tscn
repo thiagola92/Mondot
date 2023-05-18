@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3d7hwe67naqh"]
+
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_dock.gd" id="1_ypddf"]
+[ext_resource type="PackedScene" uid="uid://dk8bevu5ymmta" path="res://scenes/docks/query_dock/query_menu/query_menu.tscn" id="2_iu3ik"]
+[ext_resource type="PackedScene" uid="uid://cwi46lpfmwm1m" path="res://scenes/docks/query_dock/search_bar/search_bar.tscn" id="4_0e8be"]
+[ext_resource type="PackedScene" uid="uid://gbxe762f5hbh" path="res://scenes/docks/query_dock/code_edit/code_edit.tscn" id="4_6twfc"]
+[ext_resource type="PackedScene" uid="uid://dcqjvlfovkhlh" path="res://scenes/docks/query_dock/json_edit/json_edit.tscn" id="6_xopf1"]
+[ext_resource type="PackedScene" uid="uid://cifpxm8kw4cbu" path="res://scenes/docks/query_dock/result_menu/result_menu.tscn" id="7_nj5ll"]
+[ext_resource type="PackedScene" uid="uid://dohk8a3wo664y" path="res://scenes/python/python_paginator/python_paginator.tscn" id="9_7lomu"]
+
+[node name="QueryDock" type="VSplitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ypddf")
+
+[node name="QueryContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QueryMenu" parent="QueryContainer" node_paths=PackedStringArray("search_bar") instance=ExtResource("2_iu3ik")]
+layout_mode = 2
+search_bar = NodePath("../QuerySearch")
+
+[node name="QuerySearch" parent="QueryContainer" node_paths=PackedStringArray("text_edit") instance=ExtResource("4_0e8be")]
+layout_mode = 2
+text_edit = NodePath("../QueryCode")
+
+[node name="QueryCode" parent="QueryContainer" instance=ExtResource("4_6twfc")]
+layout_mode = 2
+
+[node name="ResultContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResultMenu" parent="ResultContainer" node_paths=PackedStringArray("search_bar") instance=ExtResource("7_nj5ll")]
+layout_mode = 2
+search_bar = NodePath("../ResultSearch")
+
+[node name="ResultSearch" parent="ResultContainer" node_paths=PackedStringArray("text_edit") instance=ExtResource("4_0e8be")]
+layout_mode = 2
+text_edit = NodePath("../ResultJson")
+
+[node name="ResultJson" parent="ResultContainer" instance=ExtResource("6_xopf1")]
+layout_mode = 2
+
+[node name="PythonPaginator" parent="." instance=ExtResource("9_7lomu")]
+
+[connection signal="play_pressed" from="QueryContainer/QueryMenu" to="." method="_on_query_menu_play_pressed"]
+[connection signal="stop_pressed" from="QueryContainer/QueryMenu" to="." method="_on_query_menu_stop_pressed"]
+[connection signal="page_changed" from="PythonPaginator" to="." method="_on_python_paginator_page_changed"]

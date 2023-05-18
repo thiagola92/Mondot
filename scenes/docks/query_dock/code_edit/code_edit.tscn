@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://gbxe762f5hbh"]
+
+[ext_resource type="CodeHighlighter" uid="uid://c2plvo2c1ch7p" path="res://scenes/docks/query_dock/code_edit/python.tres" id="1_7hlqo"]
+
+[node name="CodeEdit" type="TextEdit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+placeholder_text = "# Write your python query here.
+
+# Use \"self\" to access your current client or database.
+self.client.list_database_names()
+self.db.list_collection_names()
+
+# If your action interacts with multiple clients/databases, you can access them with \"self\" too.
+self.dbs[0].list_collection_names() # first database
+self.dbs[1].list_collection_names() # second database"
+syntax_highlighter = ExtResource("1_7hlqo")

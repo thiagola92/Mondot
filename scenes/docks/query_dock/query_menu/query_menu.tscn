@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk8bevu5ymmta"]
+
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/query_menu.gd" id="1_5qw4v"]
+[ext_resource type="Texture2D" uid="uid://bh4eaxj8xraat" path="res://icons/play.svg" id="1_sqsr3"]
+[ext_resource type="Texture2D" uid="uid://ccbm3oqwip2oo" path="res://icons/stop.svg" id="2_n3ygm"]
+[ext_resource type="Texture2D" uid="uid://bynfauci3i8l5" path="res://icons/disk.svg" id="3_xey32"]
+[ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="5_o0y0x"]
+
+[node name="QueryMenu" type="HFlowContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+script = ExtResource("1_5qw4v")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("1_sqsr3")
+flat = true
+
+[node name="Stop" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("2_n3ygm")
+flat = true
+
+[node name="Save" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("3_xey32")
+flat = true
+
+[node name="Separator" type="HSplitContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PageSize" type="OptionButton" parent="."]
+layout_mode = 2
+tooltip_text = "Results per page"
+item_count = 5
+selected = 0
+popup/item_0/text = "10"
+popup/item_0/id = 10
+popup/item_1/text = "50"
+popup/item_1/id = 50
+popup/item_2/text = "100"
+popup/item_2/id = 100
+popup/item_3/text = "500"
+popup/item_3/id = 500
+popup/item_4/text = "1000"
+popup/item_4/id = 1000
+
+[node name="Search" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("5_o0y0x")
+flat = true
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Stop" to="." method="_on_stop_pressed"]
+[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
+[connection signal="toggled" from="Search" to="." method="_on_search_toggled"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwi46lpfmwm1m"]
+
+[ext_resource type="Script" path="res://scenes/docks/query_dock/search_bar/search_bar.gd" id="1_2hled"]
+[ext_resource type="Texture2D" uid="uid://cu8hxgvwkt13" path="res://icons/arrow_down.svg" id="2_bk05o"]
+[ext_resource type="Texture2D" uid="uid://rijo02u67hck" path="res://icons/arrow_up.svg" id="3_xt1rw"]
+
+[node name="SearchBar" type="HFlowContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+script = ExtResource("1_2hled")
+
+[node name="SearchText" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search text"
+
+[node name="Next" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("2_bk05o")
+flat = true
+
+[node name="Previous" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("3_xt1rw")
+flat = true
