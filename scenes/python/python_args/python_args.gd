@@ -1,3 +1,4 @@
+## Arguments to be used in the Python executable.
 class_name PythonArgs
 extends RefCounted
 
@@ -17,6 +18,8 @@ var dbs: Array[String] = ["admin"]
 var page_size: int = 20
 
 
+## Returns an Array respecting the sequence of argument and value.
+## [br]In others words: [code][argument1, value1, argument2, value2, argument3, value3, ...][/code]
 func to_array(code_path: String) -> Array[String]:
 	var global_code_path: String = ProjectSettings.globalize_path(code_path)
 	var args: Array[String] = []

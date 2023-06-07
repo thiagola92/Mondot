@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dladhjuykporx"]
+[gd_scene load_steps=7 format=3 uid="uid://dladhjuykporx"]
 
-[ext_resource type="PackedScene" uid="uid://gbxe762f5hbh" path="res://scenes/docks/query_dock/code_edit/code_edit.tscn" id="1_qbga5"]
-[ext_resource type="Script" path="res://scenes/docks/history_dock/history_item/history_item.gd" id="1_w4sfu"]
+[ext_resource type="Script" path="res://scenes/docks/history_dock/history_item/history_item.gd" id="1_qxncs"]
+[ext_resource type="PackedScene" uid="uid://gbxe762f5hbh" path="res://scenes/docks/query_dock/code_edit/code_edit.tscn" id="2_0r05u"]
+[ext_resource type="Texture2D" uid="uid://bh4eaxj8xraat" path="res://icons/play.svg" id="3_dhp4i"]
+[ext_resource type="Texture2D" uid="uid://cbenjl74ypdcu" path="res://icons/trash_can.svg" id="4_fem2s"]
+[ext_resource type="Texture2D" uid="uid://dnubvr1kqib2y" path="res://icons/dots.svg" id="5_xh861"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_5kjm2"]
 number_color = Color(0.709804, 0.807843, 0.658824, 1)
@@ -9,33 +12,48 @@ symbol_color = Color(1, 1, 1, 1)
 function_color = Color(0.862745, 0.862745, 0.666667, 1)
 member_variable_color = Color(0.611765, 0.862745, 0.996078, 1)
 
-[node name="HistoryItem" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="HistoryItem" type="VBoxContainer" node_paths=PackedStringArray("query_code", "datetime")]
+custom_minimum_size = Vector2(0, 200)
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 640.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
-script = ExtResource("1_w4sfu")
+script = ExtResource("1_qxncs")
+query_code = NodePath("QueryCode")
+datetime = NodePath("QueryMenu/Datetime")
 
-[node name="QueryCode" parent="." instance=ExtResource("1_qbga5")]
+[node name="QueryCode" parent="." instance=ExtResource("2_0r05u")]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = ""
 editable = false
 syntax_highlighter = SubResource("CodeHighlighter_5kjm2")
 
-[node name="QueryDetails" type="HFlowContainer" parent="."]
+[node name="QueryMenu" type="HFlowContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
-[node name="Datetime" type="Label" parent="QueryDetails"]
+[node name="Datetime" type="Label" parent="QueryMenu"]
 layout_mode = 2
+size_flags_horizontal = 2
+text = "datetime"
 
-[node name="VSeparator" type="HSplitContainer" parent="QueryDetails"]
+[node name="Play" type="Button" parent="QueryMenu"]
 layout_mode = 2
-size_flags_horizontal = 3
+icon = ExtResource("3_dhp4i")
+flat = true
 
-[node name="More" type="Button" parent="QueryDetails"]
+[node name="Delete" type="Button" parent="QueryMenu"]
 layout_mode = 2
-text = "More"
+icon = ExtResource("4_fem2s")
+flat = true
+
+[node name="More" type="Button" parent="QueryMenu"]
+layout_mode = 2
+size_flags_horizontal = 8
+icon = ExtResource("5_xh861")
+flat = true
+
+[connection signal="pressed" from="QueryMenu/Delete" to="." method="_on_delete_pressed"]

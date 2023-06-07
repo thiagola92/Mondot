@@ -1,56 +1,59 @@
 [gd_scene load_steps=14 format=3 uid="uid://cifpxm8kw4cbu"]
 
-[ext_resource type="Texture2D" uid="uid://6g2q8n6ent21" path="res://icons/arrow_left.svg" id="1_hijgv"]
-[ext_resource type="Script" path="res://scenes/docks/query_dock/result_menu/result_menu.gd" id="1_hisfa"]
-[ext_resource type="Texture2D" uid="uid://uci76ke48xhc" path="res://icons/arrow_right.svg" id="2_1shat"]
-[ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="3_82lpc"]
-[ext_resource type="Texture2D" uid="uid://dqbj5oro8w4kk" path="res://icons/progress_1.svg" id="5_6ys3n"]
-[ext_resource type="Texture2D" uid="uid://cejx54xlep5du" path="res://icons/progress_2.svg" id="6_ldp5p"]
-[ext_resource type="Texture2D" uid="uid://cunnumvipgaey" path="res://icons/progress_3.svg" id="7_hx3mt"]
-[ext_resource type="Texture2D" uid="uid://wvlq05kjfwvw" path="res://icons/progress_4.svg" id="8_3knk6"]
-[ext_resource type="Texture2D" uid="uid://d1rrw2h3pf6dn" path="res://icons/progress_5.svg" id="9_tehpm"]
-[ext_resource type="Texture2D" uid="uid://js4lpo60l5of" path="res://icons/progress_6.svg" id="10_s6ou6"]
-[ext_resource type="Texture2D" uid="uid://c7fnaqdg1l5qi" path="res://icons/progress_7.svg" id="11_yvu3h"]
-[ext_resource type="Texture2D" uid="uid://c78yb30g6771q" path="res://icons/progress_8.svg" id="12_cv4nu"]
+[ext_resource type="Script" path="res://scenes/docks/query_dock/result_menu/result_menu.gd" id="1_n2qcd"]
+[ext_resource type="Texture2D" uid="uid://6g2q8n6ent21" path="res://icons/arrow_left.svg" id="2_727gn"]
+[ext_resource type="Texture2D" uid="uid://uci76ke48xhc" path="res://icons/arrow_right.svg" id="3_kku03"]
+[ext_resource type="Texture2D" uid="uid://dqbj5oro8w4kk" path="res://icons/progress_1.svg" id="4_iav1d"]
+[ext_resource type="Texture2D" uid="uid://cejx54xlep5du" path="res://icons/progress_2.svg" id="5_66eai"]
+[ext_resource type="Texture2D" uid="uid://cunnumvipgaey" path="res://icons/progress_3.svg" id="6_3sgwe"]
+[ext_resource type="Texture2D" uid="uid://wvlq05kjfwvw" path="res://icons/progress_4.svg" id="7_lta5u"]
+[ext_resource type="Texture2D" uid="uid://d1rrw2h3pf6dn" path="res://icons/progress_5.svg" id="8_8yg4k"]
+[ext_resource type="Texture2D" uid="uid://js4lpo60l5of" path="res://icons/progress_6.svg" id="9_po7we"]
+[ext_resource type="Texture2D" uid="uid://c7fnaqdg1l5qi" path="res://icons/progress_7.svg" id="10_00vop"]
+[ext_resource type="Texture2D" uid="uid://c78yb30g6771q" path="res://icons/progress_8.svg" id="11_gbirn"]
+[ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="12_tv0nk"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_imq4c"]
 frames = 8
 speed_scale = 12.0
-frame_0/texture = ExtResource("5_6ys3n")
-frame_1/texture = ExtResource("6_ldp5p")
+frame_0/texture = ExtResource("4_iav1d")
+frame_1/texture = ExtResource("5_66eai")
 frame_1/duration = 1.0
-frame_2/texture = ExtResource("7_hx3mt")
+frame_2/texture = ExtResource("6_3sgwe")
 frame_2/duration = 1.0
-frame_3/texture = ExtResource("8_3knk6")
+frame_3/texture = ExtResource("7_lta5u")
 frame_3/duration = 1.0
-frame_4/texture = ExtResource("9_tehpm")
+frame_4/texture = ExtResource("8_8yg4k")
 frame_4/duration = 1.0
-frame_5/texture = ExtResource("10_s6ou6")
+frame_5/texture = ExtResource("9_po7we")
 frame_5/duration = 1.0
-frame_6/texture = ExtResource("11_yvu3h")
+frame_6/texture = ExtResource("10_00vop")
 frame_6/duration = 1.0
-frame_7/texture = ExtResource("12_cv4nu")
+frame_7/texture = ExtResource("11_gbirn")
 frame_7/duration = 1.0
 
-[node name="ResultMenu" type="HFlowContainer"]
+[node name="ResultMenu" type="HFlowContainer" node_paths=PackedStringArray("loading", "page_label")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 26.0
 grow_horizontal = 2
-script = ExtResource("1_hisfa")
+script = ExtResource("1_n2qcd")
+loading = NodePath("Loading")
+page_label = NodePath("Page")
 
 [node name="Previous" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("1_hijgv")
+icon = ExtResource("2_727gn")
 flat = true
 
 [node name="Page" type="Label" parent="."]
 layout_mode = 2
 text = "0"
+vertical_alignment = 1
 
 [node name="Next" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("2_1shat")
+icon = ExtResource("3_kku03")
 flat = true
 
 [node name="Separator" type="HSplitContainer" parent="."]
@@ -65,7 +68,7 @@ expand_mode = 3
 [node name="Search" type="Button" parent="."]
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("3_82lpc")
+icon = ExtResource("12_tv0nk")
 flat = true
 
 [connection signal="pressed" from="Previous" to="." method="_on_previous_pressed"]

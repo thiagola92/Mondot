@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb4idje1ple1n"]
+
+[ext_resource type="Script" path="res://scenes/docks/settings_dock/query_section/query_section.gd" id="1_dx1nl"]
+[ext_resource type="Texture2D" uid="uid://2mkbk4j5gfgl" path="res://icons/check_mark_green.svg" id="2_p4dg2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ikbi1"]
+font_size = 32
+
+[node name="QuerySection" type="VBoxContainer" node_paths=PackedStringArray("frequency_status")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dx1nl")
+frequency_status = NodePath("Frequency/FrequencyStatus")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+text = "# Query"
+label_settings = SubResource("LabelSettings_ikbi1")
+
+[node name="Frequency" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FrequencyLabel" type="Label" parent="Frequency"]
+layout_mode = 2
+text = "Frequency which check results (in seconds)"
+
+[node name="FrequencyLine" type="LineEdit" parent="Frequency"]
+layout_mode = 2
+text = "1.0"
+
+[node name="FrequencyStatus" type="TextureRect" parent="Frequency"]
+layout_mode = 2
+texture = ExtResource("2_p4dg2")
+stretch_mode = 3
+
+[node name="Separator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[connection signal="text_changed" from="Frequency/FrequencyLine" to="." method="_on_frequency_line_text_changed"]

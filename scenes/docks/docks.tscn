@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dogr4xvdsy7xw"]
+
+[ext_resource type="Script" path="res://scenes/docks/docks.gd" id="1_abrkn"]
+[ext_resource type="Texture2D" uid="uid://dcpic84b856pd" path="res://icons/cross_mark.svg" id="2_2rcj5"]
+[ext_resource type="PackedScene" uid="uid://d3d7hwe67naqh" path="res://scenes/docks/query_dock/query_dock.tscn" id="3_4ilt3"]
+
+[node name="Docks" type="VBoxContainer" node_paths=PackedStringArray("docks_container", "docks_tab")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+script = ExtResource("1_abrkn")
+docks_container = NodePath("DocksContainer")
+docks_tab = NodePath("DocksTab")
+
+[node name="DocksTab" type="TabBar" parent="."]
+layout_mode = 2
+theme_override_icons/close = ExtResource("2_2rcj5")
+tab_close_display_policy = 2
+drag_to_rearrange_enabled = true
+
+[node name="DocksContainer" type="TabContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tabs_visible = false
+
+[node name="QueryDock" parent="DocksContainer" instance=ExtResource("3_4ilt3")]
+layout_mode = 2
+
+[connection signal="active_tab_rearranged" from="DocksTab" to="." method="_on_docks_tab_active_tab_rearranged"]
+[connection signal="tab_changed" from="DocksTab" to="." method="_on_docks_tab_tab_changed"]
+[connection signal="tab_close_pressed" from="DocksTab" to="." method="_on_docks_tab_tab_close_pressed"]

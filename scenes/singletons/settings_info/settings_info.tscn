@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv28ou14jmgob"]
+
+[ext_resource type="Script" path="res://scenes/singletons/settings_info/settings_info.gd" id="1_ta188"]
+
+[node name="SettingsInfo" type="Node"]
+script = ExtResource("1_ta188")

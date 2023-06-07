@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0fwo2ckbau81"]
+
+[ext_resource type="FontFile" uid="uid://cmyt0gkbkogmo" path="res://fonts/roboto/Roboto-Regular.ttf" id="1_mo4fn"]
+[ext_resource type="PackedScene" uid="uid://8weojs1h2tg0" path="res://scenes/menu/menu.tscn" id="2_l6st0"]
+[ext_resource type="PackedScene" uid="uid://dogr4xvdsy7xw" path="res://scenes/docks/docks.tscn" id="3_l0ufr"]
+
+[sub_resource type="Theme" id="Theme_qtuuv"]
+Label/fonts/font = ExtResource("1_mo4fn")
+
+[node name="Main" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_qtuuv")
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Containers" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Menu" parent="Containers" node_paths=PackedStringArray("docks") instance=ExtResource("2_l6st0")]
+layout_mode = 2
+docks = NodePath("../Docks")
+
+[node name="Docks" parent="Containers" instance=ExtResource("3_l0ufr")]
+layout_mode = 2

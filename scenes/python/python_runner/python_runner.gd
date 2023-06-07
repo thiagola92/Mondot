@@ -36,58 +36,26 @@ var output_path: String:
 ## in this case it will kill previous execution before starting a new one.
 func run(code: String, args: PythonArgs) -> void:
 	kill_current_execution()
-	_start_new_execution(code, args)
+	start_new_execution(code, args)
 
 
 ## Terminate MondotShell process and delete it files.
 ## [br][b]Note[/b]: It's very important that the signal [signal Node.tree_exiting] call this method,
 ## otherwise the user could end with many processes in the background and files from queries.
 func kill_current_execution() -> void:
-	_kill_process()
-	_delete_files()
+	kill_process()
+	delete_files()
 	
 	filename = ""
 	pid = 0
 
 
-## Returns if the output [code]number[/code] already exists or not.
-## Even if the file exists, this doesn't mean that MondotShell finished writing the output.
-func output_exists(number: int) -> bool:
-	if filename.is_empty():
-		return false
-	
-	var path = "%s_%s" % [output_path, str(number)]
-	
-	if not FileAccess.file_exists(path):
-		return false
-		
-	var file = FileAccess.open(path, FileAccess.READ)
-	
-	return file.get_length() > 0
+func kill_process() -> void:
+	if pid > 0:
+		OS.kill(pid)
 
 
-## Read the output [code]number[/code]. In case it doesn't exists, returns an empty [String].
-## It's recommended to check if the output exists with [method output_exists].
-func read_output(number: int) -> String:
-	if not output_exists(number):
-		return ""
-	
-	var path = "%s_%s" % [output_path, str(number)]
-	var file = FileAccess.open(path, FileAccess.READ)
-	
-	if file != null:
-		return file.get_as_text()
-	return ""
-
-
-## Request the next output from MondotShell.
-func request_next_output() -> void:
-	# Right now MondotShell do not care about the input it receive.
-	# It's only important that is not an empty string.
-	FileAccess.open(input_path, FileAccess.WRITE).store_string("next")
-
-
-func _delete_files() -> void:
+func delete_files() -> void:
 	if filename.is_empty():
 		return
 	
@@ -107,12 +75,7 @@ func _delete_files() -> void:
 		result_code = dir.remove("%s_%s" % [output_path, counter])
 
 
-func _kill_process() -> void:
-	if pid > 0:
-		OS.kill(pid)
-
-
-func _start_new_execution(code: String, args: PythonArgs) -> void:
+func start_new_execution(code: String, args: PythonArgs) -> void:
 	filename = RandomUtility.rands_ascii(9, 97, 122)
 	
 	# Keep trying to find a filename that is not in use.
@@ -127,3 +90,40 @@ func _start_new_execution(code: String, args: PythonArgs) -> void:
 	var global_exe_path = ProjectSettings.globalize_path(EXE_PATH)
 	
 	pid = OS.create_process(global_exe_path, arguments)
+
+
+## Read the output [code]number[/code]. In case it doesn't exists, returns an empty [String].
+## It's recommended to check if the output exists with [method output_exists].
+func read_output(number: int) -> String:
+	if not output_exists(number):
+		return ""
+	
+	var path = "%s_%s" % [output_path, str(number)]
+	var file = FileAccess.open(path, FileAccess.READ)
+	
+	if file != null:
+		return file.get_as_text()
+	return ""
+
+
+## Returns if the output [code]number[/code] already exists or not.
+## Even if the file exists, this doesn't mean that MondotShell finished writing the output.
+func output_exists(number: int) -> bool:
+	if filename.is_empty():
+		return false
+	
+	var path = "%s_%s" % [output_path, str(number)]
+	
+	if not FileAccess.file_exists(path):
+		return false
+		
+	var file = FileAccess.open(path, FileAccess.READ)
+	
+	return file.get_length() > 0
+
+
+## Request the next output from MondotShell.
+func request_next_output() -> void:
+	# Right now MondotShell do not care about the input it receive.
+	# It's only important that is not an empty string.
+	FileAccess.open(input_path, FileAccess.WRITE).store_string("next")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkhn0pa66qpmp"]
+
+[ext_resource type="Script" path="res://scenes/singletons/connection_list/connection_list.gd" id="1_jrlmo"]
+
+[node name="ConnectionList" type="Node"]
+script = ExtResource("1_jrlmo")

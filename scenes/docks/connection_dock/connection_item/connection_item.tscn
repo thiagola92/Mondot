@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://7arhpg48k78s"]
+
+[ext_resource type="Script" path="res://scenes/docks/connection_dock/connection_item/connection_item.gd" id="1_vg7k6"]
+[ext_resource type="Texture2D" uid="uid://c254ee1bundpv" path="res://icons/lock_locked.svg" id="2_v7lf8"]
+[ext_resource type="Texture2D" uid="uid://cbenjl74ypdcu" path="res://icons/trash_can.svg" id="3_vu633"]
+[ext_resource type="Texture2D" uid="uid://bx7vgffhytqir" path="res://icons/eye_close.svg" id="4_ft1tj"]
+[ext_resource type="Texture2D" uid="uid://cydjwtytjue4q" path="res://icons/action_copy.svg" id="5_spu3v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k88ik"]
+bg_color = Color(0.266667, 0.266667, 0.266667, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("lock", "name_line", "uri_line", "uri_show")]
+offset_right = 311.0
+offset_bottom = 94.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k88ik")
+script = ExtResource("1_vg7k6")
+lock = NodePath("Container/Container/Menu/Lock")
+name_line = NodePath("Container/Container/Info/NameLine")
+uri_line = NodePath("Container/Container/Info/URILine")
+uri_show = NodePath("Container/Container/Info/URIShow")
+
+[node name="Container" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Container" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Menu" type="HBoxContainer" parent="Container/Container"]
+layout_mode = 2
+
+[node name="Lock" type="Button" parent="Container/Container/Menu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+toggle_mode = true
+icon = ExtResource("2_v7lf8")
+flat = true
+
+[node name="Delete" type="Button" parent="Container/Container/Menu"]
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("3_vu633")
+flat = true
+
+[node name="Info" type="GridContainer" parent="Container/Container"]
+layout_mode = 2
+columns = 4
+
+[node name="NameLabel" type="Label" parent="Container/Container/Info"]
+layout_mode = 2
+text = "Name "
+
+[node name="NameLine" type="LineEdit" parent="Container/Container/Info"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "localhost"
+editable = false
+
+[node name="Empty" type="Control" parent="Container/Container/Info"]
+layout_mode = 2
+
+[node name="Empty2" type="Control" parent="Container/Container/Info"]
+layout_mode = 2
+
+[node name="URILabel" type="Label" parent="Container/Container/Info"]
+layout_mode = 2
+text = "URI "
+
+[node name="URILine" type="LineEdit" parent="Container/Container/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "127.0.0.1"
+editable = false
+secret = true
+
+[node name="URIShow" type="Button" parent="Container/Container/Info"]
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("4_ft1tj")
+flat = true
+
+[node name="URICopy" type="Button" parent="Container/Container/Info"]
+layout_mode = 2
+icon = ExtResource("5_spu3v")
+flat = true
+
+[connection signal="toggled" from="Container/Container/Menu/Lock" to="." method="_on_lock_toggled"]
+[connection signal="pressed" from="Container/Container/Menu/Delete" to="." method="_on_delete_pressed"]
+[connection signal="toggled" from="Container/Container/Info/URIShow" to="." method="_on_uri_show_toggled"]

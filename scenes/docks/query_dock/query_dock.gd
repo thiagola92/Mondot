@@ -1,17 +1,20 @@
-extends VSplitContainer
+class_name QueryDock
+extends MarginContainer
 
+const DOCK_NAME: String = "Query"
 
-@onready var python_paginator: PythonPaginator = $PythonPaginator
+@export var python_paginator: PythonPaginator
 
-@onready var query_code: TextEdit = $QueryContainer/QueryCode
+@export var query_code: TextEdit
 
-@onready var result_json: TextEdit = $ResultContainer/ResultJson
+@export var result_json: TextEdit
 
-@onready var result_menu: ResultMenu = $ResultContainer/ResultMenu
+@export var result_menu: ResultMenu
 
 
 func _on_query_menu_play_pressed() -> void:
 	var python_args = PythonArgs.new()
+	Historic.add_query(query_code.text, python_args)
 	python_paginator.run(query_code.text, python_args)
 
 

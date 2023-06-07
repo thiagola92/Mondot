@@ -1,13 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1t30t6revbhy"]
+[gd_scene load_steps=3 format=3 uid="uid://c1t30t6revbhy"]
 
-[ext_resource type="Script" path="res://scenes/docks/history_dock/history_dock.gd" id="1_ler0s"]
+[ext_resource type="Script" path="res://scenes/docks/history_dock/history_dock.gd" id="1_mudgf"]
+[ext_resource type="Texture2D" uid="uid://bmfh0x70eyvle" path="res://icons/trash_can_red.svg" id="2_k6bui"]
 
-[node name="HistoryDock" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HistoryDock" type="MarginContainer" node_paths=PackedStringArray("items_container")]
+offset_right = 1152.0
+offset_bottom = 648.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_ler0s")
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_mudgf")
+items_container = NodePath("Container/Container/ItemsContainer")
+
+[node name="Container" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Container" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HistoryMenu" type="HBoxContainer" parent="Container/Container"]
+layout_mode = 2
+
+[node name="ClearAll" type="Button" parent="Container/Container/HistoryMenu"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Clear all"
+icon = ExtResource("2_k6bui")
+flat = true
+
+[node name="ItemsContainer" type="VBoxContainer" parent="Container/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="Container/Container/HistoryMenu/ClearAll" to="." method="_on_clear_all_pressed"]

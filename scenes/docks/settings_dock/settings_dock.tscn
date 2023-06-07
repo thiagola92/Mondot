@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://gd1qy4irc2y2"]
+
+[ext_resource type="PackedScene" uid="uid://bb4idje1ple1n" path="res://scenes/docks/settings_dock/query_section/query_section.tscn" id="1_di7rv"]
+[ext_resource type="Script" path="res://scenes/docks/settings_dock/settings_dock.gd" id="1_x0jdx"]
+
+[node name="SettingsDock" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_x0jdx")
+
+[node name="Container" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="Sections" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="QuerySection" parent="Container/Sections" instance=ExtResource("1_di7rv")]
+layout_mode = 2

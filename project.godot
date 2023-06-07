@@ -11,10 +11,17 @@ config_version=5
 [application]
 
 config/name="Mondot"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 run/low_processor_mode=true
 run/low_processor_mode_sleep_usec=100000
 config/icon="res://icons/logo_mondot.svg"
+
+[autoload]
+
+Historic="*res://scenes/singletons/query_history/query_history.tscn"
+Connections="*res://scenes/singletons/connection_list/connection_list.tscn"
+Settings="*res://scenes/singletons/settings_info/settings_info.tscn"
 
 [display]
 

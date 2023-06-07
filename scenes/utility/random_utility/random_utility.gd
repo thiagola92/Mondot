@@ -1,5 +1,4 @@
 class_name RandomUtility
-extends Node
 
 
 ## Returns a pseudo-random ASCII string with size `length` where characters are

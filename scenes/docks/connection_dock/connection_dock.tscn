@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjmsnmccuwawq"]
+
+[ext_resource type="Script" path="res://scenes/docks/connection_dock/connection_dock.gd" id="1_1r72v"]
+
+[node name="ConnectionDock" type="MarginContainer" node_paths=PackedStringArray("items_container")]
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_1r72v")
+items_container = NodePath("ItemsContainer")
+
+[node name="ItemsContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1

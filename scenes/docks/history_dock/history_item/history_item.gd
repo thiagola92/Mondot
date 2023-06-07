@@ -1,14 +1,21 @@
+## UI to display and interact with one [QueryInfo].
+class_name HistoryItem
 extends VBoxContainer
 
 
-var query_args: PythonArgs
+@export var query_code: TextEdit
 
-@onready var query_code: TextEdit = $QueryCode
+@export var datetime: Label
 
-@onready var datetime: Label = $QueryDetails/Datetime
+## The [QueryInfo] containing all information that should be displayed in the UI.
+var query_info: QueryInfo
 
 
-func init(code: String, args: PythonArgs) -> void:
-	query_code.text = code
-	query_args = args
-	datetime.text = Time.get_datetime_string_from_system(false, true)
+func _ready():
+	query_code.text = query_info.query_code
+	datetime.text = query_info.datetime
+
+
+func _on_delete_pressed():
+	queue_free()
+	Historic.remove_query(query_info)

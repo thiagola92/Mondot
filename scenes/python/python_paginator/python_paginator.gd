@@ -1,16 +1,23 @@
+## Control the pagination over the [PythonRunner] result.
 class_name PythonPaginator
 extends Node
 
 
 signal page_changed(content: String, number: int)
 
+@export var python_runner: PythonRunner
+
+@export var timer: Timer
+
 var page_count: int = 0
 
 var current_page: int = 0
 
-@onready var python_runner: PythonRunner = $PythonRunner
 
-@onready var timer: Timer = $Timer
+func _ready():
+	Settings.frequency_which_check_results_changed.connect(
+		func(s: float): timer.wait_time = s
+	)
 
 
 ## [b]Note[/b]: A PythonPaginator can be reused to run others codes,
@@ -39,7 +46,7 @@ func request_next_page() -> void:
 		python_runner.request_next_output()
 		timer.start()
 	elif current_page < page_count:
-		_check_next_page()
+		check_next_page()
 
 
 func request_previous_page() -> void:
@@ -51,7 +58,7 @@ func request_previous_page() -> void:
 		page_changed.emit(content, current_page)
 
 
-func _check_next_page() -> void:
+func check_next_page() -> void:
 	if python_runner.output_exists(current_page + 1):
 		timer.stop()
 		
@@ -71,4 +78,4 @@ func _start_new_execution(code: String, args: PythonArgs) -> void:
 
 
 func _on_timer_timeout() -> void:
-	_check_next_page()
+	check_next_page()

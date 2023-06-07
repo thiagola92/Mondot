@@ -6,15 +6,16 @@ signal next_pressed
 
 signal previous_pressed
 
-@onready var loading: TextureRect = $Loading
-
 @export var search_bar: SearchBar
 
-@onready var page: int:
-	set(p):
-		_page.text = str(p)
+@export var loading: TextureRect
 
-@onready var _page: Label = $Page
+@export var page_label: Label
+
+var page: int:
+	set(p):
+		page = p
+		page_label.text = str(p)
 
 
 func _ready():
