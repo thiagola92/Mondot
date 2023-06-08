@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://vyahi61qgmio"]
+
+[ext_resource type="FontFile" uid="uid://c0agfcsy3yveu" path="res://fonts/roboto/Roboto-Black.ttf" id="1_fkys7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ndn1"]
+font = ExtResource("1_fkys7")
+font_color = Color(0.247059, 0.607843, 1, 1)
+
+[node name="InfoAll" type="Label"]
+tooltip_text = "This configuration will be applied to all docks."
+mouse_filter = 1
+text = "[A]"
+label_settings = SubResource("LabelSettings_6ndn1")
+vertical_alignment = 1

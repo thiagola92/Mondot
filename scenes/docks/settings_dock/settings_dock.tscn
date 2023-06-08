@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://gd1qy4irc2y2"]
 
-[ext_resource type="PackedScene" uid="uid://bb4idje1ple1n" path="res://scenes/docks/settings_dock/query_section/query_section.tscn" id="1_di7rv"]
-[ext_resource type="Script" path="res://scenes/docks/settings_dock/settings_dock.gd" id="1_x0jdx"]
+[ext_resource type="Script" path="res://scenes/docks/settings_dock/settings_dock.gd" id="1_yiq5f"]
+[ext_resource type="PackedScene" uid="uid://bb4idje1ple1n" path="res://scenes/docks/settings_dock/query_section/query_section.tscn" id="2_am4lc"]
 
 [node name="SettingsDock" type="MarginContainer"]
 anchors_preset = 15
@@ -13,15 +13,16 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
-script = ExtResource("1_x0jdx")
+script = ExtResource("1_yiq5f")
 
 [node name="Container" type="ScrollContainer" parent="."]
 layout_mode = 2
+horizontal_scroll_mode = 0
 
 [node name="Sections" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="QuerySection" parent="Container/Sections" instance=ExtResource("1_di7rv")]
+[node name="QuerySection" parent="Container/Sections" instance=ExtResource("2_am4lc")]
 layout_mode = 2

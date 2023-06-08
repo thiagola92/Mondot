@@ -10,6 +10,8 @@ signal previous_pressed
 
 @export var loading: TextureRect
 
+@export var eof: Button
+
 @export var page_label: Label
 
 var page: int:
@@ -20,6 +22,7 @@ var page: int:
 
 func _ready():
 	loading.hide()
+	eof.hide()
 
 
 func _on_next_pressed() -> void:

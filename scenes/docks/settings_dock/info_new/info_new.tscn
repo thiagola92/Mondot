@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://eycmme5x4r5l"]
+
+[ext_resource type="FontFile" uid="uid://c0agfcsy3yveu" path="res://fonts/roboto/Roboto-Black.ttf" id="1_qudbx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ndn1"]
+font = ExtResource("1_qudbx")
+font_color = Color(0.976471, 0.560784, 0, 1)
+
+[node name="InfoNew" type="Label"]
+tooltip_text = "This configuration will be applied to new docks only."
+mouse_filter = 1
+text = "[N]"
+label_settings = SubResource("LabelSettings_6ndn1")
+vertical_alignment = 1

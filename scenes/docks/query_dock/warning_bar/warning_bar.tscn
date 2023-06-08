@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq5cffrsftvyd"]
+
+[ext_resource type="Texture2D" uid="uid://bhguugnjy2hxh" path="res://icons/cross_mark_red.svg" id="1_7ahbi"]
+[ext_resource type="Script" path="res://scenes/docks/query_dock/warning_bar/warning_bar.gd" id="1_7oovh"]
+
+[node name="WarningBar" type="HFlowContainer" node_paths=PackedStringArray("message_line")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7oovh")
+message_line = NodePath("MessageLine")
+
+[node name="MessageTexture" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_7ahbi")
+stretch_mode = 3
+
+[node name="MessageLine" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+flat = true

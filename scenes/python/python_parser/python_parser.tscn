@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnsv4bmd8tkjp"]
+
+[ext_resource type="Script" path="res://scenes/python/python_parser/python_parser.gd" id="1_bc46v"]
+
+[node name="PythonParser" type="Node"]
+script = ExtResource("1_bc46v")
