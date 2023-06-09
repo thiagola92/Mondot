@@ -1,6 +1,7 @@
 class_name QueryDock
 extends MarginContainer
 
+
 const DOCK_NAME: String = "Query"
 
 @export var query_menu: QueryMenu
@@ -17,6 +18,8 @@ const DOCK_NAME: String = "Query"
 
 @export var python_parser: PythonParser
 
+@export var save_window: FileDialog
+
 
 func clear_result():
 	result_json.text = ""
@@ -26,6 +29,7 @@ func clear_result():
 
 func _on_query_menu_play_pressed() -> void:
 	var python_args = PythonArgs.new()
+	python_args.uris = [query_menu.uri]
 	python_args.page_size = query_menu.page_size
 	
 	Historic.add_query(query_code.text, python_args)
@@ -34,6 +38,14 @@ func _on_query_menu_play_pressed() -> void:
 
 func _on_query_menu_stop_pressed() -> void:
 	python_paginator.kill_current_execution()
+
+
+func _on_query_menu_save_pressed() -> void:
+	save_window.show()
+
+
+func _on_save_window_file_selected(path: String) -> void:
+	FileAccess.open(path, FileAccess.WRITE).store_string(query_code.text)
 
 
 func _on_result_menu_previous_pressed() -> void:

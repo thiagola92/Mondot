@@ -38,6 +38,14 @@ func _on_delete_pressed():
 	Connections.remove_connection(connection_info)
 
 
+func _on_name_line_text_changed(new_name: String) -> void:
+	connection_info.connection_name = new_name
+
+
+func _on_uri_line_text_changed(new_uri: String) -> void:
+	connection_info.connection_uri = new_uri
+
+
 func _on_uri_show_toggled(button_pressed):
 	if button_pressed:
 		uri_show.icon = EYE_OPEN

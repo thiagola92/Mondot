@@ -13,15 +13,15 @@ signal save_pressed
 
 @export var search_bar: SearchBar
 
-@export var connection_option: OptionButton
+@export var connection_option: ConnectionOption
 
 @export var database_option: OptionButton
 
 @export var page_size_spin: SpinBox
 
-var connection: String = "mongodb://127.0.0.1:27017"
+var uri: String
 
-var database: String = "admin"
+var database: String
 
 var page_size: int = 10
 
@@ -42,16 +42,12 @@ func _on_save_pressed() -> void:
 	save_pressed.emit()
 
 
-func _on_connection_item_selected(index: int) -> void:
-	connection = connection_option.get_item_text(index)
-
-
-func _on_database_item_selected(index: int) -> void:
+func _on_database_option_item_selected(index: int) -> void:
 	database = database_option.get_item_text(index)
 
 
-func _on_page_size_value_changed(value: float) -> void:
-	page_size = value
+func _on_page_size_spin_value_changed(value: float) -> void:
+	page_size = int(value)
 
 
 func _on_search_toggled(button_pressed: bool) -> void:

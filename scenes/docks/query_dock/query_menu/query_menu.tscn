@@ -1,74 +1,60 @@
 [gd_scene load_steps=9 format=3 uid="uid://dk8bevu5ymmta"]
 
-[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/query_menu.gd" id="1_cq67i"]
-[ext_resource type="Texture2D" uid="uid://bh4eaxj8xraat" path="res://icons/play.svg" id="2_4kf7k"]
-[ext_resource type="Texture2D" uid="uid://ccbm3oqwip2oo" path="res://icons/stop.svg" id="3_qe3rj"]
-[ext_resource type="Texture2D" uid="uid://bynfauci3i8l5" path="res://icons/disk.svg" id="4_84t77"]
-[ext_resource type="Texture2D" uid="uid://cyrlja5vrhh1x" path="res://icons/signals.svg" id="5_4af0f"]
-[ext_resource type="Texture2D" uid="uid://bn673ix46oypq" path="res://icons/cylinder.svg" id="6_chgf0"]
-[ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="7_cjtjj"]
-[ext_resource type="Texture2D" uid="uid://c5bj6x8cra0f8" path="res://icons/file.svg" id="7_vsidd"]
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/query_menu.gd" id="1_ylds0"]
+[ext_resource type="Texture2D" uid="uid://bh4eaxj8xraat" path="res://icons/play.svg" id="2_artim"]
+[ext_resource type="Texture2D" uid="uid://ccbm3oqwip2oo" path="res://icons/stop.svg" id="3_8k3qy"]
+[ext_resource type="Texture2D" uid="uid://bynfauci3i8l5" path="res://icons/disk.svg" id="4_sw5q4"]
+[ext_resource type="PackedScene" uid="uid://dfydxqfckn65d" path="res://scenes/docks/query_dock/query_menu/connection_menu/connection_menu.tscn" id="5_a4nkq"]
+[ext_resource type="Texture2D" uid="uid://bn673ix46oypq" path="res://icons/cylinder.svg" id="8_ettas"]
+[ext_resource type="Texture2D" uid="uid://c5bj6x8cra0f8" path="res://icons/file.svg" id="9_wxndo"]
+[ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="10_sdeyn"]
 
 [node name="QueryMenu" type="HFlowContainer" node_paths=PackedStringArray("connection_option", "database_option", "page_size_spin")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 31.0
 grow_horizontal = 2
-script = ExtResource("1_cq67i")
-connection_option = NodePath("Connection")
-database_option = NodePath("Database")
-page_size_spin = NodePath("PageSize")
+script = ExtResource("1_ylds0")
+connection_option = NodePath("")
+database_option = NodePath("DatabaseOption")
+page_size_spin = NodePath("PageSizeSpin")
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("2_4kf7k")
+icon = ExtResource("2_artim")
 flat = true
 
 [node name="Stop" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("3_qe3rj")
+icon = ExtResource("3_8k3qy")
 flat = true
 
 [node name="Save" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("4_84t77")
+icon = ExtResource("4_sw5q4")
 flat = true
 
-[node name="ConnectionTexture" type="TextureRect" parent="."]
+[node name="ConnectionMenu" parent="." instance=ExtResource("5_a4nkq")]
 layout_mode = 2
 size_flags_horizontal = 10
-texture = ExtResource("5_4af0f")
-stretch_mode = 3
-
-[node name="Connection" type="OptionButton" parent="."]
-layout_mode = 2
-size_flags_horizontal = 8
-item_count = 1
-selected = 0
-popup/item_0/text = "mongodb://127.0.0.1:27017"
-popup/item_0/id = 0
 
 [node name="DatabaseTexture" type="TextureRect" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("6_chgf0")
+texture = ExtResource("8_ettas")
 stretch_mode = 3
 
-[node name="Database" type="OptionButton" parent="."]
+[node name="DatabaseOption" type="OptionButton" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
-item_count = 1
-selected = 0
-popup/item_0/text = "admin"
-popup/item_0/id = 0
 
 [node name="PageSizeTexture" type="TextureRect" parent="."]
 layout_mode = 2
 size_flags_horizontal = 10
-texture = ExtResource("7_vsidd")
+texture = ExtResource("9_wxndo")
 stretch_mode = 3
 
-[node name="PageSize" type="SpinBox" parent="."]
+[node name="PageSizeSpin" type="SpinBox" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
 min_value = 1.0
@@ -80,13 +66,12 @@ rounded = true
 layout_mode = 2
 size_flags_horizontal = 8
 toggle_mode = true
-icon = ExtResource("7_cjtjj")
+icon = ExtResource("10_sdeyn")
 flat = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Stop" to="." method="_on_stop_pressed"]
 [connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
-[connection signal="item_selected" from="Connection" to="." method="_on_connection_item_selected"]
-[connection signal="item_selected" from="Database" to="." method="_on_database_item_selected"]
-[connection signal="value_changed" from="PageSize" to="." method="_on_page_size_value_changed"]
+[connection signal="item_selected" from="DatabaseOption" to="." method="_on_database_option_item_selected"]
+[connection signal="value_changed" from="PageSizeSpin" to="." method="_on_page_size_spin_value_changed"]
 [connection signal="toggled" from="Search" to="." method="_on_search_toggled"]
