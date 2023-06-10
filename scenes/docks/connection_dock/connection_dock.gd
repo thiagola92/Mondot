@@ -23,7 +23,6 @@ func add_item(connection_info: ConnectionInfo) -> void:
 	var item: ConnectionItem = Item.instantiate()
 	item.connection_info = connection_info
 	items_container.add_child(item)
-	items_container.move_child(item, 0)
 
 
 func remove_item(connection_info: ConnectionInfo) -> void:
@@ -41,4 +40,10 @@ func clear_items():
 
 func load_items() -> void:
 	Connections.import()
-	ArrayUtility.process_reversed(Connections.connections, add_item)
+	
+	for c in Connections.connections:
+		add_item(c)
+
+
+func _on_add_pressed() -> void:
+	Connections.add_connection("localhost", PythonArgs.DEFAULT_URI)

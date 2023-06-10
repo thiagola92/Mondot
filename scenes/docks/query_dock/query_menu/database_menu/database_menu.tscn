@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://c86ssgo7gpym0"]
 
-[ext_resource type="Texture2D" uid="uid://bn673ix46oypq" path="res://icons/cylinder.svg" id="1_jl4wa"]
-[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/database_menu/database_menu.gd" id="2_ngxhg"]
+[ext_resource type="Texture2D" uid="uid://bn673ix46oypq" path="res://icons/cylinder.svg" id="1_18lu3"]
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/database_menu/database_menu.gd" id="2_77hxa"]
 
 [node name="DatabaseMenu" type="MenuButton"]
-icon = ExtResource("1_jl4wa")
-script = ExtResource("2_ngxhg")
+icon = ExtResource("1_18lu3")
+script = ExtResource("2_77hxa")

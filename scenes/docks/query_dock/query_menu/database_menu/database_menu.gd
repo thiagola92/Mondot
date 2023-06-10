@@ -17,11 +17,6 @@ signal database_checked(uris_dbs: Array[Array])
 func _ready() -> void:
 	menu.hide_on_checkable_item_selection = false
 	
-	connect_to_connections()
-
-
-func connect_to_connections() -> void:
-	Connections.connection_added.connect(add_connection)
 	Connections.connection_removed.connect(remove_connection)
 
 

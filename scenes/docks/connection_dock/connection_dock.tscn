@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjmsnmccuwawq"]
+[gd_scene load_steps=3 format=3 uid="uid://cjmsnmccuwawq"]
 
-[ext_resource type="Script" path="res://scenes/docks/connection_dock/connection_dock.gd" id="1_1r72v"]
+[ext_resource type="Script" path="res://scenes/docks/connection_dock/connection_dock.gd" id="1_dmg4b"]
+[ext_resource type="Texture2D" uid="uid://ci4vyjacywqbw" path="res://icons/plus.svg" id="2_phn0i"]
 
 [node name="ConnectionDock" type="MarginContainer" node_paths=PackedStringArray("items_container")]
 offset_right = 1152.0
@@ -10,10 +11,21 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
-script = ExtResource("1_1r72v")
-items_container = NodePath("ItemsContainer")
+script = ExtResource("1_dmg4b")
+items_container = NodePath("Container/ItemsContainer")
 
-[node name="ItemsContainer" type="HFlowContainer" parent="."]
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 8
+icon = ExtResource("2_phn0i")
+flat = true
+
+[node name="ItemsContainer" type="HFlowContainer" parent="Container"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
+
+[connection signal="pressed" from="Container/Add" to="." method="_on_add_pressed"]

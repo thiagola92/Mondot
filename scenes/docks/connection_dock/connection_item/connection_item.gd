@@ -18,7 +18,11 @@ const EYE_OPEN: Texture = preload("res://icons/eye_open.svg")
 
 const EYE_CLOSE: Texture = preload("res://icons/eye_close.svg")
 
-var connection_info: ConnectionInfo
+var connection_info: ConnectionInfo:
+	set(c):
+		connection_info = c
+		name_line.text = c.connection_name
+		uri_line.text = c.connection_uri
 
 
 func _on_lock_toggled(button_pressed):
