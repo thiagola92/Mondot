@@ -13,15 +13,15 @@ signal save_pressed
 
 @export var search_bar: SearchBar
 
-@export var connection_option: ConnectionOption
+@export var connection_menu: ConnectionMenu
 
-@export var database_option: OptionButton
+@export var database_menu: DatabaseMenu
 
 @export var page_size_spin: SpinBox
 
-var uri: String
+var uris: Array[String] = []
 
-var database: String
+var databases: Array[String] = []
 
 var page_size: int = 10
 
@@ -42,8 +42,27 @@ func _on_save_pressed() -> void:
 	save_pressed.emit()
 
 
-func _on_database_option_item_selected(index: int) -> void:
-	database = database_option.get_item_text(index)
+func _on_connection_menu_connection_checked(connection_info: ConnectionInfo) -> void:
+	database_menu.add_connection(connection_info)
+
+
+func _on_connection_menu_connection_unchecked(connection_info: ConnectionInfo) -> void:
+	database_menu.remove_connection(connection_info)
+
+
+func _on_database_menu_connection_added(uris_dbs: Array[Array]) -> void:
+	uris = uris_dbs[0]
+	databases = uris_dbs[1]
+
+
+func _on_database_menu_connection_removed(uris_dbs: Array[Array]) -> void:
+	uris = uris_dbs[0]
+	databases = uris_dbs[1]
+
+
+func _on_database_menu_database_checked(uris_dbs: Array[Array]) -> void:
+	uris = uris_dbs[0]
+	databases = uris_dbs[1]
 
 
 func _on_page_size_spin_value_changed(value: float) -> void:
@@ -51,7 +70,7 @@ func _on_page_size_spin_value_changed(value: float) -> void:
 
 
 func _on_search_toggled(button_pressed: bool) -> void:
-	if search_bar and button_pressed:
+	if button_pressed:
 		search_bar.show()
-	elif search_bar and not button_pressed:
+	else:
 		search_bar.hide()

@@ -11,15 +11,19 @@ const DB = "--database"
 
 const PAGE_SIZE = "--page-size"
 
-var uris: Array[String] = ["mongodb://127.0.0.1:27017"]
+const DEFAULT_URI = "mongodb://127.0.0.1:27017"
 
-var dbs: Array[String] = ["admin"]
+const DEFAULT_DB = "admin"
+
+var uris: Array[String] = []
+
+var dbs: Array[String] = []
 
 var page_size: int = 20
 
 
 ## Returns an Array respecting the sequence of argument and value.
-## [br]In others words: [code][argument1, value1, argument2, value2, argument3, value3, ...][/code]
+## [br]Example: [code][argument1, value1, argument2, value2, argument3, value3, ...][/code]
 func to_array(code_path: String) -> Array[String]:
 	var global_code_path: String = ProjectSettings.globalize_path(code_path)
 	var args: Array[String] = []
@@ -32,5 +36,7 @@ func to_array(code_path: String) -> Array[String]:
 	
 	for db in dbs:
 		args.append_array([DB, db])
+	
+	print(args)
 	
 	return args

@@ -24,7 +24,7 @@ func _ready():
 ## in this case it will kill previous execution before starting a new one.
 func run(code: String, args: PythonArgs) -> void:
 	kill_current_execution()
-	_start_new_execution(code, args)
+	start_new_execution(code, args)
 
 
 ## Terminate [PythonRunner] execution and reset pagination.
@@ -72,7 +72,7 @@ func check_next_page() -> void:
 		page_changed.emit(content, current_page)
 
 
-func _start_new_execution(code: String, args: PythonArgs) -> void:
+func start_new_execution(code: String, args: PythonArgs) -> void:
 	python_runner.run(code, args)
 	timer.start()
 

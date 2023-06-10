@@ -29,7 +29,8 @@ func clear_result():
 
 func _on_query_menu_play_pressed() -> void:
 	var python_args = PythonArgs.new()
-	python_args.uris = [query_menu.uri]
+	python_args.uris = query_menu.uris
+	python_args.dbs = query_menu.databases
 	python_args.page_size = query_menu.page_size
 	
 	Historic.add_query(query_code.text, python_args)

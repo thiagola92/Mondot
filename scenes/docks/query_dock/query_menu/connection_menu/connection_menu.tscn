@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfydxqfckn65d"]
 
-[ext_resource type="Texture2D" uid="uid://cyrlja5vrhh1x" path="res://icons/signals.svg" id="1_vf285"]
-[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/connection_menu/connection_menu.gd" id="2_lp7kg"]
+[ext_resource type="Texture2D" uid="uid://cyrlja5vrhh1x" path="res://icons/signals.svg" id="1_xo2kb"]
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/connection_menu/connection_menu.gd" id="2_ykkqx"]
 
 [node name="ConnectionMenu" type="MenuButton"]
 anchors_preset = 5
@@ -11,5 +11,5 @@ offset_left = -12.0
 offset_right = 12.0
 offset_bottom = 24.0
 grow_horizontal = 2
-icon = ExtResource("1_vf285")
-script = ExtResource("2_lp7kg")
+icon = ExtResource("1_xo2kb")
+script = ExtResource("2_ykkqx")

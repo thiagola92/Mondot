@@ -3,6 +3,7 @@ extends RefCounted
 
 
 ## Emitted when the connection name change.
+## [br]
 ## [br][b]Note[/b]: This is important to Nodes know when to update the connection name.
 ## Otherwise they would have to check periodically.
 signal connection_name_changed(connection_info: ConnectionInfo)
