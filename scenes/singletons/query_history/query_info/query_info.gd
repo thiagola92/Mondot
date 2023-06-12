@@ -12,15 +12,12 @@ var uris: Array[String] = []
 
 var dbs: Array[String]
 
-var page_size: int
-
 var datetime: String
 
 
 func _init(code: String, args: PythonArgs):
 	query_code = code
 	dbs = args.dbs
-	page_size = args.page_size
 	datetime = Time.get_datetime_string_from_system(false, true)
 	
 	for uri in args.uris:
@@ -31,6 +28,5 @@ func to_dict() -> Dictionary:
 	return {
 		"code": query_code,
 		"uris": uris,
-		"dbs": dbs,
-		"page_size": page_size
+		"dbs": dbs
 	}

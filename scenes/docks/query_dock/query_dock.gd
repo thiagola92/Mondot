@@ -32,6 +32,7 @@ func _on_query_menu_play_pressed() -> void:
 	python_args.uris = query_menu.uris
 	python_args.dbs = query_menu.databases
 	python_args.page_size = query_menu.page_size
+	python_args.timer = Settings.frequency_which_check_inputs
 	
 	Historic.add_query(query_code.text, python_args)
 	python_paginator.run(query_code.text, python_args)
@@ -63,9 +64,9 @@ func _on_python_paginator_page_changed(content: String, number: int) -> void:
 	result_menu.page = number
 
 
-func _on_python_parser_parsing_finished() -> void:
+func _on_python_parser_parsing_finished(content: Variant) -> void:
 	clear_result()
-	result_json.text = str(python_parser.result)
+	result_json.text = str(content)
 
 
 func _on_python_parser_python_code_ended() -> void:

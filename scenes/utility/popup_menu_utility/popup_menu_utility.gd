@@ -11,6 +11,7 @@ static func get_metadata_index(metadata, menu: PopupMenu) -> int:
 	return -1
 
 
+## Return the text from all items in the [PopupMenu] that are checked.
 static func get_checked_texts(menu: PopupMenu) -> Array[String]:
 	var texts: Array[String] = []
 	
@@ -22,5 +23,6 @@ static func get_checked_texts(menu: PopupMenu) -> Array[String]:
 
 
 ## Get the submenu for the respective index.
+## [br]Return null in case no submenu is found.
 static func get_submenu(index: int, menu: PopupMenu) -> PopupMenu:
 	return menu.get_node(menu.get_item_submenu(index))

@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://dohk8a3wo664y"]
 
-[ext_resource type="Script" path="res://scenes/python/python_paginator/python_paginator.gd" id="1_dnlnr"]
-[ext_resource type="PackedScene" uid="uid://drb0kmiil6t8h" path="res://scenes/python/python_runner/python_runner.tscn" id="2_hhjv4"]
+[ext_resource type="Script" path="res://scenes/python/python_paginator/python_paginator.gd" id="1_420k7"]
+[ext_resource type="PackedScene" uid="uid://drb0kmiil6t8h" path="res://scenes/python/python_runner/python_runner.tscn" id="2_mbtf4"]
 
 [node name="PythonPaginator" type="Node" node_paths=PackedStringArray("python_runner", "timer")]
-script = ExtResource("1_dnlnr")
+script = ExtResource("1_420k7")
 python_runner = NodePath("PythonRunner")
 timer = NodePath("Timer")
 
-[node name="PythonRunner" parent="." instance=ExtResource("2_hhjv4")]
+[node name="PythonRunner" parent="." instance=ExtResource("2_mbtf4")]
 
 [node name="Timer" type="Timer" parent="."]
 

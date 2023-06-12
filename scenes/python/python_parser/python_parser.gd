@@ -12,7 +12,7 @@ signal parsing_structure_failed(type: int)
 signal python_code_failed(code: int, message: String)
 
 ## Emitted when finish parsing without any problems.
-signal parsing_finished
+signal parsing_finished(content: Variant)
 
 ## Emitted when parsing the last page from Python code.
 ## [br]Useful to show the user that there is no more pages after this.
@@ -28,6 +28,14 @@ var error_msg: String = ""
 var result: Variant = ""
 
 var number: int = 1
+
+
+func parse_now(content: String) -> Variant:
+	parse(content)
+	
+	if error_code in [OK, ERR_FILE_EOF]:
+		return result
+	return null
 
 
 func parse(content: String) -> void:
@@ -55,7 +63,7 @@ func analyse() -> void:
 		python_code_failed.emit(error_code, error_msg)
 		return
 	
-	parsing_finished.emit()
+	parsing_finished.emit(result)
 	
 	## EOF is not an Error, just means that there is no more pages after this.
 	if error_code == ERR_FILE_EOF:

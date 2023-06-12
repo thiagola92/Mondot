@@ -1,36 +1,36 @@
 [gd_scene load_steps=15 format=3 uid="uid://cifpxm8kw4cbu"]
 
-[ext_resource type="Script" path="res://scenes/docks/query_dock/result_menu/result_menu.gd" id="1_3j0xq"]
-[ext_resource type="Texture2D" uid="uid://6g2q8n6ent21" path="res://icons/arrow_left.svg" id="2_igsd7"]
-[ext_resource type="Texture2D" uid="uid://uci76ke48xhc" path="res://icons/arrow_right.svg" id="3_x8fpn"]
-[ext_resource type="Texture2D" uid="uid://dqbj5oro8w4kk" path="res://icons/progress_1.svg" id="4_xatng"]
-[ext_resource type="Texture2D" uid="uid://cejx54xlep5du" path="res://icons/progress_2.svg" id="5_qlvh2"]
-[ext_resource type="Texture2D" uid="uid://cunnumvipgaey" path="res://icons/progress_3.svg" id="6_u8ilu"]
-[ext_resource type="Texture2D" uid="uid://wvlq05kjfwvw" path="res://icons/progress_4.svg" id="7_u1sk3"]
-[ext_resource type="Texture2D" uid="uid://d1rrw2h3pf6dn" path="res://icons/progress_5.svg" id="8_y5oft"]
-[ext_resource type="Texture2D" uid="uid://js4lpo60l5of" path="res://icons/progress_6.svg" id="9_wgng5"]
-[ext_resource type="Texture2D" uid="uid://c7fnaqdg1l5qi" path="res://icons/progress_7.svg" id="10_mgwoi"]
-[ext_resource type="Texture2D" uid="uid://c78yb30g6771q" path="res://icons/progress_8.svg" id="11_nkghf"]
-[ext_resource type="Texture2D" uid="uid://dwqenbfoo8pgj" path="res://icons/warning.svg" id="12_wtf47"]
-[ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="13_islqp"]
+[ext_resource type="Script" path="res://scenes/docks/query_dock/result_menu/result_menu.gd" id="1_2quaq"]
+[ext_resource type="Texture2D" uid="uid://6g2q8n6ent21" path="res://icons/arrow_left.svg" id="2_ahkhd"]
+[ext_resource type="Texture2D" uid="uid://uci76ke48xhc" path="res://icons/arrow_right.svg" id="3_dg6i0"]
+[ext_resource type="Texture2D" uid="uid://dwqenbfoo8pgj" path="res://icons/warning.svg" id="4_ck8ua"]
+[ext_resource type="Texture2D" uid="uid://dqbj5oro8w4kk" path="res://icons/progress_1.svg" id="5_v67du"]
+[ext_resource type="Texture2D" uid="uid://cejx54xlep5du" path="res://icons/progress_2.svg" id="6_0p5u4"]
+[ext_resource type="Texture2D" uid="uid://cunnumvipgaey" path="res://icons/progress_3.svg" id="7_dqvw0"]
+[ext_resource type="Texture2D" uid="uid://wvlq05kjfwvw" path="res://icons/progress_4.svg" id="8_rl8us"]
+[ext_resource type="Texture2D" uid="uid://d1rrw2h3pf6dn" path="res://icons/progress_5.svg" id="9_8jdxx"]
+[ext_resource type="Texture2D" uid="uid://js4lpo60l5of" path="res://icons/progress_6.svg" id="10_jk4p0"]
+[ext_resource type="Texture2D" uid="uid://c7fnaqdg1l5qi" path="res://icons/progress_7.svg" id="11_6bmbs"]
+[ext_resource type="Texture2D" uid="uid://c78yb30g6771q" path="res://icons/progress_8.svg" id="12_xipfl"]
+[ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="13_7wxmr"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_imq4c"]
 frames = 8
 speed_scale = 12.0
-frame_0/texture = ExtResource("4_xatng")
-frame_1/texture = ExtResource("5_qlvh2")
+frame_0/texture = ExtResource("5_v67du")
+frame_1/texture = ExtResource("6_0p5u4")
 frame_1/duration = 1.0
-frame_2/texture = ExtResource("6_u8ilu")
+frame_2/texture = ExtResource("7_dqvw0")
 frame_2/duration = 1.0
-frame_3/texture = ExtResource("7_u1sk3")
+frame_3/texture = ExtResource("8_rl8us")
 frame_3/duration = 1.0
-frame_4/texture = ExtResource("8_y5oft")
+frame_4/texture = ExtResource("9_8jdxx")
 frame_4/duration = 1.0
-frame_5/texture = ExtResource("9_wgng5")
+frame_5/texture = ExtResource("10_jk4p0")
 frame_5/duration = 1.0
-frame_6/texture = ExtResource("10_mgwoi")
+frame_6/texture = ExtResource("11_6bmbs")
 frame_6/duration = 1.0
-frame_7/texture = ExtResource("11_nkghf")
+frame_7/texture = ExtResource("12_xipfl")
 frame_7/duration = 1.0
 
 [node name="ResultMenu" type="HFlowContainer" node_paths=PackedStringArray("loading", "eof", "page_label")]
@@ -38,14 +38,14 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 26.0
 grow_horizontal = 2
-script = ExtResource("1_3j0xq")
+script = ExtResource("1_2quaq")
 loading = NodePath("Loading")
 eof = NodePath("EOF")
 page_label = NodePath("Page")
 
 [node name="Previous" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("2_igsd7")
+icon = ExtResource("2_ahkhd")
 flat = true
 
 [node name="Page" type="Label" parent="."]
@@ -55,7 +55,7 @@ vertical_alignment = 1
 
 [node name="Next" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("3_x8fpn")
+icon = ExtResource("3_dg6i0")
 flat = true
 
 [node name="Empty" type="Control" parent="."]
@@ -68,7 +68,7 @@ size_flags_horizontal = 8
 mouse_filter = 2
 disabled = true
 text = "Last page"
-icon = ExtResource("12_wtf47")
+icon = ExtResource("4_ck8ua")
 flat = true
 
 [node name="Loading" type="TextureRect" parent="."]
@@ -80,7 +80,7 @@ expand_mode = 3
 [node name="Search" type="Button" parent="."]
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("13_islqp")
+icon = ExtResource("13_7wxmr")
 flat = true
 
 [connection signal="pressed" from="Previous" to="." method="_on_previous_pressed"]

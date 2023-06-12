@@ -1,4 +1,5 @@
 class_name ArrayUtility
+extends Node
 
 
 ## Loop through an Array in reverse order and pass each item to the callback.

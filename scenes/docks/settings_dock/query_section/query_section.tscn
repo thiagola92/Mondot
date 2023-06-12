@@ -1,19 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://bb4idje1ple1n"]
 
-[ext_resource type="Script" path="res://scenes/docks/settings_dock/query_section/query_section.gd" id="1_m0y61"]
-[ext_resource type="PackedScene" uid="uid://eycmme5x4r5l" path="res://scenes/docks/settings_dock/info_new/info_new.tscn" id="2_1o2gj"]
-[ext_resource type="PackedScene" uid="uid://vyahi61qgmio" path="res://scenes/docks/settings_dock/info_all/info_all.tscn" id="4_j40hf"]
+[ext_resource type="Script" path="res://scenes/docks/settings_dock/query_section/query_section.gd" id="1_0654s"]
+[ext_resource type="PackedScene" uid="uid://eycmme5x4r5l" path="res://scenes/docks/settings_dock/info_new/info_new.tscn" id="2_ffv07"]
+[ext_resource type="PackedScene" uid="uid://vyahi61qgmio" path="res://scenes/docks/settings_dock/info_all/info_all.tscn" id="3_1rdq2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ikbi1"]
 font_size = 32
 
-[node name="QuerySection" type="VBoxContainer"]
+[node name="QuerySection" type="VBoxContainer" node_paths=PackedStringArray("page_size", "frequency_output", "frequency_input")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_m0y61")
+script = ExtResource("1_0654s")
+page_size = NodePath("PageSize/PageSize")
+frequency_output = NodePath("FrequencyOutput/FrequencyOutput")
+frequency_input = NodePath("FrequencyInput/FrequencyInput")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -24,7 +27,7 @@ vertical_alignment = 1
 [node name="PageSize" type="HFlowContainer" parent="."]
 layout_mode = 2
 
-[node name="InfoNew" parent="PageSize" instance=ExtResource("2_1o2gj")]
+[node name="InfoNew" parent="PageSize" instance=ExtResource("2_ffv07")]
 layout_mode = 2
 
 [node name="PageSizeLabel" type="Label" parent="PageSize"]
@@ -39,21 +42,37 @@ max_value = 1000.0
 value = 10.0
 rounded = true
 
-[node name="Frequency" type="HFlowContainer" parent="."]
+[node name="FrequencyOutput" type="HFlowContainer" parent="."]
 layout_mode = 2
 
-[node name="InfoAll" parent="Frequency" instance=ExtResource("4_j40hf")]
+[node name="InfoAll" parent="FrequencyOutput" instance=ExtResource("3_1rdq2")]
 layout_mode = 2
 
-[node name="FrequencyLabel" type="Label" parent="Frequency"]
+[node name="FrequencyOutputLabel" type="Label" parent="FrequencyOutput"]
 layout_mode = 2
-text = "Frequency which check results (in seconds)"
+text = "Frequency which check output from shell (in seconds)"
 vertical_alignment = 1
 
-[node name="FrequencySpin" type="SpinBox" parent="Frequency"]
+[node name="FrequencyOutput" type="SpinBox" parent="FrequencyOutput"]
 layout_mode = 2
 step = 0.001
-value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="FrequencyInput" type="HFlowContainer" parent="."]
+layout_mode = 2
+
+[node name="InfoAll" parent="FrequencyInput" instance=ExtResource("3_1rdq2")]
+layout_mode = 2
+
+[node name="FrequencyInputLabel" type="Label" parent="FrequencyInput"]
+layout_mode = 2
+text = "Frequency which the shell check for input (in seconds)"
+vertical_alignment = 1
+
+[node name="FrequencyInput" type="SpinBox" parent="FrequencyInput"]
+layout_mode = 2
+step = 0.001
 allow_greater = true
 allow_lesser = true
 
@@ -61,4 +80,5 @@ allow_lesser = true
 layout_mode = 2
 
 [connection signal="value_changed" from="PageSize/PageSize" to="." method="_on_page_size_value_changed"]
-[connection signal="value_changed" from="Frequency/FrequencySpin" to="." method="_on_frequency_line_value_changed"]
+[connection signal="value_changed" from="FrequencyOutput/FrequencyOutput" to="." method="_on_frequency_output_value_changed"]
+[connection signal="value_changed" from="FrequencyInput/FrequencyInput" to="." method="_on_frequency_input_value_changed"]

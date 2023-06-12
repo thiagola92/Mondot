@@ -12,34 +12,37 @@ const INPUT_SUFFIX: String = "in"
 
 const OUTPUT_SUFFIX: String = "out"
 
+## Filename is made of random characters that change every execution.
 var filename: String
 
+## Process identifier responsible for running current shell.
 var pid: int
 
-## Path to file containing the code processed by MondotShell.
+## Path to file containing the code to be processed.
 var code_path: String:
 	get:
 		return "%s/%s" % [DIR_TMP, filename]
 
-## Path to file where MondotShell expect inputs.
+## Path to file where shell expect inputs.
 var input_path: String:
 	get:
 		return "%s_%s" % [code_path, INPUT_SUFFIX]
 
-## Path to file containing the result of MondotShell.
+## Path to file containing the result from shell.
 var output_path: String:
 	get:
 		return "%s_%s" % [code_path, OUTPUT_SUFFIX]
 
 
-## [b]Note[/b]: A PythonRunner can be reused to run others codes,
+## [b]Note[/b]: Can be reused to run others codes,
 ## in this case it will kill previous execution before starting a new one.
 func run(code: String, args: PythonArgs) -> void:
 	kill_current_execution()
 	start_new_execution(code, args)
 
 
-## Terminate MondotShell process and delete it files.
+## Terminate current shell process and delete it files.
+## [br]
 ## [br][b]Note[/b]: It's very important that the signal [signal Node.tree_exiting] call this method,
 ## otherwise the user could end with many processes in the background and files from queries.
 func kill_current_execution() -> void:
@@ -50,11 +53,13 @@ func kill_current_execution() -> void:
 	pid = 0
 
 
+## Kill the current shell process exeucting the code.
 func kill_process() -> void:
 	if pid > 0:
 		OS.kill(pid)
 
 
+## Delete all files related to the current shell execution.
 func delete_files() -> void:
 	if filename.is_empty():
 		return
@@ -75,6 +80,11 @@ func delete_files() -> void:
 		result_code = dir.remove("%s_%s" % [output_path, counter])
 
 
+## Start a shell process for a specific code.
+## [br]It will keep trying generate a random [member filename] that doesn't exist.
+## [br]
+## [br][b]Note[/b]: It could lock you in loop forever if you have more than
+## 3.814697266×10¹² docks 💩.
 func start_new_execution(code: String, args: PythonArgs) -> void:
 	filename = RandomUtility.rands_ascii(9, 97, 122)
 	
@@ -90,10 +100,13 @@ func start_new_execution(code: String, args: PythonArgs) -> void:
 	var global_exe_path = ProjectSettings.globalize_path(EXE_PATH)
 	
 	pid = OS.create_process(global_exe_path, arguments)
+	print(arguments)
 
 
 ## Read the output [code]number[/code]. In case it doesn't exists, returns an empty [String].
 ## It's recommended to check if the output exists with [method output_exists].
+## [br]
+## [br][b]Note[/b]:
 func read_output(number: int) -> String:
 	if not output_exists(number):
 		return ""
