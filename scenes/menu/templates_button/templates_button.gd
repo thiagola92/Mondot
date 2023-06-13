@@ -18,6 +18,8 @@ signal update_many_selected
 
 signal replace_one_selected
 
+signal create_index_selected
+
 @onready var menu: PopupMenu = get_popup()
 
 
@@ -43,3 +45,5 @@ func _on_menu_index_pressed(index: int) -> void:
 			update_many_selected.emit()
 		8:
 			replace_one_selected.emit()
+		9:
+			create_index_selected.emit()

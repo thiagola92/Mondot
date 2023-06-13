@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwoohapg1hx7m"
-path="res://.godot/imported/list_cylinder.svg-428c6342a8de718fd157fe5f2f683508.ctex"
+uid="uid://cpojdjk5rge4u"
+path="res://.godot/imported/cylinder_list.svg-9f516aa3dfac95908344654d07e5b3f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/32/list_cylinder.svg"
-dest_files=["res://.godot/imported/list_cylinder.svg-428c6342a8de718fd157fe5f2f683508.ctex"]
+source_file="res://icons/32/cylinder_list.svg"
+dest_files=["res://.godot/imported/cylinder_list.svg-9f516aa3dfac95908344654d07e5b3f7.ctex"]
 
 [params]
 

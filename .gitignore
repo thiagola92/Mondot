@@ -1,4 +1,5 @@
 # Mondot
+bin/
 tmp/
 
 # Godot 4+ specific ignores

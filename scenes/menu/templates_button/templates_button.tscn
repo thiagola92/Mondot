@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://2d7olatiejmc"]
 
-[ext_resource type="Texture2D" uid="uid://bwoohapg1hx7m" path="res://icons/32/list_cylinder.svg" id="1_fj326"]
-[ext_resource type="Script" path="res://scenes/menu/templates_button/templates_button.gd" id="2_663k5"]
+[ext_resource type="Texture2D" uid="uid://cpojdjk5rge4u" path="res://icons/32/cylinder_list.svg" id="1_qvutq"]
+[ext_resource type="Script" path="res://scenes/menu/templates_button/templates_button.gd" id="2_k7ct1"]
 
 [node name="TemplatesButton" type="MenuButton"]
-icon = ExtResource("1_fj326")
+icon = ExtResource("1_qvutq")
 item_count = 10
 popup/item_0/text = "single collection"
 popup/item_0/id = 0
@@ -27,4 +27,4 @@ popup/item_8/text = "replace one"
 popup/item_8/id = 8
 popup/item_9/text = "create index"
 popup/item_9/id = 9
-script = ExtResource("2_663k5")
+script = ExtResource("2_k7ct1")
