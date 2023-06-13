@@ -11,7 +11,7 @@ signal execution_finished(content: String)
 
 
 func _ready():
-	Settings.frequency_which_check_results_changed.connect(
+	Settings.frequency_which_check_outputs_changed.connect(
 		func(s: float): timer.wait_time = s
 	)
 
@@ -30,9 +30,9 @@ func kill_current_execution() -> void:
 
 
 func check_page() -> void:
-	if python_runner.output_exists(1):
+	if python_runner.output_exists(0):
 		timer.stop()
-		execution_finished.emit(python_runner.read_output(1))
+		execution_finished.emit(python_runner.read_output(0))
 		kill_current_execution()
 
 

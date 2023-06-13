@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://dd1qta6gxlsnl"]
 
-[ext_resource type="PackedScene" uid="uid://drb0kmiil6t8h" path="res://scenes/python/python_runner/python_runner.tscn" id="1_vwet6"]
-[ext_resource type="Script" path="res://scenes/python/python_onetime/python_onetime.gd" id="1_x1avy"]
+[ext_resource type="Script" path="res://scenes/python/python_onetime/python_onetime.gd" id="1_2rct8"]
+[ext_resource type="PackedScene" uid="uid://drb0kmiil6t8h" path="res://scenes/python/python_runner/python_runner.tscn" id="2_rma5h"]
 
 [node name="PythonOnetime" type="Node" node_paths=PackedStringArray("python_runner", "timer")]
-script = ExtResource("1_x1avy")
+script = ExtResource("1_2rct8")
 python_runner = NodePath("PythonRunner")
 timer = NodePath("Timer")
 
-[node name="PythonRunner" parent="." instance=ExtResource("1_vwet6")]
+[node name="PythonRunner" parent="." instance=ExtResource("2_rma5h")]
 
 [node name="Timer" type="Timer" parent="."]
 

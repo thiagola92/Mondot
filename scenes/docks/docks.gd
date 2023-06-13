@@ -33,19 +33,19 @@ func replicate_tabs() -> void:
 		docks_tab.add_tab(dock.DOCK_NAME)
 
 
-func open(dock: Options) -> void:
+func open(dock: Options) -> Node:
 	match dock:
 		Options.QUERY_DOCK:
-			new_dock(QueryScene)
+			return new_dock(QueryScene)
 		Options.HISTORY_DOCK:
-			focus_dock(HistoryDock, HistoryScene)
+			return focus_dock(HistoryDock, HistoryScene)
 		Options.CONNECTION_DOCK:
-			focus_dock(ConnectionDock, ConnectionScene)
+			return focus_dock(ConnectionDock, ConnectionScene)
 		Options.SETTINGS_DOCK:
-			focus_dock(SettingsDock, SettingsScene)
+			return focus_dock(SettingsDock, SettingsScene)
+	return null
 
-
-func new_dock(scene: PackedScene) -> void:
+func new_dock(scene: PackedScene) -> Node:
 	var dock = scene.instantiate()
 	var index = docks_container.get_child_count()
 	
@@ -53,18 +53,20 @@ func new_dock(scene: PackedScene) -> void:
 	docks_container.current_tab = index
 	docks_tab.add_tab(dock.DOCK_NAME)
 	docks_tab.current_tab = index
+	
+	return dock
 
 
-func focus_dock(script: Script, scene: PackedScene) -> void:
+func focus_dock(script: Script, scene: PackedScene) -> Node:
 	var docks: Array[Node] = docks_container.get_children()
 
 	for i in range(docks.size()):
 		if docks[i].get_script() == script:
 			docks_container.current_tab = i
 			docks_tab.current_tab = i
-			return
+			return docks[i]
 	
-	new_dock(scene)
+	return new_dock(scene)
 
 
 func _on_docks_tab_tab_changed(tab):

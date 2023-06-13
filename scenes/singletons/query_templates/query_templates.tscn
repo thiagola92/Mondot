@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8lwlf1qv0mvd"]
+
+[ext_resource type="Script" path="res://scenes/singletons/query_templates/query_templates.gd" id="1_bgsld"]
+
+[node name="QueryTemplates" type="Node"]
+script = ExtResource("1_bgsld")

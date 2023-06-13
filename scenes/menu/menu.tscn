@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://8weojs1h2tg0"]
+[gd_scene load_steps=7 format=3 uid="uid://8weojs1h2tg0"]
 
-[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_2pcqj"]
-[ext_resource type="Texture2D" uid="uid://cgxfc0lc7sha4" path="res://icons/32/magnifying_glass_add.svg" id="2_thhh0"]
-[ext_resource type="Texture2D" uid="uid://x8bp55ney4og" path="res://icons/32/signals.svg" id="3_ha0oi"]
-[ext_resource type="Texture2D" uid="uid://blpt6towqdpo0" path="res://icons/32/hourglass.svg" id="3_x5rx6"]
-[ext_resource type="Texture2D" uid="uid://wk07evl2nelx" path="res://icons/32/gear.svg" id="4_x2e4f"]
+[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_4ovtr"]
+[ext_resource type="Texture2D" uid="uid://cgxfc0lc7sha4" path="res://icons/32/magnifying_glass_add.svg" id="2_gagnw"]
+[ext_resource type="PackedScene" uid="uid://2d7olatiejmc" path="res://scenes/menu/templates_button/templates_button.tscn" id="3_nko0p"]
+[ext_resource type="Texture2D" uid="uid://x8bp55ney4og" path="res://icons/32/signals.svg" id="4_xnh7u"]
+[ext_resource type="Texture2D" uid="uid://blpt6towqdpo0" path="res://icons/32/hourglass.svg" id="5_fxdn1"]
+[ext_resource type="Texture2D" uid="uid://wk07evl2nelx" path="res://icons/32/gear.svg" id="6_pvd0k"]
 
 [node name="Menu" type="VBoxContainer"]
 anchors_preset = 9
@@ -12,32 +13,43 @@ anchor_bottom = 1.0
 offset_right = 24.0
 grow_vertical = 2
 size_flags_vertical = 3
-script = ExtResource("1_2pcqj")
+script = ExtResource("1_4ovtr")
 
 [node name="Query" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 0
-icon = ExtResource("2_thhh0")
+icon = ExtResource("2_gagnw")
 flat = true
+
+[node name="Templates" parent="." instance=ExtResource("3_nko0p")]
+layout_mode = 2
 
 [node name="Connections" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 10
-icon = ExtResource("3_ha0oi")
+icon = ExtResource("4_xnh7u")
 flat = true
 
 [node name="History" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 8
-icon = ExtResource("3_x5rx6")
+icon = ExtResource("5_fxdn1")
 flat = true
 
 [node name="Settings" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("4_x2e4f")
+icon = ExtResource("6_pvd0k")
 flat = true
 
 [connection signal="pressed" from="Query" to="." method="_on_query_pressed"]
+[connection signal="count_documents_selected" from="Templates" to="." method="_on_templates_count_documents_selected"]
+[connection signal="find_many_selected" from="Templates" to="." method="_on_templates_find_many_selected"]
+[connection signal="find_one_selected" from="Templates" to="." method="_on_templates_find_one_selected"]
+[connection signal="insert_many_selected" from="Templates" to="." method="_on_templates_insert_many_selected"]
+[connection signal="insert_one_selected" from="Templates" to="." method="_on_templates_insert_one_selected"]
+[connection signal="replace_one_selected" from="Templates" to="." method="_on_templates_replace_one_selected"]
+[connection signal="update_many_selected" from="Templates" to="." method="_on_templates_update_many_selected"]
+[connection signal="update_one_selected" from="Templates" to="." method="_on_templates_update_one_selected"]
 [connection signal="pressed" from="Connections" to="." method="_on_connections_pressed"]
 [connection signal="pressed" from="History" to="." method="_on_history_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
