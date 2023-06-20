@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://8weojs1h2tg0"]
+[gd_scene load_steps=8 format=3 uid="uid://8weojs1h2tg0"]
 
-[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_v2nk2"]
-[ext_resource type="Texture2D" uid="uid://cgxfc0lc7sha4" path="res://icons/32/magnifying_glass_add.svg" id="2_5765c"]
-[ext_resource type="PackedScene" uid="uid://2d7olatiejmc" path="res://scenes/menu/templates_button/templates_button.tscn" id="3_00u4l"]
-[ext_resource type="Texture2D" uid="uid://x8bp55ney4og" path="res://icons/32/signals.svg" id="4_a1ec6"]
-[ext_resource type="Texture2D" uid="uid://blpt6towqdpo0" path="res://icons/32/hourglass.svg" id="5_uh4m6"]
-[ext_resource type="Texture2D" uid="uid://wk07evl2nelx" path="res://icons/32/gear.svg" id="6_y4udm"]
+[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_u4qrf"]
+[ext_resource type="Texture2D" uid="uid://cgxfc0lc7sha4" path="res://icons/32/magnifying_glass_add.svg" id="2_ashcr"]
+[ext_resource type="PackedScene" uid="uid://2d7olatiejmc" path="res://scenes/menu/templates_button/templates_button.tscn" id="3_m4bkc"]
+[ext_resource type="PackedScene" uid="uid://cyghu615p7e6s" path="res://scenes/menu/more_templates_button/more_templates_button.tscn" id="4_11o82"]
+[ext_resource type="Texture2D" uid="uid://x8bp55ney4og" path="res://icons/32/signals.svg" id="5_x2v5h"]
+[ext_resource type="Texture2D" uid="uid://blpt6towqdpo0" path="res://icons/32/hourglass.svg" id="6_mgxma"]
+[ext_resource type="Texture2D" uid="uid://wk07evl2nelx" path="res://icons/32/gear.svg" id="7_uqyq8"]
 
 [node name="Menu" type="VBoxContainer"]
 anchors_preset = 9
@@ -13,36 +14,40 @@ anchor_bottom = 1.0
 offset_right = 24.0
 grow_vertical = 2
 size_flags_vertical = 3
-script = ExtResource("1_v2nk2")
+script = ExtResource("1_u4qrf")
 
 [node name="Query" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 0
-icon = ExtResource("2_5765c")
+icon = ExtResource("2_ashcr")
 flat = true
 
-[node name="Templates" parent="." instance=ExtResource("3_00u4l")]
+[node name="Templates" parent="." instance=ExtResource("3_m4bkc")]
+layout_mode = 2
+
+[node name="MoreTemplates" parent="." instance=ExtResource("4_11o82")]
 layout_mode = 2
 
 [node name="Connections" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 10
-icon = ExtResource("4_a1ec6")
+icon = ExtResource("5_x2v5h")
 flat = true
 
 [node name="History" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 8
-icon = ExtResource("5_uh4m6")
+icon = ExtResource("6_mgxma")
 flat = true
 
 [node name="Settings" type="Button" parent="."]
 layout_mode = 2
-icon = ExtResource("6_y4udm")
+icon = ExtResource("7_uqyq8")
 flat = true
 
 [connection signal="pressed" from="Query" to="." method="_on_query_pressed"]
 [connection signal="count_documents_selected" from="Templates" to="." method="_on_templates_count_documents_selected"]
+[connection signal="create_index_selected" from="Templates" to="." method="_on_templates_create_index_selected"]
 [connection signal="find_many_selected" from="Templates" to="." method="_on_templates_find_many_selected"]
 [connection signal="find_one_selected" from="Templates" to="." method="_on_templates_find_one_selected"]
 [connection signal="insert_many_selected" from="Templates" to="." method="_on_templates_insert_many_selected"]
@@ -50,6 +55,8 @@ flat = true
 [connection signal="replace_one_selected" from="Templates" to="." method="_on_templates_replace_one_selected"]
 [connection signal="update_many_selected" from="Templates" to="." method="_on_templates_update_many_selected"]
 [connection signal="update_one_selected" from="Templates" to="." method="_on_templates_update_one_selected"]
+[connection signal="copy_batch_to_selected" from="MoreTemplates" to="." method="_on_more_templates_copy_batch_to_selected"]
+[connection signal="copy_to_selected" from="MoreTemplates" to="." method="_on_more_templates_copy_to_selected"]
 [connection signal="pressed" from="Connections" to="." method="_on_connections_pressed"]
 [connection signal="pressed" from="History" to="." method="_on_history_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]

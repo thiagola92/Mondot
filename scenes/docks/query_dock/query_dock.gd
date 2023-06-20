@@ -27,6 +27,10 @@ func clear_result():
 	result_warning.hide_message()
 
 
+func set_code(code: String) -> void:
+	query_code.text = code.replace("	", "    ")
+
+
 func _on_query_menu_play_pressed() -> void:
 	var python_args = PythonArgs.new()
 	python_args.uris = query_menu.uris
