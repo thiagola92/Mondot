@@ -6,7 +6,8 @@ const COUNT_DOCUMENTS = """collection = self.db["COLLECTION"]
 collection.count_documents({})
 """
 
-const FIND_ONE = """collection = self.db["COLLECTION"]
+const FIND_ONE = """
+collection = self.db["COLLECTION"]
 
 collection.find_one(
 	{"FIELD": 1}

@@ -45,6 +45,7 @@ func open(dock: Options) -> Node:
 			return focus_dock(SettingsDock, SettingsScene)
 	return null
 
+
 func new_dock(scene: PackedScene) -> Node:
 	var dock = scene.instantiate()
 	var index = docks_container.get_child_count()
