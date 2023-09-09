@@ -3,10 +3,11 @@
 class_name PythonRunner
 extends Node
 
+## Reference: [url]https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html[/url][br]
+const DIR_TMP: String = "user://tmp"
 
-const DIR_TMP: String = "res://tmp"
-
-const EXE_PATH: String = "res://bin/run"
+## Reference: [url]https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html[/url][br]
+const EXE_PATH: String = "res://shell"
 
 const INPUT_SUFFIX: String = "in"
 
@@ -32,6 +33,10 @@ var input_path: String:
 var output_path: String:
 	get:
 		return "%s_%s" % [code_path, OUTPUT_SUFFIX]
+
+
+func _ready() -> void:
+	DirAccess.make_dir_absolute(DIR_TMP)
 
 
 ## [b]Note[/b]: Can be reused to run others codes,
@@ -100,7 +105,6 @@ func start_new_execution(code: String, args: PythonArgs) -> void:
 	var global_exe_path = ProjectSettings.globalize_path(EXE_PATH)
 	
 	pid = OS.create_process(global_exe_path, arguments)
-	print(arguments)
 
 
 ## Read the output [code]number[/code]. In case it doesn't exists, returns an empty [String].

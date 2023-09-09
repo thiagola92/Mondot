@@ -1,6 +1,5 @@
 # Mondot
-bin/
-tmp/
+shell
 
 # Godot 4+ specific ignores
 .godot/

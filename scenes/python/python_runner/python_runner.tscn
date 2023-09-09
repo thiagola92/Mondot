@@ -1,11 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://drb0kmiil6t8h"]
 
-[ext_resource type="Script" path="res://scenes/python/python_runner/python_runner.gd" id="1_fnrj5"]
+[ext_resource type="Script" path="res://scenes/python/python_runner/python_runner.gd" id="1_7ueje"]
 
 [node name="PythonRunner" type="Node"]
-script = ExtResource("1_fnrj5")
-
-[node name="Timer" type="Timer" parent="."]
+script = ExtResource("1_7ueje")
 
 [connection signal="tree_exiting" from="." to="." method="kill_current_execution"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
