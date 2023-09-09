@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://eqlh6jfc5d7o"]
+
+[ext_resource type="LabelSettings" uid="uid://cxotdqokuj1m3" path="res://scenes/docks/settings_dock/settings_tag/label_settings.tres" id="1_slf83"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4phhn"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+border_width_left = 8
+border_width_top = 4
+border_width_right = 8
+border_width_bottom = 4
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="SettingsTag" type="Label"]
+tooltip_text = "Tag tooltip."
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_4phhn")
+text = "Tag"
+label_settings = ExtResource("1_slf83")
+vertical_alignment = 1

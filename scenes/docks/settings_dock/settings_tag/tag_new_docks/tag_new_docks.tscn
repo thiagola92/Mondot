@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://eycmme5x4r5l"]
+
+[ext_resource type="LabelSettings" uid="uid://cr7ehs32ma1ot" path="res://scenes/docks/settings_dock/settings_tag/tag_new_docks/label_settings.tres" id="1_l3k0i"]
+[ext_resource type="PackedScene" uid="uid://eqlh6jfc5d7o" path="res://scenes/docks/settings_dock/settings_tag/settings_tag.tscn" id="2_enxmt"]
+
+[node name="TagNewDocks" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SettingsTag" parent="." instance=ExtResource("2_enxmt")]
+layout_mode = 2
+tooltip_text = "This configuration will be applied to new docks."
+text = "New docks"
+label_settings = ExtResource("1_l3k0i")

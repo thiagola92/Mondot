@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bb4idje1ple1n"]
 
 [ext_resource type="Script" path="res://scenes/docks/settings_dock/query_section/query_section.gd" id="1_0654s"]
-[ext_resource type="PackedScene" uid="uid://eycmme5x4r5l" path="res://scenes/docks/settings_dock/info_new/info_new.tscn" id="2_ffv07"]
-[ext_resource type="PackedScene" uid="uid://vyahi61qgmio" path="res://scenes/docks/settings_dock/info_all/info_all.tscn" id="3_1rdq2"]
+[ext_resource type="PackedScene" uid="uid://eycmme5x4r5l" path="res://scenes/docks/settings_dock/settings_tag/tag_new_docks/tag_new_docks.tscn" id="2_ffv07"]
+[ext_resource type="PackedScene" uid="uid://vyahi61qgmio" path="res://scenes/docks/settings_dock/settings_tag/tag_all_docks/tag_all_docks.tscn" id="3_1rdq2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ikbi1"]
 font_size = 32
@@ -20,7 +20,7 @@ frequency_input = NodePath("FrequencyInput/FrequencyInput")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
-text = "# Query"
+text = "Query"
 label_settings = SubResource("LabelSettings_ikbi1")
 vertical_alignment = 1
 
