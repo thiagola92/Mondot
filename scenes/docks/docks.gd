@@ -47,8 +47,8 @@ func open(dock: Options) -> Node:
 
 
 func new_dock(scene: PackedScene) -> Node:
-	var dock = scene.instantiate()
-	var index = docks_container.get_child_count()
+	var dock: Node = scene.instantiate()
+	var index: int = docks_container.get_child_count()
 	
 	docks_container.add_child(dock)
 	docks_container.current_tab = index

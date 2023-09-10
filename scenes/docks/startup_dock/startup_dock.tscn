@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://7yaaqe0tilgp"]
+
+[ext_resource type="Script" path="res://scenes/docks/startup_dock/startup_dock.gd" id="1_nth50"]
+
+[node name="StartupDock" type="MarginContainer" node_paths=PackedStringArray("progress_bar", "shell_downloader")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_nth50")
+progress_bar = NodePath("Container/ProgressBar")
+shell_downloader = NodePath("ShellDownloader")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Container"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 2.0
+step = 1.0
+show_percentage = false
+
+[node name="ShellDownloader" type="HTTPRequest" parent="."]
+download_file = "user://shell.zip"
+
+[connection signal="value_changed" from="Container/ProgressBar" to="." method="_on_progress_bar_value_changed"]
+[connection signal="request_completed" from="ShellDownloader" to="." method="_on_shell_downloader_request_completed"]
