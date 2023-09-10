@@ -7,7 +7,7 @@ extends Node
 const DIR_TMP: String = "user://tmp"
 
 ## Reference: [url]https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html[/url][br]
-const EXE_PATH: String = "res://shell"
+const EXE_PATH: String = "user://shell"
 
 const INPUT_SUFFIX: String = "in"
 
@@ -33,10 +33,6 @@ var input_path: String:
 var output_path: String:
 	get:
 		return "%s_%s" % [code_path, OUTPUT_SUFFIX]
-
-
-func _ready() -> void:
-	DirAccess.make_dir_absolute(DIR_TMP)
 
 
 ## [b]Note[/b]: Can be reused to run others codes,
@@ -75,9 +71,9 @@ func delete_files() -> void:
 	dir.remove(input_path)
 	
 	# Doesn't try to know how many output files exist.
-	# It will try to delete output_1, output_2, output_3, ...
+	# It will try to delete output_0, output_1, output_2, ...
 	# and keep going until it fail to delete one.
-	var counter = 1
+	var counter = 0
 	var result_code = dir.remove("%s_%s" % [output_path, counter])
 	
 	while result_code == Error.OK:
