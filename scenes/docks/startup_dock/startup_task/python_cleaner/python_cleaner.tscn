@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://84gp8wapg7na"]
+
+[ext_resource type="Script" path="res://scenes/docks/startup_dock/startup_task/python_cleaner/python_cleaner.gd" id="1_g570x"]
+
+[node name="PythonCleaner" type="Node"]
+script = ExtResource("1_g570x")
+steps = 1

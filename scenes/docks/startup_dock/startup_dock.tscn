@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://7yaaqe0tilgp"]
+[gd_scene load_steps=4 format=3 uid="uid://7yaaqe0tilgp"]
 
 [ext_resource type="Script" path="res://scenes/docks/startup_dock/startup_dock.gd" id="1_nth50"]
+[ext_resource type="PackedScene" uid="uid://84gp8wapg7na" path="res://scenes/docks/startup_dock/startup_task/python_cleaner/python_cleaner.tscn" id="2_06mlg"]
+[ext_resource type="PackedScene" uid="uid://bccol0842e822" path="res://scenes/docks/startup_dock/startup_task/shell_installer/shell_installer.tscn" id="3_pydgs"]
 
-[node name="StartupDock" type="MarginContainer" node_paths=PackedStringArray("progress_bar", "shell_downloader")]
+[node name="StartupDock" type="MarginContainer" node_paths=PackedStringArray("progress_messages", "progress_bar", "startup_tasks")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,22 +15,26 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_nth50")
+progress_messages = NodePath("Container/ProgressMessages")
 progress_bar = NodePath("Container/ProgressBar")
-shell_downloader = NodePath("ShellDownloader")
+startup_tasks = NodePath("StartupTasks")
 
 [node name="Container" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Container"]
-custom_minimum_size = Vector2(200, 0)
+[node name="ProgressMessages" type="TextEdit" parent="Container"]
 layout_mode = 2
-size_flags_vertical = 1
-max_value = 2.0
+size_flags_vertical = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="Container"]
+layout_mode = 2
 step = 1.0
 show_percentage = false
 
-[node name="ShellDownloader" type="HTTPRequest" parent="."]
-download_file = "user://shell.zip"
+[node name="StartupTasks" type="Node" parent="."]
+
+[node name="PythonCleaner" parent="StartupTasks" instance=ExtResource("2_06mlg")]
+
+[node name="ShellInstaller" parent="StartupTasks" instance=ExtResource("3_pydgs")]
 
 [connection signal="value_changed" from="Container/ProgressBar" to="." method="_on_progress_bar_value_changed"]
-[connection signal="request_completed" from="ShellDownloader" to="." method="_on_shell_downloader_request_completed"]

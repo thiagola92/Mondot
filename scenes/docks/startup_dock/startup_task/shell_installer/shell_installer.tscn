@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bccol0842e822"]
+
+[ext_resource type="Script" path="res://scenes/docks/startup_dock/startup_task/shell_installer/shell_installer.gd" id="1_kvbh6"]
+
+[node name="ShellInstaller" type="Node" node_paths=PackedStringArray("shell_downloader")]
+script = ExtResource("1_kvbh6")
+shell_downloader = NodePath("ShellDownloader")
+steps = 4
+
+[node name="ShellDownloader" type="HTTPRequest" parent="."]
+download_file = "user://shell.zip"
+
+[connection signal="request_completed" from="ShellDownloader" to="." method="_on_shell_downloader_request_completed"]
