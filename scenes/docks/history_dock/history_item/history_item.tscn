@@ -24,6 +24,9 @@ script = ExtResource("1_qxncs")
 query_code = NodePath("QueryCode")
 datetime = NodePath("QueryMenu/Datetime")
 
+[node name="Separator" type="HSeparator" parent="."]
+layout_mode = 2
+
 [node name="QueryCode" parent="." instance=ExtResource("2_0r05u")]
 layout_mode = 2
 size_flags_horizontal = 3

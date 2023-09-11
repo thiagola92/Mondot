@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/docks/docks.gd" id="1_abrkn"]
 [ext_resource type="Texture2D" uid="uid://dcpic84b856pd" path="res://icons/cross_mark.svg" id="2_2rcj5"]
 [ext_resource type="PackedScene" uid="uid://d3d7hwe67naqh" path="res://scenes/docks/query_dock/query_dock.tscn" id="3_4ilt3"]
-[ext_resource type="PackedScene" uid="uid://7yaaqe0tilgp" path="res://scenes/docks/setup_dock/setup_dock.tscn" id="3_io76m"]
+[ext_resource type="PackedScene" uid="uid://7yaaqe0tilgp" path="res://scenes/docks/startup_dock/startup_dock.tscn" id="3_io76m"]
 
 [node name="Docks" type="VBoxContainer" node_paths=PackedStringArray("docks_container", "docks_tab")]
 anchors_preset = 15
