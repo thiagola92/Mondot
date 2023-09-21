@@ -23,6 +23,7 @@ const SettingsScene: PackedScene = preload("res://scenes/docks/settings_dock/set
 
 
 func _ready():
+	GlobalRef.docks = self
 	replicate_tabs()
 
 

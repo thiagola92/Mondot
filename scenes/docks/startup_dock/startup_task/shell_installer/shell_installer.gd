@@ -5,7 +5,11 @@ const SHELL_FILENAME: String = "shell"
 
 const SHELL_FILEPATH: String = "user://shell"
 
-const SHELL_URL: String = "https://github.com/thiagola92/MondotShell/releases/download/2.0.0/ubuntu.zip"
+const SHELL_LINUX_URL: String = "https://github.com/thiagola92/MondotShell/releases/download/2.0.0/ubuntu.zip"
+
+const SHELL_MACOS_URL: String = ""
+
+const SHELL_WINDOWS_URL: String = ""
 
 @export var shell_downloader: HTTPRequest
 
@@ -19,8 +23,15 @@ func download_shell_zip() -> void:
 	
 	if FileAccess.file_exists(PythonRunner.EXE_PATH):
 		complete()
-	else:
-		shell_downloader.request(SHELL_URL)
+		return
+		
+	match OS.get_name():
+		"Linux":
+			shell_downloader.request(SHELL_LINUX_URL)
+		"macOS":
+			shell_downloader.request(SHELL_MACOS_URL)
+		"Windows":
+			shell_downloader.request(SHELL_WINDOWS_URL)
 
 
 func unzip_shell_zip() -> void:

@@ -23,6 +23,7 @@ Historic="*res://scenes/singletons/query_history/query_history.tscn"
 Connections="*res://scenes/singletons/connection_list/connection_list.tscn"
 Settings="*res://scenes/singletons/settings_info/settings_info.tscn"
 Templates="*res://scenes/singletons/query_templates/query_templates.tscn"
+GlobalRef="*res://scenes/singletons/global_reference/global_reference.tscn"
 
 [display]
 

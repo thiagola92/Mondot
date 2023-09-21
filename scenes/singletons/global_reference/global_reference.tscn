@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgko3nuxqb4yc"]
+
+[ext_resource type="Script" path="res://scenes/singletons/global_reference/global_reference.gd" id="1_i60lj"]
+
+[node name="GlobalReference" type="Node"]
+script = ExtResource("1_i60lj")
