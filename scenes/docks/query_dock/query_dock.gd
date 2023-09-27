@@ -28,13 +28,14 @@ func clear_result():
 
 
 func set_code(code: String) -> void:
-	query_code.text = code.replace("	", "    ")
+	query_code.text = code.lstrip(" \n").replace("	", "    ")
 
 
 func _on_query_menu_play_pressed() -> void:
 	var python_args = PythonArgs.new()
 	python_args.uris = query_menu.uris
 	python_args.dbs = query_menu.databases
+	python_args.cols = query_menu.collections
 	python_args.page_size = query_menu.page_size
 	python_args.timer = Settings.frequency_which_check_inputs
 	

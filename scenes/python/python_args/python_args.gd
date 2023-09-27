@@ -9,6 +9,8 @@ const URI = "--uri"
 
 const DB = "--database"
 
+const COL = "--collection"
+
 const PAGE_SIZE = "--page-size"
 
 const TIMER = "--timer"
@@ -22,6 +24,8 @@ const DEFAULT_COL = "admin"
 var uris: Array[String] = []
 
 var dbs: Array[String] = []
+
+var cols: Array[String] = []
 
 var page_size: int = 20
 
@@ -43,5 +47,8 @@ func to_array(code_path: String) -> Array[String]:
 	
 	for db in dbs:
 		args.append_array([DB, db])
+	
+	for col in cols:
+		args.append_array([COL, col])
 	
 	return args
