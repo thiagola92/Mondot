@@ -1,6 +1,6 @@
 ## Control the pagination over the [PythonRunner] result.
-## [br]
-## [br]It will increase as more pages are requested and help you navigating through existing pages.
+## 
+## It will increase as more pages are requested and help you navigating through existing pages.
 class_name PythonPaginator
 extends Node
 

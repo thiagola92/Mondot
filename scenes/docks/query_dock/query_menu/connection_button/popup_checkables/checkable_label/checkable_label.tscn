@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ocyr1c2uyesh"]
+
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/connection_button/popup_checkables/checkable_label/checkable_label.gd" id="1_j7dol"]
+[ext_resource type="StyleBox" uid="uid://pf0r5bcffc7f" path="res://scenes/docks/query_dock/query_menu/connection_button/popup_checkables/checkable_label/checkable_label_flat_gray.tres" id="1_klq3q"]
+
+[node name="CheckableLabel" type="HBoxContainer" node_paths=PackedStringArray("checkbox", "label")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+script = ExtResource("1_j7dol")
+checkbox = NodePath("CheckBox")
+label = NodePath("Label")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_styles/hover = ExtResource("1_klq3q")
+theme_override_styles/focus = ExtResource("1_klq3q")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Label"
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

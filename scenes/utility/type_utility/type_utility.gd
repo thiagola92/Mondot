@@ -1,3 +1,6 @@
+## Deals with type conversion that GDScript still doesn't make.
+##
+## Once GDScript let you make convertion in a easier way, delete this functions.
 class_name TypeUtility
 extends Node
 

@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b05xna27y28wr"]
+
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/connection_button/popup_checkables/checkable_menu/checkable_menu.gd" id="1_exnx3"]
+[ext_resource type="StyleBox" uid="uid://7hojkkgox5sg" path="res://scenes/docks/query_dock/query_menu/connection_button/popup_checkables/checkable_menu/checkable_menu_flat_gray.tres" id="2_btrum"]
+[ext_resource type="Texture2D" uid="uid://uci76ke48xhc" path="res://icons/arrow_right.svg" id="3_xcklw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_68s1b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jf2dx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57yu4"]
+
+[node name="CheckableMenu" type="HBoxContainer" node_paths=PackedStringArray("checkbox", "button")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+script = ExtResource("1_exnx3")
+checkbox = NodePath("CheckBox")
+button = NodePath("Button")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_styles/hover = ExtResource("2_btrum")
+theme_override_styles/focus = ExtResource("2_btrum")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_68s1b")
+theme_override_styles/hover = ExtResource("2_btrum")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jf2dx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_57yu4")
+theme_override_styles/focus = ExtResource("2_btrum")
+text = "Test"
+icon = ExtResource("3_xcklw")
+alignment = 0
+icon_alignment = 2
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

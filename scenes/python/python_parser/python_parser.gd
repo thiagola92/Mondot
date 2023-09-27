@@ -1,3 +1,10 @@
+## Parse the response from python code executed in MondotShell.
+##
+## After MondotShell execute a python code, it will generate a JSON
+## with informations about the execution.
+## [br][br]
+## This class can be used to parse the information at the moment with [method parse_now] or
+## to signal many nodes that new information have being parsed with [method parse].
 class_name PythonParser
 extends Node
 

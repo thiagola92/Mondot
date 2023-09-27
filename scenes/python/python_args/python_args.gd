@@ -17,6 +17,8 @@ const DEFAULT_URI = "mongodb://127.0.0.1:27017"
 
 const DEFAULT_DB = "admin"
 
+const DEFAULT_COL = "admin"
+
 var uris: Array[String] = []
 
 var dbs: Array[String] = []

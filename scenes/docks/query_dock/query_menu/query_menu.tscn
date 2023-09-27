@@ -1,15 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk8bevu5ymmta"]
+[gd_scene load_steps=8 format=3 uid="uid://dk8bevu5ymmta"]
 
 [ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/query_menu.gd" id="1_7t35d"]
 [ext_resource type="Texture2D" uid="uid://bh4eaxj8xraat" path="res://icons/play.svg" id="2_ccess"]
 [ext_resource type="Texture2D" uid="uid://ccbm3oqwip2oo" path="res://icons/stop.svg" id="3_r5qb7"]
 [ext_resource type="Texture2D" uid="uid://bynfauci3i8l5" path="res://icons/disk.svg" id="4_iqpko"]
-[ext_resource type="PackedScene" uid="uid://dfydxqfckn65d" path="res://scenes/docks/query_dock/query_menu/connection_menu/connection_menu.tscn" id="5_l7uaa"]
-[ext_resource type="PackedScene" uid="uid://c86ssgo7gpym0" path="res://scenes/docks/query_dock/query_menu/database_menu/database_menu.tscn" id="6_0jvs4"]
+[ext_resource type="PackedScene" uid="uid://ctv8vn0bodjcf" path="res://scenes/docks/query_dock/query_menu/connection_button/connection_button.tscn" id="5_swfgh"]
 [ext_resource type="Texture2D" uid="uid://c5bj6x8cra0f8" path="res://icons/file.svg" id="7_wj47k"]
 [ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="8_vplxb"]
 
-[node name="QueryMenu" type="HFlowContainer" node_paths=PackedStringArray("connection_menu", "database_menu", "page_size_spin")]
+[node name="QueryMenu" type="HFlowContainer" node_paths=PackedStringArray("connection_button", "page_size_spin")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 1.0
@@ -17,8 +16,7 @@ offset_right = 1.0
 offset_bottom = 31.0
 grow_horizontal = 2
 script = ExtResource("1_7t35d")
-connection_menu = NodePath("ConnectionMenu")
-database_menu = NodePath("DatabaseMenu")
+connection_button = NodePath("ConnectionButton")
 page_size_spin = NodePath("PageSizeSpin")
 
 [node name="Play" type="Button" parent="."]
@@ -36,12 +34,9 @@ layout_mode = 2
 icon = ExtResource("4_iqpko")
 flat = true
 
-[node name="ConnectionMenu" parent="." instance=ExtResource("5_l7uaa")]
+[node name="ConnectionButton" parent="." instance=ExtResource("5_swfgh")]
 layout_mode = 2
 size_flags_horizontal = 10
-
-[node name="DatabaseMenu" parent="." instance=ExtResource("6_0jvs4")]
-layout_mode = 2
 
 [node name="PageSizeTexture" type="TextureRect" parent="."]
 layout_mode = 2
@@ -67,10 +62,6 @@ flat = true
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Stop" to="." method="_on_stop_pressed"]
 [connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
-[connection signal="connection_checked" from="ConnectionMenu" to="." method="_on_connection_menu_connection_checked"]
-[connection signal="connection_unchecked" from="ConnectionMenu" to="." method="_on_connection_menu_connection_unchecked"]
-[connection signal="connection_added" from="DatabaseMenu" to="." method="_on_database_menu_connection_added"]
-[connection signal="connection_removed" from="DatabaseMenu" to="." method="_on_database_menu_connection_removed"]
-[connection signal="database_checked" from="DatabaseMenu" to="." method="_on_database_menu_database_checked"]
+[connection signal="changed" from="ConnectionButton" to="." method="_on_connection_button_changed"]
 [connection signal="value_changed" from="PageSizeSpin" to="." method="_on_page_size_spin_value_changed"]
 [connection signal="toggled" from="Search" to="." method="_on_search_toggled"]

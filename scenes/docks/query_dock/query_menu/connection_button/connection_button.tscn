@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctv8vn0bodjcf"]
+
+[ext_resource type="Texture2D" uid="uid://cyrlja5vrhh1x" path="res://icons/signals.svg" id="1_qyd17"]
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/connection_button/connection_button.gd" id="2_0taph"]
+[ext_resource type="PackedScene" uid="uid://b2uh48ub2mk3l" path="res://scenes/docks/query_dock/query_menu/connection_button/popup_checkables/popup_checkables.tscn" id="3_vuntr"]
+[ext_resource type="PackedScene" uid="uid://bnsv4bmd8tkjp" path="res://scenes/python/python_parser/python_parser.tscn" id="4_2whg7"]
+
+[node name="ConnectionButton" type="Button" node_paths=PackedStringArray("connections_popup", "python_parser")]
+toggle_mode = true
+icon = ExtResource("1_qyd17")
+flat = true
+script = ExtResource("2_0taph")
+connections_popup = NodePath("ConnectionsPopup")
+python_parser = NodePath("PythonParser")
+
+[node name="ConnectionsPopup" parent="." instance=ExtResource("3_vuntr")]
+visible = false
+
+[node name="PythonParser" parent="." instance=ExtResource("4_2whg7")]
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

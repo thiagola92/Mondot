@@ -28,7 +28,6 @@ GlobalRef="*res://scenes/singletons/global_reference/global_reference.tscn"
 [display]
 
 window/energy_saving/keep_screen_on=false
-window/subwindows/embed_subwindows=false
 
 [rendering]
 

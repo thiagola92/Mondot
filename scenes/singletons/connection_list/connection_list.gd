@@ -8,9 +8,9 @@ signal connection_removed(query_info: ConnectionInfo)
 
 var connections: Array[ConnectionInfo] = [
 		ConnectionInfo.new("localhost", "mongodb://username:password@127.0.0.1"),
-		ConnectionInfo.new("localhost", "mongodb://username:password@127.0.0.1"),
-		ConnectionInfo.new("localhost", "mongodb://username:password@127.0.0.1"),
-		ConnectionInfo.new("localhost", "mongodb://username:password@127.0.0.1"),
+		ConnectionInfo.new("production", "mongodb://username:password@127.0.0.1"),
+		ConnectionInfo.new("test", "mongodb://username:password@127.0.0.1"),
+		ConnectionInfo.new("personal project", "mongodb://username:password@127.0.0.1"),
 ]
 
 

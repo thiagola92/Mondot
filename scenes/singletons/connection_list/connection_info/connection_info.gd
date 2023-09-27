@@ -9,13 +9,13 @@ extends RefCounted
 signal connection_name_changed(connection_info: ConnectionInfo)
 
 ## Name for the user identify this connection inside the GUI, this have no use in shell.
-var connection_name: String = "":
+var connection_name: String:
 	set(v):
 		connection_name = v
 		connection_name_changed.emit(self)
 
 ## URI to access the MongoDB.
-var connection_uri: String = ""
+var connection_uri: String
 
 
 func _init(name: String, uri: String) -> void:

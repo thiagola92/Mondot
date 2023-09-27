@@ -5,7 +5,7 @@ const SHELL_FILENAME: String = "shell"
 
 const SHELL_FILEPATH: String = "user://shell"
 
-const SHELL_LINUX_URL: String = "https://github.com/thiagola92/MondotShell/releases/download/2.0.0/ubuntu.zip"
+const SHELL_LINUX_URL: String = "https://github.com/thiagola92/MondotShell/releases/download/2.1.0/ubuntu.zip"
 
 const SHELL_MACOS_URL: String = ""
 
