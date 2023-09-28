@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7arhpg48k78s"]
+[gd_scene load_steps=6 format=3 uid="uid://7arhpg48k78s"]
 
 [ext_resource type="Script" path="res://scenes/docks/connection_dock/connection_item/connection_item.gd" id="1_88d85"]
 [ext_resource type="Texture2D" uid="uid://c254ee1bundpv" path="res://icons/lock_locked.svg" id="2_f3dms"]
@@ -6,17 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bx7vgffhytqir" path="res://icons/eye_close.svg" id="4_gialv"]
 [ext_resource type="Texture2D" uid="uid://cydjwtytjue4q" path="res://icons/action_copy.svg" id="5_54bhf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k88ik"]
-bg_color = Color(0.266667, 0.266667, 0.266667, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
 [node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("lock", "name_line", "uri_line", "uri_show")]
 offset_right = 311.0
 offset_bottom = 94.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_k88ik")
 script = ExtResource("1_88d85")
 lock = NodePath("Container/Container/Menu/Lock")
 name_line = NodePath("Container/Container/Info/NameLine")
