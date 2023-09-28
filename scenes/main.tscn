@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0fwo2ckbau81"]
+[gd_scene load_steps=3 format=3 uid="uid://d0fwo2ckbau81"]
 
-[ext_resource type="FontFile" uid="uid://cmyt0gkbkogmo" path="res://fonts/roboto/Roboto-Regular.ttf" id="1_8vbhd"]
 [ext_resource type="PackedScene" uid="uid://8weojs1h2tg0" path="res://scenes/menu/menu.tscn" id="2_3ajt7"]
 [ext_resource type="PackedScene" uid="uid://dogr4xvdsy7xw" path="res://scenes/docks/docks.tscn" id="3_ku3ji"]
-
-[sub_resource type="Theme" id="Theme_qtuuv"]
-Label/fonts/font = ExtResource("1_8vbhd")
 
 [node name="Main" type="MarginContainer"]
 anchors_preset = 15
@@ -13,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_qtuuv")
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4

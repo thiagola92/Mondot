@@ -46,7 +46,7 @@ func add_connection(connection_info: ConnectionInfo) -> void:
 
 
 func remove_connection(connection_info: ConnectionInfo) -> void:
-	var checkable: Node = connections_popup.find_checkable_with_metadata("connection_info", connection_info)
+	var checkable: Node = connections_popup.find_checkable_menu_with_metadata("connection_info", connection_info)
 	
 	if checkable == null:
 		return
