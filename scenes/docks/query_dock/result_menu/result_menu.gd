@@ -10,7 +10,7 @@ signal previous_pressed
 
 @export var loading: TextureRect
 
-@export var eof: Button
+@export var eof: Label
 
 @export var page_label: Label
 

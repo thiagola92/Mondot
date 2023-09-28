@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cifpxm8kw4cbu"]
+[gd_scene load_steps=14 format=3 uid="uid://cifpxm8kw4cbu"]
 
 [ext_resource type="Script" path="res://scenes/docks/query_dock/result_menu/result_menu.gd" id="1_2quaq"]
 [ext_resource type="Texture2D" uid="uid://6g2q8n6ent21" path="res://icons/arrow_left.svg" id="2_ahkhd"]
 [ext_resource type="Texture2D" uid="uid://uci76ke48xhc" path="res://icons/arrow_right.svg" id="3_dg6i0"]
-[ext_resource type="Texture2D" uid="uid://dwqenbfoo8pgj" path="res://icons/warning.svg" id="4_ck8ua"]
 [ext_resource type="Texture2D" uid="uid://dqbj5oro8w4kk" path="res://icons/progress_1.svg" id="5_v67du"]
 [ext_resource type="Texture2D" uid="uid://cejx54xlep5du" path="res://icons/progress_2.svg" id="6_0p5u4"]
 [ext_resource type="Texture2D" uid="uid://cunnumvipgaey" path="res://icons/progress_3.svg" id="7_dqvw0"]
@@ -50,6 +49,7 @@ flat = true
 
 [node name="Page" type="Label" parent="."]
 layout_mode = 2
+size_flags_vertical = 1
 text = "0"
 vertical_alignment = 1
 
@@ -58,27 +58,23 @@ layout_mode = 2
 icon = ExtResource("3_dg6i0")
 flat = true
 
+[node name="EOF" type="Label" parent="."]
+layout_mode = 2
+text = "Last page"
+
 [node name="Empty" type="Control" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="EOF" type="Button" parent="."]
-layout_mode = 2
-size_flags_horizontal = 8
-mouse_filter = 2
-disabled = true
-text = "Last page"
-icon = ExtResource("4_ck8ua")
-flat = true
-
 [node name="Loading" type="TextureRect" parent="."]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 texture = SubResource("AnimatedTexture_imq4c")
 expand_mode = 3
 
 [node name="Search" type="Button" parent="."]
 layout_mode = 2
+size_flags_horizontal = 8
 toggle_mode = true
 icon = ExtResource("13_7wxmr")
 flat = true
