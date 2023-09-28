@@ -71,7 +71,7 @@ func _on_python_paginator_page_changed(content: String, number: int) -> void:
 
 func _on_python_parser_parsing_finished(content: Variant) -> void:
 	clear_result()
-	result_json.text = str(content)
+	result_json.json = content
 
 
 func _on_python_parser_python_code_ended() -> void:
