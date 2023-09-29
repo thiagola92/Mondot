@@ -1,4 +1,4 @@
-class_name JSONEdit
+class_name ResultJSON
 extends TextEdit
 
 

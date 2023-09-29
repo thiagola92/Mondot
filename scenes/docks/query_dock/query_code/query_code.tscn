@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://gbxe762f5hbh"]
 
-[ext_resource type="CodeHighlighter" uid="uid://c2plvo2c1ch7p" path="res://scenes/docks/query_dock/code_edit/python.tres" id="1_7hlqo"]
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_code/query_code.gd" id="2_ul1tp"]
 
-[node name="CodeEdit" type="TextEdit"]
+[node name="QueryCode" type="CodeEdit"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,4 +18,6 @@ self.db.list_collection_names()
 # If your action interacts with multiple clients/databases, you can access them with \"self\" too.
 self.dbs[0].list_collection_names() # first database
 self.dbs[1].list_collection_names() # second database"
-syntax_highlighter = ExtResource("1_7hlqo")
+code_completion_enabled = true
+auto_brace_completion_enabled = true
+script = ExtResource("2_ul1tp")

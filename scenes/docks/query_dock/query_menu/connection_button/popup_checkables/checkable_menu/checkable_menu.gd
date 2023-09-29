@@ -8,6 +8,10 @@ signal checked
 ## Emitted when the checkbox is unchecked.
 signal unchecked
 
+const ARROW_ICON: Texture = preload("res://icons/arrow_right.svg")
+
+const HOURGLASS_ICON: Texture = preload("res://icons/hourglass.svg")
+
 @export var checkbox: CheckBox
 
 @export var button: Button
@@ -42,6 +46,17 @@ func set_menu(m: PopupCheckables) -> void:
 		add_child(m)
 	
 	menu = m
+	
+	update_icon()
+
+
+func update_icon() -> void:
+	if is_checked and not menu:
+		button.icon = HOURGLASS_ICON
+	elif is_checked and menu:
+		button.icon = ARROW_ICON
+	else:
+		button.icon = null
 
 
 ## Show the menu which the checkbox turn on/off.
@@ -71,6 +86,7 @@ func _on_button_mouse_entered() -> void:
 
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		update_icon()
 		checked.emit()
 	else:
 		set_menu(null)

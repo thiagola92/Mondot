@@ -6,13 +6,13 @@ const DOCK_NAME: String = "Query"
 
 @export var query_menu: QueryMenu
 
-@export var query_code: TextEdit
+@export var query_code: QueryCode
 
 @export var result_menu: ResultMenu
 
 @export var result_warning: WarningBar
 
-@export var result_json: JSONEdit
+@export var result_json: ResultJSON
 
 @export var python_paginator: PythonPaginator
 

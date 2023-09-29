@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scenes/docks/query_dock/query_dock.gd" id="1_aunch"]
 [ext_resource type="PackedScene" uid="uid://dk8bevu5ymmta" path="res://scenes/docks/query_dock/query_menu/query_menu.tscn" id="2_fdww5"]
 [ext_resource type="PackedScene" uid="uid://cwi46lpfmwm1m" path="res://scenes/docks/query_dock/search_bar/search_bar.tscn" id="3_c18at"]
-[ext_resource type="PackedScene" uid="uid://gbxe762f5hbh" path="res://scenes/docks/query_dock/code_edit/code_edit.tscn" id="4_j1m3u"]
+[ext_resource type="PackedScene" uid="uid://gbxe762f5hbh" path="res://scenes/docks/query_dock/query_code/query_code.tscn" id="4_2n1gy"]
 [ext_resource type="PackedScene" uid="uid://cifpxm8kw4cbu" path="res://scenes/docks/query_dock/result_menu/result_menu.tscn" id="5_clauv"]
-[ext_resource type="PackedScene" uid="uid://dcqjvlfovkhlh" path="res://scenes/docks/query_dock/json_edit/json_edit.tscn" id="6_rqbsw"]
+[ext_resource type="PackedScene" uid="uid://dcqjvlfovkhlh" path="res://scenes/docks/query_dock/result_json/result_json.tscn" id="6_v1e3r"]
 [ext_resource type="PackedScene" uid="uid://cq5cffrsftvyd" path="res://scenes/docks/query_dock/warning_bar/warning_bar.tscn" id="7_wwifa"]
 [ext_resource type="PackedScene" uid="uid://dohk8a3wo664y" path="res://scenes/python/python_paginator/python_paginator.tscn" id="8_1q50e"]
 [ext_resource type="PackedScene" uid="uid://bnsv4bmd8tkjp" path="res://scenes/python/python_parser/python_parser.tscn" id="9_ynmf4"]
@@ -25,7 +25,7 @@ query_menu = NodePath("Container/QueryContainer/QueryMenu")
 query_code = NodePath("Container/QueryContainer/QueryCode")
 result_menu = NodePath("Container/ResultContainer/ResultMenu")
 result_warning = NodePath("Container/ResultContainer/ResultWarning")
-result_json = NodePath("Container/ResultContainer/ResultJson")
+result_json = NodePath("Container/ResultContainer/ResultJSON")
 python_paginator = NodePath("PythonPaginator")
 python_parser = NodePath("PythonParser")
 save_window = NodePath("SaveWindow")
@@ -47,7 +47,7 @@ search_bar = NodePath("../QuerySearch")
 layout_mode = 2
 text_edit = NodePath("../QueryCode")
 
-[node name="QueryCode" parent="Container/QueryContainer" instance=ExtResource("4_j1m3u")]
+[node name="QueryCode" parent="Container/QueryContainer" instance=ExtResource("4_2n1gy")]
 layout_mode = 2
 
 [node name="ResultContainer" type="VBoxContainer" parent="Container"]
@@ -60,9 +60,9 @@ search_bar = NodePath("../ResultSearch")
 
 [node name="ResultSearch" parent="Container/ResultContainer" node_paths=PackedStringArray("text_edit") instance=ExtResource("3_c18at")]
 layout_mode = 2
-text_edit = NodePath("../ResultJson")
+text_edit = NodePath("../ResultJSON")
 
-[node name="ResultJson" parent="Container/ResultContainer" instance=ExtResource("6_rqbsw")]
+[node name="ResultJSON" parent="Container/ResultContainer" instance=ExtResource("6_v1e3r")]
 layout_mode = 2
 
 [node name="ResultWarning" parent="Container/ResultContainer" instance=ExtResource("7_wwifa")]
