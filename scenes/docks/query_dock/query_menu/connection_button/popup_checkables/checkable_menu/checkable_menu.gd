@@ -10,7 +10,7 @@ signal unchecked
 
 const ARROW_ICON: Texture = preload("res://icons/arrow_right.svg")
 
-const HOURGLASS_ICON: Texture = preload("res://icons/hourglass.svg")
+const HOURGLASS_ICON: Texture = preload("res://icons/hourglass_tiny.svg")
 
 @export var checkbox: CheckBox
 

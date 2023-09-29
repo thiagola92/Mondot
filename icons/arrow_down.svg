@@ -1,5 +1,1 @@
-<svg height="16" viewBox="0 0 8 8" width="16" xmlns="http://www.w3.org/2000/svg">
-    <g transform="rotate(90 4 4)">
-        <path d="m3.9902-.0097656a1.0001 1.0001 0 0 0 -.69727 1.7168l1.293 1.293h-3.5859v2h3.5859l-1.293 1.293a1.0001 1.0001 0 1 0 1.4141 1.4141l3-3a1.0001 1.0001 0 0 0 0-1.4141l-3-3a1.0001 1.0001 0 0 0 -.7168-.30273z" fill="#e0e0e0" fill-opacity=".78431"/>
-    </g>
-</svg>
+<svg height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v7l4-4m-4 4L4 8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="#e0e0e0"/></svg>
