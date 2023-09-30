@@ -8,6 +8,8 @@ const DOCK_NAME: String = "Query"
 
 @export var query_code: QueryCode
 
+@export var query_indexes: QueryIndexes
+
 @export var result_menu: ResultMenu
 
 @export var result_warning: WarningBar
@@ -53,6 +55,10 @@ func _on_query_menu_save_pressed() -> void:
 
 func _on_save_window_file_selected(path: String) -> void:
 	FileAccess.open(path, FileAccess.WRITE).store_string(query_code.text)
+
+
+func _on_query_menu_connection_changed() -> void:
+	query_indexes.add_indexes_lines(query_menu.connections_paths)
 
 
 func _on_result_menu_previous_pressed() -> void:

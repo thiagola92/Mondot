@@ -8,16 +8,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "# Write your python query here.
 
-# Use \"self\" to access your current client or database.
+# Use \"self\" to access your first connection informations.
 self.client.list_database_names()
 self.db.list_collection_names()
+self.col.find({})
 
-# If your action interacts with multiple clients/databases, you can access them with \"self\" too.
-self.dbs[0].list_collection_names() # first database
-self.dbs[1].list_collection_names() # second database"
+# Access secondary connections using their respective index.
+self.clients[0].list_database_names()      # first connection client
+self.dbs[0].list_collection_names()	        # first connection database
+self.cols[0].find({})                                       # first connection collection
+self.clients[1].list_database_names()      # second connection client
+self.dbs[1].list_collection_names()	        # second connection database
+self.cols[1].find({})                                       # second connection collection
+
+
+"
 code_completion_enabled = true
 auto_brace_completion_enabled = true
 script = ExtResource("2_ul1tp")

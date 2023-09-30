@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk8bevu5ymmta"]
+[gd_scene load_steps=13 format=3 uid="uid://dk8bevu5ymmta"]
 
 [ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/query_menu.gd" id="1_7t35d"]
 [ext_resource type="Texture2D" uid="uid://bh4eaxj8xraat" path="res://icons/play.svg" id="2_ccess"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctv8vn0bodjcf" path="res://scenes/docks/query_dock/query_menu/connection_button/connection_button.tscn" id="5_swfgh"]
 [ext_resource type="Texture2D" uid="uid://c5bj6x8cra0f8" path="res://icons/file.svg" id="7_wj47k"]
 [ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="8_vplxb"]
+[ext_resource type="Texture2D" uid="uid://cagtvkbp3b2wd" path="res://icons/list.svg" id="8_vxsmg"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_i2jnu"]
 device = -1
@@ -79,9 +80,16 @@ shortcut = SubResource("Shortcut_ek521")
 icon = ExtResource("8_vplxb")
 flat = true
 
+[node name="Indexes" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("8_vxsmg")
+flat = true
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Stop" to="." method="_on_stop_pressed"]
 [connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
 [connection signal="changed" from="ConnectionButton" to="." method="_on_connection_button_changed"]
 [connection signal="value_changed" from="PageSizeSpin" to="." method="_on_page_size_spin_value_changed"]
 [connection signal="toggled" from="Search" to="." method="_on_search_toggled"]
+[connection signal="toggled" from="Indexes" to="." method="_on_indexes_toggled"]

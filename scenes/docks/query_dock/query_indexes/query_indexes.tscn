@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://heoe4at0gsj3"]
+
+[ext_resource type="Script" path="res://scenes/docks/query_dock/query_indexes/query_indexes.gd" id="1_a3fvr"]
+
+[node name="QueryIndexes" type="MarginContainer" node_paths=PackedStringArray("indexes_grid")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+script = ExtResource("1_a3fvr")
+indexes_grid = NodePath("Container/IndexesGrid")
+
+[node name="Container" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="IndexesGrid" type="GridContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4

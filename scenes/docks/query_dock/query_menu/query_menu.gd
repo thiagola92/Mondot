@@ -14,17 +14,23 @@ signal save_pressed
 ## Emitted when user change connections.
 signal connection_changed
 
-@export var search_bar: SearchBar
-
 @export var connection_button: ConnectionButton
 
 @export var page_size_spin: SpinBox
+
+@export var search_bar: SearchBar
+
+@export var query_indexes: QueryIndexes
 
 var uris: Array[String] = []
 
 var databases: Array[String] = []
 
 var collections: Array[String] = []
+
+var connections_paths: Array[ConnectionPath]:
+	get:
+		return connection_button.connections_paths
 
 var page_size: int = 10
 
@@ -40,7 +46,7 @@ func update_database_fields() -> void:
 	databases.clear()
 	collections.clear()
 	
-	for connection_path in connection_button.connections_paths:
+	for connection_path in connections_paths:
 		uris.append(connection_path.connection_info.connection_uri)
 		databases.append(connection_path.database)
 		collections.append(connection_path.collection)
@@ -62,11 +68,18 @@ func _on_page_size_spin_value_changed(value: float) -> void:
 	page_size = int(value)
 
 
-func _on_search_toggled(button_pressed: bool) -> void:
-	if button_pressed:
+func _on_search_toggled(toggled_on: bool) -> void:
+	if toggled_on:
 		search_bar.show()
 	else:
 		search_bar.hide()
+
+
+func _on_indexes_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		query_indexes.show()
+	else:
+		query_indexes.hide()
 
 
 func _on_connection_button_changed() -> void:

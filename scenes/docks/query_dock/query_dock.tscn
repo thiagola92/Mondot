@@ -1,16 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3d7hwe67naqh"]
+[gd_scene load_steps=11 format=3 uid="uid://d3d7hwe67naqh"]
 
 [ext_resource type="Script" path="res://scenes/docks/query_dock/query_dock.gd" id="1_aunch"]
 [ext_resource type="PackedScene" uid="uid://dk8bevu5ymmta" path="res://scenes/docks/query_dock/query_menu/query_menu.tscn" id="2_fdww5"]
 [ext_resource type="PackedScene" uid="uid://cwi46lpfmwm1m" path="res://scenes/docks/query_dock/search_bar/search_bar.tscn" id="3_c18at"]
 [ext_resource type="PackedScene" uid="uid://gbxe762f5hbh" path="res://scenes/docks/query_dock/query_code/query_code.tscn" id="4_2n1gy"]
 [ext_resource type="PackedScene" uid="uid://cifpxm8kw4cbu" path="res://scenes/docks/query_dock/result_menu/result_menu.tscn" id="5_clauv"]
+[ext_resource type="PackedScene" uid="uid://heoe4at0gsj3" path="res://scenes/docks/query_dock/query_indexes/query_indexes.tscn" id="5_mdnvp"]
 [ext_resource type="PackedScene" uid="uid://dcqjvlfovkhlh" path="res://scenes/docks/query_dock/result_json/result_json.tscn" id="6_v1e3r"]
 [ext_resource type="PackedScene" uid="uid://cq5cffrsftvyd" path="res://scenes/docks/query_dock/warning_bar/warning_bar.tscn" id="7_wwifa"]
 [ext_resource type="PackedScene" uid="uid://dohk8a3wo664y" path="res://scenes/python/python_paginator/python_paginator.tscn" id="8_1q50e"]
 [ext_resource type="PackedScene" uid="uid://bnsv4bmd8tkjp" path="res://scenes/python/python_parser/python_parser.tscn" id="9_ynmf4"]
 
-[node name="QueryDock" type="MarginContainer" node_paths=PackedStringArray("query_menu", "query_code", "result_menu", "result_warning", "result_json", "python_paginator", "python_parser", "save_window")]
+[node name="QueryDock" type="MarginContainer" node_paths=PackedStringArray("query_menu", "query_code", "query_indexes", "result_menu", "result_warning", "result_json", "python_paginator", "python_parser", "save_window")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,7 +23,8 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_aunch")
 query_menu = NodePath("Container/QueryContainer/QueryMenu")
-query_code = NodePath("Container/QueryContainer/QueryCode")
+query_code = NodePath("Container/QueryContainer/Container/QueryCode")
+query_indexes = NodePath("Container/QueryContainer/Container/QueryIndexes")
 result_menu = NodePath("Container/ResultContainer/ResultMenu")
 result_warning = NodePath("Container/ResultContainer/ResultWarning")
 result_json = NodePath("Container/ResultContainer/ResultJSON")
@@ -39,15 +41,23 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="QueryMenu" parent="Container/QueryContainer" node_paths=PackedStringArray("search_bar") instance=ExtResource("2_fdww5")]
+[node name="QueryMenu" parent="Container/QueryContainer" node_paths=PackedStringArray("search_bar", "query_indexes") instance=ExtResource("2_fdww5")]
 layout_mode = 2
 search_bar = NodePath("../QuerySearch")
+query_indexes = NodePath("../Container/QueryIndexes")
 
 [node name="QuerySearch" parent="Container/QueryContainer" node_paths=PackedStringArray("text_edit") instance=ExtResource("3_c18at")]
 layout_mode = 2
-text_edit = NodePath("../QueryCode")
+text_edit = NodePath("../Container/QueryCode")
 
-[node name="QueryCode" parent="Container/QueryContainer" instance=ExtResource("4_2n1gy")]
+[node name="Container" type="HSplitContainer" parent="Container/QueryContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QueryCode" parent="Container/QueryContainer/Container" instance=ExtResource("4_2n1gy")]
+layout_mode = 2
+
+[node name="QueryIndexes" parent="Container/QueryContainer/Container" instance=ExtResource("5_mdnvp")]
 layout_mode = 2
 
 [node name="ResultContainer" type="VBoxContainer" parent="Container"]
@@ -79,6 +89,7 @@ size = Vector2i(668, 400)
 min_size = Vector2i(200, 400)
 access = 2
 
+[connection signal="connection_changed" from="Container/QueryContainer/QueryMenu" to="." method="_on_query_menu_connection_changed"]
 [connection signal="play_pressed" from="Container/QueryContainer/QueryMenu" to="." method="_on_query_menu_play_pressed"]
 [connection signal="save_pressed" from="Container/QueryContainer/QueryMenu" to="." method="_on_query_menu_save_pressed"]
 [connection signal="stop_pressed" from="Container/QueryContainer/QueryMenu" to="." method="_on_query_menu_stop_pressed"]
