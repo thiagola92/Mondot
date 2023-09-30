@@ -5,11 +5,11 @@ const SHELL_FILENAME: String = "shell"
 
 const SHELL_FILEPATH: String = "user://shell"
 
-const SHELL_LINUX_URL: String = "https://github.com/thiagola92/MondotShell/releases/download/2.1.0/ubuntu.zip"
+const SHELL_LINUX_URL: String = "https://github.com/thiagola92/MondotShell/releases/download/2.1.0/shell-linux.zip"
 
-const SHELL_MACOS_URL: String = ""
+const SHELL_MACOS_URL: String = "https://github.com/thiagola92/MondotShell/releases/download/2.1.0/shell-macos.zip"
 
-const SHELL_WINDOWS_URL: String = ""
+const SHELL_WINDOWS_URL: String = "https://github.com/thiagola92/MondotShell/releases/download/2.1.0/shell-windows.zip"
 
 @export var shell_downloader: HTTPRequest
 
@@ -22,8 +22,7 @@ func download_shell_zip() -> void:
 	progress("Downloading shell zip...")
 	
 	if FileAccess.file_exists(PythonRunner.EXE_PATH):
-		complete()
-		return
+		return complete()
 		
 	match OS.get_name():
 		"Linux":
@@ -41,22 +40,34 @@ func unzip_shell_zip() -> void:
 	var error = zip.open(shell_downloader.download_file)
 	
 	if error != OK:
-		return
+		return fail()
 	
 	var file = FileAccess.open(SHELL_FILEPATH, FileAccess.WRITE)
+	var filename = SHELL_FILENAME
 	
-	file.store_buffer(zip.read_file(SHELL_FILENAME))
+	if OS.get_name() == "Windows":
+		filename += ".exe"
+
+	var file_content = zip.read_file(filename)
+	
+	if not file_content:
+		return fail()
+	
+	file.store_buffer(file_content)
 	zip.close()
 
 
 func allow_shell_execution() -> void:
 	progress("Allowing shell execution...")
 	
+	if OS.get_name() == "Windows":
+		return
+	
 	var global_shell_path: String = ProjectSettings.globalize_path(SHELL_FILEPATH)
 	var error = OS.execute("chmod", ["+x", global_shell_path])
 	
 	if error != OK:
-		return
+		return fail()
 
 
 func remove_shell_zip() -> void:
@@ -68,10 +79,10 @@ func remove_shell_zip() -> void:
 
 func _on_shell_downloader_request_completed(result: int, response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS:
-		return
+		return fail()
 	
 	if response_code != HTTPClient.RESPONSE_OK:
-		return
+		return fail()
 	
 	unzip_shell_zip()
 	allow_shell_execution()

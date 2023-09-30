@@ -28,6 +28,8 @@ var collections: Array[String] = []
 
 var page_size: int = 10
 
+@onready var search_button: Button = $Search
+
 
 func _ready() -> void:
 	page_size_spin.value = Settings.page_size
