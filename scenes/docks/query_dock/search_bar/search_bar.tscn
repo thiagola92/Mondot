@@ -4,18 +4,23 @@
 [ext_resource type="Texture2D" uid="uid://cu8hxgvwkt13" path="res://icons/arrow_down.svg" id="2_bk05o"]
 [ext_resource type="Texture2D" uid="uid://rijo02u67hck" path="res://icons/arrow_up.svg" id="3_xt1rw"]
 
-[node name="SearchBar" type="HFlowContainer"]
+[node name="SearchBar" type="HFlowContainer" node_paths=PackedStringArray("search_text", "counter")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 16.0
 grow_horizontal = 2
 script = ExtResource("1_2hled")
+search_text = NodePath("SearchText")
+counter = NodePath("Counter")
 
 [node name="SearchText" type="LineEdit" parent="."]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Search text"
+
+[node name="Counter" type="Label" parent="."]
+layout_mode = 2
 
 [node name="Next" type="Button" parent="."]
 layout_mode = 2
@@ -26,3 +31,7 @@ flat = true
 layout_mode = 2
 icon = ExtResource("3_xt1rw")
 flat = true
+
+[connection signal="text_changed" from="SearchText" to="." method="_on_search_text_text_changed"]
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Previous" to="." method="_on_previous_pressed"]
