@@ -79,13 +79,67 @@ func previous_position(pos: Vector2i) -> Vector2i:
 	return Vector2i(-1, -1)
 
 
+func move_to_next_occurrence() -> void:
+	var start_pos = next_position(get_caret_position())
+	
+	if start_pos.x == -1:
+		start_pos = Vector2i(0, 0)
+	
+	var text_pos = text_edit.search(
+		search_text.text,
+		text_edit.SEARCH_MATCH_CASE,
+		start_pos.y,
+		start_pos.x
+	)
+	
+	if text_pos.x == -1:
+		return
+	
+	set_caret_position(text_pos)
+
+
+func move_to_previous_occurrence() -> void:
+	var start_pos = previous_position(get_caret_position())
+	
+	if start_pos.x == -1:
+		start_pos = get_last_position()
+	
+	var text_pos = text_edit.search(
+		search_text.text,
+		text_edit.SEARCH_BACKWARDS,
+		start_pos.y,
+		start_pos.x
+	)
+	
+	if text_pos.x == -1:
+		return
+	
+	set_caret_position(text_pos)
+
+
+func get_caret_position() -> Vector2i:
+	return Vector2i(text_edit.get_caret_column(), text_edit.get_caret_line())
+
+
+func set_caret_position(pos: Vector2i) -> void:
+	text_edit.set_caret_column(pos.x)
+	text_edit.set_caret_line(pos.y)
+
+
+func get_last_position() -> Vector2i:
+	var lines: int  = text_edit.get_line_count() - 1
+	var columns: int = text_edit.get_line(lines).length()
+	print(Vector2i(columns, lines))
+	return Vector2i(columns, lines)
+
+
 func _on_search_text_text_changed(text: String) -> void:
 	count_occurrences(text)
 
 
 func _on_next_pressed() -> void:
-	pass
+	move_to_next_occurrence()
 
 
 func _on_previous_pressed() -> void:
-	pass
+	move_to_previous_occurrence()
