@@ -20,7 +20,11 @@ func clear_grid() -> void:
 		indexes_grid.add_child(button)
 
 
-func add_index_line(index: int, alias: String, database: String, collection: String) -> void:
+func add_index_line(index: int, connection_path: ConnectionPath) -> void:
+	var alias: String = connection_path.connection_info.connection_name
+	var database: String = connection_path.database
+	var collection: String = connection_path.collection
+	
 	var index_label = Label.new()
 	var alias_button = Button.new()
 	var database_button = Button.new()
@@ -35,6 +39,10 @@ func add_index_line(index: int, alias: String, database: String, collection: Str
 	database_button.pressed.connect(func(): DisplayServer.clipboard_set("self.dbs[%s]" % index))
 	collection_button.pressed.connect(func(): DisplayServer.clipboard_set("self.cols[%s]" % index))
 	
+	connection_path.connection_info.connection_name_changed.connect(
+		func(c: ConnectionInfo): alias_button.text = c.connection_name
+	)
+	
 	indexes_grid.add_child(index_label)
 	indexes_grid.add_child(alias_button)
 	indexes_grid.add_child(database_button)
@@ -45,9 +53,4 @@ func add_indexes_lines(connections_paths: Array[ConnectionPath]) -> void:
 	clear_grid()
 	
 	for index in connections_paths.size():
-		add_index_line(
-			index,
-			connections_paths[index].connection_info.connection_name,
-			connections_paths[index].database,
-			connections_paths[index].collection
-		)
+		add_index_line(index, connections_paths[index])
