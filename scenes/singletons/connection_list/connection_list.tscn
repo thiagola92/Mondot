@@ -4,3 +4,5 @@
 
 [node name="ConnectionList" type="Node"]
 script = ExtResource("1_qo7dk")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

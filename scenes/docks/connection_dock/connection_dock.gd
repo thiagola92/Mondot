@@ -44,8 +44,6 @@ func clear_items():
 
 
 func load_items() -> void:
-	Connections.import()
-	
 	for c in Connections.connections:
 		add_item(c)
 

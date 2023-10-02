@@ -25,6 +25,6 @@ func _init(name: String, uri: String) -> void:
 
 func to_dict() -> Dictionary:
 	return {
-		"name": connection_name,
+		"alias": connection_name,
 		"uri": connection_uri,
 	}
