@@ -9,17 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://dd1qta6gxlsnl" path="res://scenes/python/python_onetime/python_onetime.tscn" id="7_dpiul"]
 [ext_resource type="PackedScene" uid="uid://bnsv4bmd8tkjp" path="res://scenes/python/python_parser/python_parser.tscn" id="8_b18ok"]
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("lock", "name_line", "uri_line", "uri_show", "uri_test", "python_onetime", "python_parser")]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("lock", "delete_confirmation", "name_line", "uri_line", "uri_show", "uri_test", "python_onetime", "python_parser")]
 offset_right = 311.0
 offset_bottom = 94.0
 script = ExtResource("1_88d85")
 lock = NodePath("Container/Container/Menu/Lock")
+delete_confirmation = NodePath("Container/Container/Menu/Delete/DeleteConfirmation")
 name_line = NodePath("Container/Container/Info/NameLine")
 uri_line = NodePath("Container/Container/Info/URILine")
 uri_show = NodePath("Container/Container/Info/URIShow")
 uri_test = NodePath("Container/Container/Info/URITest")
-python_onetime = NodePath("PythonOnetime")
-python_parser = NodePath("PythonParser")
+python_onetime = NodePath("Container/Container/Info/URITest/PythonOnetime")
+python_parser = NodePath("Container/Container/Info/URITest/PythonParser")
 
 [node name="Container" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -49,6 +50,9 @@ layout_mode = 2
 size_flags_horizontal = 10
 icon = ExtResource("3_sydul")
 flat = true
+
+[node name="DeleteConfirmation" type="ConfirmationDialog" parent="Container/Container/Menu/Delete"]
+dialog_text = "Remove connection? (Cannot be undone.)"
 
 [node name="Info" type="GridContainer" parent="Container/Container"]
 layout_mode = 2
@@ -104,17 +108,18 @@ layout_mode = 2
 icon = ExtResource("6_3y8wg")
 flat = true
 
-[node name="PythonOnetime" parent="." instance=ExtResource("7_dpiul")]
+[node name="PythonOnetime" parent="Container/Container/Info/URITest" instance=ExtResource("7_dpiul")]
 
-[node name="PythonParser" parent="." instance=ExtResource("8_b18ok")]
+[node name="PythonParser" parent="Container/Container/Info/URITest" instance=ExtResource("8_b18ok")]
 
 [connection signal="toggled" from="Container/Container/Menu/Lock" to="." method="_on_lock_toggled"]
 [connection signal="pressed" from="Container/Container/Menu/Delete" to="." method="_on_delete_pressed"]
+[connection signal="confirmed" from="Container/Container/Menu/Delete/DeleteConfirmation" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="text_changed" from="Container/Container/Info/NameLine" to="." method="_on_name_line_text_changed"]
 [connection signal="text_changed" from="Container/Container/Info/URILine" to="." method="_on_uri_line_text_changed"]
 [connection signal="toggled" from="Container/Container/Info/URIShow" to="." method="_on_uri_show_toggled"]
 [connection signal="pressed" from="Container/Container/Info/URICopy" to="." method="_on_uri_copy_pressed"]
 [connection signal="pressed" from="Container/Container/Info/URITest" to="." method="_on_uri_test_pressed"]
-[connection signal="execution_finished" from="PythonOnetime" to="." method="_on_python_onetime_execution_finished"]
-[connection signal="parsing_finished" from="PythonParser" to="." method="_on_python_parser_parsing_finished"]
-[connection signal="python_code_failed" from="PythonParser" to="." method="_on_python_parser_python_code_failed"]
+[connection signal="execution_finished" from="Container/Container/Info/URITest/PythonOnetime" to="." method="_on_python_onetime_execution_finished"]
+[connection signal="parsing_finished" from="Container/Container/Info/URITest/PythonParser" to="." method="_on_python_parser_parsing_finished"]
+[connection signal="python_code_failed" from="Container/Container/Info/URITest/PythonParser" to="." method="_on_python_parser_python_code_failed"]

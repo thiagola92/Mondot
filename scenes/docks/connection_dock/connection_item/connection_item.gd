@@ -18,6 +18,8 @@ const LINK_RED: Texture = preload("res://icons/link_red.svg")
 
 @export var lock: Button
 
+@export var delete_confirmation: ConfirmationDialog
+
 @export var name_line: LineEdit
 
 @export var uri_line: LineEdit
@@ -64,6 +66,10 @@ func _on_lock_toggled(button_pressed: bool) -> void:
 
 
 func _on_delete_pressed() -> void:
+	delete_confirmation.popup_centered()
+
+
+func _on_confirmation_dialog_confirmed() -> void:
 	queue_free()
 	Connections.remove_connection(connection_info)
 
