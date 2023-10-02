@@ -71,16 +71,20 @@ func focus_dock(script: Script, scene: PackedScene) -> Node:
 	return new_dock(scene)
 
 
-func _on_docks_tab_tab_changed(tab):
-	docks_container.current_tab = tab
-
-
-func _on_docks_tab_tab_close_pressed(tab):
+func remove_tab(tab: int) -> void:
 	docks_container.get_child(tab).queue_free()
 	docks_tab.remove_tab(tab)
 
 
-func _on_docks_tab_active_tab_rearranged(idx_to):
+func _on_docks_tab_tab_changed(tab) -> void:
+	docks_container.current_tab = tab
+
+
+func _on_docks_tab_tab_close_pressed(tab) -> void:
+	remove_tab(tab)
+
+
+func _on_docks_tab_active_tab_rearranged(idx_to) -> void:
 	var c = docks_container.get_child(docks_container.current_tab)
 	docks_container.move_child(c, idx_to)
 
@@ -91,5 +95,5 @@ func _on_docks_tab_gui_input(event: InputEvent) -> void:
 			var tab = docks_tab.get_tab_idx_at_point(event.position)
 			
 			if tab >= 0:
-				docks_tab.remove_tab(tab)
+				remove_tab(tab)
 	
