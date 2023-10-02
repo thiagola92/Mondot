@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dk8bevu5ymmta"]
+[gd_scene load_steps=15 format=3 uid="uid://dk8bevu5ymmta"]
 
 [ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/query_menu.gd" id="1_7t35d"]
 [ext_resource type="Texture2D" uid="uid://bh4eaxj8xraat" path="res://icons/play.svg" id="2_ccess"]
@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://c5bj6x8cra0f8" path="res://icons/file.svg" id="7_wj47k"]
 [ext_resource type="Texture2D" uid="uid://cfvtv2sw3ymjh" path="res://icons/magnifying_glass.svg" id="8_vplxb"]
 [ext_resource type="Texture2D" uid="uid://cagtvkbp3b2wd" path="res://icons/list.svg" id="8_vxsmg"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_gwdyg"]
+device = -1
+keycode = 4194336
+
+[sub_resource type="Shortcut" id="Shortcut_amm3b"]
+events = [SubResource("InputEventKey_gwdyg")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_i2jnu"]
 device = -1
@@ -40,6 +47,7 @@ page_size_spin = NodePath("PageSizeSpin")
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 2
+shortcut = SubResource("Shortcut_amm3b")
 icon = ExtResource("2_ccess")
 flat = true
 
