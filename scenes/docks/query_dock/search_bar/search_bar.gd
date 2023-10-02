@@ -2,6 +2,8 @@ class_name SearchBar
 extends HFlowContainer
 
 
+const OCCURRENCES_LIMIT: int = 9000
+
 @export var text_edit: TextEdit
 
 @export var search_text: LineEdit
@@ -35,6 +37,10 @@ func count_occurrences(text: String) -> void:
 		text_pos = text_edit.search(text, text_edit.SEARCH_MATCH_CASE, start_pos.y, start_pos.x)
 		
 		if is_search_looping(previous_pos, text_pos):
+			break
+		
+		if occurrences_count > OCCURRENCES_LIMIT:
+			counter.text = "> %s" % OCCURRENCES_LIMIT
 			break
 		
 		occurrences_count += 1
