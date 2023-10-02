@@ -43,6 +43,9 @@ func add_connection(connection_info: ConnectionInfo) -> void:
 	checkable_menu.checked.connect(request_databases.bind(connection_info))
 	checkable_menu.checked.connect(update_connections_paths)
 	checkable_menu.unchecked.connect(update_connections_paths)
+	connection_info.connection_name_changed.connect(
+		func(_c): checkable_menu.text = connection_info.connection_name
+	)
 
 
 func remove_connection(connection_info: ConnectionInfo) -> void:
