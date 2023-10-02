@@ -129,7 +129,6 @@ func set_caret_position(pos: Vector2i) -> void:
 func get_last_position() -> Vector2i:
 	var lines: int  = text_edit.get_line_count() - 1
 	var columns: int = text_edit.get_line(lines).length()
-	print(Vector2i(columns, lines))
 	return Vector2i(columns, lines)
 
 

@@ -92,3 +92,4 @@ flat = true
 [connection signal="text_changed" from="Container/Container/Info/NameLine" to="." method="_on_name_line_text_changed"]
 [connection signal="text_changed" from="Container/Container/Info/URILine" to="." method="_on_uri_line_text_changed"]
 [connection signal="toggled" from="Container/Container/Info/URIShow" to="." method="_on_uri_show_toggled"]
+[connection signal="pressed" from="Container/Container/Info/URICopy" to="." method="_on_uri_copy_pressed"]

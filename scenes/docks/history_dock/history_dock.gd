@@ -11,11 +11,11 @@ const Item: PackedScene = preload("./history_item/history_item.tscn")
 
 
 func _ready() -> void:
-	connect_to_historic()
+	listen_to_historic_changes()
 	load_items()
 
 
-func connect_to_historic() -> void:
+func listen_to_historic_changes() -> void:
 	Historic.query_added.connect(add_item)
 	Historic.query_removed.connect(remove_item)
 	Historic.queries_cleared.connect(clear_items)

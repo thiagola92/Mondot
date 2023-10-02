@@ -57,3 +57,7 @@ func _on_uri_show_toggled(button_pressed):
 	else:
 		uri_show.icon = EYE_CLOSE
 		uri_line.secret = true
+
+
+func _on_uri_copy_pressed() -> void:
+	DisplayServer.clipboard_set(connection_info.connection_uri)
