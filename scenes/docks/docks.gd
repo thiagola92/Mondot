@@ -83,3 +83,13 @@ func _on_docks_tab_tab_close_pressed(tab):
 func _on_docks_tab_active_tab_rearranged(idx_to):
 	var c = docks_container.get_child(docks_container.current_tab)
 	docks_container.move_child(c, idx_to)
+
+
+func _on_docks_tab_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == 3 and event.pressed == false:
+			var tab = docks_tab.get_tab_idx_at_point(event.position)
+			
+			if tab >= 0:
+				docks_tab.remove_tab(tab)
+	

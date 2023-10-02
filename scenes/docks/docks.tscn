@@ -38,6 +38,9 @@ visible = false
 layout_mode = 2
 
 [connection signal="active_tab_rearranged" from="DocksTab" to="." method="_on_docks_tab_active_tab_rearranged"]
+[connection signal="gui_input" from="DocksTab" to="." method="_on_docks_tab_gui_input"]
+[connection signal="mouse_exited" from="DocksTab" to="." method="_on_docks_tab_mouse_exited"]
 [connection signal="tab_changed" from="DocksTab" to="." method="_on_docks_tab_tab_changed"]
 [connection signal="tab_close_pressed" from="DocksTab" to="." method="_on_docks_tab_tab_close_pressed"]
+[connection signal="tab_hovered" from="DocksTab" to="." method="_on_docks_tab_tab_hovered"]
 [connection signal="tree_exited" from="DocksContainer/SetupDock" to="." method="replicate_tabs"]
