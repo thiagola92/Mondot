@@ -80,3 +80,9 @@ for doc in source_collection.find({}):
 if batch:
 	target_collection.insert_many(batch)
 """
+
+const TEST_URI = """from pymongo import MongoClient
+
+client = MongoClient("%s", serverSelectionTimeoutMS=5)
+client.server_info()
+"""

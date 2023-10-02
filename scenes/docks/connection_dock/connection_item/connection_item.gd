@@ -2,6 +2,20 @@ class_name ConnectionItem
 extends PanelContainer
 
 
+const LOCK_LOCKED: Texture = preload("res://icons/lock_locked.svg")
+
+const LOCK_UNLOCKED: Texture = preload("res://icons/lock_unlocked.svg")
+
+const EYE_OPEN: Texture = preload("res://icons/eye_open.svg")
+
+const EYE_CLOSE: Texture = preload("res://icons/eye_close.svg")
+
+const LINK: Texture = preload("res://icons/link.svg")
+
+const LINK_GREEN: Texture = preload("res://icons/link_green.svg")
+
+const LINK_RED: Texture = preload("res://icons/link_red.svg")
+
 @export var lock: Button
 
 @export var name_line: LineEdit
@@ -10,13 +24,11 @@ extends PanelContainer
 
 @export var uri_show: Button
 
-const LOCK_LOCKED: Texture = preload("res://icons/lock_locked.svg")
+@export var uri_test: Button
 
-const LOCK_UNLOCKED: Texture = preload("res://icons/lock_unlocked.svg")
+@export var python_onetime: PythonOnetime
 
-const EYE_OPEN: Texture = preload("res://icons/eye_open.svg")
-
-const EYE_CLOSE: Texture = preload("res://icons/eye_close.svg")
+@export var python_parser: PythonParser
 
 var connection_info: ConnectionInfo:
 	set(c):
@@ -28,6 +40,15 @@ var connection_info: ConnectionInfo:
 func press_unlock() -> void:
 	lock.button_pressed = true
 	_on_lock_toggled(true)
+
+
+func test_uri() -> void:
+	var query := Templates.TEST_URI % connection_info.connection_uri
+	
+	uri_test.icon = LINK
+	
+	# PythonArgs is irrelevant, query doesn't use it information
+	python_onetime.run(query, PythonArgs.new())
 
 
 func _on_lock_toggled(button_pressed: bool) -> void:
@@ -53,6 +74,7 @@ func _on_name_line_text_changed(new_name: String) -> void:
 
 func _on_uri_line_text_changed(new_uri: String) -> void:
 	connection_info.connection_uri = new_uri
+	test_uri()
 
 
 func _on_uri_show_toggled(button_pressed) -> void:
@@ -66,3 +88,19 @@ func _on_uri_show_toggled(button_pressed) -> void:
 
 func _on_uri_copy_pressed() -> void:
 	DisplayServer.clipboard_set(connection_info.connection_uri)
+
+
+func _on_uri_test_pressed() -> void:
+	test_uri()
+
+
+func _on_python_onetime_execution_finished(content: String) -> void:
+	python_parser.parse(content)
+
+
+func _on_python_parser_python_code_failed(code: int, message: String) -> void:
+	uri_test.icon = LINK_RED
+
+
+func _on_python_parser_parsing_finished(content: Variant) -> void:
+	uri_test.icon = LINK_GREEN
