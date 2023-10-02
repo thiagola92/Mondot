@@ -15,14 +15,17 @@ func _ready():
 
 
 func listen_to_connections_changes() -> void:
-	Connections.connection_added.connect(add_item)
+	Connections.connection_added.connect(add_item.bind(false))
 	Connections.connection_removed.connect(remove_item)
 
 
-func add_item(connection_info: ConnectionInfo) -> void:
+func add_item(connection_info: ConnectionInfo, locked: bool = true) -> void:
 	var item: ConnectionItem = Item.instantiate()
 	item.connection_info = connection_info
 	items_container.add_child(item)
+	
+	if not locked:
+		item.press_unlock()
 
 
 func remove_item(connection_info: ConnectionInfo) -> void:

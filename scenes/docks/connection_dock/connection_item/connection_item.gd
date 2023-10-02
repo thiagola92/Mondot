@@ -25,7 +25,12 @@ var connection_info: ConnectionInfo:
 		uri_line.text = c.connection_uri
 
 
-func _on_lock_toggled(button_pressed):
+func press_unlock() -> void:
+	lock.button_pressed = true
+	_on_lock_toggled(true)
+
+
+func _on_lock_toggled(button_pressed: bool) -> void:
 	if button_pressed:
 		lock.icon = LOCK_UNLOCKED
 		name_line.editable = true
@@ -37,7 +42,7 @@ func _on_lock_toggled(button_pressed):
 		uri_line.secret = true
 
 
-func _on_delete_pressed():
+func _on_delete_pressed() -> void:
 	queue_free()
 	Connections.remove_connection(connection_info)
 
@@ -50,7 +55,7 @@ func _on_uri_line_text_changed(new_uri: String) -> void:
 	connection_info.connection_uri = new_uri
 
 
-func _on_uri_show_toggled(button_pressed):
+func _on_uri_show_toggled(button_pressed) -> void:
 	if button_pressed:
 		uri_show.icon = EYE_OPEN
 		uri_line.secret = false
