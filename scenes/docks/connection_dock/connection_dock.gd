@@ -6,6 +6,8 @@ const DOCK_NAME: String = "Connections"
 
 const Item: PackedScene = preload("./connection_item/connection_item.tscn")
 
+@export var scroll_container: ScrollContainer
+
 @export var items_container: HFlowContainer
 
 
@@ -48,5 +50,10 @@ func load_items() -> void:
 		add_item(c)
 
 
+func scroll_to_end() -> void:
+	scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
+
+
 func _on_add_pressed() -> void:
 	Connections.add_connection("localhost", PythonArgs.DEFAULT_URI)
+	scroll_to_end()

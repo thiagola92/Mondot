@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/docks/connection_dock/connection_dock.gd" id="1_0wro8"]
 [ext_resource type="Texture2D" uid="uid://ci4vyjacywqbw" path="res://icons/plus.svg" id="2_72tjd"]
 
-[node name="ConnectionDock" type="MarginContainer" node_paths=PackedStringArray("items_container")]
+[node name="ConnectionDock" type="MarginContainer" node_paths=PackedStringArray("scroll_container", "items_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,6 +15,7 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_0wro8")
+scroll_container = NodePath("Container/ScrollContainer")
 items_container = NodePath("Container/ScrollContainer/ItemsContainer")
 
 [node name="Container" type="VBoxContainer" parent="."]
