@@ -4,18 +4,23 @@
 [ext_resource type="Texture2D" uid="uid://ci4vyjacywqbw" path="res://icons/plus.svg" id="2_72tjd"]
 
 [node name="ConnectionDock" type="MarginContainer" node_paths=PackedStringArray("items_container")]
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_0wro8")
-items_container = NodePath("Container/ItemsContainer")
+items_container = NodePath("Container/ScrollContainer/ItemsContainer")
 
 [node name="Container" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Add" type="Button" parent="Container"]
 layout_mode = 2
@@ -23,8 +28,13 @@ size_flags_horizontal = 8
 icon = ExtResource("2_72tjd")
 flat = true
 
-[node name="ItemsContainer" type="HFlowContainer" parent="Container"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Container"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemsContainer" type="HFlowContainer" parent="Container/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 

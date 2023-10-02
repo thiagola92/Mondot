@@ -10,11 +10,11 @@ const Item: PackedScene = preload("./connection_item/connection_item.tscn")
 
 
 func _ready():
-	connect_to_historic()
+	listen_to_connections_changes()
 	load_items()
 
 
-func connect_to_historic() -> void:
+func listen_to_connections_changes() -> void:
 	Connections.connection_added.connect(add_item)
 	Connections.connection_removed.connect(remove_item)
 
