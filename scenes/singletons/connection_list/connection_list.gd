@@ -31,13 +31,16 @@ func import() -> void:
 		return print("Fail to parse content in connections file")
 	
 	for c in content:
-		connections.append(ConnectionInfo.new(c["alias"], c["uri"]))
+		add_connection(c["alias"], c["uri"])
 
 
 func add_connection(connection_name: String, uri: String) -> void:
 	var connection_info: ConnectionInfo = ConnectionInfo.new(connection_name, uri)
 	connections.append(connection_info)
 	connection_added.emit(connection_info)
+	
+	connection_info.connection_name_changed.connect(func(_c): export())
+	connection_info.connection_uri_changed.connect(func(_c): export())
 	
 	export()
 
