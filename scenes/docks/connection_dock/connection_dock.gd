@@ -49,7 +49,7 @@ func load_items() -> void:
 
 
 func scroll_to_end() -> void:
-	scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
+	scroll_container.scroll_vertical = int(scroll_container.get_v_scroll_bar().max_value)
 
 
 func _on_add_pressed() -> void:

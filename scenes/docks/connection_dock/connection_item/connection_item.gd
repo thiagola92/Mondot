@@ -104,9 +104,9 @@ func _on_python_onetime_execution_finished(content: String) -> void:
 	python_parser.parse(content)
 
 
-func _on_python_parser_python_code_failed(code: int, message: String) -> void:
+func _on_python_parser_python_code_failed(_code: int, _message: String) -> void:
 	uri_test.icon = LINK_RED
 
 
-func _on_python_parser_parsing_finished(content: Variant) -> void:
+func _on_python_parser_parsing_finished(_content: Variant) -> void:
 	uri_test.icon = LINK_GREEN
