@@ -4,6 +4,8 @@ extends MarginContainer
 
 @export var indexes_grid: GridContainer
 
+@export var query_code: QueryCode
+
 
 func _ready() -> void:
 	clear_grid()
@@ -35,9 +37,9 @@ func add_index_line(index: int, connection_path: ConnectionPath) -> void:
 	database_button.text = database
 	collection_button.text = collection
 	
-	alias_button.pressed.connect(func(): DisplayServer.clipboard_set("self.clients[%s]" % index))
-	database_button.pressed.connect(func(): DisplayServer.clipboard_set("self.dbs[%s]" % index))
-	collection_button.pressed.connect(func(): DisplayServer.clipboard_set("self.cols[%s]" % index))
+	alias_button.pressed.connect(insert_text_on_caret.bind("self.clients[%s]" % index))
+	database_button.pressed.connect(insert_text_on_caret.bind("self.dbs[%s]" % index))
+	collection_button.pressed.connect(insert_text_on_caret.bind("self.cols[%s]" % index))
 	
 	connection_path.connection_info.connection_name_changed.connect(
 		func(c: ConnectionInfo): alias_button.text = c.connection_name
@@ -54,3 +56,7 @@ func add_indexes_lines(connections_paths: Array[ConnectionPath]) -> void:
 	
 	for index in connections_paths.size():
 		add_index_line(index, connections_paths[index])
+
+
+func insert_text_on_caret(text: String) -> void:
+	query_code.insert_text_at_caret(text)

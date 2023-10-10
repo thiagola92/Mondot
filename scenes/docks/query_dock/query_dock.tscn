@@ -57,8 +57,9 @@ size_flags_vertical = 3
 [node name="QueryCode" parent="Container/QueryContainer/Container" instance=ExtResource("4_2n1gy")]
 layout_mode = 2
 
-[node name="QueryIndexes" parent="Container/QueryContainer/Container" instance=ExtResource("5_mdnvp")]
+[node name="QueryIndexes" parent="Container/QueryContainer/Container" node_paths=PackedStringArray("query_code") instance=ExtResource("5_mdnvp")]
 layout_mode = 2
+query_code = NodePath("../QueryCode")
 
 [node name="ResultContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 2
