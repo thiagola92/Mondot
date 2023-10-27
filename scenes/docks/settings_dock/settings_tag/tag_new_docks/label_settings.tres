@@ -1,7 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cr7ehs32ma1ot"]
-
-[ext_resource type="FontFile" uid="uid://c0agfcsy3yveu" path="res://fonts/roboto/Roboto-Black.ttf" id="1_21xjx"]
-
-[resource]
-font = ExtResource("1_21xjx")
-font_color = Color(0.976471, 0.560784, 0, 1)

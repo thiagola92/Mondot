@@ -6,11 +6,16 @@ signal frequency_which_check_outputs_changed(seconds: float)
 
 signal frequency_which_check_inputs_changed(seconds: float)
 
-######### New docks will be affected
+# Mondot
+
+var theme: Theme:
+	set(t):
+		theme = t
+		get_tree().root.theme = t
+
+# Query dock
 
 var page_size: int = 10
-
-######### All docks will be affected
 
 var frequency_which_check_outputs: float = 0.1:
 	set(v):
@@ -22,3 +27,6 @@ var frequency_which_check_inputs: float = 0.1:
 		frequency_which_check_inputs = v
 		frequency_which_check_inputs_changed.emit(v)
 
+
+func _ready() -> void:
+	get_tree().root.theme = theme

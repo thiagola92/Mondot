@@ -13,7 +13,6 @@ config_version=5
 config/name="Mondot"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-run/low_processor_mode=true
 run/low_processor_mode_sleep_usec=100000
 config/icon="res://icons/logo_mondot.svg"
 config/windows_native_icon="res://icons/logo_mondot.ico"

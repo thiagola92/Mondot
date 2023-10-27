@@ -3,7 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://8weojs1h2tg0" path="res://scenes/menu/menu.tscn" id="2_3ajt7"]
 [ext_resource type="PackedScene" uid="uid://dogr4xvdsy7xw" path="res://scenes/docks/docks.tscn" id="3_ku3ji"]
 
-[node name="Main" type="MarginContainer"]
+[node name="Panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,12 +22,12 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Containers" type="HBoxContainer" parent="."]
+[node name="Containers" type="HBoxContainer" parent="Main"]
 layout_mode = 2
 
-[node name="Menu" parent="Containers" node_paths=PackedStringArray("docks") instance=ExtResource("2_3ajt7")]
+[node name="Menu" parent="Main/Containers" node_paths=PackedStringArray("docks") instance=ExtResource("2_3ajt7")]
 layout_mode = 2
 docks = NodePath("../Docks")
 
-[node name="Docks" parent="Containers" instance=ExtResource("3_ku3ji")]
+[node name="Docks" parent="Main/Containers" instance=ExtResource("3_ku3ji")]
 layout_mode = 2

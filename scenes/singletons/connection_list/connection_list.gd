@@ -20,6 +20,10 @@ func _ready() -> void:
 ## Import from file every connections informations.
 func import() -> void:
 	var file: FileAccess = FileAccess.open_encrypted_with_pass("user://connections", FileAccess.READ, password)
+	
+	if not file:
+		return
+	
 	var content: Variant = JSON.parse_string(file.get_as_text())
 	
 	if content == null:

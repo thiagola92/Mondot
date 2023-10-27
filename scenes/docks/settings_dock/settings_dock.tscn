@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://gd1qy4irc2y2"]
+[gd_scene load_steps=4 format=3 uid="uid://gd1qy4irc2y2"]
 
 [ext_resource type="Script" path="res://scenes/docks/settings_dock/settings_dock.gd" id="1_yiq5f"]
 [ext_resource type="PackedScene" uid="uid://bb4idje1ple1n" path="res://scenes/docks/settings_dock/query_section/query_section.tscn" id="2_am4lc"]
+[ext_resource type="PackedScene" uid="uid://dvssuo5en0avk" path="res://scenes/docks/settings_dock/mondot_section/mondot_section.tscn" id="2_dh7ed"]
 
 [node name="SettingsDock" type="MarginContainer"]
 anchors_preset = 15
@@ -23,6 +24,9 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="MondotSection" parent="Container/Sections" instance=ExtResource("2_dh7ed")]
+layout_mode = 2
 
 [node name="QuerySection" parent="Container/Sections" instance=ExtResource("2_am4lc")]
 layout_mode = 2
