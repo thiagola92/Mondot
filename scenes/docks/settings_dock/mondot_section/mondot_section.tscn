@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvssuo5en0avk"]
+[gd_scene load_steps=3 format=3 uid="uid://dvssuo5en0avk"]
 
 [ext_resource type="Script" path="res://scenes/docks/settings_dock/mondot_section/mondot_section.gd" id="1_6j5wf"]
 [ext_resource type="PackedScene" uid="uid://eqlh6jfc5d7o" path="res://scenes/docks/settings_dock/settings_tag/settings_tag.tscn" id="2_ur0km"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_dw047"]
-font_size = 32
 
 [node name="MondotSection" type="VBoxContainer" node_paths=PackedStringArray("mondot_theme")]
 anchors_preset = 15
@@ -17,8 +14,8 @@ mondot_theme = NodePath("GridContainer/Theme")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Mondot"
-label_settings = SubResource("LabelSettings_dw047")
 vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -37,7 +34,8 @@ vertical_alignment = 1
 [node name="Theme" type="OptionButton" parent="GridContainer"]
 layout_mode = 2
 item_count = 1
-popup/item_0/text = ""
+selected = 0
+popup/item_0/text = "main"
 popup/item_0/id = 0
 
 [node name="Separator" type="HSeparator" parent="."]

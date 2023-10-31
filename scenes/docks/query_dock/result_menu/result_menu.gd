@@ -6,13 +6,13 @@ signal next_pressed
 
 signal previous_pressed
 
-@export var search_bar: SearchBar
-
-@export var loading: TextureRect
+@export var page_label: Button
 
 @export var eof: Label
 
-@export var page_label: Label
+@export var loading: TextureRect
+
+@export var search_bar: SearchBar
 
 var page: int:
 	set(p):

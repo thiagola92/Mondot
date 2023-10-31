@@ -25,12 +25,10 @@ layout_mode = 2
 [node name="Next" type="Button" parent="."]
 layout_mode = 2
 icon = ExtResource("2_bk05o")
-flat = true
 
 [node name="Previous" type="Button" parent="."]
 layout_mode = 2
 icon = ExtResource("3_xt1rw")
-flat = true
 
 [connection signal="text_changed" from="SearchText" to="." method="_on_search_text_text_changed"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

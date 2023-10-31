@@ -36,10 +36,10 @@
      transform="rotate(45,13.384755,15.966746)">
     <path
        id="path1"
-       style="fill:#e0e0e0;stroke-width:1.95452;-inkscape-stroke:none"
+       style="fill:#ffffff;stroke-width:1.95452;-inkscape-stroke:none"
        d="M 3.9433594,8.1328125 A 3.9335382,3.9335382 0 0 0 0.00976563,12.066406 3.9335382,3.9335382 0 0 0 1.5917969,15.207031 c -0.011879,-0.0683 -0.019531,-0.137942 -0.019531,-0.208984 v -3.326172 c 0,-0.81466 0.8072373,-1.470703 1.8105469,-1.470703 H 4.53125 c 1.0033096,0 1.8105469,0.656043 1.8105469,1.470703 v 3.326172 c 0,0.06299 -0.00625,0.124684 -0.015625,0.185547 A 3.9335382,3.9335382 0 0 0 7.8769531,12.066406 3.9335382,3.9335382 0 0 0 3.9433594,8.1328125 Z" />
     <rect
-       style="fill:#e0e0e0;stroke-width:1.59;-inkscape-stroke:none"
+       style="fill:#ffffff;stroke-width:1.59;-inkscape-stroke:none"
        id="rect1"
        width="2.1472273"
        height="7.8541656"
@@ -50,7 +50,7 @@
      id="g3"
      transform="rotate(-135,8.983812,11.376656)">
     <rect
-       style="fill:#e0e0e0;stroke-width:1.59;-inkscape-stroke:none"
+       style="fill:#ffffff;stroke-width:1.59;-inkscape-stroke:none"
        id="rect1-6"
        width="2.1472273"
        height="7.8541656"
@@ -58,7 +58,7 @@
        y="-7.8541656"
        transform="scale(-1)" />
     <rect
-       style="fill:#e0e0e0;fill-opacity:1;stroke-width:1.14234;-inkscape-stroke:none"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:1.14234;-inkscape-stroke:none"
        id="rect2-5"
        width="4.227036"
        height="5.5534778"

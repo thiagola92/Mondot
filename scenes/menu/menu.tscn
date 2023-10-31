@@ -20,7 +20,6 @@ script = ExtResource("1_u4qrf")
 layout_mode = 2
 size_flags_vertical = 0
 icon = ExtResource("2_ashcr")
-flat = true
 
 [node name="Templates" parent="." instance=ExtResource("3_m4bkc")]
 layout_mode = 2
@@ -32,18 +31,15 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 10
 icon = ExtResource("5_x2v5h")
-flat = true
 
 [node name="History" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 8
 icon = ExtResource("6_mgxma")
-flat = true
 
 [node name="Settings" type="Button" parent="."]
 layout_mode = 2
 icon = ExtResource("7_uqyq8")
-flat = true
 
 [connection signal="pressed" from="Query" to="." method="_on_query_pressed"]
 [connection signal="count_documents_selected" from="Templates" to="." method="_on_templates_count_documents_selected"]

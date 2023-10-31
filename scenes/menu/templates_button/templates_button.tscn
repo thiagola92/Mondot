@@ -5,6 +5,7 @@
 
 [node name="TemplatesButton" type="MenuButton"]
 icon = ExtResource("1_lyl5g")
+flat = false
 item_count = 10
 popup/item_0/text = "single collection"
 popup/item_0/id = 0

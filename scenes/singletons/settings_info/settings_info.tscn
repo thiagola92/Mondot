@@ -4,3 +4,5 @@
 
 [node name="SettingsInfo" type="Node"]
 script = ExtResource("1_ta188")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

@@ -8,7 +8,6 @@
 [node name="ConnectionButton" type="Button" node_paths=PackedStringArray("connections_popup", "python_parser")]
 toggle_mode = true
 icon = ExtResource("1_qyd17")
-flat = true
 script = ExtResource("2_0taph")
 connections_popup = NodePath("ConnectionsPopup")
 python_parser = NodePath("PythonParser")

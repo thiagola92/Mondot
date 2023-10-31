@@ -33,7 +33,6 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "Clear all"
 icon = ExtResource("2_k6bui")
-flat = true
 
 [node name="ItemsContainer" type="VBoxContainer" parent="Container/Container"]
 layout_mode = 2

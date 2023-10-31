@@ -32,31 +32,28 @@ frame_6/duration = 1.0
 frame_7/texture = ExtResource("12_xipfl")
 frame_7/duration = 1.0
 
-[node name="ResultMenu" type="HFlowContainer" node_paths=PackedStringArray("loading", "eof", "page_label")]
+[node name="ResultMenu" type="HFlowContainer" node_paths=PackedStringArray("page_label", "eof", "loading")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 26.0
 grow_horizontal = 2
 script = ExtResource("1_2quaq")
-loading = NodePath("Loading")
-eof = NodePath("EOF")
 page_label = NodePath("Page")
+eof = NodePath("EOF")
+loading = NodePath("Loading")
 
 [node name="Previous" type="Button" parent="."]
 layout_mode = 2
 icon = ExtResource("2_ahkhd")
-flat = true
 
-[node name="Page" type="Label" parent="."]
+[node name="Page" type="Button" parent="."]
 layout_mode = 2
-size_flags_vertical = 1
+disabled = true
 text = "0"
-vertical_alignment = 1
 
 [node name="Next" type="Button" parent="."]
 layout_mode = 2
 icon = ExtResource("3_dg6i0")
-flat = true
 
 [node name="EOF" type="Label" parent="."]
 layout_mode = 2
@@ -77,7 +74,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 toggle_mode = true
 icon = ExtResource("13_7wxmr")
-flat = true
 
 [connection signal="pressed" from="Previous" to="." method="_on_previous_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

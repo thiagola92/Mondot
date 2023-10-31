@@ -5,6 +5,7 @@
 
 [node name="MoreTemplatesButton" type="MenuButton"]
 icon = ExtResource("1_ni8eq")
+flat = false
 item_count = 3
 popup/item_0/text = "many collections"
 popup/item_0/id = 0

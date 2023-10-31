@@ -49,22 +49,20 @@ page_size_spin = NodePath("PageSizeSpin")
 layout_mode = 2
 shortcut = SubResource("Shortcut_amm3b")
 icon = ExtResource("2_ccess")
-flat = true
 
 [node name="Stop" type="Button" parent="."]
 layout_mode = 2
 icon = ExtResource("3_r5qb7")
-flat = true
 
 [node name="Save" type="Button" parent="."]
 layout_mode = 2
 shortcut = SubResource("Shortcut_rai55")
 icon = ExtResource("4_iqpko")
-flat = true
 
 [node name="ConnectionButton" parent="." instance=ExtResource("5_swfgh")]
 layout_mode = 2
 size_flags_horizontal = 10
+flat = false
 
 [node name="PageSizeTexture" type="TextureRect" parent="."]
 layout_mode = 2
@@ -86,13 +84,11 @@ size_flags_horizontal = 8
 toggle_mode = true
 shortcut = SubResource("Shortcut_ek521")
 icon = ExtResource("8_vplxb")
-flat = true
 
 [node name="Indexes" type="Button" parent="."]
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("8_vxsmg")
-flat = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Stop" to="." method="_on_stop_pressed"]

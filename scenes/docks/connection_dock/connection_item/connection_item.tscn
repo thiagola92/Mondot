@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dd1qta6gxlsnl" path="res://scenes/python/python_onetime/python_onetime.tscn" id="7_dpiul"]
 [ext_resource type="PackedScene" uid="uid://bnsv4bmd8tkjp" path="res://scenes/python/python_parser/python_parser.tscn" id="8_b18ok"]
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("lock", "delete_confirmation", "name_line", "uri_line", "uri_show", "uri_test", "python_onetime", "python_parser")]
+[node name="ConnectionItem" type="PanelContainer" node_paths=PackedStringArray("lock", "delete_confirmation", "name_line", "uri_line", "uri_show", "uri_test", "python_onetime", "python_parser")]
 offset_right = 311.0
 offset_bottom = 94.0
 script = ExtResource("1_88d85")
@@ -43,13 +43,11 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 toggle_mode = true
 icon = ExtResource("2_f3dms")
-flat = true
 
 [node name="Delete" type="Button" parent="Container/Container/Menu"]
 layout_mode = 2
 size_flags_horizontal = 10
 icon = ExtResource("3_sydul")
-flat = true
 
 [node name="DeleteConfirmation" type="ConfirmationDialog" parent="Container/Container/Menu/Delete"]
 dialog_text = "Remove connection? (Cannot be undone.)"
@@ -96,17 +94,14 @@ secret = true
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("4_gialv")
-flat = true
 
 [node name="URICopy" type="Button" parent="Container/Container/Info"]
 layout_mode = 2
 icon = ExtResource("5_54bhf")
-flat = true
 
 [node name="URITest" type="Button" parent="Container/Container/Info"]
 layout_mode = 2
 icon = ExtResource("6_3y8wg")
-flat = true
 
 [node name="PythonOnetime" parent="Container/Container/Info/URITest" instance=ExtResource("7_dpiul")]
 

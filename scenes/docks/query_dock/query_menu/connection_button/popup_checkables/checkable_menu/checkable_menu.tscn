@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://scenes/docks/query_dock/query_menu/connection_button/popup_checkables/checkable_menu/checkable_menu.gd" id="1_exnx3"]
 
 [node name="CheckableMenu" type="HBoxContainer" node_paths=PackedStringArray("checkbox", "button")]
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 24.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_exnx3")
 checkbox = NodePath("CheckBox")
 button = NodePath("Button")
