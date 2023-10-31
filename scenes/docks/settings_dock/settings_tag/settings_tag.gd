@@ -11,8 +11,8 @@ enum TagType {
 
 var tags: Array[Tag] = [
 	Tag.new("Now", "This configuration will be applied right now."),
-	Tag.new("All docks", "This configuration will be applied to new things."),
-	Tag.new("On restart", "This configuration will be applied after restarting."),
+	Tag.new("New", "This configuration will be applied to new instances."),
+	Tag.new("Restart", "This configuration will be applied after restarting."),
 ]
 
 
